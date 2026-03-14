@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /PDFKIT/
+Allow: /
 
-Sitemap: https://www.wooahouse.com/PDFKIT/sitemap.xml
+Sitemap: https://pdfkit.wooahouse.com/sitemap.xml
