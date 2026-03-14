@@ -61,6 +61,8 @@
     .tools-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
     @media (max-width: 768px) { .tools-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 520px) { .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } .tool-card { padding: 18px 10px 14px; } .tool-icon { font-size: 2rem; } }
+    .free-badge { display: inline-block; background: #22C55E; color: #fff; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; margin-bottom: 6px; letter-spacing: 0.03em; }
+    .tool-card { position: relative; }
   </style>
 </head>
 <body>
@@ -82,8 +84,8 @@
 </header>
 
 <section class="hero">
-  <h1>모든 PDF 작업, 한 곳에서</h1>
-  <p>변환·병합·분할·압축·워터마크까지 <br>완전 무료, 파일은 서버에 저장되지 않아요</p>
+  <h1>모든 PDF 작업 무료로, 한 곳에서</h1>
+  <p>변환·병합·분할·압축·워터마크까지 <strong style="color:#FFD700;">100% 무료</strong><br>회원가입 없이, 파일은 서버에 저장되지 않아요</p>
 </section>
 
 <section class="tools-section">
@@ -95,16 +97,19 @@
     </div>
     <div class="tools-grid">
       <a href="pdf-to-jpg.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">🖼️</span>
         <div class="tool-name">PDF → JPG</div>
         <div class="tool-desc">PDF 페이지를 고화질 JPG 이미지로 변환</div>
       </a>
       <a href="pdf-to-jpg.html?format=png" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">📸</span>
         <div class="tool-name">PDF → PNG</div>
         <div class="tool-desc">투명 배경 지원 PNG 이미지로 변환</div>
       </a>
       <a href="jpg-to-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">📄</span>
         <div class="tool-name">이미지 → PDF</div>
         <div class="tool-desc">JPG, PNG 등 이미지를 PDF 문서로 변환</div>
@@ -119,31 +124,37 @@
     </div>
     <div class="tools-grid">
       <a href="merge-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">🔗</span>
         <div class="tool-name">PDF 병합</div>
         <div class="tool-desc">여러 PDF 파일을 하나로 합치기</div>
       </a>
       <a href="split-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">✂️</span>
         <div class="tool-name">PDF 분할</div>
         <div class="tool-desc">PDF를 페이지별 또는 범위로 나누기</div>
       </a>
       <a href="rotate-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">🔄</span>
         <div class="tool-name">PDF 회전</div>
         <div class="tool-desc">PDF 페이지를 90°, 180°, 270° 회전</div>
       </a>
       <a href="delete-pages.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">🗑️</span>
         <div class="tool-name">페이지 삭제</div>
         <div class="tool-desc">불필요한 PDF 페이지를 골라서 삭제</div>
       </a>
       <a href="watermark-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">💧</span>
         <div class="tool-name">워터마크 추가</div>
         <div class="tool-desc">PDF에 텍스트 도장·사본 표시 삽입</div>
       </a>
       <a href="page-number-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">🔢</span>
         <div class="tool-name">페이지 번호</div>
         <div class="tool-desc">PDF 각 페이지에 번호 자동 삽입</div>
@@ -158,11 +169,13 @@
     </div>
     <div class="tools-grid">
       <a href="compress-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">🗜️</span>
         <div class="tool-name">PDF 압축</div>
         <div class="tool-desc">PDF 파일 용량을 줄여 저장·공유 편리하게</div>
       </a>
       <a href="unlock-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">🔓</span>
         <div class="tool-name">PDF 잠금 해제</div>
         <div class="tool-desc">비밀번호 보호 PDF의 잠금을 제거</div>
@@ -177,6 +190,7 @@
     </div>
     <div class="tools-grid">
       <a href="pdf-viewer.html" class="tool-card">
+        <span class="free-badge">무료</span>
         <span class="tool-icon">👁️</span>
         <div class="tool-name">PDF 뷰어 다운로드</div>
         <div class="tool-desc">Adobe Reader, Foxit 등 무료 PDF 뷰어 모음</div>
