@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지 PDF 변환 무료 - JPG PNG를 PDF로 변환 | PDF킷</title>
+  <meta name="description" content="JPG, PNG 이미지를 PDF로 무료 변환! 여러 이미지를 하나의 PDF로 합치기, 드래그로 순서 조정, 페이지 크기 설정 가능.">
+  <meta name="keywords" content="이미지PDF변환, JPG PDF변환, PNG PDF변환, 사진PDF만들기, 이미지합치기PDF, 무료이미지변환, 사진PDF변환, 이미지를PDF로">
+  <link rel="canonical" href="https://www.wooahouse.com/PDFKIT/jpg-to-pdf.html">
+  <meta property="og:title" content="이미지 PDF 변환 무료 - JPG PNG를 PDF로 | PDF킷">
+  <meta property="og:description" content="JPG, PNG 이미지를 PDF로 무료 변환! 여러 이미지를 하나의 PDF로 합치기 가능.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wooahouse.com/PDFKIT/jpg-to-pdf.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .image-preview-list { margin-top: 8px; }
+    .img-preview-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; background: #F9FAFB;
+      border-radius: 8px; margin-bottom: 8px;
+      cursor: grab;
+    }
+    .img-preview-item:active { cursor: grabbing; }
+    .img-preview-thumb {
+      width: 52px; height: 52px; object-fit: cover;
+      border-radius: 6px; border: 1px solid #E5E7EB;
+      flex-shrink: 0;
+    }
+    .drag-handle { color: #CBD5E0; font-size: 1.2rem; flex-shrink: 0; cursor: grab; }
+    .dragging { opacity: 0.4; }
+    .drag-over-item { border-top: 2px solid #FF4444; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>이미지 → PDF 변환</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">📄</span>
+    <h1>이미지를 PDF로 변환</h1>
+    <p>JPG, PNG 이미지를 PDF로 변환합니다. 여러 이미지를 드래그로 순서를 바꾼 후 하나의 PDF로 만들 수 있습니다.</p>
+  </div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">🖼️</span>
+    <h3>이미지 파일을 여기에 끌어다 놓으세요</h3>
+    <p>JPG, PNG, WEBP 형식 지원 · 여러 파일 동시 선택 가능</p>
+    <button class="btn-select" onclick="document.getElementById('fileInput').click()">이미지 파일 선택</button>
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple style="display:none">
+  </div>
+
+  <!-- File List -->
+  <div id="fileListPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 이미지 <span style="font-weight:400;font-size:0.8rem;">(드래그로 순서 변경)</span></div>
+    <div id="imageList" class="image-preview-list"></div>
+    <button style="margin-top:12px; background:none; border:1px dashed #CBD5E0; border-radius:8px; padding:8px 16px; cursor:pointer; font-size:0.85rem; color:#6B7280; width:100%;"
+      onclick="document.getElementById('fileInput').click()">+ 이미지 추가</button>
+  </div>
+
+  <!-- Options -->
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">PDF 옵션</div>
+
+    <div class="option-row">
+      <span class="option-label">페이지 크기</span>
+      <div class="option-control">
+        <select id="pageSizeSelect">
+          <option value="auto">이미지 크기에 맞춤 (권장)</option>
+          <option value="a4">A4 (210 × 297mm)</option>
+          <option value="letter">Letter (216 × 279mm)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">이미지 배치</span>
+      <div class="option-control">
+        <select id="fitSelect">
+          <option value="contain">페이지에 맞춤 (비율 유지)</option>
+          <option value="fill">페이지 채우기</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">여백</span>
+      <div class="option-control">
+        <select id="marginSelect">
+          <option value="0">여백 없음</option>
+          <option value="20" selected>보통 (20px)</option>
+          <option value="40">넓음 (40px)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-convert" id="convertBtn">📄 PDF로 변환</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">변환 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <!-- Result -->
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">변환 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- pdf-lib CDN -->
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+<script>
+  let fileItems = []; // { file, objectUrl }
+  let pdfBytes = null;
+
+  const dropZone = document.getElementById('dropZone');
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    addFiles([...e.dataTransfer.files]);
+  });
+
+  document.getElementById('fileInput').addEventListener('change', e => {
+    addFiles([...e.target.files]);
+    e.target.value = '';
+  });
+
+  function addFiles(files) {
+    const imageFiles = files.filter(f => f.type.startsWith('image/'));
+    if (imageFiles.length === 0) { showError('이미지 파일(JPG, PNG)만 업로드할 수 있습니다.'); return; }
+    hideError();
+
+    imageFiles.forEach(file => {
+      fileItems.push({ file, objectUrl: URL.createObjectURL(file) });
+    });
+
+    renderFileList();
+    document.getElementById('fileListPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+    pdfBytes = null;
+  }
+
+  function renderFileList() {
+    const list = document.getElementById('imageList');
+    list.innerHTML = '';
+
+    fileItems.forEach((item, index) => {
+      const el = document.createElement('div');
+      el.className = 'img-preview-item';
+      el.draggable = true;
+      el.dataset.index = index;
+      el.innerHTML = `
+        <span class="drag-handle">⋮⋮</span>
+        <img class="img-preview-thumb" src="${item.objectUrl}" alt="${item.file.name}">
+        <div class="file-item-info">
+          <div class="file-item-name">${item.file.name}</div>
+          <div class="file-item-size">${formatSize(item.file.size)}</div>
+        </div>
+        <button class="file-item-remove" onclick="removeFile(${index})">✕</button>
+      `;
+
+      // Drag events
+      el.addEventListener('dragstart', dragStart);
+      el.addEventListener('dragover', dragOver);
+      el.addEventListener('drop', dropOnItem);
+      el.addEventListener('dragend', dragEnd);
+
+      list.appendChild(el);
+    });
+  }
+
+  function removeFile(index) {
+    URL.revokeObjectURL(fileItems[index].objectUrl);
+    fileItems.splice(index, 1);
+    if (fileItems.length === 0) {
+      document.getElementById('fileListPanel').style.display = 'none';
+      document.getElementById('optionsPanel').style.display = 'none';
+    }
+    renderFileList();
+  }
+
+  // Drag to reorder
+  let dragSrcIndex = null;
+
+  function dragStart(e) {
+    dragSrcIndex = parseInt(e.currentTarget.dataset.index);
+    e.currentTarget.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+    document.querySelectorAll('.img-preview-item').forEach(el => el.classList.remove('drag-over-item'));
+    e.currentTarget.classList.add('drag-over-item');
+  }
+
+  function dropOnItem(e) {
+    e.preventDefault();
+    const targetIndex = parseInt(e.currentTarget.dataset.index);
+    if (dragSrcIndex !== null && dragSrcIndex !== targetIndex) {
+      const moved = fileItems.splice(dragSrcIndex, 1)[0];
+      fileItems.splice(targetIndex, 0, moved);
+      renderFileList();
+    }
+  }
+
+  function dragEnd(e) {
+    e.currentTarget.classList.remove('dragging');
+    document.querySelectorAll('.img-preview-item').forEach(el => el.classList.remove('drag-over-item'));
+    dragSrcIndex = null;
+  }
+
+  // 변환
+  document.getElementById('convertBtn').addEventListener('click', async () => {
+    if (fileItems.length === 0) return;
+
+    const btn = document.getElementById('convertBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 변환 중...';
+    hideError();
+    pdfBytes = null;
+
+    const pageSize = document.getElementById('pageSizeSelect').value;
+    const fit = document.getElementById('fitSelect').value;
+    const margin = parseInt(document.getElementById('marginSelect').value);
+
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const pdfDoc = await PDFDocument.create();
+
+      // A4: 595 x 842 points, Letter: 612 x 792 points
+      const pageSizes = {
+        a4: [595.28, 841.89],
+        letter: [612, 792]
+      };
+
+      for (let i = 0; i < fileItems.length; i++) {
+        const item = fileItems[i];
+        updateProgressUI(Math.round((i / fileItems.length) * 90), `이미지 처리 중 ${i + 1}/${fileItems.length}`);
+
+        const arrayBuffer = await item.file.arrayBuffer();
+        let image;
+
+        try {
+          if (item.file.type === 'image/png') {
+            image = await pdfDoc.embedPng(arrayBuffer);
+          } else {
+            // JPEG 또는 WEBP → canvas로 JPEG 변환
+            if (item.file.type === 'image/webp' || item.file.type === 'image/gif') {
+              const blob = await convertToJpeg(item.file);
+              const jpegBuffer = await blob.arrayBuffer();
+              image = await pdfDoc.embedJpg(jpegBuffer);
+            } else {
+              image = await pdfDoc.embedJpg(arrayBuffer);
+            }
+          }
+        } catch (e) {
+          // 변환 실패 시 canvas를 통해 JPEG로 재시도
+          const blob = await convertToJpeg(item.file);
+          const jpegBuffer = await blob.arrayBuffer();
+          image = await pdfDoc.embedJpg(jpegBuffer);
+        }
+
+        let pageW, pageH;
+
+        if (pageSize === 'auto') {
+          pageW = image.width + margin * 2;
+          pageH = image.height + margin * 2;
+        } else {
+          [pageW, pageH] = pageSizes[pageSize];
+          // 세로 이미지 → 가로 방향 조정
+          if (image.width > image.height && pageW < pageH) {
+            [pageW, pageH] = [pageH, pageW];
+          }
+        }
+
+        const page = pdfDoc.addPage([pageW, pageH]);
+
+        let drawW, drawH, drawX, drawY;
+
+        if (pageSize === 'auto') {
+          drawW = image.width;
+          drawH = image.height;
+          drawX = margin;
+          drawY = margin;
+        } else {
+          const availW = pageW - margin * 2;
+          const availH = pageH - margin * 2;
+          const ratio = Math.min(availW / image.width, availH / image.height);
+          drawW = image.width * ratio;
+          drawH = image.height * ratio;
+          drawX = margin + (availW - drawW) / 2;
+          drawY = margin + (availH - drawH) / 2;
+        }
+
+        page.drawImage(image, { x: drawX, y: drawY, width: drawW, height: drawH });
+      }
+
+      updateProgressUI(95, 'PDF 생성 중...');
+      pdfBytes = await pdfDoc.save();
+      updateProgressUI(100, '완료!');
+
+      document.getElementById('progressWrap').style.display = 'none';
+      showResult();
+
+    } catch (err) {
+      console.error(err);
+      showError('변환 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+
+    btn.disabled = false;
+    btn.textContent = '📄 PDF로 변환';
+  });
+
+  async function convertToJpeg(file) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(resolve, 'image/jpeg', 0.92);
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  function showResult() {
+    const panel = document.getElementById('resultPanel');
+    panel.style.display = 'block';
+    document.getElementById('resultSubtitle').textContent =
+      `${fileItems.length}개의 이미지가 PDF로 변환되었습니다`;
+    panel.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!pdfBytes) return;
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'converted.pdf';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+</body>
+</html>

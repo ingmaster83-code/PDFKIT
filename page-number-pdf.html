@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 페이지 번호 추가 무료 - 자동 번호 삽입 | PDF킷</title>
+  <meta name="description" content="PDF 각 페이지에 번호를 자동으로 추가. 위치(상하좌우 중앙), 형식, 시작 번호 설정 가능. 완전 무료 PDF 페이지 번호 도구.">
+  <meta name="keywords" content="PDF페이지번호, PDF번호추가, PDF쪽번호, PDF페이지넘버링, PDF번호삽입, PDF페이지번호추가, PDF쪽수, PDF번호매기기">
+  <link rel="canonical" href="https://www.wooahouse.com/PDFKIT/page-number-pdf.html">
+  <meta property="og:title" content="PDF 페이지 번호 추가 무료 | PDF킷">
+  <meta property="og:description" content="PDF 각 페이지에 번호 자동 추가. 위치·형식·시작번호 자유 설정.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wooahouse.com/PDFKIT/page-number-pdf.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>페이지 번호 추가</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🔢</span>
+    <h1>PDF 페이지 번호 추가</h1>
+    <p>PDF의 각 페이지에 번호를 자동으로 삽입합니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>페이지 번호를 추가할 PDF를 업로드하세요</p>
+    <button class="btn-select" onclick="document.getElementById('fileInput').click()">PDF 파일 선택</button>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">페이지 번호 설정</div>
+
+    <div class="option-row">
+      <span class="option-label">위치</span>
+      <div class="option-control">
+        <select id="pgPosition">
+          <option value="bottom-center">아래 중앙</option>
+          <option value="bottom-right">아래 오른쪽</option>
+          <option value="bottom-left">아래 왼쪽</option>
+          <option value="top-center">위 중앙</option>
+          <option value="top-right">위 오른쪽</option>
+          <option value="top-left">위 왼쪽</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">표시 형식</span>
+      <div class="option-control">
+        <div class="radio-group" style="flex-direction:column; gap:10px;">
+          <label class="radio-item"><input type="radio" name="pgFormat" value="simple" checked> 숫자만 &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">예: 1 &nbsp; 2 &nbsp; 3</span></label>
+          <label class="radio-item"><input type="radio" name="pgFormat" value="dash"> 줄표 &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">예: - 1 - &nbsp; - 2 -</span></label>
+          <label class="radio-item"><input type="radio" name="pgFormat" value="total"> 전체 표시 &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">예: 1 / 10 &nbsp; 2 / 10</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">시작 번호</span>
+      <div class="option-control" style="display:flex; align-items:center; gap:10px;">
+        <input type="number" id="pgStart" value="1" min="1" max="9999" style="width:100px;">
+        <span style="font-size:0.85rem; color:#6B7280;">번부터 시작</span>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">글자 크기</span>
+      <div class="option-control">
+        <select id="pgFontSize">
+          <option value="8">8pt (작게)</option>
+          <option value="10" selected>10pt (기본)</option>
+          <option value="12">12pt</option>
+          <option value="14">14pt (크게)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">여백</span>
+      <div class="option-control">
+        <select id="pgMargin">
+          <option value="20">20px (좁게)</option>
+          <option value="28" selected>28px (기본)</option>
+          <option value="36">36px (넓게)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-convert" id="applyBtn">🔢 페이지 번호 추가</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">처리 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">페이지 번호 추가 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  let selectedFile = null;
+  let totalPages = 0;
+  let resultBytes = null;
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+    try {
+      const { PDFDocument } = PDFLib;
+      const buf = await file.arrayBuffer();
+      const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+      totalPages = doc.getPageCount();
+    } catch(e) { totalPages = 0; }
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  document.getElementById('applyBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    const position = document.getElementById('pgPosition').value;
+    const format = document.querySelector('input[name="pgFormat"]:checked').value;
+    const startNum = parseInt(document.getElementById('pgStart').value) || 1;
+    const fontSize = parseInt(document.getElementById('pgFontSize').value);
+    const margin = parseInt(document.getElementById('pgMargin').value);
+
+    const btn = document.getElementById('applyBtn');
+    btn.disabled = true; btn.textContent = '⏳ 처리 중...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument, StandardFonts, rgb } = PDFLib;
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+      const pages = pdfDoc.getPages();
+      const totalPgs = pages.length;
+
+      updateProgressUI(30, '페이지 번호 삽입 중...');
+
+      pages.forEach((page, idx) => {
+        const { width, height } = page.getSize();
+        const pageNum = startNum + idx;
+
+        let text;
+        if (format === 'simple') text = `${pageNum}`;
+        else if (format === 'dash') text = `- ${pageNum} -`;
+        else text = `${pageNum} / ${totalPgs + startNum - 1}`;
+
+        const textWidth = font.widthOfTextAtSize(text, fontSize);
+
+        let x, y;
+        if (position === 'bottom-center') { x = (width - textWidth) / 2; y = margin; }
+        else if (position === 'bottom-right') { x = width - textWidth - margin; y = margin; }
+        else if (position === 'bottom-left') { x = margin; y = margin; }
+        else if (position === 'top-center') { x = (width - textWidth) / 2; y = height - margin - fontSize; }
+        else if (position === 'top-right') { x = width - textWidth - margin; y = height - margin - fontSize; }
+        else { x = margin; y = height - margin - fontSize; } // top-left
+
+        page.drawText(text, { x, y, size: fontSize, font, color: rgb(0.1, 0.1, 0.1) });
+      });
+
+      updateProgressUI(85, 'PDF 저장 중...');
+      resultBytes = await pdfDoc.save();
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      document.getElementById('resultSubtitle').textContent =
+        `${totalPgs}개 페이지에 번호가 추가되었습니다 (${startNum}번부터 시작)`;
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+    } catch(err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    resetBtn(btn);
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '_numbered.pdf');
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔢 페이지 번호 추가'; }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+</body>
+</html>

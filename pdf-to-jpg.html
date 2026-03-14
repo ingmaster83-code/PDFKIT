@@ -1,0 +1,468 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF JPG 변환 무료 - PDF를 이미지로 변환하기 | PDF킷</title>
+  <meta name="description" content="PDF를 JPG, PNG 이미지로 무료 변환! 고화질 변환 지원, 페이지 범위 선택 가능. 파일이 서버에 저장되지 않아 100% 안전합니다.">
+  <meta name="keywords" content="PDF JPG변환, PDF이미지변환, PDF PNG변환, PDF사진변환, PDF그림추출, PDF변환무료, 온라인PDF변환, PDF to JPG, PDF to image">
+  <link rel="canonical" href="https://www.wooahouse.com/PDFKIT/pdf-to-jpg.html">
+  <meta property="og:title" content="PDF JPG 변환 무료 - PDF를 이미지로 변환 | PDF킷">
+  <meta property="og:description" content="PDF를 JPG, PNG 이미지로 무료 변환! 고화질, 빠른 속도, 파일 서버 저장 없음.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wooahouse.com/PDFKIT/pdf-to-jpg.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span id="breadcrumbTitle">PDF → JPG 변환</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon" id="toolIcon">🖼️</span>
+    <h1 id="toolTitle">PDF를 JPG로 변환</h1>
+    <p id="toolDesc">PDF 파일을 업로드하면 각 페이지를 이미지로 변환해 드립니다. 파일은 브라우저에서만 처리되어 서버에 저장되지 않습니다.</p>
+  </div>
+
+  <!-- 광고 슬롯 상단 -->
+  <!-- <ins class="adsbygoogle" ...></ins> -->
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>또는 버튼을 클릭해서 파일을 선택하세요</p>
+    <button class="btn-select" onclick="document.getElementById('fileInput').click()">PDF 파일 선택</button>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none">
+  </div>
+
+  <!-- File info -->
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileList"></div>
+  </div>
+
+  <!-- Options -->
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">변환 옵션</div>
+
+    <div class="option-row">
+      <span class="option-label">이미지 형식</span>
+      <div class="option-control">
+        <select id="formatSelect">
+          <option value="jpg">JPG (JPEG)</option>
+          <option value="png">PNG</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">이미지 품질</span>
+      <div class="option-control">
+        <select id="qualitySelect">
+          <option value="high">고화질 (2x 해상도)</option>
+          <option value="medium" selected>중간 (1.5x 해상도)</option>
+          <option value="low">낮음 (1x 해상도)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">변환 범위</span>
+      <div class="option-control">
+        <div class="radio-group">
+          <label class="radio-item">
+            <input type="radio" name="pageRange" value="all" checked> 전체 페이지
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="pageRange" value="custom"> 특정 페이지
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="option-row" id="customRangeRow" style="display:none">
+      <span class="option-label">페이지 번호</span>
+      <div class="option-control">
+        <input type="text" id="pageRangeInput" placeholder="예: 1,3,5-8 (쉼표 또는 하이픈으로 구분)">
+      </div>
+    </div>
+
+    <button class="btn-convert" id="convertBtn">🔄 변환 시작</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">변환 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <!-- Result -->
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">변환 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ 전체 다운로드 (ZIP)</button>
+    <div class="preview-grid" id="previewGrid"></div>
+  </div>
+
+  <!-- 광고 슬롯 하단 -->
+  <!-- <ins class="adsbygoogle" ...></ins> -->
+
+</main>
+
+<div class="features" style="margin-top:60px">
+  <div class="features-inner">
+    <div>
+      <div class="feature-icon">🔒</div>
+      <div class="feature-title">개인정보 보호</div>
+      <div class="feature-desc">파일이 서버로 전송되지 않습니다</div>
+    </div>
+    <div>
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">빠른 처리</div>
+      <div class="feature-desc">로컬 처리로 속도 빠름</div>
+    </div>
+    <div>
+      <div class="feature-icon">💸</div>
+      <div class="feature-title">완전 무료</div>
+      <div class="feature-desc">회원가입 없이 무제한 사용</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- PDF.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- JSZip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<!-- FileSaver -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+  // URL 파라미터로 PNG 모드 감지
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('format') === 'png') {
+    document.getElementById('breadcrumbTitle').textContent = 'PDF → PNG 변환';
+    document.getElementById('toolIcon').textContent = '📸';
+    document.getElementById('toolTitle').textContent = 'PDF를 PNG로 변환';
+    document.getElementById('toolDesc').textContent = 'PDF 파일을 업로드하면 각 페이지를 PNG 이미지로 변환해 드립니다. 투명 배경이 지원됩니다.';
+    document.title = 'PDF를 PNG로 변환 - PDF킷';
+    document.getElementById('formatSelect').value = 'png';
+  }
+
+  // PDF.js 워커 설정
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let convertedImages = [];
+
+  // 페이지 범위 라디오 변경
+  document.querySelectorAll('input[name="pageRange"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.getElementById('customRangeRow').style.display =
+        radio.value === 'custom' ? 'flex' : 'none';
+    });
+  });
+
+  // 드래그앤드롭
+  const dropZone = document.getElementById('dropZone');
+
+  dropZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') loadFile(file);
+    else showError('PDF 파일만 업로드할 수 있습니다.');
+  });
+
+  // 파일 선택
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  function loadFile(file) {
+    selectedFile = file;
+    hideError();
+
+    const fileList = document.getElementById('fileList');
+    fileList.innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)}</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>
+    `;
+
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+    convertedImages = [];
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInput').value = '';
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    hideError();
+  }
+
+  // 변환
+  document.getElementById('convertBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    const format = document.getElementById('formatSelect').value;
+    const quality = document.getElementById('qualitySelect').value;
+    const pageRangeType = document.querySelector('input[name="pageRange"]:checked').value;
+    const pageRangeInput = document.getElementById('pageRangeInput').value;
+
+    const btn = document.getElementById('convertBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 변환 중...';
+    hideError();
+    convertedImages = [];
+
+    showProgress();
+
+    try {
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const totalPages = pdf.numPages;
+
+      // 변환할 페이지 결정
+      let pagesToConvert = [];
+      if (pageRangeType === 'all') {
+        pagesToConvert = Array.from({ length: totalPages }, (_, i) => i + 1);
+      } else {
+        pagesToConvert = parsePageRange(pageRangeInput, totalPages);
+        if (pagesToConvert.length === 0) {
+          showError('올바른 페이지 범위를 입력해 주세요. 예: 1,3,5-8');
+          resetBtn(btn);
+          return;
+        }
+      }
+
+      const scale = quality === 'high' ? 2.5 : quality === 'medium' ? 1.8 : 1.2;
+
+      for (let i = 0; i < pagesToConvert.length; i++) {
+        const pageNum = pagesToConvert[i];
+        updateProgress(i, pagesToConvert.length, pageNum);
+
+        const page = await pdf.getPage(pageNum);
+        const viewport = page.getViewport({ scale });
+
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const ctx = canvas.getContext('2d');
+
+        // PNG는 투명 배경, JPG는 흰 배경
+        if (format === 'jpg') {
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        await page.render({ canvasContext: ctx, viewport }).promise;
+
+        const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
+        const quality_val = format === 'jpg' ? 0.92 : undefined;
+        const dataUrl = canvas.toDataURL(mimeType, quality_val);
+
+        convertedImages.push({
+          dataUrl,
+          filename: `${selectedFile.name.replace('.pdf', '')}_page${pageNum}.${format}`,
+          pageNum
+        });
+      }
+
+      updateProgress(pagesToConvert.length, pagesToConvert.length, 0);
+      showResult(format);
+
+    } catch (err) {
+      console.error(err);
+      showError('변환 중 오류가 발생했습니다. PDF 파일이 손상되었거나 암호로 보호되어 있을 수 있습니다.');
+    }
+
+    resetBtn(btn);
+  });
+
+  function parsePageRange(input, total) {
+    const pages = new Set();
+    const parts = input.split(',').map(s => s.trim());
+    for (const part of parts) {
+      if (part.includes('-')) {
+        const [start, end] = part.split('-').map(Number);
+        if (isNaN(start) || isNaN(end)) continue;
+        for (let p = Math.max(1, start); p <= Math.min(total, end); p++) pages.add(p);
+      } else {
+        const n = Number(part);
+        if (!isNaN(n) && n >= 1 && n <= total) pages.add(n);
+      }
+    }
+    return [...pages].sort((a, b) => a - b);
+  }
+
+  function showResult(format) {
+    document.getElementById('progressWrap').style.display = 'none';
+
+    const resultPanel = document.getElementById('resultPanel');
+    resultPanel.style.display = 'block';
+    document.getElementById('resultSubtitle').textContent =
+      `${convertedImages.length}개 페이지가 ${format.toUpperCase()} 이미지로 변환되었습니다`;
+
+    // 미리보기
+    const grid = document.getElementById('previewGrid');
+    grid.innerHTML = '';
+    convertedImages.forEach(img => {
+      const item = document.createElement('div');
+      item.className = 'preview-item';
+      item.innerHTML = `
+        <img src="${img.dataUrl}" alt="페이지 ${img.pageNum}">
+        <div class="preview-label">페이지 ${img.pageNum}</div>
+      `;
+      item.style.cursor = 'pointer';
+      item.title = '클릭하여 개별 다운로드';
+      item.addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.href = img.dataUrl;
+        a.download = img.filename;
+        a.click();
+      });
+      grid.appendChild(item);
+    });
+
+    resultPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ZIP 다운로드
+  document.getElementById('downloadBtn').addEventListener('click', async () => {
+    if (convertedImages.length === 0) return;
+
+    if (convertedImages.length === 1) {
+      // 1개면 바로 다운로드
+      const a = document.createElement('a');
+      a.href = convertedImages[0].dataUrl;
+      a.download = convertedImages[0].filename;
+      a.click();
+      return;
+    }
+
+    const btn = document.getElementById('downloadBtn');
+    btn.textContent = '📦 ZIP 생성 중...';
+    btn.disabled = true;
+
+    try {
+      const zip = new JSZip();
+      for (const img of convertedImages) {
+        const base64 = img.dataUrl.split(',')[1];
+        zip.file(img.filename, base64, { base64: true });
+      }
+      const blob = await zip.generateAsync({ type: 'blob' });
+      saveAs(blob, `${selectedFile.name.replace('.pdf', '')}_images.zip`);
+    } catch (err) {
+      showError('ZIP 생성 중 오류가 발생했습니다.');
+    }
+
+    btn.textContent = '⬇️ 전체 다운로드 (ZIP)';
+    btn.disabled = false;
+  });
+
+  function showProgress() {
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+    updateProgressUI(0, '준비 중...');
+  }
+
+  function updateProgress(done, total, current) {
+    const pct = total === 0 ? 100 : Math.round((done / total) * 100);
+    const text = total === 0 ? '완료' : `${done}/${total} 페이지 변환 중 (페이지 ${current})`;
+    updateProgressUI(pct, text);
+  }
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function resetBtn(btn) {
+    btn.disabled = false;
+    btn.textContent = '🔄 변환 시작';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function hideError() {
+    document.getElementById('errorMsg').style.display = 'none';
+  }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+</body>
+</html>

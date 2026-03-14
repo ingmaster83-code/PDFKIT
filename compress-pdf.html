@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 압축 무료 - PDF 용량 줄이기 온라인 | PDF킷</title>
+  <meta name="description" content="PDF 파일 용량을 줄여 저장과 공유를 쉽게! 강력 압축·균형·고화질 3단계 선택. 완전 무료 온라인 PDF 압축 도구.">
+  <meta name="keywords" content="PDF압축, PDF용량줄이기, PDF크기줄이기, PDF파일압축, PDF압축무료, 온라인PDF압축, PDF가볍게, PDF용량축소, PDF파일크기줄이기">
+  <link rel="canonical" href="https://www.wooahouse.com/PDFKIT/compress-pdf.html">
+  <meta property="og:title" content="PDF 압축 무료 - PDF 용량 줄이기 온라인 | PDF킷">
+  <meta property="og:description" content="PDF 파일 용량 줄이기! 강력압축·균형·고화질 3단계 선택. 완전 무료.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wooahouse.com/PDFKIT/compress-pdf.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .quality-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .quality-card {
+      border: 2px solid #E5E7EB; border-radius: 10px;
+      padding: 16px 12px; cursor: pointer; text-align: center;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .quality-card:hover { border-color: #FF4444; }
+    .quality-card.selected { border-color: #FF4444; background: #FFF0F0; }
+    .quality-card input { display: none; }
+    .quality-card-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .quality-card-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
+    .quality-card-desc { font-size: 0.72rem; color: #6B7280; line-height: 1.4; }
+    .size-compare { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: #F9FAFB; border-radius: 10px; margin-top: 12px; }
+    .size-item { text-align: center; }
+    .size-label { font-size: 0.72rem; color: #9CA3AF; margin-bottom: 4px; }
+    .size-value { font-size: 1rem; font-weight: 700; color: #1A1A2E; }
+    .size-arrow { color: #9CA3AF; font-size: 1.2rem; }
+    .size-ratio { font-size: 0.85rem; font-weight: 700; color: #22C55E; }
+    .notice-box { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 12px 16px; font-size: 0.82rem; color: #92400E; margin-bottom: 16px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF 압축</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🗜️</span>
+    <h1>PDF 압축</h1>
+    <p>PDF 파일 용량을 줄여 저장 및 공유를 쉽게 합니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>용량을 줄일 PDF 파일을 업로드하세요</p>
+    <button class="btn-select" onclick="document.getElementById('fileInput').click()">PDF 파일 선택</button>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">압축 품질 선택</div>
+
+    <div class="notice-box">
+      ℹ️ 이 도구는 <strong>이미지가 포함된 PDF</strong>에 효과적입니다. 텍스트만 있는 PDF는 압축 효과가 제한될 수 있습니다.
+    </div>
+
+    <div class="quality-cards">
+      <label class="quality-card" id="card-low">
+        <input type="radio" name="quality" value="low">
+        <div class="quality-card-icon">📉</div>
+        <div class="quality-card-title">강력 압축</div>
+        <div class="quality-card-desc">용량 최소화<br>화질 다소 저하</div>
+      </label>
+      <label class="quality-card selected" id="card-medium">
+        <input type="radio" name="quality" value="medium" checked>
+        <div class="quality-card-icon">⚖️</div>
+        <div class="quality-card-title">균형 (권장)</div>
+        <div class="quality-card-desc">용량과 화질<br>균형 유지</div>
+      </label>
+      <label class="quality-card" id="card-high">
+        <input type="radio" name="quality" value="high">
+        <div class="quality-card-icon">🔍</div>
+        <div class="quality-card-title">고화질 압축</div>
+        <div class="quality-card-desc">화질 우선<br>압축률 낮음</div>
+      </label>
+    </div>
+
+    <button class="btn-convert" id="compressBtn">🗜️ 압축 시작</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">압축 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">압축 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <div class="size-compare" id="sizeCompare" style="display:none">
+      <div class="size-item">
+        <div class="size-label">원본</div>
+        <div class="size-value" id="originalSize">—</div>
+      </div>
+      <div class="size-arrow">→</div>
+      <div class="size-item">
+        <div class="size-label">압축 후</div>
+        <div class="size-value" id="compressedSize">—</div>
+      </div>
+      <div class="size-arrow">✦</div>
+      <div class="size-item">
+        <div class="size-label">감소율</div>
+        <div class="size-ratio" id="sizeRatio">—</div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn" style="margin-top:16px;">⬇️ 압축된 PDF 다운로드</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let resultBytes = null;
+
+  // Quality card 선택 UI
+  document.querySelectorAll('input[name="quality"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.quality-card').forEach(c => c.classList.remove('selected'));
+      radio.closest('.quality-card').classList.add('selected');
+    });
+  });
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+
+    let totalPages = 0;
+    try {
+      const { PDFDocument } = PDFLib;
+      const buf = await file.arrayBuffer();
+      const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+      totalPages = doc.getPageCount();
+    } catch(e) {}
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  document.getElementById('compressBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    const qualityMap = {
+      low:    { scale: 0.75, jpegQ: 0.40 },
+      medium: { scale: 1.00, jpegQ: 0.65 },
+      high:   { scale: 1.40, jpegQ: 0.82 }
+    };
+    const quality = document.querySelector('input[name="quality"]:checked').value;
+    const { scale, jpegQ } = qualityMap[quality];
+
+    const btn = document.getElementById('compressBtn');
+    btn.disabled = true; btn.textContent = '⏳ 압축 중...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdfJs = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0) }).promise;
+      const numPages = pdfJs.numPages;
+
+      const { PDFDocument } = PDFLib;
+      const newPdf = await PDFDocument.create();
+
+      for (let i = 1; i <= numPages; i++) {
+        updateProgressUI(Math.round((i - 1) / numPages * 88), `${i}/${numPages} 페이지 처리 중...`);
+
+        const page = await pdfJs.getPage(i);
+        const vp = page.getViewport({ scale });
+
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(vp.width);
+        canvas.height = Math.round(vp.height);
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+
+        // JPEG 변환 (압축 핵심)
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', jpegQ));
+        const jpegBytes = new Uint8Array(await blob.arrayBuffer());
+
+        const jpgImg = await newPdf.embedJpg(jpegBytes);
+        const newPage = newPdf.addPage([vp.width, vp.height]);
+        newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+      }
+
+      updateProgressUI(95, 'PDF 생성 중...');
+      resultBytes = await newPdf.save();
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      // 용량 비교 표시
+      const origSize = selectedFile.size;
+      const compSize = resultBytes.byteLength;
+      const ratio = ((1 - compSize / origSize) * 100).toFixed(1);
+
+      document.getElementById('originalSize').textContent = formatSize(origSize);
+      document.getElementById('compressedSize').textContent = formatSize(compSize);
+      document.getElementById('sizeRatio').textContent = compSize < origSize ? `-${ratio}%` : '+' + Math.abs(ratio) + '%';
+      if (compSize >= origSize) {
+        document.getElementById('sizeRatio').style.color = '#EF4444';
+      }
+      document.getElementById('sizeCompare').style.display = 'flex';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      document.getElementById('resultSubtitle').textContent =
+        compSize < origSize
+          ? `${formatSize(origSize)} → ${formatSize(compSize)} (${ratio}% 감소)`
+          : '텍스트 중심 PDF는 압축 효과가 제한됩니다.';
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+    } catch(err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    btn.disabled = false; btn.textContent = '🗜️ 압축 시작';
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '_compressed.pdf');
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+</body>
+</html>

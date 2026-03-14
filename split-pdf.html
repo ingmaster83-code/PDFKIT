@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 나누기 무료 - PDF 분할 온라인 도구 | PDF킷</title>
+  <meta name="description" content="PDF 파일을 페이지별로 나누거나 원하는 범위로 분할. 특정 페이지만 추출도 가능. 완전 무료 온라인 PDF 분할 도구.">
+  <meta name="keywords" content="PDF나누기, PDF분할, PDF쪼개기, PDF페이지분리, PDF일부추출, PDF분할무료, 온라인PDF분할, PDF페이지추출, PDF나누기무료">
+  <link rel="canonical" href="https://www.wooahouse.com/PDFKIT/split-pdf.html">
+  <meta property="og:title" content="PDF 나누기 무료 - PDF 분할 온라인 | PDF킷">
+  <meta property="og:description" content="PDF를 페이지별로 나누거나 원하는 범위로 분할. 특정 페이지 추출도 가능.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wooahouse.com/PDFKIT/split-pdf.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF 분할</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">✂️</span>
+    <h1>PDF 분할</h1>
+    <p>PDF 파일을 페이지별로 나누거나 원하는 범위로 분할합니다.</p>
+  </div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>분할할 PDF 파일 1개를 선택하세요</p>
+    <button class="btn-select" onclick="document.getElementById('fileInput').click()">PDF 파일 선택</button>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none">
+  </div>
+
+  <!-- File Info -->
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <!-- Options -->
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">분할 방식</div>
+
+    <div class="option-row">
+      <span class="option-label">분할 방식</span>
+      <div class="option-control">
+        <div class="radio-group" style="flex-direction:column; gap:10px;">
+          <label class="radio-item">
+            <input type="radio" name="splitMode" value="each" checked>
+            페이지마다 분할 (각 페이지를 별도 PDF로)
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="splitMode" value="range">
+            범위로 분할 (직접 범위 지정)
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="splitMode" value="extract">
+            특정 페이지 추출 (선택한 페이지만)
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="rangeInputRow" class="option-row" style="display:none">
+      <span class="option-label">범위 입력</span>
+      <div class="option-control">
+        <input type="text" id="rangeInput" placeholder="예: 1-3, 4-7, 8-10">
+        <div style="font-size:0.78rem; color:#6B7280; margin-top:6px;">쉼표로 구분하면 각 범위별로 별도 PDF가 생성됩니다</div>
+      </div>
+    </div>
+
+    <div id="extractInputRow" class="option-row" style="display:none">
+      <span class="option-label">페이지 선택</span>
+      <div class="option-control">
+        <input type="text" id="extractInput" placeholder="예: 1,3,5-8">
+        <div style="font-size:0.78rem; color:#6B7280; margin-top:6px;">선택한 페이지만 하나의 PDF로 추출됩니다</div>
+      </div>
+    </div>
+
+    <button class="btn-convert" id="splitBtn">✂️ 분할하기</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">분할 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <!-- Result -->
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">분할 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ ZIP으로 다운로드</button>
+    <div id="singleDownload" style="margin-top:12px; display:none">
+      <button class="btn-download" id="singleDownloadBtn" style="background:#3B82F6;">⬇️ PDF 다운로드</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+  let selectedFile = null;
+  let totalPages = 0;
+  let splitResults = []; // [{bytes, filename}]
+
+  const dropZone = document.getElementById('dropZone');
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.');
+      return;
+    }
+    hideError();
+    selectedFile = file;
+    splitResults = [];
+
+    // 페이지 수 확인
+    try {
+      const { PDFDocument } = PDFLib;
+      const buf = await file.arrayBuffer();
+      const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+      totalPages = doc.getPageCount();
+    } catch (e) { totalPages = 0; }
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>
+    `;
+
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    totalPages = 0;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  // 분할 방식 변경
+  document.querySelectorAll('input[name="splitMode"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.getElementById('rangeInputRow').style.display =
+        radio.value === 'range' ? 'flex' : 'none';
+      document.getElementById('extractInputRow').style.display =
+        radio.value === 'extract' ? 'flex' : 'none';
+    });
+  });
+
+  document.getElementById('splitBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    const mode = document.querySelector('input[name="splitMode"]:checked').value;
+    const btn = document.getElementById('splitBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 분할 중...';
+    hideError();
+    splitResults = [];
+
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const srcPdf = await PDFDocument.load(arrayBuffer);
+      const baseName = selectedFile.name.replace('.pdf', '');
+
+      if (mode === 'each') {
+        // 페이지마다 분할
+        for (let i = 0; i < totalPages; i++) {
+          updateProgressUI(Math.round((i / totalPages) * 95), `${i + 1}/${totalPages} 페이지 처리 중`);
+          const newPdf = await PDFDocument.create();
+          const [page] = await newPdf.copyPages(srcPdf, [i]);
+          newPdf.addPage(page);
+          const bytes = await newPdf.save();
+          splitResults.push({ bytes, filename: `${baseName}_page${i + 1}.pdf` });
+        }
+
+      } else if (mode === 'range') {
+        const rangeStr = document.getElementById('rangeInput').value.trim();
+        if (!rangeStr) { showError('범위를 입력해 주세요. 예: 1-3, 4-7'); btn.disabled = false; btn.textContent = '✂️ 분할하기'; return; }
+
+        const ranges = rangeStr.split(',').map(s => s.trim());
+        for (let ri = 0; ri < ranges.length; ri++) {
+          updateProgressUI(Math.round((ri / ranges.length) * 95), `범위 ${ri + 1}/${ranges.length} 처리 중`);
+          const range = ranges[ri];
+          const pages = parseRange(range, totalPages);
+          if (pages.length === 0) continue;
+
+          const newPdf = await PDFDocument.create();
+          const copied = await newPdf.copyPages(srcPdf, pages.map(p => p - 1));
+          copied.forEach(p => newPdf.addPage(p));
+          const bytes = await newPdf.save();
+          splitResults.push({ bytes, filename: `${baseName}_${range.replace('-', '_')}.pdf` });
+        }
+
+        if (splitResults.length === 0) { showError('유효한 페이지 범위가 없습니다.'); resetBtn(btn); return; }
+
+      } else if (mode === 'extract') {
+        const extractStr = document.getElementById('extractInput').value.trim();
+        if (!extractStr) { showError('추출할 페이지를 입력해 주세요. 예: 1,3,5-8'); btn.disabled = false; btn.textContent = '✂️ 분할하기'; return; }
+
+        const pages = parsePageList(extractStr, totalPages);
+        if (pages.length === 0) { showError('유효한 페이지 번호가 없습니다.'); resetBtn(btn); return; }
+
+        updateProgressUI(50, '페이지 추출 중...');
+        const newPdf = await PDFDocument.create();
+        const copied = await newPdf.copyPages(srcPdf, pages.map(p => p - 1));
+        copied.forEach(p => newPdf.addPage(p));
+        const bytes = await newPdf.save();
+        splitResults.push({ bytes, filename: `${baseName}_extracted.pdf` });
+      }
+
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+      showResult(mode);
+
+    } catch (err) {
+      console.error(err);
+      showError('분할 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+
+    resetBtn(btn);
+  });
+
+  function showResult(mode) {
+    const panel = document.getElementById('resultPanel');
+    panel.style.display = 'block';
+
+    if (splitResults.length === 1) {
+      document.getElementById('downloadBtn').style.display = 'none';
+      document.getElementById('singleDownload').style.display = 'block';
+      document.getElementById('resultSubtitle').textContent =
+        `1개의 PDF 파일이 생성되었습니다`;
+    } else {
+      document.getElementById('downloadBtn').style.display = 'inline-flex';
+      document.getElementById('singleDownload').style.display = 'none';
+      document.getElementById('resultSubtitle').textContent =
+        `${splitResults.length}개의 PDF 파일로 분할되었습니다`;
+    }
+
+    panel.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  document.getElementById('downloadBtn').addEventListener('click', async () => {
+    if (splitResults.length === 0) return;
+    const btn = document.getElementById('downloadBtn');
+    btn.textContent = '📦 ZIP 생성 중...';
+    btn.disabled = true;
+
+    const zip = new JSZip();
+    splitResults.forEach(r => zip.file(r.filename, r.bytes));
+    const blob = await zip.generateAsync({ type: 'blob' });
+    saveAs(blob, `${selectedFile.name.replace('.pdf', '')}_split.zip`);
+
+    btn.textContent = '⬇️ ZIP으로 다운로드';
+    btn.disabled = false;
+  });
+
+  document.getElementById('singleDownloadBtn').addEventListener('click', () => {
+    if (splitResults.length === 0) return;
+    const blob = new Blob([splitResults[0].bytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = splitResults[0].filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function parseRange(rangeStr, total) {
+    if (rangeStr.includes('-')) {
+      const [s, e] = rangeStr.split('-').map(Number);
+      const result = [];
+      for (let i = Math.max(1, s); i <= Math.min(total, e); i++) result.push(i);
+      return result;
+    }
+    const n = parseInt(rangeStr);
+    return (!isNaN(n) && n >= 1 && n <= total) ? [n] : [];
+  }
+
+  function parsePageList(input, total) {
+    const pages = new Set();
+    input.split(',').forEach(part => {
+      part = part.trim();
+      if (part.includes('-')) {
+        const [s, e] = part.split('-').map(Number);
+        for (let i = Math.max(1, s); i <= Math.min(total, e); i++) pages.add(i);
+      } else {
+        const n = parseInt(part);
+        if (!isNaN(n) && n >= 1 && n <= total) pages.add(n);
+      }
+    });
+    return [...pages].sort((a, b) => a - b);
+  }
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function resetBtn(btn) {
+    btn.disabled = false;
+    btn.textContent = '✂️ 분할하기';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+</body>
+</html>

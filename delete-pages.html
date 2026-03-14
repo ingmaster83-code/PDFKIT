@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 페이지 삭제 무료 - 원하는 페이지 제거 | PDF킷</title>
+  <meta name="description" content="PDF에서 불필요한 페이지를 클릭으로 선택해 삭제. 미리보기로 확인 후 삭제 가능. 완전 무료 PDF 페이지 제거 도구.">
+  <meta name="keywords" content="PDF페이지삭제, PDF페이지제거, PDF특정페이지삭제, PDF편집, PDF수정, PDF페이지지우기, PDF일부삭제, PDF페이지빼기">
+  <link rel="canonical" href="https://www.wooahouse.com/PDFKIT/delete-pages.html">
+  <meta property="og:title" content="PDF 페이지 삭제 무료 - 원하는 페이지 제거 | PDF킷">
+  <meta property="og:description" content="PDF에서 불필요한 페이지를 미리보기로 확인 후 클릭 한 번으로 삭제.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wooahouse.com/PDFKIT/delete-pages.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .page-thumb {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #E5E7EB;
+      cursor: pointer;
+      transition: border-color 0.15s, opacity 0.15s;
+      position: relative;
+      background: #F3F4F6;
+    }
+    .page-thumb:hover { border-color: #FF4444; }
+    .page-thumb.selected {
+      border-color: #FF4444;
+      opacity: 0.6;
+    }
+    .page-thumb.selected::after {
+      content: '🗑️ 삭제';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,68,68,0.9);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .page-thumb canvas {
+      width: 100%;
+      display: block;
+    }
+    .page-num {
+      padding: 5px 8px;
+      font-size: 0.72rem;
+      text-align: center;
+      color: #6B7280;
+      font-weight: 500;
+      background: white;
+    }
+    .page-thumb.selected .page-num {
+      background: #FEF2F2;
+      color: #DC2626;
+    }
+    .selection-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #FEF2F2;
+      border-radius: 8px;
+      margin-top: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .selection-info {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #DC2626;
+    }
+    .btn-select-all {
+      background: none;
+      border: 1px solid #CBD5E0;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      color: #6B7280;
+      font-family: inherit;
+    }
+    .btn-select-all:hover { border-color: #FF4444; color: #FF4444; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>페이지 삭제</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🗑️</span>
+    <h1>PDF 페이지 삭제</h1>
+    <p>삭제할 페이지를 클릭해서 선택한 후 "삭제하기" 버튼을 누르세요.</p>
+  </div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>페이지를 선택해서 삭제할 PDF를 업로드하세요</p>
+    <button class="btn-select" onclick="document.getElementById('fileInput').click()">PDF 파일 선택</button>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none">
+  </div>
+
+  <!-- Loading -->
+  <div id="loadingMsg" style="display:none; text-align:center; padding:40px; color:#6B7280;">
+    <div style="font-size:2rem; margin-bottom:12px;">⏳</div>
+    <div>페이지 미리보기를 생성하고 있습니다...</div>
+  </div>
+
+  <!-- Page Preview -->
+  <div id="previewPanel" style="display:none">
+    <div class="file-list-panel">
+      <div class="file-list-title" id="fileTitle"></div>
+      <div style="font-size:0.85rem; color:#6B7280; margin-top:4px;">삭제할 페이지를 클릭해서 선택하세요 (다시 클릭하면 취소)</div>
+
+      <div class="selection-bar" id="selectionBar">
+        <span class="selection-info" id="selectionInfo">선택된 페이지 없음</span>
+        <div style="display:flex; gap:8px;">
+          <button class="btn-select-all" onclick="selectAll()">전체 선택</button>
+          <button class="btn-select-all" onclick="clearSelection()">선택 해제</button>
+        </div>
+      </div>
+
+      <div class="page-grid" id="pageGrid"></div>
+    </div>
+
+    <button class="btn-convert" id="deleteBtn" disabled>🗑️ 선택한 페이지 삭제</button>
+  </div>
+
+  <!-- Error -->
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">처리 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let totalPages = 0;
+  let selectedPages = new Set(); // 1-based
+  let resultBytes = null;
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.');
+      return;
+    }
+    hideError();
+    selectedFile = file;
+    selectedPages = new Set();
+    resultBytes = null;
+
+    document.getElementById('loadingMsg').style.display = 'block';
+    document.getElementById('previewPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      totalPages = pdf.numPages;
+
+      document.getElementById('fileTitle').textContent = `${file.name} · ${totalPages}페이지`;
+
+      const grid = document.getElementById('pageGrid');
+      grid.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale: 0.5 });
+
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+
+        const thumb = document.createElement('div');
+        thumb.className = 'page-thumb';
+        thumb.dataset.page = i;
+        thumb.appendChild(canvas);
+        thumb.innerHTML += `<div class="page-num">페이지 ${i}</div>`;
+        thumb.addEventListener('click', () => togglePage(i, thumb));
+
+        grid.appendChild(thumb);
+      }
+
+      document.getElementById('loadingMsg').style.display = 'none';
+      document.getElementById('previewPanel').style.display = 'block';
+
+    } catch (err) {
+      console.error(err);
+      document.getElementById('loadingMsg').style.display = 'none';
+      showError('PDF를 불러오는 중 오류가 발생했습니다. 파일이 손상되었거나 암호로 보호되어 있을 수 있습니다.');
+    }
+  }
+
+  function togglePage(pageNum, el) {
+    if (selectedPages.has(pageNum)) {
+      selectedPages.delete(pageNum);
+      el.classList.remove('selected');
+    } else {
+      selectedPages.add(pageNum);
+      el.classList.add('selected');
+    }
+    updateSelectionUI();
+  }
+
+  function selectAll() {
+    for (let i = 1; i <= totalPages; i++) selectedPages.add(i);
+    document.querySelectorAll('.page-thumb').forEach(el => el.classList.add('selected'));
+    updateSelectionUI();
+  }
+
+  function clearSelection() {
+    selectedPages.clear();
+    document.querySelectorAll('.page-thumb').forEach(el => el.classList.remove('selected'));
+    updateSelectionUI();
+  }
+
+  function updateSelectionUI() {
+    const count = selectedPages.size;
+    const info = document.getElementById('selectionInfo');
+    const btn = document.getElementById('deleteBtn');
+
+    if (count === 0) {
+      info.textContent = '선택된 페이지 없음';
+      btn.disabled = true;
+      btn.textContent = '🗑️ 선택한 페이지 삭제';
+    } else if (count >= totalPages) {
+      info.textContent = `${count}개 선택됨 (전체 선택 — 최소 1페이지는 남겨야 합니다)`;
+      btn.disabled = true;
+    } else {
+      info.textContent = `${count}개 페이지 선택됨 → ${totalPages - count}개 남음`;
+      btn.disabled = false;
+      btn.textContent = `🗑️ ${count}개 페이지 삭제`;
+    }
+  }
+
+  document.getElementById('deleteBtn').addEventListener('click', async () => {
+    if (selectedPages.size === 0 || selectedPages.size >= totalPages) return;
+
+    const btn = document.getElementById('deleteBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 처리 중...';
+    hideError();
+    resultBytes = null;
+
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdf = await PDFDocument.load(arrayBuffer);
+
+      updateProgressUI(30, '페이지 제거 중...');
+
+      // 남길 페이지 인덱스 (0-based)
+      const keepIndices = [];
+      for (let i = 1; i <= totalPages; i++) {
+        if (!selectedPages.has(i)) keepIndices.push(i - 1);
+      }
+
+      const newPdf = await PDFDocument.create();
+      const copiedPages = await newPdf.copyPages(pdf, keepIndices);
+      copiedPages.forEach(p => newPdf.addPage(p));
+
+      updateProgressUI(80, 'PDF 저장 중...');
+      resultBytes = await newPdf.save();
+      updateProgressUI(100, '완료!');
+
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      document.getElementById('resultSubtitle').textContent =
+        `${selectedPages.size}개 페이지가 삭제되어 ${keepIndices.length}개 페이지만 남았습니다`;
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+    } catch (err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+
+    btn.disabled = false;
+    btn.textContent = `🗑️ ${selectedPages.size}개 페이지 삭제`;
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '_edited.pdf');
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+</body>
+</html>

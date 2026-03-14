@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /PDFKIT/
+
+Sitemap: https://www.wooahouse.com/PDFKIT/sitemap.xml

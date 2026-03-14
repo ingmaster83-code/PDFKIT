@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 회전 무료 - PDF 페이지 방향 변경 온라인 | PDF킷</title>
+  <meta name="description" content="PDF 페이지를 90도, 180도, 270도로 회전. 전체 또는 특정 페이지만 선택해서 방향 변경 가능. 무료 온라인 PDF 회전 도구.">
+  <meta name="keywords" content="PDF회전, PDF방향바꾸기, PDF90도회전, PDF페이지회전, PDF방향변경, PDF회전무료, PDF페이지방향, PDF거꾸로수정">
+  <link rel="canonical" href="https://www.wooahouse.com/PDFKIT/rotate-pdf.html">
+  <meta property="og:title" content="PDF 회전 무료 - PDF 페이지 방향 변경 | PDF킷">
+  <meta property="og:description" content="PDF 페이지를 90°, 180°, 270°로 회전. 특정 페이지만 선택 가능.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wooahouse.com/PDFKIT/rotate-pdf.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF 회전</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🔄</span>
+    <h1>PDF 회전</h1>
+    <p>PDF 페이지의 방향을 90°, 180°, 270° 회전합니다.</p>
+  </div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>회전할 PDF 파일을 선택하세요</p>
+    <button class="btn-select" onclick="document.getElementById('fileInput').click()">PDF 파일 선택</button>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none">
+  </div>
+
+  <!-- File Info -->
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <!-- Options -->
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">회전 옵션</div>
+
+    <div class="option-row">
+      <span class="option-label">회전 각도</span>
+      <div class="option-control">
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <label style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:12px 16px; border:2px solid #E5E7EB; border-radius:10px; transition:border-color 0.15s; flex:1; min-width:80px;">
+            <input type="radio" name="rotation" value="90" checked style="display:none">
+            <span style="font-size:1.8rem;">↻</span>
+            <span style="font-size:0.85rem; font-weight:600; margin-top:6px;">90°</span>
+            <span style="font-size:0.72rem; color:#6B7280;">오른쪽</span>
+          </label>
+          <label style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:12px 16px; border:2px solid #E5E7EB; border-radius:10px; transition:border-color 0.15s; flex:1; min-width:80px;">
+            <input type="radio" name="rotation" value="180" style="display:none">
+            <span style="font-size:1.8rem;">↕</span>
+            <span style="font-size:0.85rem; font-weight:600; margin-top:6px;">180°</span>
+            <span style="font-size:0.72rem; color:#6B7280;">뒤집기</span>
+          </label>
+          <label style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:12px 16px; border:2px solid #E5E7EB; border-radius:10px; transition:border-color 0.15s; flex:1; min-width:80px;">
+            <input type="radio" name="rotation" value="270" style="display:none">
+            <span style="font-size:1.8rem;">↺</span>
+            <span style="font-size:0.85rem; font-weight:600; margin-top:6px;">270°</span>
+            <span style="font-size:0.72rem; color:#6B7280;">왼쪽</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="option-row">
+      <span class="option-label">적용 범위</span>
+      <div class="option-control">
+        <div class="radio-group" style="flex-direction:column; gap:8px;">
+          <label class="radio-item">
+            <input type="radio" name="pageScope" value="all" checked>
+            전체 페이지
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="pageScope" value="custom">
+            특정 페이지만
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="customPageRow" class="option-row" style="display:none">
+      <span class="option-label">페이지 번호</span>
+      <div class="option-control">
+        <input type="text" id="pageInput" placeholder="예: 1,3,5-8">
+        <div style="font-size:0.78rem; color:#6B7280; margin-top:6px;">전체 <span id="totalPagesHint">0</span>페이지</div>
+      </div>
+    </div>
+
+    <button class="btn-convert" id="rotateBtn">🔄 회전 적용</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">처리 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <!-- Result -->
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">회전 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+<script>
+  let selectedFile = null;
+  let totalPages = 0;
+  let rotatedBytes = null;
+
+  // 라디오 버튼 시각적 선택 효과
+  document.querySelectorAll('input[name="rotation"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('input[name="rotation"]').forEach(r => {
+        r.closest('label').style.borderColor = '#E5E7EB';
+        r.closest('label').style.background = 'white';
+      });
+      radio.closest('label').style.borderColor = '#FF4444';
+      radio.closest('label').style.background = '#FFF0F0';
+    });
+    // 초기 선택 표시
+    if (radio.checked) {
+      radio.closest('label').style.borderColor = '#FF4444';
+      radio.closest('label').style.background = '#FFF0F0';
+    }
+  });
+
+  document.querySelectorAll('input[name="pageScope"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.getElementById('customPageRow').style.display =
+        radio.value === 'custom' ? 'flex' : 'none';
+    });
+  });
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.');
+      return;
+    }
+    hideError();
+    selectedFile = file;
+    rotatedBytes = null;
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const buf = await file.arrayBuffer();
+      const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+      totalPages = doc.getPageCount();
+    } catch (e) { totalPages = 0; }
+
+    document.getElementById('totalPagesHint').textContent = totalPages;
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>
+    `;
+
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  document.getElementById('rotateBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    const angle = parseInt(document.querySelector('input[name="rotation"]:checked').value);
+    const scope = document.querySelector('input[name="pageScope"]:checked').value;
+    const pageInput = document.getElementById('pageInput').value;
+
+    const btn = document.getElementById('rotateBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 처리 중...';
+    hideError();
+    rotatedBytes = null;
+
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument, degrees } = PDFLib;
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdf = await PDFDocument.load(arrayBuffer);
+      const pages = pdf.getPages();
+
+      let pagesToRotate;
+      if (scope === 'all') {
+        pagesToRotate = pages.map((_, i) => i);
+      } else {
+        const parsed = parsePageList(pageInput, totalPages);
+        if (parsed.length === 0) {
+          showError('올바른 페이지 번호를 입력해 주세요.');
+          resetBtn(btn);
+          return;
+        }
+        pagesToRotate = parsed.map(p => p - 1);
+      }
+
+      updateProgressUI(30, '페이지 회전 중...');
+
+      pagesToRotate.forEach(i => {
+        const page = pages[i];
+        const currentAngle = page.getRotation().angle;
+        page.setRotation(degrees((currentAngle + angle) % 360));
+      });
+
+      updateProgressUI(80, 'PDF 저장 중...');
+      rotatedBytes = await pdf.save();
+      updateProgressUI(100, '완료!');
+
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      document.getElementById('resultSubtitle').textContent =
+        `${pagesToRotate.length}개 페이지가 ${angle}° 회전되었습니다`;
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+    } catch (err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+
+    resetBtn(btn);
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!rotatedBytes) return;
+    const blob = new Blob([rotatedBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '_rotated.pdf');
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function parsePageList(input, total) {
+    const pages = new Set();
+    input.split(',').forEach(part => {
+      part = part.trim();
+      if (part.includes('-')) {
+        const [s, e] = part.split('-').map(Number);
+        for (let i = Math.max(1, s); i <= Math.min(total, e); i++) pages.add(i);
+      } else {
+        const n = parseInt(part);
+        if (!isNaN(n) && n >= 1 && n <= total) pages.add(n);
+      }
+    });
+    return [...pages].sort((a, b) => a - b);
+  }
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function resetBtn(btn) {
+    btn.disabled = false;
+    btn.textContent = '🔄 회전 적용';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+</body>
+</html>
