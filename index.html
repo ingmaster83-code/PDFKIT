@@ -49,6 +49,12 @@
   }
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PDF킷">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .tools-section { padding-top: 52px; }
@@ -56,8 +62,6 @@
     @media (max-width: 768px) { .tools-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 520px) { .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } .tool-card { padding: 18px 10px 14px; } .tool-icon { font-size: 2rem; } }
   </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -166,6 +170,20 @@
     </div>
   </div>
 
+  <div class="category-block">
+    <div class="category-header">
+      <div class="category-dot" style="background:#8B5CF6"></div>
+      <span class="category-title">유틸리티</span>
+    </div>
+    <div class="tools-grid">
+      <a href="pdf-viewer.html" class="tool-card">
+        <span class="tool-icon">👁️</span>
+        <div class="tool-name">PDF 뷰어 다운로드</div>
+        <div class="tool-desc">Adobe Reader, Foxit 등 무료 PDF 뷰어 모음</div>
+      </a>
+    </div>
+  </div>
+
 </section>
 
 <div class="features">
@@ -221,6 +239,10 @@
         <a href="unlock-pdf.html">PDF 잠금 해제</a>
       </div>
       <div class="footer-links">
+        <h4>유틸리티</h4>
+        <a href="pdf-viewer.html">PDF 뷰어 다운로드</a>
+      </div>
+      <div class="footer-links">
         <h4>정보</h4>
         <a href="about.html">서비스 소개</a>
         <a href="privacy.html">개인정보처리방침</a>
@@ -236,5 +258,6 @@
   </div>
 </footer>
 
+<script src="js/pwa-install.js"></script>
 </body>
 </html>
