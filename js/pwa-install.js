@@ -6,12 +6,32 @@
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
+    // hero 버튼 표시
+    const heroBtn = document.getElementById('heroInstallBtn');
+    if (heroBtn) heroBtn.style.display = 'inline-flex';
   });
 
   // 이미 설치됐으면 초기화
   window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
     closePWABanner();
+    const heroBtn = document.getElementById('heroInstallBtn');
+    if (heroBtn) heroBtn.style.display = 'none';
+  });
+
+  // hero 버튼 클릭
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroBtn = document.getElementById('heroInstallBtn');
+    if (heroBtn) {
+      heroBtn.addEventListener('click', () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          deferredPrompt = null;
+          heroBtn.style.display = 'none';
+        });
+      });
+    }
   });
 
   // 서비스워커 등록
