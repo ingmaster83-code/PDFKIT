@@ -28,6 +28,12 @@ PDFKIT/
 ├── compress-pdf.html       # PDF 압축
 ├── unlock-pdf.html         # 잠금 해제
 ├── pdf-viewer.html         # PDF 뷰어 다운로드 안내
+├── pdf-to-word.html        # PDF → Word (HTML-in-doc 방식)
+├── office-to-pdf.html      # Word/Excel → PDF (mammoth.js + SheetJS + print)
+├── pdf-text-extract.html   # PDF 텍스트 추출 (PDF.js 텍스트 레이어)
+├── pdf-password.html       # PDF 암호 설정 (pdf-lib 암호화)
+├── pdf-sign.html           # PDF 서명 추가 (Canvas + pdf-lib)
+├── pdf-reorder.html        # 페이지 재정렬 (PDF.js 썸네일 + drag-and-drop)
 ├── about.html              # 서비스 소개
 ├── privacy.html            # 개인정보처리방침
 ├── css/style.css           # 공통 스타일
