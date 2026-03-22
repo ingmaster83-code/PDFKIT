@@ -24,6 +24,34 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
   }
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 텍스트 추출기",
+  "url": "https://pdfkit.wooahouse.com/pdf-text-extract.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "스캔된 PDF에서도 텍스트 추출이 되나요?","acceptedAnswer": {"@type": "Answer","text": "스캔 PDF는 텍스트 레이어가 없어 직접 추출이 어렵습니다. ImageKit의 PDF OCR 도구를 이용하세요."}},
+    {"@type": "Question","name": "추출된 텍스트를 어떻게 저장하나요?","acceptedAnswer": {"@type": "Answer","text": "클립보드에 복사하거나 .txt 파일로 다운로드할 수 있습니다."}},
+    {"@type": "Question","name": "한국어 텍스트도 정상 추출되나요?","acceptedAnswer": {"@type": "Answer","text": "네, PDF에 포함된 한국어를 포함한 모든 언어 텍스트를 추출할 수 있습니다."}}
+  ]
+}
+</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#FF4444">
@@ -87,18 +115,18 @@
   <span class="our-sites-label">Linker Services</span>
   <div class="our-sites-links">
     <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
-    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 PDFKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
     <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
     <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
     <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
     <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
     <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
-    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
-    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
-    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
-    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
-    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
-    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
   </div>
 </div>
 
@@ -162,6 +190,29 @@
     <span>추출한 텍스트를 Word로 편집하고 싶다면?</span>
     <a href="pdf-to-word.html">🔤 PDF → Word 변환 →</a>
   </div>
+
+  <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+    <span style="font-size:0.95rem;color:#444;">스캔된 PDF에서 텍스트를 추출하려면 OCR 도구를 이용하세요.</span>
+    <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener" style="background:#4F6EF7;color:#fff;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;white-space:nowrap;">🖼️ ImageKit PDF OCR →</a>
+  </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 스캔된 PDF에서도 텍스트 추출이 되나요?</h3>
+        <p style="color:#555;margin:0;">스캔 PDF는 텍스트 레이어가 없어 직접 추출이 어렵습니다. ImageKit의 PDF OCR 도구를 이용하세요.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 추출된 텍스트를 어떻게 저장하나요?</h3>
+        <p style="color:#555;margin:0;">클립보드에 복사하거나 .txt 파일로 다운로드할 수 있습니다.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 한국어 텍스트도 정상 추출되나요?</h3>
+        <p style="color:#555;margin:0;">네, PDF에 포함된 한국어를 포함한 모든 언어 텍스트를 추출할 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
 

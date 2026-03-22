@@ -20,6 +20,34 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="PDF킷">
   <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 압축기",
+  "url": "https://pdfkit.wooahouse.com/compress-pdf.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "PDF 압축 시 내용이 손상되나요?","acceptedAnswer": {"@type": "Answer","text": "이미지 품질을 최적화하는 방식으로 압축되며, 텍스트와 벡터 내용은 손상 없이 유지됩니다."}},
+    {"@type": "Question","name": "얼마나 용량이 줄어드나요?","acceptedAnswer": {"@type": "Answer","text": "PDF 내용에 따라 다르지만, 이미지가 많은 PDF는 50% 이상 압축될 수 있습니다."}},
+    {"@type": "Question","name": "무료로 압축 가능한가요?","acceptedAnswer": {"@type": "Answer","text": "네, 무료로 용량 제한 없이 압축하실 수 있습니다."}}
+  ]
+}
+</script>
   <style>
     .quality-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .quality-card {
@@ -59,6 +87,25 @@
     </nav>
   </div>
 </header>
+
+<div class="our-sites-bar">
+  <span class="our-sites-label">Linker Services</span>
+  <div class="our-sites-links">
+    <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 PDFKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
+    <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
+    <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
+    <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
+    <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
+    <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
+  </div>
+</div>
 
 <main class="tool-page">
 
@@ -154,6 +201,29 @@
     </div>
     <button class="btn-download" id="downloadBtn" style="margin-top:16px;">⬇️ 압축된 PDF 다운로드</button>
   </div>
+
+  <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+    <span style="font-size:0.95rem;color:#444;">이미지 파일도 압축하고 싶으신가요?</span>
+    <a href="https://imagekit.wooahouse.com/compress-image.html" target="_blank" rel="noopener" style="background:#4F6EF7;color:#fff;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;white-space:nowrap;">🖼️ ImageKit 이미지 압축 →</a>
+  </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. PDF 압축 시 내용이 손상되나요?</h3>
+        <p style="color:#555;margin:0;">이미지 품질을 최적화하는 방식으로 압축되며, 텍스트와 벡터 내용은 손상 없이 유지됩니다.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 얼마나 용량이 줄어드나요?</h3>
+        <p style="color:#555;margin:0;">PDF 내용에 따라 다르지만, 이미지가 많은 PDF는 50% 이상 압축될 수 있습니다.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 무료로 압축 가능한가요?</h3>
+        <p style="color:#555;margin:0;">네, 무료로 용량 제한 없이 압축하실 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
 

@@ -20,6 +20,34 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="PDF킷">
   <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 잠금 해제",
+  "url": "https://pdfkit.wooahouse.com/unlock-pdf.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "모든 암호화된 PDF의 잠금을 해제할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "사용자 암호(열기 암호)가 없는 인쇄/편집 제한 PDF의 잠금 해제를 지원합니다."}},
+    {"@type": "Question","name": "해제 후 파일이 안전한가요?","acceptedAnswer": {"@type": "Answer","text": "모든 처리는 브라우저 내에서만 이루어지므로 파일이 외부로 전송되지 않습니다."}},
+    {"@type": "Question","name": "암호가 걸린 PDF는 어떻게 하나요?","acceptedAnswer": {"@type": "Answer","text": "열기 암호가 있는 경우 먼저 암호를 입력하여 열어야 잠금 해제가 가능합니다."}}
+  ]
+}
+</script>
   <style>
     .info-box { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 14px 18px; font-size: 0.85rem; color: #1E40AF; line-height: 1.7; margin-bottom: 6px; }
     .info-box ul { padding-left: 18px; margin-top: 6px; }
@@ -56,6 +84,25 @@
     </nav>
   </div>
 </header>
+
+<div class="our-sites-bar">
+  <span class="our-sites-label">Linker Services</span>
+  <div class="our-sites-links">
+    <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 PDFKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
+    <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
+    <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
+    <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
+    <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
+    <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
+  </div>
+</div>
 
 <main class="tool-page">
 
@@ -130,6 +177,24 @@
     </div>
     <button class="btn-download" id="downloadBtn">⬇️ 잠금 해제된 PDF 다운로드</button>
   </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 모든 암호화된 PDF의 잠금을 해제할 수 있나요?</h3>
+        <p style="color:#555;margin:0;">사용자 암호(열기 암호)가 없는 인쇄/편집 제한 PDF의 잠금 해제를 지원합니다.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 해제 후 파일이 안전한가요?</h3>
+        <p style="color:#555;margin:0;">모든 처리는 브라우저 내에서만 이루어지므로 파일이 외부로 전송되지 않습니다.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 암호가 걸린 PDF는 어떻게 하나요?</h3>
+        <p style="color:#555;margin:0;">열기 암호가 있는 경우 먼저 암호를 입력하여 열어야 잠금 해제가 가능합니다.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
 

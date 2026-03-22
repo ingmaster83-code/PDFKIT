@@ -24,6 +24,34 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
   }
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 페이지 재정렬",
+  "url": "https://pdfkit.wooahouse.com/pdf-reorder.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "페이지 순서 변경 후 미리보기가 가능한가요?","acceptedAnswer": {"@type": "Answer","text": "네, 썸네일로 페이지를 확인하면서 드래그 앤 드롭으로 순서를 조정할 수 있습니다."}},
+    {"@type": "Question","name": "페이지 삭제도 동시에 할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "재정렬에 집중된 도구입니다. 페이지 삭제는 별도의 페이지 삭제 도구를 이용하세요."}},
+    {"@type": "Question","name": "순서 변경 후 원본 PDF가 수정되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요, 원본은 유지되고 변경된 PDF를 새로 다운로드받습니다."}}
+  ]
+}
+</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#FF4444">
@@ -87,18 +115,18 @@
   <span class="our-sites-label">Linker Services</span>
   <div class="our-sites-links">
     <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
-    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 PDFKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
     <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
     <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
     <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
     <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
     <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
-    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
-    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
-    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
-    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
-    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
-    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
   </div>
 </div>
 
@@ -158,6 +186,24 @@
     </div>
     <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
   </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 페이지 순서 변경 후 미리보기가 가능한가요?</h3>
+        <p style="color:#555;margin:0;">네, 썸네일로 페이지를 확인하면서 드래그 앤 드롭으로 순서를 조정할 수 있습니다.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 페이지 삭제도 동시에 할 수 있나요?</h3>
+        <p style="color:#555;margin:0;">재정렬에 집중된 도구입니다. 페이지 삭제는 별도의 페이지 삭제 도구를 이용하세요.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 순서 변경 후 원본 PDF가 수정되나요?</h3>
+        <p style="color:#555;margin:0;">아니요, 원본은 유지되고 변경된 PDF를 새로 다운로드받습니다.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
 

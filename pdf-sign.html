@@ -24,6 +24,34 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
   }
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 서명 추가",
+  "url": "https://pdfkit.wooahouse.com/pdf-sign.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "전자 서명이 법적 효력이 있나요?","acceptedAnswer": {"@type": "Answer","text": "간단한 서명 이미지 삽입 방식으로, 법적 전자서명 인증과는 다릅니다. 공식 계약에는 공인 전자서명 서비스를 사용하세요."}},
+    {"@type": "Question","name": "서명 위치를 자유롭게 지정할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "네, 원하는 페이지의 원하는 위치에 드래그하여 서명을 배치할 수 있습니다."}},
+    {"@type": "Question","name": "기존 서명 이미지 파일을 삽입할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "캔버스에 직접 그리는 방식으로 서명합니다. 이미지 파일 삽입은 향후 지원 예정입니다."}}
+  ]
+}
+</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#FF4444">
@@ -111,18 +139,18 @@
   <span class="our-sites-label">Linker Services</span>
   <div class="our-sites-links">
     <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
-    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 PDFKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
     <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
     <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
     <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
     <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
     <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
-    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
-    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
-    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
-    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
-    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
-    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
   </div>
 </div>
 
@@ -209,6 +237,24 @@
     </div>
     <button class="btn-download" id="downloadBtn">⬇️ 서명된 PDF 다운로드</button>
   </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 전자 서명이 법적 효력이 있나요?</h3>
+        <p style="color:#555;margin:0;">간단한 서명 이미지 삽입 방식으로, 법적 전자서명 인증과는 다릅니다. 공식 계약에는 공인 전자서명 서비스를 사용하세요.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 서명 위치를 자유롭게 지정할 수 있나요?</h3>
+        <p style="color:#555;margin:0;">네, 원하는 페이지의 원하는 위치에 드래그하여 서명을 배치할 수 있습니다.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 기존 서명 이미지 파일을 삽입할 수 있나요?</h3>
+        <p style="color:#555;margin:0;">캔버스에 직접 그리는 방식으로 서명합니다. 이미지 파일 삽입은 향후 지원 예정입니다.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
 

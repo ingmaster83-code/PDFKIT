@@ -24,6 +24,34 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
   }
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Word 변환기",
+  "url": "https://pdfkit.wooahouse.com/pdf-to-word.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "변환된 Word 파일의 서식이 유지되나요?","acceptedAnswer": {"@type": "Answer","text": "텍스트 내용은 유지되지만 복잡한 레이아웃 서식은 일부 변경될 수 있습니다."}},
+    {"@type": "Question","name": "어떤 형식으로 변환되나요?","acceptedAnswer": {"@type": "Answer","text": ".doc 형식으로 변환되며 Microsoft Word, Google Docs 등에서 열 수 있습니다."}},
+    {"@type": "Question","name": "이미지가 포함된 PDF도 변환되나요?","acceptedAnswer": {"@type": "Answer","text": "텍스트는 추출되나 이미지는 포함되지 않을 수 있습니다."}}
+  ]
+}
+</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#FF4444">
@@ -53,18 +81,18 @@
   <span class="our-sites-label">Linker Services</span>
   <div class="our-sites-links">
     <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
-    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 PDFKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
     <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
     <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
     <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
     <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
     <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
-    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
-    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
-    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
-    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
-    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
-    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
   </div>
 </div>
 
@@ -144,6 +172,24 @@
     <span>PDF에서 텍스트만 필요하신가요?</span>
     <a href="pdf-text-extract.html">📋 PDF 텍스트 추출 바로가기 →</a>
   </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 변환된 Word 파일의 서식이 유지되나요?</h3>
+        <p style="color:#555;margin:0;">텍스트 내용은 유지되지만 복잡한 레이아웃 서식은 일부 변경될 수 있습니다.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 어떤 형식으로 변환되나요?</h3>
+        <p style="color:#555;margin:0;">.doc 형식으로 변환되며 Microsoft Word, Google Docs 등에서 열 수 있습니다.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 이미지가 포함된 PDF도 변환되나요?</h3>
+        <p style="color:#555;margin:0;">텍스트는 추출되나 이미지는 포함되지 않을 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
 
