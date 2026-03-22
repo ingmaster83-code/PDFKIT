@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 서명 추가 무료 — 전자서명 온라인 PDF에 삽입 | PDF킷</title>
+  <meta name="description" content="PDF에 전자서명을 무료로 추가. 캔버스에 직접 서명을 그려 PDF 문서에 삽입. 마우스, 터치 지원. 서명 위치 자유 선택.">
+  <meta name="keywords" content="PDF서명추가, 전자서명PDF, PDF사인, 온라인서명, PDF싸인추가, 무료전자서명, PDF서명삽입">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/pdf-sign.html">
+  <meta property="og:title" content="PDF 서명 추가 무료 — 전자서명 온라인 삽입 | PDF킷">
+  <meta property="og:description" content="PDF에 전자서명 무료 추가. 캔버스에 서명 그려 삽입, 위치 자유 선택.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/pdf-sign.html">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PDF 서명 추가 - PDF킷",
+    "url": "https://pdfkit.wooahouse.com/pdf-sign.html",
+    "description": "PDF에 전자서명을 무료로 추가",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PDF킷">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .step-panel {
+      background: white; border-radius: var(--radius); padding: 24px;
+      margin-top: 20px; box-shadow: var(--shadow);
+    }
+    .step-title {
+      font-weight: 600; font-size: 0.95rem; color: var(--text);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+    }
+    .step-number {
+      background: var(--primary); color: white; width: 28px; height: 28px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; font-weight: 700; flex-shrink: 0;
+    }
+    .sign-canvas-wrap {
+      border: 2px solid var(--border); border-radius: var(--radius-sm);
+      background: white; position: relative; overflow: hidden;
+    }
+    #signCanvas {
+      width: 100%; display: block; cursor: crosshair; touch-action: none;
+    }
+    .sign-controls {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px;
+    }
+    .sign-controls label { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+    .sign-controls select, .sign-controls input[type="color"] {
+      padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-family: inherit; font-size: 0.85rem;
+    }
+    .sign-controls input[type="color"] { width: 36px; height: 32px; padding: 2px; cursor: pointer; }
+    .btn-clear {
+      padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: #F9FAFB; cursor: pointer; font-size: 0.85rem; font-family: inherit;
+      font-weight: 500; transition: background 0.15s;
+    }
+    .btn-clear:hover { background: #E5E7EB; }
+    .pdf-preview-wrap {
+      position: relative; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      overflow: hidden; cursor: crosshair; background: #f3f4f6;
+    }
+    #pdfPreviewCanvas { width: 100%; display: block; }
+    .sign-marker {
+      position: absolute; border: 2px dashed var(--primary); pointer-events: none;
+      display: none;
+    }
+    .sign-marker img { width: 100%; height: 100%; object-fit: contain; }
+    .page-select-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .page-select-row label { font-size: 0.88rem; font-weight: 500; }
+    .page-select-row select {
+      padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-family: inherit; font-size: 0.88rem;
+    }
+    .position-hint {
+      font-size: 0.82rem; color: var(--text-light); margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<div class="our-sites-bar">
+  <span class="our-sites-label">Linker Services</span>
+  <div class="our-sites-links">
+    <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
+    <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
+    <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
+    <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
+    <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+  </div>
+</div>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF 서명 추가</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">✍️</span>
+    <h1>PDF 서명 추가</h1>
+    <p>캔버스에 서명을 그린 뒤 PDF 문서에 삽입합니다.</p>
+  </div>
+
+  <!-- Step 1: Upload PDF -->
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>서명을 추가할 PDF를 업로드하세요</p>
+    <label for="fileInput" class="btn-select">PDF 파일 선택</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <!-- Step 2: Draw Signature -->
+  <div id="signPanel" class="step-panel" style="display:none">
+    <div class="step-title"><span class="step-number">1</span> 서명 그리기</div>
+    <div class="sign-canvas-wrap">
+      <canvas id="signCanvas" height="150"></canvas>
+    </div>
+    <div class="sign-controls">
+      <label>펜 굵기</label>
+      <select id="penWidth">
+        <option value="2">가는 (2px)</option>
+        <option value="3" selected>보통 (3px)</option>
+        <option value="5">굵은 (5px)</option>
+      </select>
+      <label>색상</label>
+      <input type="color" id="penColor" value="#000000">
+      <button class="btn-clear" id="clearSignBtn">지우기</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Place Signature -->
+  <div id="placePanel" class="step-panel" style="display:none">
+    <div class="step-title"><span class="step-number">2</span> 서명 위치 선택</div>
+    <div class="page-select-row">
+      <label>페이지 선택:</label>
+      <select id="pageSelect"></select>
+    </div>
+    <div class="pdf-preview-wrap" id="previewWrap">
+      <canvas id="pdfPreviewCanvas"></canvas>
+      <div class="sign-marker" id="signMarker"><img id="signPreviewImg" src="" alt="서명"></div>
+    </div>
+    <p class="position-hint">PDF 미리보기를 클릭하여 서명 위치를 지정하세요.</p>
+  </div>
+
+  <button class="btn-convert" id="applyBtn" style="display:none">✍️ 서명 삽입 및 다운로드</button>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">처리 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">서명 삽입 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ 서명된 PDF 다운로드</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let pdfBytes = null;
+  let totalPages = 0;
+  let resultBytes = null;
+  let currentPage = 1;
+  let signX = 0.5, signY = 0.8; // Normalized position (0-1)
+  let isDrawing = false;
+  let hasSignature = false;
+  let pdfDoc = null; // pdfjsLib document
+
+  // Signature canvas setup
+  const signCanvas = document.getElementById('signCanvas');
+  const signCtx = signCanvas.getContext('2d');
+
+  function resizeSignCanvas() {
+    const wrap = signCanvas.parentElement;
+    signCanvas.width = wrap.clientWidth;
+    signCanvas.height = 150;
+    signCtx.fillStyle = 'white';
+    signCtx.fillRect(0, 0, signCanvas.width, signCanvas.height);
+  }
+
+  // Drawing
+  function getPos(e) {
+    const rect = signCanvas.getBoundingClientRect();
+    const touch = e.touches ? e.touches[0] : e;
+    return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+  }
+
+  signCanvas.addEventListener('mousedown', startDraw);
+  signCanvas.addEventListener('mousemove', draw);
+  signCanvas.addEventListener('mouseup', stopDraw);
+  signCanvas.addEventListener('mouseleave', stopDraw);
+  signCanvas.addEventListener('touchstart', e => { e.preventDefault(); startDraw(e); });
+  signCanvas.addEventListener('touchmove', e => { e.preventDefault(); draw(e); });
+  signCanvas.addEventListener('touchend', stopDraw);
+
+  function startDraw(e) {
+    isDrawing = true;
+    hasSignature = true;
+    const pos = getPos(e);
+    signCtx.beginPath();
+    signCtx.moveTo(pos.x, pos.y);
+    signCtx.strokeStyle = document.getElementById('penColor').value;
+    signCtx.lineWidth = parseInt(document.getElementById('penWidth').value);
+    signCtx.lineCap = 'round';
+    signCtx.lineJoin = 'round';
+  }
+
+  function draw(e) {
+    if (!isDrawing) return;
+    const pos = getPos(e);
+    signCtx.lineTo(pos.x, pos.y);
+    signCtx.stroke();
+  }
+
+  function stopDraw() {
+    isDrawing = false;
+    updateSignPreview();
+  }
+
+  function updateSignPreview() {
+    if (!hasSignature) return;
+    const dataUrl = signCanvas.toDataURL('image/png');
+    const marker = document.getElementById('signMarker');
+    document.getElementById('signPreviewImg').src = dataUrl;
+    if (marker.style.display === 'block') {
+      // Keep visible
+    }
+  }
+
+  document.getElementById('clearSignBtn').addEventListener('click', () => {
+    signCtx.fillStyle = 'white';
+    signCtx.fillRect(0, 0, signCanvas.width, signCanvas.height);
+    hasSignature = false;
+    document.getElementById('signMarker').style.display = 'none';
+  });
+
+  // Drop zone
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+    pdfBytes = await file.arrayBuffer();
+
+    try {
+      pdfDoc = await pdfjsLib.getDocument({ data: pdfBytes.slice(0) }).promise;
+      totalPages = pdfDoc.numPages;
+    } catch(e) {
+      showError('PDF를 읽을 수 없습니다.'); return;
+    }
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('signPanel').style.display = 'block';
+    document.getElementById('placePanel').style.display = 'block';
+    document.getElementById('applyBtn').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    resizeSignCanvas();
+
+    // Page select
+    const pageSelect = document.getElementById('pageSelect');
+    pageSelect.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+      const opt = document.createElement('option');
+      opt.value = i; opt.textContent = `${i}페이지`;
+      pageSelect.appendChild(opt);
+    }
+    pageSelect.addEventListener('change', () => {
+      currentPage = parseInt(pageSelect.value);
+      renderPreview(currentPage);
+    });
+
+    currentPage = 1;
+    renderPreview(1);
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('signPanel').style.display = 'none';
+    document.getElementById('placePanel').style.display = 'none';
+    document.getElementById('applyBtn').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  async function renderPreview(pageNum) {
+    const page = await pdfDoc.getPage(pageNum);
+    const viewport = page.getViewport({ scale: 1.2 });
+    const canvas = document.getElementById('pdfPreviewCanvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+  }
+
+  // Click on preview to place signature
+  document.getElementById('previewWrap').addEventListener('click', (e) => {
+    if (!hasSignature) { showError('먼저 서명을 그려주세요.'); return; }
+    hideError();
+    const wrap = document.getElementById('previewWrap');
+    const rect = wrap.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    signX = x / rect.width;
+    signY = y / rect.height;
+
+    const marker = document.getElementById('signMarker');
+    const signW = 150;
+    const signH = 60;
+    marker.style.width = signW + 'px';
+    marker.style.height = signH + 'px';
+    marker.style.left = (x - signW / 2) + 'px';
+    marker.style.top = (y - signH / 2) + 'px';
+    marker.style.display = 'block';
+    document.getElementById('signPreviewImg').src = signCanvas.toDataURL('image/png');
+  });
+
+  document.getElementById('applyBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    if (!hasSignature) { showError('먼저 서명을 그려주세요.'); return; }
+
+    const btn = document.getElementById('applyBtn');
+    btn.disabled = true; btn.textContent = '⏳ 처리 중...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      updateProgressUI(20, '서명 이미지 준비 중...');
+
+      // Get signature as PNG
+      const signDataUrl = signCanvas.toDataURL('image/png');
+      const signBase64 = signDataUrl.split(',')[1];
+      const signImgBytes = Uint8Array.from(atob(signBase64), c => c.charCodeAt(0));
+
+      updateProgressUI(40, 'PDF 로드 중...');
+      const { PDFDocument } = PDFLib;
+      const pdfDocLib = await PDFDocument.load(pdfBytes);
+      const signImage = await pdfDocLib.embedPng(signImgBytes);
+
+      updateProgressUI(60, '서명 삽입 중...');
+      const pages = pdfDocLib.getPages();
+      const targetPage = pages[currentPage - 1];
+      const { width, height } = targetPage.getSize();
+
+      const signW = 180;
+      const signH = 70;
+      const posX = signX * width - signW / 2;
+      const posY = height - (signY * height) - signH / 2;
+
+      targetPage.drawImage(signImage, {
+        x: Math.max(0, Math.min(posX, width - signW)),
+        y: Math.max(0, Math.min(posY, height - signH)),
+        width: signW,
+        height: signH,
+      });
+
+      updateProgressUI(85, 'PDF 저장 중...');
+      resultBytes = await pdfDocLib.save();
+
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      document.getElementById('resultSubtitle').textContent =
+        `${currentPage}페이지에 서명이 삽입되었습니다`;
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+    } catch(err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    resetBtn(btn);
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '_signed.pdf');
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  window.addEventListener('resize', () => {
+    if (document.getElementById('signPanel').style.display !== 'none') {
+      resizeSignCanvas();
+    }
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '✍️ 서명 삽입 및 다운로드'; }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="js/pwa-install.js"></script>
+</body>
+</html>

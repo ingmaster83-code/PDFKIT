@@ -73,6 +73,42 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://pdfkit.wooahouse.com/pdf-to-word.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pdfkit.wooahouse.com/office-to-pdf.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pdfkit.wooahouse.com/pdf-text-extract.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pdfkit.wooahouse.com/pdf-password.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfkit.wooahouse.com/pdf-sign.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfkit.wooahouse.com/pdf-reorder.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pdfkit.wooahouse.com/about.html</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>

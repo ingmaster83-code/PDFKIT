@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 페이지 순서 변경 무료 — 드래그로 페이지 재정렬 | PDF킷</title>
+  <meta name="description" content="PDF 페이지 순서를 드래그 앤 드롭으로 자유롭게 변경. 썸네일 미리보기를 보면서 원하는 순서로 재정렬한 뒤 다운로드. 무료, 회원가입 불필요.">
+  <meta name="keywords" content="PDF페이지재정렬, PDF순서변경, PDF페이지이동, PDF페이지순서바꾸기, PDF페이지정렬, 무료PDF편집">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/pdf-reorder.html">
+  <meta property="og:title" content="PDF 페이지 순서 변경 무료 — 드래그로 재정렬 | PDF킷">
+  <meta property="og:description" content="PDF 페이지를 드래그로 재정렬. 썸네일 미리보기, 무료.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/pdf-reorder.html">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PDF 페이지 재정렬 - PDF킷",
+    "url": "https://pdfkit.wooahouse.com/pdf-reorder.html",
+    "description": "PDF 페이지 순서를 드래그로 재정렬",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PDF킷">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .thumb-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px; margin-top: 20px;
+    }
+    .thumb-card {
+      background: white; border: 2px solid var(--border); border-radius: var(--radius-sm);
+      overflow: hidden; cursor: grab; transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+      position: relative;
+    }
+    .thumb-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .thumb-card.dragging { opacity: 0.4; transform: scale(0.95); }
+    .thumb-card.drag-over-card { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,68,68,0.2); }
+    .thumb-card canvas { width: 100%; display: block; background: white; }
+    .thumb-label {
+      padding: 6px 8px; text-align: center; font-size: 0.78rem; font-weight: 600;
+      color: var(--text-light); background: #F9FAFB; border-top: 1px solid var(--border);
+    }
+    .thumb-order {
+      position: absolute; top: 6px; left: 6px; background: var(--primary); color: white;
+      width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 0.72rem; font-weight: 700;
+    }
+    .loading-overlay {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 40px; color: var(--text-light); font-size: 0.9rem; gap: 12px;
+    }
+    .spinner {
+      width: 36px; height: 36px; border: 3px solid var(--border);
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<div class="our-sites-bar">
+  <span class="our-sites-label">Linker Services</span>
+  <div class="our-sites-links">
+    <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
+    <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
+    <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
+    <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
+    <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+  </div>
+</div>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>페이지 재정렬</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🔀</span>
+    <h1>PDF 페이지 재정렬</h1>
+    <p>드래그 앤 드롭으로 PDF 페이지 순서를 자유롭게 변경합니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>페이지 순서를 변경할 PDF를 업로드하세요</p>
+    <label for="fileInput" class="btn-select">PDF 파일 선택</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div id="loadingPanel" class="loading-overlay" style="display:none">
+    <div class="spinner"></div>
+    <span id="loadingText">썸네일 렌더링 중...</span>
+  </div>
+
+  <div id="thumbGrid" class="thumb-grid" style="display:none"></div>
+
+  <button class="btn-convert" id="applyBtn" style="display:none">🔀 재정렬 적용 및 다운로드</button>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">처리 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">재정렬 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let pdfBytes = null;
+  let totalPages = 0;
+  let resultBytes = null;
+  let pageOrder = []; // Array of original page indices (0-based)
+  let dragSrcIdx = null;
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+    pdfBytes = await file.arrayBuffer();
+
+    let pdfDoc;
+    try {
+      pdfDoc = await pdfjsLib.getDocument({ data: pdfBytes.slice(0) }).promise;
+      totalPages = pdfDoc.numPages;
+    } catch(e) {
+      showError('PDF를 읽을 수 없습니다.'); return;
+    }
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    // Render thumbnails
+    document.getElementById('loadingPanel').style.display = 'flex';
+    document.getElementById('thumbGrid').style.display = 'none';
+    document.getElementById('applyBtn').style.display = 'none';
+
+    pageOrder = Array.from({ length: totalPages }, (_, i) => i);
+    const thumbGrid = document.getElementById('thumbGrid');
+    thumbGrid.innerHTML = '';
+
+    for (let i = 0; i < totalPages; i++) {
+      document.getElementById('loadingText').textContent = `썸네일 렌더링 중... (${i + 1}/${totalPages})`;
+      const page = await pdfDoc.getPage(i + 1);
+      const viewport = page.getViewport({ scale: 0.3 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const card = document.createElement('div');
+      card.className = 'thumb-card';
+      card.draggable = true;
+      card.dataset.idx = i;
+      card.innerHTML = `<div class="thumb-order">${i + 1}</div>`;
+      card.appendChild(canvas);
+      const label = document.createElement('div');
+      label.className = 'thumb-label';
+      label.textContent = `원본 ${i + 1}p`;
+      card.appendChild(label);
+
+      // Drag events
+      card.addEventListener('dragstart', onDragStart);
+      card.addEventListener('dragover', onDragOver);
+      card.addEventListener('dragenter', onDragEnter);
+      card.addEventListener('dragleave', onDragLeave);
+      card.addEventListener('drop', onDrop);
+      card.addEventListener('dragend', onDragEnd);
+
+      thumbGrid.appendChild(card);
+    }
+
+    document.getElementById('loadingPanel').style.display = 'none';
+    thumbGrid.style.display = 'grid';
+    document.getElementById('applyBtn').style.display = 'block';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('thumbGrid').style.display = 'none';
+    document.getElementById('applyBtn').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('loadingPanel').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  function onDragStart(e) {
+    dragSrcIdx = getCardIndex(e.currentTarget);
+    e.currentTarget.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  }
+
+  function onDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  }
+
+  function onDragEnter(e) {
+    e.preventDefault();
+    const card = e.currentTarget;
+    card.classList.add('drag-over-card');
+  }
+
+  function onDragLeave(e) {
+    e.currentTarget.classList.remove('drag-over-card');
+  }
+
+  function onDrop(e) {
+    e.preventDefault();
+    const card = e.currentTarget;
+    card.classList.remove('drag-over-card');
+    const dropIdx = getCardIndex(card);
+    if (dragSrcIdx === null || dragSrcIdx === dropIdx) return;
+
+    // Reorder
+    const grid = document.getElementById('thumbGrid');
+    const cards = Array.from(grid.children);
+    const draggedCard = cards[dragSrcIdx];
+
+    // Move in DOM
+    if (dragSrcIdx < dropIdx) {
+      grid.insertBefore(draggedCard, cards[dropIdx].nextSibling);
+    } else {
+      grid.insertBefore(draggedCard, cards[dropIdx]);
+    }
+
+    // Update pageOrder
+    const moved = pageOrder.splice(dragSrcIdx, 1)[0];
+    pageOrder.splice(dropIdx, 0, moved);
+
+    updateOrderLabels();
+  }
+
+  function onDragEnd(e) {
+    e.currentTarget.classList.remove('dragging');
+    document.querySelectorAll('.drag-over-card').forEach(c => c.classList.remove('drag-over-card'));
+    dragSrcIdx = null;
+  }
+
+  function getCardIndex(card) {
+    const grid = document.getElementById('thumbGrid');
+    return Array.from(grid.children).indexOf(card);
+  }
+
+  function updateOrderLabels() {
+    const cards = document.getElementById('thumbGrid').children;
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].querySelector('.thumb-order').textContent = i + 1;
+    }
+  }
+
+  document.getElementById('applyBtn').addEventListener('click', async () => {
+    if (!selectedFile || pageOrder.length === 0) return;
+
+    const btn = document.getElementById('applyBtn');
+    btn.disabled = true; btn.textContent = '⏳ 처리 중...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      updateProgressUI(20, 'PDF 로드 중...');
+      const { PDFDocument } = PDFLib;
+      const srcDoc = await PDFDocument.load(pdfBytes);
+      const newDoc = await PDFDocument.create();
+
+      for (let i = 0; i < pageOrder.length; i++) {
+        updateProgressUI(20 + Math.round((i / pageOrder.length) * 65), `페이지 ${i + 1}/${pageOrder.length} 복사 중...`);
+        const [copiedPage] = await newDoc.copyPages(srcDoc, [pageOrder[i]]);
+        newDoc.addPage(copiedPage);
+      }
+
+      updateProgressUI(90, 'PDF 저장 중...');
+      resultBytes = await newDoc.save();
+
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      const newOrderStr = pageOrder.map(i => i + 1).join(' → ');
+      document.getElementById('resultSubtitle').textContent =
+        `${pageOrder.length}페이지 재정렬 완료 (${newOrderStr})`;
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+    } catch(err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    resetBtn(btn);
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '_reordered.pdf');
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔀 재정렬 적용 및 다운로드'; }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="js/pwa-install.js"></script>
+</body>
+</html>

@@ -63,6 +63,7 @@
     @media (max-width: 520px) { .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } .tool-card { padding: 18px 10px 14px; } .tool-icon { font-size: 2rem; } }
     .free-badge { display: inline-block; background: #22C55E; color: #fff; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; margin-bottom: 6px; letter-spacing: 0.03em; }
     .tool-card { position: relative; }
+    .new-badge { position:absolute; top:8px; right:8px; background:#EF4444; color:white; font-size:0.65rem; font-weight:700; padding:2px 6px; border-radius:4px; letter-spacing:0.3px; }
   </style>
 </head>
 <body>
@@ -140,6 +141,27 @@
         <div class="tool-name">이미지 → PDF</div>
         <div class="tool-desc">JPG, PNG 등 이미지를 PDF 문서로 변환</div>
       </a>
+      <a href="pdf-to-word.html" class="tool-card">
+        <span class="free-badge">무료</span>
+        <span class="new-badge">NEW</span>
+        <span class="tool-icon">🔤</span>
+        <div class="tool-name">PDF → Word</div>
+        <div class="tool-desc">PDF를 편집 가능한 Word 문서로 변환</div>
+      </a>
+      <a href="office-to-pdf.html" class="tool-card">
+        <span class="free-badge">무료</span>
+        <span class="new-badge">NEW</span>
+        <span class="tool-icon">📝</span>
+        <div class="tool-name">Word/Excel → PDF</div>
+        <div class="tool-desc">워드·엑셀 파일을 PDF로 변환</div>
+      </a>
+      <a href="pdf-text-extract.html" class="tool-card">
+        <span class="free-badge">무료</span>
+        <span class="new-badge">NEW</span>
+        <span class="tool-icon">📋</span>
+        <div class="tool-name">PDF 텍스트 추출</div>
+        <div class="tool-desc">복사 안 되는 PDF에서 텍스트 추출</div>
+      </a>
     </div>
   </div>
 
@@ -212,6 +234,13 @@
         <div class="tool-name">PDF 잠금 해제</div>
         <div class="tool-desc">비밀번호 보호 PDF의 잠금을 제거</div>
       </a>
+      <a href="pdf-password.html" class="tool-card">
+        <span class="free-badge">무료</span>
+        <span class="new-badge">NEW</span>
+        <span class="tool-icon">🔐</span>
+        <div class="tool-name">PDF 암호 설정</div>
+        <div class="tool-desc">PDF에 열기 비밀번호 설정 및 권한 제한</div>
+      </a>
     </div>
   </div>
 
@@ -229,6 +258,32 @@
         <span class="tool-icon">👁️</span>
         <div class="tool-name">PDF 뷰어 다운로드</div>
         <div class="tool-desc">Adobe Reader, Foxit 등 무료 PDF 뷰어 모음</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-header">
+      <div class="category-dot" style="background:#F59E0B"></div>
+      <div>
+        <span class="category-title">전자서명 &amp; 정렬</span>
+        <p class="category-desc">PDF 서명 추가 및 페이지 순서 변경</p>
+      </div>
+    </div>
+    <div class="tools-grid">
+      <a href="pdf-sign.html" class="tool-card">
+        <span class="free-badge">무료</span>
+        <span class="new-badge">NEW</span>
+        <span class="tool-icon">✍️</span>
+        <div class="tool-name">PDF 서명 추가</div>
+        <div class="tool-desc">캔버스에 서명 그려 PDF에 직접 삽입</div>
+      </a>
+      <a href="pdf-reorder.html" class="tool-card">
+        <span class="free-badge">무료</span>
+        <span class="new-badge">NEW</span>
+        <span class="tool-icon">🔀</span>
+        <div class="tool-name">페이지 재정렬</div>
+        <div class="tool-desc">드래그로 PDF 페이지 순서 변경</div>
       </a>
     </div>
   </div>

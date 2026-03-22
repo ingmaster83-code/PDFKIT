@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Excel PDF 변환 무료 — 워드 엑셀 파일을 PDF로 | PDF킷</title>
+  <meta name="description" content="Word(.docx), Excel(.xlsx) 파일을 PDF로 무료 변환. 브라우저에서 미리보기 후 인쇄 기능으로 PDF 저장. 회원가입 없이 바로 사용.">
+  <meta name="keywords" content="Word PDF변환, 워드PDF, 엑셀PDF변환, docx PDF, xlsx PDF, 무료변환, 워드 PDF로, 엑셀 PDF로">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/office-to-pdf.html">
+  <meta property="og:title" content="Word Excel PDF 변환 무료 — 워드 엑셀 파일을 PDF로 | PDF킷">
+  <meta property="og:description" content="Word, Excel 파일을 PDF로 무료 변환. 브라우저에서 바로 처리.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/office-to-pdf.html">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Word/Excel → PDF 변환 - PDF킷",
+    "url": "https://pdfkit.wooahouse.com/office-to-pdf.html",
+    "description": "Word, Excel 파일을 PDF로 무료 변환",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PDF킷">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .tab-switcher { display: flex; gap: 0; margin-bottom: 0; }
+    .tab-btn {
+      flex: 1; padding: 14px; text-align: center; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; border: 1px solid var(--border); background: #F9FAFB; color: var(--text-light);
+      transition: background 0.15s, color 0.15s; font-family: inherit;
+    }
+    .tab-btn:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+    .tab-btn:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .preview-container {
+      background: white; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; margin-top: 20px; max-height: 500px; overflow-y: auto; box-shadow: var(--shadow);
+    }
+    .preview-container table {
+      width: 100%; border-collapse: collapse; font-size: 0.88rem;
+    }
+    .preview-container table th, .preview-container table td {
+      border: 1px solid #ddd; padding: 8px 10px; text-align: left;
+    }
+    .preview-container table th { background: #f3f4f6; font-weight: 600; }
+    .note-box {
+      margin-top: 16px; padding: 12px 16px; background: #FFF8E1; border-left: 3px solid #FFC107;
+      border-radius: 0 8px 8px 0; font-size: 0.85rem; color: #795548;
+    }
+    @media print {
+      header, .our-sites-bar, .breadcrumb, .tool-header, .drop-zone,
+      .file-list-panel, .tab-switcher, .btn-convert, .note-box,
+      .cross-link-banner, footer, .alert, .progress-wrap, .result-panel { display: none !important; }
+      .preview-container {
+        max-height: none !important; overflow: visible !important;
+        border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important;
+      }
+      .tool-page { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+      body { background: white !important; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<div class="our-sites-bar">
+  <span class="our-sites-label">Linker Services</span>
+  <div class="our-sites-links">
+    <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
+    <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
+    <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
+    <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
+    <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+  </div>
+</div>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>Word/Excel → PDF 변환</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">📝</span>
+    <h1>Word / Excel → PDF 변환</h1>
+    <p>워드(.docx) 또는 엑셀(.xlsx) 파일을 미리보기 후 PDF로 저장합니다.</p>
+  </div>
+
+  <div class="tab-switcher">
+    <button class="tab-btn active" data-tab="word">📄 Word (.docx)</button>
+    <button class="tab-btn" data-tab="excel">📊 Excel (.xlsx)</button>
+  </div>
+
+  <!-- Word Tab -->
+  <div class="tab-content active" id="tab-word">
+    <div class="drop-zone" id="wordDropZone" style="border-radius: 0 0 var(--radius) var(--radius); margin-top:0;">
+      <span class="drop-zone-icon">📂</span>
+      <h3>Word 파일을 여기에 끌어다 놓으세요</h3>
+      <p>.docx 파일만 지원됩니다</p>
+      <label for="wordFileInput" class="btn-select">Word 파일 선택</label>
+      <input type="file" id="wordFileInput" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display:none">
+    </div>
+    <div id="wordFileInfoPanel" class="file-list-panel" style="display:none">
+      <div class="file-list-title">선택된 파일</div>
+      <div id="wordFileInfo"></div>
+    </div>
+  </div>
+
+  <!-- Excel Tab -->
+  <div class="tab-content" id="tab-excel">
+    <div class="drop-zone" id="excelDropZone" style="border-radius: 0 0 var(--radius) var(--radius); margin-top:0;">
+      <span class="drop-zone-icon">📂</span>
+      <h3>Excel 파일을 여기에 끌어다 놓으세요</h3>
+      <p>.xlsx 파일만 지원됩니다</p>
+      <label for="excelFileInput" class="btn-select">Excel 파일 선택</label>
+      <input type="file" id="excelFileInput" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="display:none">
+    </div>
+    <div id="excelFileInfoPanel" class="file-list-panel" style="display:none">
+      <div class="file-list-title">선택된 파일</div>
+      <div id="excelFileInfo"></div>
+    </div>
+  </div>
+
+  <div id="previewPanel" class="preview-container" style="display:none">
+    <div id="previewContent"></div>
+  </div>
+
+  <button class="btn-convert" id="printBtn" style="display:none">🖨️ PDF로 저장 (인쇄)</button>
+
+  <div class="note-box" id="printNote" style="display:none">
+    <strong>안내:</strong> 인쇄 화면에서 <strong>'대상: PDF로 저장'</strong>을 선택하세요. (Chrome: "Save as PDF", Edge: "Microsoft Print to PDF")
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="note-box" style="margin-top:24px;">
+    <strong>참고:</strong> PowerPoint(PPTX)는 현재 지원되지 않습니다.
+  </div>
+
+  <div class="cross-link-banner">
+    <span>PDF를 다시 Word로 변환하고 싶다면?</span>
+    <a href="pdf-to-word.html">🔤 PDF → Word 변환 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+<script>
+  let currentTab = 'word';
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      currentTab = btn.dataset.tab;
+      document.getElementById('tab-' + currentTab).classList.add('active');
+      document.getElementById('previewPanel').style.display = 'none';
+      document.getElementById('printBtn').style.display = 'none';
+      document.getElementById('printNote').style.display = 'none';
+      hideError();
+    });
+  });
+
+  // Word drop zone
+  const wordDropZone = document.getElementById('wordDropZone');
+  wordDropZone.addEventListener('dragover', e => { e.preventDefault(); wordDropZone.classList.add('drag-over'); });
+  wordDropZone.addEventListener('dragleave', () => wordDropZone.classList.remove('drag-over'));
+  wordDropZone.addEventListener('drop', e => {
+    e.preventDefault(); wordDropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) loadWordFile(e.dataTransfer.files[0]);
+  });
+  document.getElementById('wordFileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadWordFile(e.target.files[0]);
+  });
+
+  // Excel drop zone
+  const excelDropZone = document.getElementById('excelDropZone');
+  excelDropZone.addEventListener('dragover', e => { e.preventDefault(); excelDropZone.classList.add('drag-over'); });
+  excelDropZone.addEventListener('dragleave', () => excelDropZone.classList.remove('drag-over'));
+  excelDropZone.addEventListener('drop', e => {
+    e.preventDefault(); excelDropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) loadExcelFile(e.dataTransfer.files[0]);
+  });
+  document.getElementById('excelFileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadExcelFile(e.target.files[0]);
+  });
+
+  async function loadWordFile(file) {
+    if (!file.name.endsWith('.docx')) {
+      showError('.docx 파일만 지원됩니다.'); return;
+    }
+    hideError();
+    showFileInfo('word', file);
+
+    try {
+      const buf = await file.arrayBuffer();
+      const result = await mammoth.convertToHtml({ arrayBuffer: buf });
+      const html = result.value;
+      document.getElementById('previewContent').innerHTML = html;
+      document.getElementById('previewPanel').style.display = 'block';
+      document.getElementById('printBtn').style.display = 'block';
+      document.getElementById('printNote').style.display = 'block';
+      document.getElementById('previewPanel').scrollIntoView({ behavior: 'smooth' });
+    } catch(err) {
+      console.error(err);
+      showError('Word 파일을 읽을 수 없습니다: ' + err.message);
+    }
+  }
+
+  async function loadExcelFile(file) {
+    if (!file.name.endsWith('.xlsx')) {
+      showError('.xlsx 파일만 지원됩니다.'); return;
+    }
+    hideError();
+    showFileInfo('excel', file);
+
+    try {
+      const buf = await file.arrayBuffer();
+      const workbook = XLSX.read(buf, { type: 'array' });
+      let html = '';
+
+      workbook.SheetNames.forEach((name, idx) => {
+        const sheet = workbook.Sheets[name];
+        const sheetHtml = XLSX.utils.sheet_to_html(sheet, { editable: false });
+        html += `<h3 style="margin-top:${idx > 0 ? '24px' : '0'}; color:#333; font-size:1rem;">📊 ${name}</h3>`;
+        html += sheetHtml;
+      });
+
+      document.getElementById('previewContent').innerHTML = html;
+      document.getElementById('previewPanel').style.display = 'block';
+      document.getElementById('printBtn').style.display = 'block';
+      document.getElementById('printNote').style.display = 'block';
+      document.getElementById('previewPanel').scrollIntoView({ behavior: 'smooth' });
+    } catch(err) {
+      console.error(err);
+      showError('Excel 파일을 읽을 수 없습니다: ' + err.message);
+    }
+  }
+
+  function showFileInfo(type, file) {
+    const panelId = type + 'FileInfoPanel';
+    const infoId = type + 'FileInfo';
+    document.getElementById(infoId).innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">${type === 'word' ? '📄' : '📊'}</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)}</div>
+        </div>
+      </div>`;
+    document.getElementById(panelId).style.display = 'block';
+  }
+
+  document.getElementById('printBtn').addEventListener('click', () => {
+    window.print();
+  });
+
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="js/pwa-install.js"></script>
+</body>
+</html>

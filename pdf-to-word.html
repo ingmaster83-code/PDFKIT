@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF to Word 변환 무료 — PDF를 워드 파일로 변환 | PDF킷</title>
+  <meta name="description" content="PDF 파일을 Word 문서(.doc)로 무료 변환. 텍스트 기반 PDF에서 내용을 추출해 편집 가능한 Word 파일로 저장.">
+  <meta name="keywords" content="PDF워드변환, PDF to Word, PDF docx변환, 무료PDF변환, 스캔PDF워드, PDF텍스트추출, PDF편집, 워드변환">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/pdf-to-word.html">
+  <meta property="og:title" content="PDF to Word 변환 무료 — PDF를 워드 파일로 변환 | PDF킷">
+  <meta property="og:description" content="PDF를 편집 가능한 Word 문서(.doc)로 무료 변환. 브라우저에서 바로 처리, 파일 업로드 없음.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/pdf-to-word.html">
+  <meta property="og:locale" content="ko_KR">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PDF to Word 변환 - PDF킷",
+    "url": "https://pdfkit.wooahouse.com/pdf-to-word.html",
+    "description": "PDF 파일을 Word 문서(.doc)로 무료 변환",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PDF킷">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">PDF킷 <span>| PDFkit</span></a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<div class="our-sites-bar">
+  <span class="our-sites-label">Linker Services</span>
+  <div class="our-sites-links">
+    <a href="https://linker.wooahouse.com/" target="_blank" rel="noopener">🔗 Linker</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 PDFKit</a>
+    <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 ChromeKit</a>
+    <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 FontKit</a>
+    <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 MacTools</a>
+    <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ PCTools</a>
+    <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 VSKit</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ ImageKit</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 ColorKit</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ TextKit</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 QRKit</a>
+    <a href="https://steamkit.wooahouse.com/" target="_blank" rel="noopener">🎮 SteamKit</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 CalcKit</a>
+  </div>
+</div>
+
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF → Word 변환</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🔤</span>
+    <h1>PDF to Word 변환</h1>
+    <p>PDF 파일에서 텍스트를 추출하여 편집 가능한 Word 문서(.doc)로 변환합니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>Word로 변환할 PDF를 업로드하세요</p>
+    <label for="fileInput" class="btn-select">PDF 파일 선택</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div class="alert alert-error" style="display:none; margin-top:16px; background:#FFF8E1; color:#F57F17; border-color:#FFE082;">
+    <strong>안내:</strong> 텍스트 기반 PDF만 지원됩니다. 스캔된 이미지 PDF는 <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener" style="color:#F57F17; font-weight:700;">ImageKit OCR 도구</a>를 이용하세요.
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">변환 설정</div>
+    <div class="option-row">
+      <span class="option-label">변환 범위</span>
+      <div class="option-control">
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="pageRange" value="all" checked> 전체 페이지</label>
+          <label class="radio-item"><input type="radio" name="pageRange" value="custom"> 특정 페이지</label>
+        </div>
+      </div>
+    </div>
+    <div id="customPagesRow" class="option-row" style="display:none">
+      <span class="option-label">페이지 번호</span>
+      <div class="option-control">
+        <input type="text" id="pageInput" placeholder="예: 1,3,5-8">
+      </div>
+    </div>
+    <button class="btn-convert" id="convertBtn">🔤 Word 파일로 변환</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">처리 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">Word 변환 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <button class="btn-download" id="downloadBtn">⬇️ Word 파일 다운로드 (.doc)</button>
+  </div>
+
+  <div class="cross-link-banner">
+    <span>PDF에서 텍스트만 필요하신가요?</span>
+    <a href="pdf-text-extract.html">📋 PDF 텍스트 추출 바로가기 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 PDF킷. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let totalPages = 0;
+  let resultBlob = null;
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  document.querySelectorAll('input[name="pageRange"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('customPagesRow').style.display = r.value === 'custom' ? 'flex' : 'none';
+    });
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBlob = null;
+    try {
+      const buf = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+      totalPages = pdf.numPages;
+    } catch(e) { totalPages = 0; }
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  document.getElementById('convertBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const btn = document.getElementById('convertBtn');
+    btn.disabled = true; btn.textContent = '⏳ 변환 중...';
+    hideError(); resultBlob = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const buf = await selectedFile.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+      const numPages = pdf.numPages;
+
+      const rangeMode = document.querySelector('input[name="pageRange"]:checked').value;
+      let targetPages;
+      if (rangeMode === 'all') {
+        targetPages = Array.from({ length: numPages }, (_, i) => i + 1);
+      } else {
+        targetPages = parsePageList(document.getElementById('pageInput').value, numPages);
+        if (targetPages.length === 0) {
+          showError('올바른 페이지 번호를 입력해 주세요.');
+          resetBtn(btn); return;
+        }
+      }
+
+      let htmlContent = '';
+
+      for (let i = 0; i < targetPages.length; i++) {
+        const pageNum = targetPages[i];
+        updateProgressUI(Math.round((i / targetPages.length) * 90), `페이지 ${pageNum}/${numPages} 텍스트 추출 중...`);
+
+        const page = await pdf.getPage(pageNum);
+        const textContent = await page.getTextContent();
+
+        let pageText = '';
+        let lastY = null;
+        textContent.items.forEach(item => {
+          const y = item.transform[5];
+          if (lastY !== null && Math.abs(y - lastY) > 5) {
+            pageText += '<br>';
+          }
+          const text = item.str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          pageText += text;
+          lastY = y;
+        });
+
+        if (pageText.trim()) {
+          htmlContent += `<h2 style="color:#333; border-bottom:1px solid #ccc; padding-bottom:5px;">페이지 ${pageNum}</h2>`;
+          htmlContent += `<p style="line-height:1.8; font-size:12pt;">${pageText}</p>`;
+        }
+
+        if (i < targetPages.length - 1) {
+          htmlContent += '<br style="page-break-after:always;">';
+        }
+      }
+
+      if (!htmlContent.trim()) {
+        showError('추출할 텍스트가 없습니다. 스캔된 이미지 PDF일 수 있습니다.');
+        resetBtn(btn);
+        document.getElementById('progressWrap').style.display = 'none';
+        return;
+      }
+
+      updateProgressUI(95, 'Word 문서 생성 중...');
+
+      const wordHtml = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: '맑은 고딕', 'Malgun Gothic', sans-serif; margin: 2cm; line-height: 1.8; color: #222; }
+  h2 { font-size: 14pt; color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 20px; }
+  p { font-size: 12pt; margin: 8px 0; }
+</style>
+</head>
+<body>
+${htmlContent}
+</body>
+</html>`;
+
+      resultBlob = new Blob(['\ufeff' + wordHtml], { type: 'application/msword' });
+
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      document.getElementById('resultSubtitle').textContent =
+        `${targetPages.length}개 페이지의 텍스트가 Word 문서로 변환되었습니다`;
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+    } catch(err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    resetBtn(btn);
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBlob) return;
+    const url = URL.createObjectURL(resultBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '.doc');
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function parsePageList(input, total) {
+    const pages = new Set();
+    input.split(',').forEach(part => {
+      part = part.trim();
+      if (part.includes('-')) {
+        const [s, e] = part.split('-').map(Number);
+        for (let i = Math.max(1, s); i <= Math.min(total, e); i++) pages.add(i);
+      } else {
+        const n = parseInt(part);
+        if (!isNaN(n) && n >= 1 && n <= total) pages.add(n);
+      }
+    });
+    return [...pages].sort((a, b) => a - b);
+  }
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔤 Word 파일로 변환'; }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="js/pwa-install.js"></script>
+</body>
+</html>
