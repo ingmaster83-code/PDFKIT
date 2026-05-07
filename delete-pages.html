@@ -119,15 +119,7 @@
 }
 </script>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "여러 페이지를 한 번에 삭제할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "네, 삭제할 페이지를 복수 선택하여 한 번에 제거할 수 있습니다."}},
-    {"@type": "Question","name": "삭제 전 페이지 미리보기가 가능한가요?","acceptedAnswer": {"@type": "Answer","text": "썸네일로 각 페이지를 확인 후 삭제할 페이지를 선택할 수 있습니다."}},
-    {"@type": "Question","name": "원본 파일은 유지되나요?","acceptedAnswer": {"@type": "Answer","text": "네, 원본 파일은 변경되지 않으며 새로운 PDF로 다운로드됩니다."}}
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"특정 페이지만 골라서 삭제할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네, 가능합니다. 페이지 번호를 쉼표로 구분하거나 범위(예: 1-3)로 입력해 원하는 페이지만 선택적으로 삭제할 수 있습니다."}},{"@type":"Question","name":"삭제한 페이지는 복구할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"아니요, 다운로드한 파일에서는 복구가 불가능합니다. 원본 파일을 미리 백업해두거나, 삭제 전 페이지 번호를 꼭 확인하세요."}},{"@type":"Question","name":"파일이 서버에 저장되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요, 모든 처리는 브라우저에서만 이루어집니다. 업로드한 파일은 서버에 전송되거나 저장되지 않아 완전히 안전합니다."}}]}
 </script>
 </head>
 <body>
@@ -176,7 +168,7 @@
 
   <div class="tool-header">
     <span class="tool-header-icon">🗑️</span>
-    <h1>PDF 페이지 삭제</h1>
+    <h1>PDF 페이지 삭제 무료 온라인 — PDF 특정 페이지 제거</h1>
     <p>삭제할 페이지를 클릭해서 선택한 후 "삭제하기" 버튼을 누르세요.</p>
   </div>
 
@@ -241,21 +233,21 @@
     <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
   </div>
 
-  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
-    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
-    <div class="faq-list">
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 여러 페이지를 한 번에 삭제할 수 있나요?</h3>
-        <p style="color:#555;margin:0;">네, 삭제할 페이지를 복수 선택하여 한 번에 제거할 수 있습니다.</p>
-      </div>
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 삭제 전 페이지 미리보기가 가능한가요?</h3>
-        <p style="color:#555;margin:0;">썸네일로 각 페이지를 확인 후 삭제할 페이지를 선택할 수 있습니다.</p>
-      </div>
-      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 원본 파일은 유지되나요?</h3>
-        <p style="color:#555;margin:0;">네, 원본 파일은 변경되지 않으며 새로운 PDF로 다운로드됩니다.</p>
-      </div>
+  <section class="faq-section" style="max-width:720px;margin:32px auto 0;padding:0 16px">
+    <h2 style="font-size:1.1rem;font-weight:800;color:#374151;margin-bottom:16px">자주 묻는 질문</h2>
+    <div style="border:1px solid #E5E7EB;border-radius:12px;overflow:hidden">
+      <details style="border-bottom:1px solid #E5E7EB;padding:16px">
+        <summary style="font-weight:700;cursor:pointer;color:#111827">특정 페이지만 골라서 삭제할 수 있나요?</summary>
+        <p style="margin-top:10px;color:#6B7280;line-height:1.6">네, 가능합니다. 페이지 번호를 쉼표로 구분하거나 범위(예: 1-3)로 입력해 원하는 페이지만 선택적으로 삭제할 수 있습니다.</p>
+      </details>
+      <details style="border-bottom:1px solid #E5E7EB;padding:16px">
+        <summary style="font-weight:700;cursor:pointer;color:#111827">삭제한 페이지는 복구할 수 있나요?</summary>
+        <p style="margin-top:10px;color:#6B7280;line-height:1.6">아니요, 다운로드한 파일에서는 복구가 불가능합니다. 원본 파일을 미리 백업해두거나, 삭제 전 페이지 번호를 꼭 확인하세요.</p>
+      </details>
+      <details style="padding:16px">
+        <summary style="font-weight:700;cursor:pointer;color:#111827">파일이 서버에 저장되나요?</summary>
+        <p style="margin-top:10px;color:#6B7280;line-height:1.6">아니요, 모든 처리는 브라우저에서만 이루어집니다. 업로드한 파일은 서버에 전송되거나 저장되지 않아 완전히 안전합니다.</p>
+      </details>
     </div>
   </section>
 
