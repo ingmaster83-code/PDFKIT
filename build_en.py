@@ -650,10 +650,30 @@ def build_page(filename, meta):
         html, count=1
     )
 
-    # ── Coupang g.js를 head로 (tool pages에서는 body 안에 있는 경우) ──
-    # Remove inline g.js from body if present (already in head of ko version or add it)
-    if 'src="https://ads-partners.coupang.com/g.js"' not in html.split('</head>')[0]:
-        html = html.replace('</head>', '<script src="https://ads-partners.coupang.com/g.js"></script>\n</head>', 1)
+    # ── 영어 버전: 쿠팡 완전 제거 → 애드센스로 교체 ──
+    ADSENSE_BLOCK = (
+        '<div style="text-align:center;margin:32px auto 0;max-width:728px;padding:0 8px">\n'
+        '<ins class="adsbygoogle"\n'
+        '     style="display:block"\n'
+        '     data-ad-client="ca-pub-6464921081676309"\n'
+        '     data-ad-slot="7080296704"\n'
+        '     data-ad-format="auto"\n'
+        '     data-full-width-responsive="true"></ins>\n'
+        '<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>\n'
+        '</div>'
+    )
+    # head의 g.js 제거
+    html = re.sub(r'\s*<script src="https://ads-partners\.coupang\.com/g\.js"></script>\n?', '', html)
+    # 쿠팡 Partners 블록 전체를 애드센스로 교체
+    html = re.sub(
+        r'<!-- Coupang Partners -->\s*<div[^>]*>.*?</div>',
+        ADSENSE_BLOCK,
+        html, flags=re.DOTALL
+    )
+    # 혹시 남은 PartnersCoupang 스크립트 제거
+    html = re.sub(r'<script>\s*new PartnersCoupang\.G\([^)]*\);?\s*</script>', '', html)
+    # coupang-notice 제거
+    html = re.sub(r'<p class="coupang-notice">[^<]*</p>', '', html)
 
     # ── og:locale 교체 ──
     html = html.replace('content="ko_KR"', 'content="en_US"')
@@ -716,6 +736,11 @@ if __name__ == '__main__':
             )
             if 'lang-switcher' not in html:
                 html = html.replace('    <div class="header-right">', sw_html, 1)
+            # 쿠팡 완전 제거
+            html = re.sub(r'\s*<script src="https://ads-partners\.coupang\.com/g\.js"></script>\n?', '', html)
+            html = re.sub(r'<!-- Coupang Partners -->\s*<div[^>]*>.*?</div>', '', html, flags=re.DOTALL)
+            html = re.sub(r'<script>\s*new PartnersCoupang\.G\([^)]*\);?\s*</script>', '', html)
+            html = re.sub(r'<p class="coupang-notice">[^<]*</p>', '', html)
             with open(dst, 'w', encoding='utf-8') as fp:
                 fp.write(html)
             print(f'  ✅ en/{f}')
