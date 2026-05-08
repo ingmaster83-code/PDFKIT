@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pdfkit-v6';
+const CACHE_NAME = 'pdfkit-v7';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
