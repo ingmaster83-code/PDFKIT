@@ -154,7 +154,7 @@
   <div class="tool-header">
     <span class="tool-header-icon">🔤</span>
     <h1>PDF to Word Converter – Free Online</h1>
-    <p>PDF 파일에서 텍스트를 추출하여 편집 가능한 Word 문서(.doc)로 변환합니다.</p>
+    <p>Extract text from a PDF and convert to an editable Word document (.doc).</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
@@ -226,7 +226,7 @@
   </div>
 
   <div class="cross-link-banner">
-    <span>PDF에서 텍스트만 필요하신가요?</span>
+    <span>Just need text from a PDF?</span>
     <a href="pdf-text-extract.html">📋 PDF 텍스트 추출 바로가기 →</a>
   </div>
 
@@ -462,7 +462,7 @@ ${htmlContent}
     document.getElementById('progressText').textContent = text;
     document.getElementById('progressPct').textContent = pct + '%';
   }
-  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔤 Word 파일로 변환'; }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔤 Convert to Word'; }
   function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
   function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
   function formatSize(b) {

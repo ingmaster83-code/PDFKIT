@@ -199,7 +199,7 @@
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>pages 순서를 변경할 PDF를 업로드하세요</p>
+    <p>pages Upload a PDF to reorder pages</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -353,7 +353,7 @@
     thumbGrid.innerHTML = '';
 
     for (let i = 0; i < totalPages; i++) {
-      document.getElementById('loadingText').textContent = `썸네일 렌더링 중... (${i + 1}/${totalPages})`;
+      document.getElementById('loadingText').textContent = `Rendering thumbnails... (${i + 1}/${totalPages})`;
       const page = await pdfDoc.getPage(i + 1);
       const viewport = page.getViewport({ scale: 0.3 });
       const canvas = document.createElement('canvas');
@@ -370,7 +370,7 @@
       card.appendChild(canvas);
       const label = document.createElement('div');
       label.className = 'thumb-label';
-      label.textContent = `원본 ${i + 1}p`;
+      label.textContent = `Page ${i + 1}`;
       card.appendChild(label);
 
       // Drag events
@@ -524,7 +524,7 @@
     document.getElementById('progressText').textContent = text;
     document.getElementById('progressPct').textContent = pct + '%';
   }
-  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔀 재정렬 적용 및 다운로드'; }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔀 Apply Reorder & Download'; }
   function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
   function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
   function formatSize(b) {

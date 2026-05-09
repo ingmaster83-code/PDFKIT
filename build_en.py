@@ -486,6 +486,57 @@ COMMON = [
     ('>소개<', '>About<'),
     # FAQ section heading
     ('>자주 묻는 질문<', '>Frequently Asked Questions<'),
+    # ── 도구 설명 단락 (h1 아래 sub-text) ──
+    ('PDF 파일을 업로드하면 각 페이지를 이미지로 변환해 드립니다. 파일은 브라우저에서만 처리되어 서버에 저장되지 않습니다.',
+     'Upload a PDF and convert each page to an image. Files are processed in your browser and never stored on a server.'),
+    ('여러 개의 PDF 파일을 하나의 PDF로 합칩니다. 드래그로 순서를 조정하세요.',
+     'Combine multiple PDF files into one. Drag to reorder.'),
+    ('PDF 파일을 pages별로 나누거나 원하는 범위로 분할합니다.',
+     'Split a PDF by page or custom range.'),
+    ('PDF pages의 방향을 90°, 180°, 270° 회전합니다.',
+     'Rotate PDF pages 90°, 180°, or 270°.'),
+    ('삭제할 pages를 클릭해서 선택한 후 "삭제하기" 버튼을 누르세요.',
+     'Click pages to select them, then press the Delete button.'),
+    ('PDF pages에 텍스트 워터마크를 삽입합니다.',
+     'Insert a text watermark into PDF pages.'),
+    ('PDF의 각 pages에 번호를 자동으로 삽입합니다.',
+     'Automatically insert page numbers into each PDF page.'),
+    ('워드(.docx) 또는 엑셀(.xlsx) 파일을 미리보기 후 PDF로 저장합니다.',
+     'Preview Word (.docx) or Excel (.xlsx) files and save as PDF.'),
+    ('PDF 파일에서 텍스트를 추출하여 복사하거나 TXT로 저장합니다.',
+     'Extract text from a PDF and copy or save as TXT.'),
+    ('PDF 파일에서 텍스트를 추출하여 편집 가능한 Word 문서(.doc)로 변환합니다.',
+     'Extract text from a PDF and convert to an editable Word document (.doc).'),
+
+    # ── 드롭존 sub-text ──
+    ('여러 파일을 동시에 선택할 수 있습니다', 'Multiple files supported'),
+    ('분할할 PDF 파일 1개를 선택하세요', 'Select 1 PDF file to split'),
+    ('회전할 PDF 파일을 선택하세요', 'Select a PDF file to rotate'),
+    ('pages를 선택해서 삭제할 PDF를 업로드하세요', 'Upload a PDF to select and delete pages'),
+    ('워터마크를 추가할 PDF를 업로드하세요', 'Upload a PDF to add a watermark'),
+    ('Page Numbers를 추가할 PDF를 업로드하세요', 'Upload a PDF to add page numbers'),
+    ('텍스트를 추출할 PDF를 업로드하세요', 'Upload a PDF to extract text'),
+    ('.docx 파일만 지원됩니다', 'Only .docx files supported'),
+    ('.xlsx 파일만 지원됩니다', 'Only .xlsx files supported'),
+    ('서명을 삽입할 PDF를 업로드하세요', 'Upload a PDF to insert a signature'),
+    ('순서를 변경할 PDF를 업로드하세요', 'Upload a PDF to reorder pages'),
+    ('잠금 해제할 PDF를 업로드하세요', 'Upload a PDF to unlock'),
+    ('암호를 설정할 PDF를 업로드하세요', 'Upload a PDF to set a password'),
+    ('압축할 PDF를 업로드하세요', 'Upload a PDF to compress'),
+
+    # ── 크로스링크 배너 ──
+    ('PDF에서 텍스트만 필요하신가요?', 'Just need text from a PDF?'),
+    ('📄 PDF 텍스트 추출 바로가기 →', '📄 Extract PDF Text →'),
+    ('PDF를 다시 Word로 변환하고 싶다면?', 'Want to convert PDF back to Word?'),
+    ('추출한 텍스트를 Word로 편집하고 싶다면?', 'Want to edit the extracted text in Word?'),
+    ('📄 PDF → Word 변환 →', '📄 PDF → Word →'),
+    ('스캔된 이미지 PDF에서 텍스트를 추출하려면 OCR이 필요합니다.', 'To extract text from scanned image PDFs, OCR is required.'),
+    ('WooaImage OCR 바로가기 →', 'WooaImage OCR →'),
+
+    # ── 참고/경고 메시지 ──
+    ('참고: PowerPoint(PPTX)는 현재 지원되지 않습니다.', 'Note: PowerPoint (PPTX) is not currently supported.'),
+    ('참고:', 'Note:'),
+
     # JS error messages (in script tags)
     ("'PDF 파일만 업로드할 수 있습니다.'", "'Only PDF files are supported.'"),
     ('"PDF 파일만 업로드할 수 있습니다."', '"Only PDF files are supported."'),
@@ -622,6 +673,91 @@ COMMON = [
     # error in JS
     ("showError('올바른 Page Numbers를 입력해 주세요.');", "showError('Please enter valid page numbers.');"),
     ("showError('올바른 페이지 번호를 입력해 주세요.');", "showError('Please enter valid page numbers.');"),
+
+    # ── JS 동적 텍스트 (textContent) ──
+    # PDF→PNG dynamic title/desc
+    ("document.getElementById('toolTitle').textContent = 'PDF를 PNG로 변환';",
+     "document.getElementById('toolTitle').textContent = 'PDF to PNG Converter';"),
+    ("document.getElementById('toolDesc').textContent = 'PDF 파일을 업로드하면 각 페이지를 PNG 이미지로 변환해 드립니다. 투명 배경이 지원됩니다.';",
+     "document.getElementById('toolDesc').textContent = 'Upload a PDF and convert each page to a PNG image. Transparent backgrounds supported.';"),
+    ("document.getElementById('toolDesc').textContent = 'PDF 파일을 업로드하면 각 pages를 PNG 이미지로 변환해 드립니다. 투명 배경이 지원됩니다.';",
+     "document.getElementById('toolDesc').textContent = 'Upload a PDF and convert each page to a PNG image. Transparent backgrounds supported.';"),
+    ("document.getElementById('breadcrumbTitle').textContent = 'PDF → PNG 변환';",
+     "document.getElementById('breadcrumbTitle').textContent = 'PDF → PNG';"),
+    ("document.title = 'PDF를 PNG로 변환 - WooaPDF';",
+     "document.title = 'PDF to PNG Converter - WooaPDF';"),
+    # button states
+    ("btn.textContent = '⏳ 변환 중...';", "btn.textContent = '⏳ Converting...';"),
+    ("btn.disabled = true; btn.textContent = '⏳ 변환 중...';", "btn.disabled = true; btn.textContent = '⏳ Converting...';"),
+    ("btn.textContent = '⏳ 압축 중...';", "btn.textContent = '⏳ Compressing...';"),
+    ("btn.disabled = true; btn.textContent = '⏳ 압축 중...';", "btn.disabled = true; btn.textContent = '⏳ Compressing...';"),
+    ("btn.textContent = '⏳ 처리 중...';", "btn.textContent = '⏳ Processing...';"),
+    ("btn.disabled = true; btn.textContent = '⏳ 처리 중...';", "btn.disabled = true; btn.textContent = '⏳ Processing...';"),
+    ("btn.textContent = '⏳ 병합 중...';", "btn.textContent = '⏳ Merging...';"),
+    ("btn.textContent = '⏳ 분할 중...';", "btn.textContent = '⏳ Splitting...';"),
+    ("btn.textContent = '🔄 변환 시작';", "btn.textContent = '🔄 Convert';"),
+    ("btn.textContent = '🔄 회전 적용';", "btn.textContent = '🔄 Apply Rotation';"),
+    ("btn.textContent = '🔗 PDF 병합하기';", "btn.textContent = '🔗 Merge PDF';"),
+    ("btn.textContent = '✂️ 분할하기';", "btn.textContent = '✂️ Split PDF';"),
+    ("btn.textContent = '🗜️ 압축 시작';", "btn.textContent = '🗜️ Compress PDF';"),
+    ("btn.disabled = false; btn.textContent = '🔓 잠금 해제';", "btn.disabled = false; btn.textContent = '🔓 Unlock PDF';"),
+    ("btn.textContent = '📄 PDF로 변환';", "btn.textContent = '📄 Convert to PDF';"),
+    ("btn.textContent = '📦 ZIP 생성 중...';", "btn.textContent = '📦 Creating ZIP...';"),
+    ("btn.textContent = '⬇️ ZIP으로 다운로드';", "btn.textContent = '⬇️ Download ZIP';"),
+    ("btn.textContent = '⬇️ 전체 다운로드 (ZIP)';", "btn.textContent = '⬇️ Download All (ZIP)';"),
+    ("btn.textContent = '✅ 복사됨!';", "btn.textContent = '✅ Copied!';"),
+    ("setTimeout(() => btn.textContent = '📋 전체 복사', 2000);", "setTimeout(() => btn.textContent = '📋 Copy All', 2000);"),
+    # resetBtn functions
+    ("function resetBtn(btn) { btn.disabled = false; btn.textContent = '✍️ 서명 삽입 및 다운로드'; }",
+     "function resetBtn(btn) { btn.disabled = false; btn.textContent = '✍️ Insert Signature & Download'; }"),
+    ("function resetBtn(btn) { btn.disabled = false; btn.textContent = '💧 워터마크 추가'; }",
+     "function resetBtn(btn) { btn.disabled = false; btn.textContent = '💧 Add Watermark'; }"),
+    ("function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔀 재정렬 적용 및 다운로드'; }",
+     "function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔀 Apply Reorder & Download'; }"),
+    ("function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔐 암호 설정 및 다운로드'; }",
+     "function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔐 Protect & Download'; }"),
+    ("function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔢 페이지 번호 추가'; }",
+     "function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔢 Add Page Numbers'; }"),
+    ("function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔤 Word 파일로 변환'; }",
+     "function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔤 Convert to Word'; }"),
+    # delete page button states
+    ("btn.textContent = '🗑️ 선택한 페이지 삭제';", "btn.textContent = '🗑️ Delete Selected Pages';"),
+    ("`🗑️ ${count}개 페이지 삭제`", "`🗑️ Delete ${count} Pages`"),
+    ("`🗑️ ${selectedPages.size}개 페이지 삭제`", "`🗑️ Delete ${selectedPages.size} Pages`"),
+    # file info
+    ("`${file.name} · ${totalPages}페이지`", "`${file.name} · ${totalPages} pages`"),
+    ("`썸네일 렌더링 중... (${i + 1}/${totalPages})`", "`Rendering thumbnails... (${i + 1}/${totalPages})`"),
+    ("'선택된 페이지 없음'", "'No pages selected'"),
+    ("`${count}개 선택됨 (전체 선택 — 최소 1페이지는 남겨야 합니다)`",
+     "`${count} selected (all selected — at least 1 page must remain)`"),
+    ("`${count}개 페이지 선택됨 → ${totalPages - count}개 남음`",
+     "`${count} pages selected → ${totalPages - count} remaining`"),
+    # label / opt
+    ("`원본 ${i + 1}p`", "`Page ${i + 1}`"),
+    ("`${i}페이지`", "`Page ${i}`"),
+    # text output
+    ("|| '(텍스트 없음)'", "|| '(No text found)'"),
+    # split errors
+    ("showError('추출할 페이지를 입력해 주세요. 예: 1,3,5-8')", "showError('Please enter pages to extract. e.g. 1,3,5-8')"),
+    ("showError('범위를 입력해 주세요. 예: 1-3, 4-7')", "showError('Please enter a range. e.g. 1-3, 4-7')"),
+    # password toggle
+    ("else { inp.type = 'password'; btn.textContent = '👁️'; }",
+     "else { inp.type = 'password'; btn.textContent = '👁️'; }"),
+    # title attr
+    ("item.title = '클릭하여 개별 다운로드';", "item.title = 'Click to download individually';"),
+
+    # ── JS 동적 텍스트 추가 ──
+    ("showError('올바른 pages 범위를 입력해 주세요. 예: 1,3,5-8');",
+     "showError('Please enter a valid page range. e.g. 1,3,5-8');"),
+    ("throw new Error('이 PDF는 비밀번호가 필요합니다. 비밀번호를 입력하고 다시 시도하세요.');",
+     "throw new Error('This PDF requires a password. Please enter the password and try again.');"),
+    ("`${i + 1}/${totalPages} pages 처리 중`", "`Processing ${i + 1}/${totalPages} pages`"),
+    ("`범위 ${ri + 1}/${ranges.length} 처리 중`", "`Processing range ${ri + 1}/${ranges.length}`"),
+    ("? `${formatSize(origSize)} → ${formatSize(compSize)} (${ratio}% 감소)`",
+     "? `${formatSize(origSize)} → ${formatSize(compSize)} (${ratio}% smaller)`"),
+    # App Store link (kr → com)
+    ('href="https://apps.apple.com/kr/app/adobe-acrobat-reader-pdf-뷰어/id469337564"',
+     'href="https://apps.apple.com/app/adobe-acrobat-reader/id469337564"'),
 
     # ── 추가 누락 3차 ──
     # page number position options

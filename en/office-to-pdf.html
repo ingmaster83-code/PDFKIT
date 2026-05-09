@@ -198,7 +198,7 @@
   <div class="tool-header">
     <span class="tool-header-icon">📝</span>
     <h1>Word / Excel to PDF – Free Online Converter</h1>
-    <p>워드(.docx) 또는 엑셀(.xlsx) 파일을 미리보기 후 PDF로 저장합니다.</p>
+    <p>Preview Word (.docx) or Excel (.xlsx) files and save as PDF.</p>
   </div>
 
   <div class="tab-switcher">
@@ -211,7 +211,7 @@
     <div class="drop-zone" id="wordDropZone" style="border-radius: 0 0 var(--radius) var(--radius); margin-top:0;">
       <span class="drop-zone-icon">📂</span>
       <h3>Drop your Word file here</h3>
-      <p>.docx 파일만 지원됩니다</p>
+      <p>Only .docx files supported</p>
       <label for="wordFileInput" class="btn-select">Word Select File</label>
       <input type="file" id="wordFileInput" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display:none">
     </div>
@@ -226,7 +226,7 @@
     <div class="drop-zone" id="excelDropZone" style="border-radius: 0 0 var(--radius) var(--radius); margin-top:0;">
       <span class="drop-zone-icon">📂</span>
       <h3>Drop your Excel file here</h3>
-      <p>.xlsx 파일만 지원됩니다</p>
+      <p>Only .xlsx files supported</p>
       <label for="excelFileInput" class="btn-select">Excel Select File</label>
       <input type="file" id="excelFileInput" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="display:none">
     </div>
@@ -249,11 +249,11 @@
   <div id="errorMsg" class="alert alert-error" style="display:none"></div>
 
   <div class="note-box" style="margin-top:24px;">
-    <strong>참고:</strong> PowerPoint(PPTX)는 현재 지원되지 않습니다.
+    <strong>Note:</strong> PowerPoint(PPTX)는 현재 지원되지 않습니다.
   </div>
 
   <div class="cross-link-banner">
-    <span>PDF를 다시 Word로 변환하고 싶다면?</span>
+    <span>Want to convert PDF back to Word?</span>
     <a href="pdf-to-word.html">🔤 PDF → Word 변환 →</a>
   </div>
 
@@ -345,7 +345,7 @@
 
   async function loadWordFile(file) {
     if (!file.name.endsWith('.docx')) {
-      showError('.docx 파일만 지원됩니다.'); return;
+      showError('Only .docx files supported.'); return;
     }
     hideError();
     showFileInfo('word', file);
@@ -367,7 +367,7 @@
 
   async function loadExcelFile(file) {
     if (!file.name.endsWith('.xlsx')) {
-      showError('.xlsx 파일만 지원됩니다.'); return;
+      showError('Only .xlsx files supported.'); return;
     }
     hideError();
     showFileInfo('excel', file);

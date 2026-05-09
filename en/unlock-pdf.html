@@ -387,7 +387,7 @@
         try {
           pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
         } catch(e) {
-          throw new Error('이 PDF는 비밀번호가 필요합니다. 비밀번호를 입력하고 다시 시도하세요.');
+          throw new Error('This PDF requires a password. Please enter the password and try again.');
         }
       }
 
@@ -405,7 +405,7 @@
       showError(err.message || '처리 중 오류가 발생했습니다.');
       document.getElementById('progressWrap').style.display = 'none';
     }
-    btn.disabled = false; btn.textContent = '🔓 잠금 해제';
+    btn.disabled = false; btn.textContent = '🔓 Unlock PDF';
   });
 
   document.getElementById('downloadBtn').addEventListener('click', () => {

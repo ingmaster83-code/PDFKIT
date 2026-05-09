@@ -148,7 +148,7 @@
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>워터마크를 추가할 PDF를 업로드하세요</p>
+    <p>Upload a PDF to add a watermark</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -497,7 +497,7 @@
     document.getElementById('progressText').textContent = text;
     document.getElementById('progressPct').textContent = pct + '%';
   }
-  function resetBtn(btn) { btn.disabled = false; btn.textContent = '💧 워터마크 추가'; }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '💧 Add Watermark'; }
   function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
   function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
   function formatSize(b) {

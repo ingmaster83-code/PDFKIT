@@ -193,13 +193,13 @@
   <div class="tool-header">
     <span class="tool-header-icon">📋</span>
     <h1>Extract Text from PDF – Free Online</h1>
-    <p>PDF 파일에서 텍스트를 추출하여 복사하거나 TXT로 저장합니다.</p>
+    <p>Extract text from a PDF and copy or save as TXT.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>텍스트를 추출할 PDF를 업로드하세요</p>
+    <p>Upload a PDF to extract text</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -234,12 +234,12 @@
   </div>
 
   <div class="cross-link-tip" style="margin-top:24px;">
-    스캔된 이미지 PDF에서 텍스트를 추출하려면 OCR이 필요합니다.
-    <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener">WooaImage OCR 바로가기 →</a>
+    To extract text from scanned image PDFs, OCR is required.
+    <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener">WooaImage OCR →</a>
   </div>
 
   <div class="cross-link-banner">
-    <span>추출한 텍스트를 Word로 편집하고 싶다면?</span>
+    <span>Want to edit the extracted text in Word?</span>
     <a href="pdf-to-word.html">🔤 PDF → Word 변환 →</a>
   </div>
 
@@ -410,7 +410,7 @@
 
   function showPage(idx) {
     currentPageIdx = idx;
-    document.getElementById('textOutput').textContent = pageTexts[idx] || '(텍스트 없음)';
+    document.getElementById('textOutput').textContent = pageTexts[idx] || '(No text found)';
     document.querySelectorAll('.page-tab-btn').forEach((btn, i) => {
       btn.classList.toggle('active', i === idx);
     });
@@ -420,8 +420,8 @@
     const text = currentView === 'all' ? allText : (pageTexts[currentPageIdx] || '');
     navigator.clipboard.writeText(text).then(() => {
       const btn = document.getElementById('copyBtn');
-      btn.textContent = '✅ 복사됨!';
-      setTimeout(() => btn.textContent = '📋 전체 복사', 2000);
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy All', 2000);
     });
   });
 

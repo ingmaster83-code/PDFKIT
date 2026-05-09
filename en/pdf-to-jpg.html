@@ -330,11 +330,11 @@
   // URL 파라미터로 PNG 모드 감지
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('format') === 'png') {
-    document.getElementById('breadcrumbTitle').textContent = 'PDF → PNG 변환';
+    document.getElementById('breadcrumbTitle').textContent = 'PDF → PNG';
     document.getElementById('toolIcon').textContent = '📸';
-    document.getElementById('toolTitle').textContent = 'PDF를 PNG로 변환';
-    document.getElementById('toolDesc').textContent = 'PDF 파일을 업로드하면 각 pages를 PNG 이미지로 변환해 드립니다. 투명 배경이 지원됩니다.';
-    document.title = 'PDF를 PNG로 변환 - WooaPDF';
+    document.getElementById('toolTitle').textContent = 'PDF to PNG Converter';
+    document.getElementById('toolDesc').textContent = 'Upload a PDF and convert each page to a PNG image. Transparent backgrounds supported.';
+    document.title = 'PDF to PNG Converter - WooaPDF';
     document.getElementById('formatSelect').value = 'png';
   }
 
@@ -436,7 +436,7 @@
       } else {
         pagesToConvert = parsePageRange(pageRangeInput, totalPages);
         if (pagesToConvert.length === 0) {
-          showError('올바른 pages 범위를 입력해 주세요. 예: 1,3,5-8');
+          showError('Please enter a valid page range. e.g. 1,3,5-8');
           resetBtn(btn);
           return;
         }
@@ -522,7 +522,7 @@
         <div class="preview-label">pages ${img.pageNum}</div>
       `;
       item.style.cursor = 'pointer';
-      item.title = '클릭하여 개별 다운로드';
+      item.title = 'Click to download individually';
       item.addEventListener('click', () => {
         const a = document.createElement('a');
         a.href = img.dataUrl;
@@ -549,7 +549,7 @@
     }
 
     const btn = document.getElementById('downloadBtn');
-    btn.textContent = '📦 ZIP 생성 중...';
+    btn.textContent = '📦 Creating ZIP...';
     btn.disabled = true;
 
     try {
@@ -588,7 +588,7 @@
 
   function resetBtn(btn) {
     btn.disabled = false;
-    btn.textContent = '🔄 변환 시작';
+    btn.textContent = '🔄 Convert';
   }
 
   function showError(msg) {

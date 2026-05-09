@@ -444,7 +444,7 @@
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
         compSize < origSize
-          ? `${formatSize(origSize)} → ${formatSize(compSize)} (${ratio}% 감소)`
+          ? `${formatSize(origSize)} → ${formatSize(compSize)} (${ratio}% smaller)`
           : 'Text-based PDFs may show limited compression.';
       panel.scrollIntoView({ behavior: 'smooth' });
 
@@ -453,7 +453,7 @@
       showError('처리 중 오류가 발생했습니다: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
-    btn.disabled = false; btn.textContent = '🗜️ 압축 시작';
+    btn.disabled = false; btn.textContent = '🗜️ Compress PDF';
   });
 
   document.getElementById('downloadBtn').addEventListener('click', () => {
