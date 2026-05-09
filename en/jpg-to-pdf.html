@@ -165,24 +165,24 @@
   <div class="tool-header">
     <span class="tool-header-icon">📄</span>
     <h1>Image to PDF Converter – Free Online</h1>
-    <p>JPG, PNG 이미지를 PDF로 변환합니다. 여러 이미지를 드래그로 순서를 바꾼 후 하나의 PDF로 만들 수 있습니다.</p>
+    <p>Convert JPG, PNG images to PDF. Drag to reorder multiple images, then combine into one PDF.</p>
   </div>
 
   <!-- Drop Zone -->
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">🖼️</span>
-    <h3>이미지 파일을 여기에 끌어다 놓으세요</h3>
-    <p>JPG, PNG, WEBP 형식 지원 · 여러 파일 동시 선택 가능</p>
-    <label for="fileInput" class="btn-select">이미지 Select File</label>
+    <h3>Drop image files here</h3>
+    <p>Supports JPG, PNG, WEBP · Multiple files supported</p>
+    <label for="fileInput" class="btn-select">Select Images</label>
     <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple style="display:none">
   </div>
 
   <!-- File List -->
   <div id="fileListPanel" class="file-list-panel" style="display:none">
-    <div class="file-list-title">선택된 이미지 <span style="font-weight:400;font-size:0.8rem;">(드래그로 순서 변경)</span></div>
+    <div class="file-list-title">Selected Images <span style="font-weight:400;font-size:0.8rem;">(drag to reorder)</span></div>
     <div id="imageList" class="image-preview-list"></div>
     <button style="margin-top:12px; background:none; border:1px dashed #CBD5E0; border-radius:8px; padding:8px 16px; cursor:pointer; font-size:0.85rem; color:#6B7280; width:100%;"
-      onclick="document.getElementById('fileInput').click()">+ 이미지 추가</button>
+      onclick="document.getElementById('fileInput').click()">+ Add Image</button>
   </div>
 
   <!-- Options -->
@@ -190,10 +190,10 @@
     <div class="options-title">PDF 옵션</div>
 
     <div class="option-row">
-      <span class="option-label">페이지 크기</span>
+      <span class="option-label">pages 크기</span>
       <div class="option-control">
         <select id="pageSizeSelect">
-          <option value="auto">이미지 크기에 맞춤 (권장)</option>
+          <option value="auto">Fit to image size (recommended)</option>
           <option value="a4">A4 (210 × 297mm)</option>
           <option value="letter">Letter (216 × 279mm)</option>
         </select>
@@ -201,11 +201,11 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">이미지 배치</span>
+      <span class="option-label">Image Layout</span>
       <div class="option-control">
         <select id="fitSelect">
-          <option value="contain">페이지에 맞춤 (비율 유지)</option>
-          <option value="fill">페이지 채우기</option>
+          <option value="contain">Fit to page (keep ratio)</option>
+          <option value="fill">Fill page</option>
         </select>
       </div>
     </div>
@@ -214,9 +214,9 @@
       <span class="option-label">여백</span>
       <div class="option-control">
         <select id="marginSelect">
-          <option value="0">여백 없음</option>
-          <option value="20" selected>보통 (20px)</option>
-          <option value="40">넓음 (40px)</option>
+          <option value="0">No margin</option>
+          <option value="20" selected>Normal (20px)</option>
+          <option value="40">Wide (40px)</option>
         </select>
       </div>
     </div>
@@ -439,7 +439,7 @@
 
       for (let i = 0; i < fileItems.length; i++) {
         const item = fileItems[i];
-        updateProgressUI(Math.round((i / fileItems.length) * 90), `이미지 처리 중 ${i + 1}/${fileItems.length}`);
+        updateProgressUI(Math.round((i / fileItems.length) * 90), `Processing image ${i + 1}/${fileItems.length}`);
 
         const arrayBuffer = await item.file.arrayBuffer();
         let image;
@@ -537,7 +537,7 @@
     const panel = document.getElementById('resultPanel');
     panel.style.display = 'block';
     document.getElementById('resultSubtitle').textContent =
-      `${fileItems.length}개의 이미지가 PDF로 변환되었습니다`;
+      `${fileItems.length}images converted to PDF`;
     panel.scrollIntoView({ behavior: 'smooth' });
   }
 

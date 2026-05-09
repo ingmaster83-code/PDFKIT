@@ -142,7 +142,7 @@
   <div class="tool-header">
     <span class="tool-header-icon">💧</span>
     <h1>Add Watermark to PDF – Free Online</h1>
-    <p>PDF 페이지에 텍스트 워터마크를 삽입합니다.</p>
+    <p>PDF pages에 텍스트 워터마크를 삽입합니다.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
@@ -172,9 +172,9 @@
       <span class="option-label">글자 크기</span>
       <div class="option-control">
         <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="wmSize" value="small"> 소</label>
-          <label class="radio-item"><input type="radio" name="wmSize" value="medium" checked> 중</label>
-          <label class="radio-item"><input type="radio" name="wmSize" value="large"> 대</label>
+          <label class="radio-item"><input type="radio" name="wmSize" value="small"> Small</label>
+          <label class="radio-item"><input type="radio" name="wmSize" value="medium" checked> Medium</label>
+          <label class="radio-item"><input type="radio" name="wmSize" value="large"> Large</label>
         </div>
       </div>
     </div>
@@ -183,10 +183,10 @@
       <span class="option-label">색상</span>
       <div class="option-control">
         <div class="radio-group" style="flex-wrap:wrap; gap:10px;">
-          <label class="radio-item"><input type="radio" name="wmColor" value="#DD0000" checked> <span style="color:#DD0000; font-weight:600;">빨강</span></label>
-          <label class="radio-item"><input type="radio" name="wmColor" value="#888888"> <span style="color:#888; font-weight:600;">회색</span></label>
-          <label class="radio-item"><input type="radio" name="wmColor" value="#1155CC"> <span style="color:#1155CC; font-weight:600;">파랑</span></label>
-          <label class="radio-item"><input type="radio" name="wmColor" value="#111111"> <span style="font-weight:600;">검정</span></label>
+          <label class="radio-item"><input type="radio" name="wmColor" value="#DD0000" checked> <span style="color:#DD0000; font-weight:600;">Red</span></label>
+          <label class="radio-item"><input type="radio" name="wmColor" value="#888888"> <span style="color:#888; font-weight:600;">Gray</span></label>
+          <label class="radio-item"><input type="radio" name="wmColor" value="#1155CC"> <span style="color:#1155CC; font-weight:600;">Blue</span></label>
+          <label class="radio-item"><input type="radio" name="wmColor" value="#111111"> <span style="font-weight:600;">Black</span></label>
         </div>
       </div>
     </div>
@@ -195,11 +195,11 @@
       <span class="option-label">투명도</span>
       <div class="option-control">
         <select id="wmOpacity">
-          <option value="0.10">10% (매우 연하게)</option>
+          <option value="0.10">10% (Very light)</option>
           <option value="0.20" selected>20%</option>
           <option value="0.30">30%</option>
           <option value="0.40">40%</option>
-          <option value="0.50">50% (진하게)</option>
+          <option value="0.50">50% (Dark)</option>
         </select>
       </div>
     </div>
@@ -208,20 +208,20 @@
       <span class="option-label">위치</span>
       <div class="option-control">
         <select id="wmPosition">
-          <option value="diagonal">중앙 대각선 (45°) — 권장</option>
-          <option value="center">중앙 수평</option>
-          <option value="bottom-left">왼쪽 하단</option>
-          <option value="bottom-right">오른쪽 하단</option>
+          <option value="diagonal">Center Diagonal (45°) — Recommended</option>
+          <option value="center">Center Horizontal</option>
+          <option value="bottom-left">Bottom Left</option>
+          <option value="bottom-right">Bottom Right</option>
         </select>
       </div>
     </div>
 
     <div class="option-row">
-      <span class="option-label">적용 페이지</span>
+      <span class="option-label">적용 pages</span>
       <div class="option-control">
         <div class="radio-group" style="flex-direction:column; gap:8px;">
           <label class="radio-item"><input type="radio" name="wmPages" value="all" checked> All Pages</label>
-          <label class="radio-item"><input type="radio" name="wmPages" value="custom"> Custom Range만</label>
+          <label class="radio-item"><input type="radio" name="wmPages" value="custom"> Custom Range only</label>
         </div>
       </div>
     </div>
@@ -352,7 +352,7 @@
         <span class="file-item-icon">📄</span>
         <div class="file-item-info">
           <div class="file-item-name">${file.name}</div>
-          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}pages</div>
         </div>
         <button class="file-item-remove" onclick="clearFile()">✕</button>
       </div>`;
@@ -406,7 +406,7 @@
       const base64 = dataUrl.split(',')[1];
       const imgBytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
 
-      updateProgressUI(20, '워터마크 이미지 생성 중...');
+      updateProgressUI(20, 'Generating watermark...');
 
       const { PDFDocument, degrees } = PDFLib;
       const arrayBuffer = await selectedFile.arrayBuffer();
@@ -422,7 +422,7 @@
       } else {
         targetPages = parsePageList(customInput, totalPages);
         if (targetPages.length === 0) {
-          showError('올바른 Page Numbers를 입력해 주세요.');
+          showError('Please enter valid page numbers.');
           resetBtn(btn); return;
         }
       }
@@ -455,7 +455,7 @@
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${targetPages.length}개 페이지에 워터마크가 추가되었습니다`;
+        `${targetPages.length}개 pages에 워터마크가 추가되었습니다`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {

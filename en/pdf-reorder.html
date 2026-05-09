@@ -27,9 +27,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "PDF 페이지 재정렬 | WooaPDF",
+    "name": "PDF pages 재정렬 | WooaPDF",
     "url": "https://pdfkit.wooahouse.com/en/pdf-reorder.html",
-    "description": "PDF 페이지 순서를 드래그로 재정렬",
+    "description": "PDF pages 순서를 드래그로 재정렬",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -39,7 +39,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF 페이지 재정렬",
+  "name": "PDF pages 재정렬",
   "url": "https://pdfkit.wooahouse.com/en/pdf-reorder.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
@@ -187,19 +187,19 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>페이지 재정렬</span>
+    <span>pages 재정렬</span>
   </div>
 
   <div class="tool-header">
     <span class="tool-header-icon">🔀</span>
     <h1>Reorder PDF Pages – Free Online</h1>
-    <p>드래그 앤 드롭으로 PDF 페이지 순서를 자유롭게 변경합니다.</p>
+    <p>드래그 앤 드롭으로 PDF pages 순서를 자유롭게 변경합니다.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>페이지 순서를 변경할 PDF를 업로드하세요</p>
+    <p>pages 순서를 변경할 PDF를 업로드하세요</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -336,7 +336,7 @@
         <span class="file-item-icon">📄</span>
         <div class="file-item-info">
           <div class="file-item-name">${file.name}</div>
-          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}pages</div>
         </div>
         <button class="file-item-remove" onclick="clearFile()">✕</button>
       </div>`;
@@ -482,7 +482,7 @@
       const newDoc = await PDFDocument.create();
 
       for (let i = 0; i < pageOrder.length; i++) {
-        updateProgressUI(20 + Math.round((i / pageOrder.length) * 65), `페이지 ${i + 1}/${pageOrder.length} 복사 중...`);
+        updateProgressUI(20 + Math.round((i / pageOrder.length) * 65), `pages ${i + 1}/${pageOrder.length} 복사 중...`);
         const [copiedPage] = await newDoc.copyPages(srcDoc, [pageOrder[i]]);
         newDoc.addPage(copiedPage);
       }
@@ -497,7 +497,7 @@
       panel.style.display = 'block';
       const newOrderStr = pageOrder.map(i => i + 1).join(' → ');
       document.getElementById('resultSubtitle').textContent =
-        `${pageOrder.length}페이지 재정렬 완료 (${newOrderStr})`;
+        `${pageOrder.length}pages 재정렬 완료 (${newOrderStr})`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {

@@ -119,7 +119,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF 페이지 삭제",
+  "name": "PDF pages 삭제",
   "url": "https://pdfkit.wooahouse.com/en/delete-pages.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
@@ -220,20 +220,20 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>페이지 삭제</span>
+    <span>pages 삭제</span>
   </div>
 
   <div class="tool-header">
     <span class="tool-header-icon">🗑️</span>
     <h1>Delete PDF Pages – Free Online</h1>
-    <p>삭제할 페이지를 클릭해서 선택한 후 "삭제하기" 버튼을 누르세요.</p>
+    <p>삭제할 pages를 클릭해서 선택한 후 "삭제하기" 버튼을 누르세요.</p>
   </div>
 
   <!-- Drop Zone -->
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>페이지를 선택해서 삭제할 PDF를 업로드하세요</p>
+    <p>pages를 선택해서 삭제할 PDF를 업로드하세요</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -241,27 +241,27 @@
   <!-- Loading -->
   <div id="loadingMsg" style="display:none; text-align:center; padding:40px; color:#6B7280;">
     <div style="font-size:2rem; margin-bottom:12px;">⏳</div>
-    <div>페이지 미리보기를 생성하고 있습니다...</div>
+    <div>pages 미리보기를 생성하고 있습니다...</div>
   </div>
 
   <!-- Page Preview -->
   <div id="previewPanel" style="display:none">
     <div class="file-list-panel">
       <div class="file-list-title" id="fileTitle"></div>
-      <div style="font-size:0.85rem; color:#6B7280; margin-top:4px;">삭제할 페이지를 클릭해서 선택하세요 (다시 클릭하면 취소)</div>
+      <div style="font-size:0.85rem; color:#6B7280; margin-top:4px;">삭제할 pages를 클릭해서 선택하세요 (다시 클릭하면 취소)</div>
 
       <div class="selection-bar" id="selectionBar">
-        <span class="selection-info" id="selectionInfo">선택된 페이지 없음</span>
+        <span class="selection-info" id="selectionInfo">선택된 pages 없음</span>
         <div style="display:flex; gap:8px;">
-          <button class="btn-select-all" onclick="selectAll()">전체 선택</button>
-          <button class="btn-select-all" onclick="clearSelection()">선택 해제</button>
+          <button class="btn-select-all" onclick="selectAll()">Select All</button>
+          <button class="btn-select-all" onclick="clearSelection()">Deselect All</button>
         </div>
       </div>
 
       <div class="page-grid" id="pageGrid"></div>
     </div>
 
-    <button class="btn-convert" id="deleteBtn" disabled>🗑️ 선택한 페이지 삭제</button>
+    <button class="btn-convert" id="deleteBtn" disabled>🗑️ 선택한 pages 삭제</button>
   </div>
 
   <!-- Error -->
@@ -304,11 +304,11 @@
     <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
     <div style="border:1px solid #E5E7EB;border-radius:12px;overflow:hidden">
       <details style="border-bottom:1px solid #E5E7EB;padding:16px">
-        <summary style="font-weight:700;cursor:pointer;color:#111827">Custom Range만 골라서 삭제할 수 있나요?</summary>
-        <p style="margin-top:10px;color:#6B7280;line-height:1.6">네, 가능합니다. Page Numbers를 쉼표로 구분하거나 범위(예: 1-3)로 입력해 원하는 페이지만 선택적으로 삭제할 수 있습니다.</p>
+        <summary style="font-weight:700;cursor:pointer;color:#111827">Custom Range only 골라서 삭제할 수 있나요?</summary>
+        <p style="margin-top:10px;color:#6B7280;line-height:1.6">네, 가능합니다. Page Numbers를 쉼표로 구분하거나 범위(예: 1-3)로 입력해 원하는 pages만 선택적으로 삭제할 수 있습니다.</p>
       </details>
       <details style="border-bottom:1px solid #E5E7EB;padding:16px">
-        <summary style="font-weight:700;cursor:pointer;color:#111827">삭제한 페이지는 복구할 수 있나요?</summary>
+        <summary style="font-weight:700;cursor:pointer;color:#111827">삭제한 pages는 복구할 수 있나요?</summary>
         <p style="margin-top:10px;color:#6B7280;line-height:1.6">아니요, 다운로드한 파일에서는 복구가 불가능합니다. 원본 파일을 미리 백업해두거나, 삭제 전 Page Numbers를 꼭 확인하세요.</p>
       </details>
       <details style="padding:16px">
@@ -387,7 +387,7 @@
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       totalPages = pdf.numPages;
 
-      document.getElementById('fileTitle').textContent = `${file.name} · ${totalPages}페이지`;
+      document.getElementById('fileTitle').textContent = `${file.name} · ${totalPages}pages`;
 
       const grid = document.getElementById('pageGrid');
       grid.innerHTML = '';
@@ -405,7 +405,7 @@
         thumb.className = 'page-thumb';
         thumb.dataset.page = i;
         thumb.appendChild(canvas);
-        thumb.innerHTML += `<div class="page-num">페이지 ${i}</div>`;
+        thumb.innerHTML += `<div class="page-num">pages ${i}</div>`;
         thumb.addEventListener('click', () => togglePage(i, thumb));
 
         grid.appendChild(thumb);
@@ -450,16 +450,16 @@
     const btn = document.getElementById('deleteBtn');
 
     if (count === 0) {
-      info.textContent = '선택된 페이지 없음';
+      info.textContent = '선택된 pages 없음';
       btn.disabled = true;
-      btn.textContent = '🗑️ 선택한 페이지 삭제';
+      btn.textContent = '🗑️ 선택한 pages 삭제';
     } else if (count >= totalPages) {
-      info.textContent = `${count}개 선택됨 (전체 선택 — 최소 1페이지는 남겨야 합니다)`;
+      info.textContent = `${count}개 선택됨 (전체 선택 — 최소 1pages는 남겨야 합니다)`;
       btn.disabled = true;
     } else {
-      info.textContent = `${count}개 페이지 선택됨 → ${totalPages - count}개 남음`;
+      info.textContent = `${count}개 pages 선택됨 → ${totalPages - count}개 남음`;
       btn.disabled = false;
-      btn.textContent = `🗑️ ${count}개 페이지 삭제`;
+      btn.textContent = `🗑️ ${count}개 pages 삭제`;
     }
   }
 
@@ -480,9 +480,9 @@
       const arrayBuffer = await selectedFile.arrayBuffer();
       const pdf = await PDFDocument.load(arrayBuffer);
 
-      updateProgressUI(30, '페이지 제거 중...');
+      updateProgressUI(30, 'pages 제거 중...');
 
-      // 남길 페이지 인덱스 (0-based)
+      // 남길 pages 인덱스 (0-based)
       const keepIndices = [];
       for (let i = 1; i <= totalPages; i++) {
         if (!selectedPages.has(i)) keepIndices.push(i - 1);
@@ -501,7 +501,7 @@
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${selectedPages.size}개 페이지가 삭제되어 ${keepIndices.length}개 페이지만 남았습니다`;
+        `${selectedPages.size}개 pages가 삭제되어 ${keepIndices.length}개 pages만 남았습니다`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch (err) {
@@ -511,7 +511,7 @@
     }
 
     btn.disabled = false;
-    btn.textContent = `🗑️ ${selectedPages.size}개 페이지 삭제`;
+    btn.textContent = `🗑️ ${selectedPages.size}개 pages 삭제`;
   });
 
   document.getElementById('downloadBtn').addEventListener('click', () => {

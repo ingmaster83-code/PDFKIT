@@ -142,7 +142,7 @@
   <div class="tool-header">
     <span class="tool-header-icon">🔢</span>
     <h1>Add Page Numbers to PDF – Free Online</h1>
-    <p>PDF의 각 페이지에 번호를 자동으로 삽입합니다.</p>
+    <p>PDF의 각 pages에 번호를 자동으로 삽입합니다.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
@@ -165,12 +165,12 @@
       <span class="option-label">위치</span>
       <div class="option-control">
         <select id="pgPosition">
-          <option value="bottom-center">아래 중앙</option>
-          <option value="bottom-right">아래 오른쪽</option>
-          <option value="bottom-left">아래 왼쪽</option>
-          <option value="top-center">위 중앙</option>
-          <option value="top-right">위 오른쪽</option>
-          <option value="top-left">위 왼쪽</option>
+          <option value="bottom-center">Bottom Center</option>
+          <option value="bottom-right">Bottom Right</option>
+          <option value="bottom-left">Bottom Left</option>
+          <option value="top-center">Top Center</option>
+          <option value="top-right">Top Right</option>
+          <option value="top-left">Top Left</option>
         </select>
       </div>
     </div>
@@ -179,9 +179,9 @@
       <span class="option-label">표시 형식</span>
       <div class="option-control">
         <div class="radio-group" style="flex-direction:column; gap:10px;">
-          <label class="radio-item"><input type="radio" name="pgFormat" value="simple" checked> 숫자만 &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">예: 1 &nbsp; 2 &nbsp; 3</span></label>
-          <label class="radio-item"><input type="radio" name="pgFormat" value="dash"> 줄표 &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">예: - 1 - &nbsp; - 2 -</span></label>
-          <label class="radio-item"><input type="radio" name="pgFormat" value="total"> 전체 표시 &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">예: 1 / 10 &nbsp; 2 / 10</span></label>
+          <label class="radio-item"><input type="radio" name="pgFormat" value="simple" checked> Numbers only &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">e.g. 1 &nbsp; 2 &nbsp; 3</span></label>
+          <label class="radio-item"><input type="radio" name="pgFormat" value="dash"> Dash style &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">e.g. - 1 - &nbsp; - 2 -</span></label>
+          <label class="radio-item"><input type="radio" name="pgFormat" value="total"> Show total &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">e.g. 1 / 10 &nbsp; 2 / 10</span></label>
         </div>
       </div>
     </div>
@@ -198,10 +198,10 @@
       <span class="option-label">글자 크기</span>
       <div class="option-control">
         <select id="pgFontSize">
-          <option value="8">8pt (작게)</option>
-          <option value="10" selected>10pt (기본)</option>
+          <option value="8">8pt (Small)</option>
+          <option value="10" selected>10pt (Default)</option>
           <option value="12">12pt</option>
-          <option value="14">14pt (크게)</option>
+          <option value="14">14pt (Large)</option>
         </select>
       </div>
     </div>
@@ -210,9 +210,9 @@
       <span class="option-label">여백</span>
       <div class="option-control">
         <select id="pgMargin">
-          <option value="20">20px (좁게)</option>
-          <option value="28" selected>28px (기본)</option>
-          <option value="36">36px (넓게)</option>
+          <option value="20">20px (Narrow)</option>
+          <option value="28" selected>28px (Default)</option>
+          <option value="36">36px (Wide)</option>
         </select>
       </div>
     </div>
@@ -330,7 +330,7 @@
         <span class="file-item-icon">📄</span>
         <div class="file-item-info">
           <div class="file-item-name">${file.name}</div>
-          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}pages</div>
         </div>
         <button class="file-item-remove" onclick="clearFile()">✕</button>
       </div>`;
@@ -404,7 +404,7 @@
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${totalPgs}개 페이지에 번호가 추가되었습니다 (${startNum}번부터 시작)`;
+        `${totalPgs}개 pages에 번호가 추가되었습니다 (${startNum}번부터 시작)`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {

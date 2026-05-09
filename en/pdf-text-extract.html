@@ -222,7 +222,7 @@
   <div id="resultArea" style="display:none">
     <div class="text-tabs">
       <button class="text-tab-btn active" id="tabAll">전체</button>
-      <button class="text-tab-btn" id="tabPages">페이지별</button>
+      <button class="text-tab-btn" id="tabPages">pages별</button>
     </div>
     <div class="page-tabs" id="pageTabsWrap" style="display:none"></div>
     <div class="text-output" id="textOutput"></div>
@@ -338,7 +338,7 @@
       const numPages = pdf.numPages;
 
       for (let i = 1; i <= numPages; i++) {
-        updateProgressUI(Math.round((i / numPages) * 95), `페이지 ${i}/${numPages} 추출 중...`);
+        updateProgressUI(Math.round((i / numPages) * 95), `pages ${i}/${numPages} 추출 중...`);
         const page = await pdf.getPage(i);
         const textContent = await page.getTextContent();
 
@@ -356,13 +356,13 @@
         pageTexts.push(pageText);
       }
 
-      allText = pageTexts.map((t, i) => `=== 페이지 ${i + 1} ===\n${t}`).join('\n\n');
+      allText = pageTexts.map((t, i) => `=== pages ${i + 1} ===\n${t}`).join('\n\n');
 
       updateProgressUI(100, '완료!');
       document.getElementById('progressWrap').style.display = 'none';
 
-      if (!allText.replace(/=== 페이지 \d+ ===/g, '').trim()) {
-        showError('추출할 텍스트가 없습니다. 스캔된 이미지 PDF일 수 있습니다.');
+      if (!allText.replace(/=== pages \d+ ===/g, '').trim()) {
+        showError('No text found. This may be a scanned image PDF.');
         return;
       }
 

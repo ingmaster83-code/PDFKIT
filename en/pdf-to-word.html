@@ -315,7 +315,7 @@
         <span class="file-item-icon">📄</span>
         <div class="file-item-info">
           <div class="file-item-name">${file.name}</div>
-          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}pages</div>
         </div>
         <button class="file-item-remove" onclick="clearFile()">✕</button>
       </div>`;
@@ -354,7 +354,7 @@
       } else {
         targetPages = parsePageList(document.getElementById('pageInput').value, numPages);
         if (targetPages.length === 0) {
-          showError('올바른 Page Numbers를 입력해 주세요.');
+          showError('Please enter valid page numbers.');
           resetBtn(btn); return;
         }
       }
@@ -363,7 +363,7 @@
 
       for (let i = 0; i < targetPages.length; i++) {
         const pageNum = targetPages[i];
-        updateProgressUI(Math.round((i / targetPages.length) * 90), `페이지 ${pageNum}/${numPages} 텍스트 추출 중...`);
+        updateProgressUI(Math.round((i / targetPages.length) * 90), `pages ${pageNum}/${numPages} 텍스트 추출 중...`);
 
         const page = await pdf.getPage(pageNum);
         const textContent = await page.getTextContent();
@@ -381,7 +381,7 @@
         });
 
         if (pageText.trim()) {
-          htmlContent += `<h2 style="color:#333; border-bottom:1px solid #ccc; padding-bottom:5px;">페이지 ${pageNum}</h2>`;
+          htmlContent += `<h2 style="color:#333; border-bottom:1px solid #ccc; padding-bottom:5px;">pages ${pageNum}</h2>`;
           htmlContent += `<p style="line-height:1.8; font-size:12pt;">${pageText}</p>`;
         }
 
@@ -391,7 +391,7 @@
       }
 
       if (!htmlContent.trim()) {
-        showError('추출할 텍스트가 없습니다. 스캔된 이미지 PDF일 수 있습니다.');
+        showError('No text found. This may be a scanned image PDF.');
         resetBtn(btn);
         document.getElementById('progressWrap').style.display = 'none';
         return;
@@ -421,7 +421,7 @@ ${htmlContent}
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${targetPages.length}개 페이지의 텍스트가 Word 문서로 변환되었습니다`;
+        `${targetPages.length}개 pages의 텍스트가 Word 문서로 변환되었습니다`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {

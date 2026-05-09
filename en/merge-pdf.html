@@ -173,7 +173,7 @@
   <!-- Drop Zone -->
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
-    <h3>PDF 파일들을 여기에 끌어다 놓으세요</h3>
+    <h3>Drop PDF files here</h3>
     <p>여러 파일을 동시에 선택할 수 있습니다</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" multiple style="display:none">
@@ -299,7 +299,7 @@
     hideError();
 
     for (const file of pdfFiles) {
-      // 페이지 수 가져오기
+      // pages 수 가져오기
       let pageCount = '?';
       try {
         const { PDFDocument } = PDFLib;
@@ -334,7 +334,7 @@
           <div class="file-item-name">${item.file.name}</div>
           <div class="file-item-size">${formatSize(item.file.size)}</div>
         </div>
-        <span class="page-count-badge">${item.pageCount}페이지</span>
+        <span class="page-count-badge">${item.pageCount}pages</span>
         <button class="file-item-remove" onclick="removeFile(${index})">✕</button>
       `;
 
@@ -424,7 +424,7 @@
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${fileItems.length}개 파일, 총 ${totalPages}페이지가 하나의 PDF로 병합되었습니다`;
+        `${fileItems.length}개 파일, 총 ${totalPages}pages가 하나의 PDF로 병합되었습니다`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch (err) {

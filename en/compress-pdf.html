@@ -188,7 +188,7 @@
     <div class="options-title">압축 품질 선택</div>
 
     <div class="notice-box">
-      ℹ️ 이 도구는 <strong>이미지가 포함된 PDF</strong>에 효과적입니다. 텍스트만 있는 PDF는 압축 효과가 제한될 수 있습니다.
+      ℹ️ This tool works best with <strong>image-heavy PDFs</strong>. Text-only PDFs may see limited compression.
     </div>
 
     <div class="quality-cards">
@@ -358,7 +358,7 @@
         <span class="file-item-icon">📄</span>
         <div class="file-item-info">
           <div class="file-item-name">${file.name}</div>
-          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}pages</div>
         </div>
         <button class="file-item-remove" onclick="clearFile()">✕</button>
       </div>`;
@@ -403,7 +403,7 @@
       const newPdf = await PDFDocument.create();
 
       for (let i = 1; i <= numPages; i++) {
-        updateProgressUI(Math.round((i - 1) / numPages * 88), `${i}/${numPages} 페이지 Processing...`);
+        updateProgressUI(Math.round((i - 1) / numPages * 88), `${i}/${numPages} pages Processing...`);
 
         const page = await pdfJs.getPage(i);
         const vp = page.getViewport({ scale });
@@ -445,7 +445,7 @@
       document.getElementById('resultSubtitle').textContent =
         compSize < origSize
           ? `${formatSize(origSize)} → ${formatSize(compSize)} (${ratio}% 감소)`
-          : '텍스트 중심 PDF는 압축 효과가 제한됩니다.';
+          : 'Text-based PDFs may show limited compression.';
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {

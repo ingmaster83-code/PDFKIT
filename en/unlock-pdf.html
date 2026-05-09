@@ -198,8 +198,8 @@
       <span class="option-label">비밀번호</span>
       <div class="option-control">
         <div class="pwd-input-wrap">
-          <input type="password" id="pdfPassword" placeholder="비밀번호 (없으면 빈칸으로 시도)">
-          <button class="pwd-toggle" id="togglePwd" title="비밀번호 보기/숨기기">👁️</button>
+          <input type="password" id="pdfPassword" placeholder="Password (leave blank if none)">
+          <button class="pwd-toggle" id="togglePwd" title="Show/Hide password">👁️</button>
         </div>
       </div>
     </div>
@@ -379,7 +379,7 @@
           try {
             pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
           } catch(e2) {
-            throw new Error('비밀번호가 올바르지 않거나 해제할 수 없는 파일입니다.');
+            throw new Error('Incorrect password or file cannot be unlocked.');
           }
         }
       } else {

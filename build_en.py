@@ -502,6 +502,143 @@ COMMON = [
     # our-sites-bar active link for tool pages
     ('href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active"',
      'href="https://pdfkit.wooahouse.com/en/" target="_blank" rel="noopener" class="active"'),
+
+    # ── 추가 누락 문자열 ──
+    # drop zone (이미지/Word/Excel)
+    ('이미지 파일을 여기에 끌어다 놓으세요', 'Drop image files here'),
+    ('Word 파일을 여기에 끌어다 놓으세요', 'Drop your Word file here'),
+    ('Excel 파일을 여기에 끌어다 놓으세요', 'Drop your Excel file here'),
+    ('PDF 파일들을 여기에 끌어다 놓으세요', 'Drop PDF files here'),
+    ('파일을 여기에 끌어다 놓으세요', 'Drop your file here'),
+    ('JPG, PNG, WEBP 형식 지원 · 여러 파일 동시 선택 가능', 'Supports JPG, PNG, WEBP · Multiple files supported'),
+    ('JPG, PNG, WEBP, GIF 형식 지원', 'Supports JPG, PNG, WEBP, GIF'),
+    ('여러 파일 동시 선택 가능', 'Multiple files supported'),
+    # file input button labels
+    ('이미지 Select File', 'Select Images'),
+    ('이미지 추가', 'Add Image'),
+    ('+ 이미지 추가', '+ Add Image'),
+    # rotation labels
+    ('>뒤집기<', '>Flip<'),
+    ('>오른쪽<', '>Right<'),
+    ('>왼쪽<', '>Left<'),
+    ('<span style="font-size:0.72rem; color:#6B7280;">뒤집기</span>', '<span style="font-size:0.72rem; color:#6B7280;">Flip</span>'),
+    ('<span style="font-size:0.72rem; color:#6B7280;">오른쪽</span>', '<span style="font-size:0.72rem; color:#6B7280;">Right</span>'),
+    ('<span style="font-size:0.72rem; color:#6B7280;">왼쪽</span>', '<span style="font-size:0.72rem; color:#6B7280;">Left</span>'),
+    # split options
+    ('페이지마다 분할 (각 페이지를 별도 PDF로)', 'Split each page into separate PDFs'),
+    ('범위로 분할 (직접 범위 지정)', 'Split by custom range'),
+    # page number format
+    ('숫자만', 'Numbers only'),
+    ('줄표', 'Dash style'),
+    ('전체 표시', 'Show total'),
+    ('<span style="color:#9CA3AF; font-size:0.85rem;">예: - 1 - &nbsp; - 2 -</span>', '<span style="color:#9CA3AF; font-size:0.85rem;">e.g. - 1 - &nbsp; - 2 -</span>'),
+    ('<span style="color:#9CA3AF; font-size:0.85rem;">예: 1 &nbsp; 2 &nbsp; 3</span>', '<span style="color:#9CA3AF; font-size:0.85rem;">e.g. 1 &nbsp; 2 &nbsp; 3</span>'),
+    ('<span style="color:#9CA3AF; font-size:0.85rem;">예: 1 / 10 &nbsp; 2 / 10</span>', '<span style="color:#9CA3AF; font-size:0.85rem;">e.g. 1 / 10 &nbsp; 2 / 10</span>'),
+    # watermark colors
+    ('<span style="font-weight:600;">검정</span>', '<span style="font-weight:600;">Black</span>'),
+    ('<span style="color:#1155CC; font-weight:600;">파랑</span>', '<span style="color:#1155CC; font-weight:600;">Blue</span>'),
+    ('<span style="color:#888; font-weight:600;">회색</span>', '<span style="color:#888; font-weight:600;">Gray</span>'),
+    ('<span style="color:#DD0000; font-weight:600;">빨강</span>', '<span style="color:#DD0000; font-weight:600;">Red</span>'),
+    # watermark size
+    ('>대<', '>Large<'),
+    ('>중<', '>Medium<'),
+    ('>소<', '>Small<'),
+    # watermark range
+    ('Custom Range만', 'Custom Range only'),
+    ('Custom Range 추출 (선택한 페이지만)', 'Custom Range (selected pages only)'),
+    # password fields
+    ('placeholder="비밀번호 (없으면 빈칸으로 시도)"', 'placeholder="Password (leave blank if none)"'),
+    ('placeholder="PDF를 열 때 필요한 비밀번호"', 'placeholder="Password to open PDF"'),
+    ('placeholder="비밀번호를 다시 입력하세요"', 'placeholder="Confirm password"'),
+    ('placeholder="(선택) 권한 변경용 비밀번호"', 'placeholder="(Optional) Owner password"'),
+    # permissions checkboxes
+    ('복사 허용', 'Allow copying'),
+    ('편집 허용', 'Allow editing'),
+    ('인쇄 허용', 'Allow printing'),
+    # password toggle button
+    ('title="비밀번호 보기/숨기기"', 'title="Show/Hide password"'),
+    # select all / deselect
+    ('>전체 선택<', '>Select All<'),
+    ('>선택 해제<', '>Deselect All<'),
+    # file list
+    ('<div class="file-list-title">선택된 이미지 <span style="font-weight:400;font-size:0.8rem;">(드래그로 순서 변경)</span></div>',
+     '<div class="file-list-title">Selected Images <span style="font-weight:400;font-size:0.8rem;">(drag to reorder)</span></div>'),
+    # image layout option
+    ('<span class="option-label">이미지 배치</span>', '<span class="option-label">Image Layout</span>'),
+    ('<option value="auto">이미지 크기에 맞춤 (권장)</option>', '<option value="auto">Fit to image size (recommended)</option>'),
+    # compression info
+    ('ℹ️ 이 도구는 <strong>이미지가 포함된 PDF</strong>에 효과적입니다. 텍스트만 있는 PDF는 압축 효과가 제한될 수 있습니다.',
+     'ℹ️ This tool works best with <strong>image-heavy PDFs</strong>. Text-only PDFs may see limited compression.'),
+    (': \'텍스트 중심 PDF는 압축 효과가 제한됩니다.\';', ': \'Text-based PDFs may show limited compression.\';'),
+    # page count
+    ('페이지', 'pages'),
+    # tool list sidebar links
+    ('>📄 이미지 → PDF 변환<', '>📄 Image → PDF<'),
+    # viewer card
+    ('<div class="viewer-card-maker">Apple (기본 내장)</div>', '<div class="viewer-card-maker">Apple (built-in)</div>'),
+    ('<div class="viewer-card-name">기본 파일 앱</div>', '<div class="viewer-card-name">Files App</div>'),
+    # error messages in JS
+    ("'비밀번호가 올바르지 않거나 해제할 수 없는 파일입니다.'", "'Incorrect password or file cannot be unlocked.'"),
+    ('추출할 텍스트가 없습니다. 스캔된 이미지 PDF일 수 있습니다.', 'No text found. This may be a scanned image PDF.'),
+    # tool desc paragraph (jpg-to-pdf)
+    ('<p>JPG, PNG 이미지를 PDF로 변환합니다. 여러 이미지를 드래그로 순서를 바꾼 후 하나의 PDF로 만들 수 있습니다.</p>',
+     '<p>Convert JPG, PNG images to PDF. Drag to reorder multiple images, then combine into one PDF.</p>'),
+    # progress UI
+    ('이미지 처리 중', 'Processing image'),
+    ('서명 이미지 준비 중...', 'Preparing signature image...'),
+    ('워터마크 이미지 생성 중...', 'Generating watermark...'),
+    # result messages
+    ('개 페이지가', 'pages converted to'),
+    ('이미지로 변환되었습니다', ''),
+    ('개의 이미지가 PDF로 변환되었습니다', 'images converted to PDF'),
+
+    # ── 추가 누락 2차 ──
+    # watermark size radio labels
+    ('<label class="radio-item"><input type="radio" name="wmSize" value="large"> 대</label>',
+     '<label class="radio-item"><input type="radio" name="wmSize" value="large"> Large</label>'),
+    ('<label class="radio-item"><input type="radio" name="wmSize" value="medium" checked> 중</label>',
+     '<label class="radio-item"><input type="radio" name="wmSize" value="medium" checked> Medium</label>'),
+    ('<label class="radio-item"><input type="radio" name="wmSize" value="small"> 소</label>',
+     '<label class="radio-item"><input type="radio" name="wmSize" value="small"> Small</label>'),
+    # watermark position options
+    ('<option value="diagonal">중앙 대각선 (45°) — 권장</option>', '<option value="diagonal">Center Diagonal (45°) — Recommended</option>'),
+    ('<option value="center">중앙 수평</option>', '<option value="center">Center Horizontal</option>'),
+    ('<option value="bottom-left">왼쪽 하단</option>', '<option value="bottom-left">Bottom Left</option>'),
+    ('<option value="bottom-right">오른쪽 하단</option>', '<option value="bottom-right">Bottom Right</option>'),
+    # watermark opacity / margin options
+    ('<option value="0.10">10% (매우 연하게)</option>', '<option value="0.10">10% (Very light)</option>'),
+    ('<option value="0.50">50% (진하게)</option>', '<option value="0.50">50% (Dark)</option>'),
+    ('<option value="20" selected>보통 (20px)</option>', '<option value="20" selected>Normal (20px)</option>'),
+    ('<option value="40">넓음 (40px)</option>', '<option value="40">Wide (40px)</option>'),
+    ('<option value="0">여백 없음</option>', '<option value="0">No margin</option>'),
+    # paper size options
+    ('<option value="a4">A4 (210 × 297mm)</option>', '<option value="a4">A4 (210 × 297mm)</option>'),
+    ('<option value="letter">Letter (216 × 279mm)</option>', '<option value="letter">Letter (216 × 279mm)</option>'),
+    # image fit options
+    ('<option value="contain">pages에 맞춤 (비율 유지)</option>', '<option value="contain">Fit to page (keep ratio)</option>'),
+    ('<option value="fill">pages 채우기</option>', '<option value="fill">Fill page</option>'),
+    # result title
+    ('<div class="result-title">암호 설정 완료!</div>', '<div class="result-title">Password Set!</div>'),
+    # error in JS
+    ("showError('올바른 Page Numbers를 입력해 주세요.');", "showError('Please enter valid page numbers.');"),
+    ("showError('올바른 페이지 번호를 입력해 주세요.');", "showError('Please enter valid page numbers.');"),
+
+    # ── 추가 누락 3차 ──
+    # page number position options
+    ('<option value="bottom-center">아래 중앙</option>', '<option value="bottom-center">Bottom Center</option>'),
+    ('<option value="bottom-left">아래 왼쪽</option>', '<option value="bottom-left">Bottom Left</option>'),
+    ('<option value="bottom-right">아래 오른쪽</option>', '<option value="bottom-right">Bottom Right</option>'),
+    ('<option value="top-center">위 중앙</option>', '<option value="top-center">Top Center</option>'),
+    ('<option value="top-left">위 왼쪽</option>', '<option value="top-left">Top Left</option>'),
+    ('<option value="top-right">위 오른쪽</option>', '<option value="top-right">Top Right</option>'),
+    # font size options
+    ('<option value="8">8pt (작게)</option>', '<option value="8">8pt (Small)</option>'),
+    ('<option value="10" selected>10pt (기본)</option>', '<option value="10" selected>10pt (Default)</option>'),
+    ('<option value="14">14pt (크게)</option>', '<option value="14">14pt (Large)</option>'),
+    # margin options
+    ('<option value="20">20px (좁게)</option>', '<option value="20">20px (Narrow)</option>'),
+    ('<option value="28" selected>28px (기본)</option>', '<option value="28" selected>28px (Default)</option>'),
+    ('<option value="36">36px (넓게)</option>', '<option value="36">36px (Wide)</option>'),
 ]
 
 # ── 3. 언어 선택기 CSS ────────────────────────────────────────────────────────

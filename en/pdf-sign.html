@@ -257,7 +257,7 @@
   <div id="placePanel" class="step-panel" style="display:none">
     <div class="step-title"><span class="step-number">2</span> 서명 위치 선택</div>
     <div class="page-select-row">
-      <label>페이지 선택:</label>
+      <label>pages 선택:</label>
       <select id="pageSelect"></select>
     </div>
     <div class="pdf-preview-wrap" id="previewWrap">
@@ -458,7 +458,7 @@
         <span class="file-item-icon">📄</span>
         <div class="file-item-info">
           <div class="file-item-name">${file.name}</div>
-          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}pages</div>
         </div>
         <button class="file-item-remove" onclick="clearFile()">✕</button>
       </div>`;
@@ -475,7 +475,7 @@
     pageSelect.innerHTML = '';
     for (let i = 1; i <= totalPages; i++) {
       const opt = document.createElement('option');
-      opt.value = i; opt.textContent = `${i}페이지`;
+      opt.value = i; opt.textContent = `${i}pages`;
       pageSelect.appendChild(opt);
     }
     pageSelect.addEventListener('change', () => {
@@ -543,7 +543,7 @@
     document.getElementById('resultPanel').style.display = 'none';
 
     try {
-      updateProgressUI(20, '서명 이미지 준비 중...');
+      updateProgressUI(20, 'Preparing signature image...');
 
       // Get signature as PNG
       const signDataUrl = signCanvas.toDataURL('image/png');
@@ -581,7 +581,7 @@
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${currentPage}페이지에 서명이 삽입되었습니다`;
+        `${currentPage}pages에 서명이 삽입되었습니다`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {
