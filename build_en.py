@@ -908,7 +908,7 @@ def build_page(filename, meta):
         f'  </div>\n'
         f'</header>'
     )
-    # Replace closing </header> section
+    # Replace closing </header> section — About 링크 포함
     html = re.sub(
         r'(\s*</div>\s*</header>)',
         f'\n    <div class="header-right">\n'
@@ -917,6 +917,7 @@ def build_page(filename, meta):
         f'        <span>|</span>\n'
         f'        <a href="{filename}" class="active">EN</a>\n'
         f'      </div>\n'
+        f'      <a href="../about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>\n'
         f'    </div>\n'
         f'  </div>\n'
         f'</header>',
