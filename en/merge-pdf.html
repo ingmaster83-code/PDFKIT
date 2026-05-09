@@ -183,22 +183,22 @@
   <!-- File List -->
   <div id="fileListPanel" class="file-list-panel" style="display:none">
     <div class="file-list-title">
-      PDF 파일 목록 <span style="font-weight:400;font-size:0.8rem;">(드래그로 순서 변경)</span>
+      PDF File List <span style="font-weight:400;font-size:0.8rem;">(drag to reorder)</span>
     </div>
     <div id="pdfList"></div>
     <button style="margin-top:12px; background:none; border:1px dashed #CBD5E0; border-radius:8px; padding:8px 16px; cursor:pointer; font-size:0.85rem; color:#6B7280; width:100%;"
-      onclick="document.getElementById('fileInput').click()">+ PDF 추가</button>
+      onclick="document.getElementById('fileInput').click()">+ Add PDF</button>
   </div>
 
   <!-- Merge Button -->
   <div id="mergeSection" style="display:none">
-    <button class="btn-convert" id="mergeBtn">🔗 PDF 병합하기</button>
+    <button class="btn-convert" id="mergeBtn">🔗 Merge PDF</button>
   </div>
 
   <!-- Progress -->
   <div class="progress-wrap" id="progressWrap">
     <div class="progress-label">
-      <span id="progressText">병합 중...</span>
+      <span id="progressText">Merging...</span>
       <span id="progressPct">0%</span>
     </div>
     <div class="progress-bar">
@@ -228,7 +228,7 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ 병합된 PDF 다운로드</button>
+<button class="btn-download" id="downloadBtn">⬇️ Download Merged PDF</button>
   </div>
 
   <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
@@ -388,7 +388,7 @@
 
   document.getElementById('mergeBtn').addEventListener('click', async () => {
     if (fileItems.length < 2) {
-      showError('병합하려면 PDF 파일이 2개 이상 필요합니다.');
+      showError('At least 2 PDF files are required to merge.');
       return;
     }
 
@@ -407,7 +407,7 @@
       let totalPages = 0;
 
       for (let i = 0; i < fileItems.length; i++) {
-        updateProgressUI(Math.round((i / fileItems.length) * 90), `${i + 1}/${fileItems.length} 처리 중: ${fileItems[i].file.name}`);
+        updateProgressUI(Math.round((i / fileItems.length) * 90), `Processing ${i + 1}/${fileItems.length}: ${fileItems[i].file.name}`);
 
         const arrayBuffer = await fileItems[i].file.arrayBuffer();
         const pdf = await PDFDocument.load(arrayBuffer);
@@ -416,21 +416,21 @@
         totalPages += pages.length;
       }
 
-      updateProgressUI(95, 'PDF 생성 중...');
+      updateProgressUI(95, 'Generating PDF...');
       mergedBytes = await mergedPdf.save();
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
 
       document.getElementById('progressWrap').style.display = 'none';
 
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${fileItems.length}개 파일, 총 ${totalPages}pages가 하나의 PDF로 병합되었습니다`;
+        `${fileItems.length} files, ${totalPages} pages merged into one PDF`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch (err) {
       console.error(err);
-      showError('병합 중 오류가 발생했습니다. 일부 PDF가 암호로 보호되어 있을 수 있습니다.');
+      showError('Merge failed. Some PDFs may be password-protected.');
       document.getElementById('progressWrap').style.display = 'none';
     }
 

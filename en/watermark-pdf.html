@@ -35,7 +35,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF 워터마크 추가",
+  "name": "PDF Watermark Tool",
   "url": "https://pdfkit.wooahouse.com/en/watermark-pdf.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
@@ -137,13 +137,13 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>워터마크 추가</span>
+    <span>Add Watermark</span>
   </div>
 
   <div class="tool-header">
     <span class="tool-header-icon">💧</span>
     <h1>Add Watermark to PDF – Free Online</h1>
-    <p>PDF pages에 텍스트 워터마크를 삽입합니다.</p>
+    <p>Inserts a text watermark on PDF pages.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
@@ -160,17 +160,17 @@
   </div>
 
   <div id="optionsPanel" class="options-panel" style="display:none">
-    <div class="options-title">워터마크 설정</div>
+    <div class="options-title">Watermark Settings</div>
 
     <div class="option-row">
-      <span class="option-label">워터마크 텍스트</span>
+      <span class="option-label">Watermark Text</span>
       <div class="option-control">
-        <input type="text" id="wmText" placeholder="예: CONFIDENTIAL, 사본, 샘플" value="SAMPLE">
+        <input type="text" id="wmText" placeholder="e.g. CONFIDENTIAL, COPY, SAMPLE" value="SAMPLE">
       </div>
     </div>
 
     <div class="option-row">
-      <span class="option-label">글자 크기</span>
+      <span class="option-label">Font Size</span>
       <div class="option-control">
         <div class="radio-group">
           <label class="radio-item"><input type="radio" name="wmSize" value="small"> Small</label>
@@ -181,7 +181,7 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">색상</span>
+      <span class="option-label">Color</span>
       <div class="option-control">
         <div class="radio-group" style="flex-wrap:wrap; gap:10px;">
           <label class="radio-item"><input type="radio" name="wmColor" value="#DD0000" checked> <span style="color:#DD0000; font-weight:600;">Red</span></label>
@@ -193,7 +193,7 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">투명도</span>
+      <span class="option-label">Opacity</span>
       <div class="option-control">
         <select id="wmOpacity">
           <option value="0.10">10% (Very light)</option>
@@ -206,7 +206,7 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">위치</span>
+      <span class="option-label">Position</span>
       <div class="option-control">
         <select id="wmPosition">
           <option value="diagonal">Center Diagonal (45°) — Recommended</option>
@@ -218,7 +218,7 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">적용 pages</span>
+      <span class="option-label">Apply To</span>
       <div class="option-control">
         <div class="radio-group" style="flex-direction:column; gap:8px;">
           <label class="radio-item"><input type="radio" name="wmPages" value="all" checked> All Pages</label>
@@ -251,7 +251,7 @@
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
-        <div class="result-title">워터마크 추가 완료!</div>
+        <div class="result-title">Watermark Added!</div>
         <div class="result-subtitle" id="resultSubtitle"></div>
       </div>
     </div>
@@ -375,7 +375,7 @@
   document.getElementById('applyBtn').addEventListener('click', async () => {
     if (!selectedFile) return;
     const text = document.getElementById('wmText').value.trim();
-    if (!text) { showError('워터마크 텍스트를 입력해 주세요.'); return; }
+    if (!text) { showError('Please enter watermark text.'); return; }
 
     const sizeMap = { small: 55, medium: 85, large: 115 };
     const fontSize = sizeMap[document.querySelector('input[name="wmSize"]:checked').value];
@@ -415,7 +415,7 @@
       const pages = pdfDoc.getPages();
       const wmImage = await pdfDoc.embedPng(imgBytes);
 
-      updateProgressUI(40, '워터마크 삽입 중...');
+      updateProgressUI(40, 'Inserting watermark...');
 
       let targetPages;
       if (pagesMode === 'all') {
@@ -448,20 +448,20 @@
         page.drawImage(wmImage, { x, y, width: wmW, height: wmH, opacity, rotate });
       });
 
-      updateProgressUI(85, 'PDF 저장 중...');
+      updateProgressUI(85, 'Saving PDF...');
       resultBytes = await pdfDoc.save();
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
 
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${targetPages.length}개 pages에 워터마크가 추가되었습니다`;
+        `Watermark added to ${targetPages.length} pages`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {
       console.error(err);
-      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      showError('Processing failed: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
     resetBtn(btn);

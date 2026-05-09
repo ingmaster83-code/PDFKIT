@@ -169,13 +169,13 @@
   <div class="tool-header">
     <span class="tool-header-icon">🗜️</span>
     <h1>Compress PDF – Free Online</h1>
-    <p>PDF 파일 용량을 줄여 저장 및 공유를 쉽게 합니다.</p>
+    <p>Reduces PDF file size for easy storage and sharing.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>용량을 줄일 PDF 파일을 업로드하세요</p>
+    <p>Upload a PDF file to compress its size</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -186,7 +186,7 @@
   </div>
 
   <div id="optionsPanel" class="options-panel" style="display:none">
-    <div class="options-title">압축 품질 선택</div>
+    <div class="options-title">Compression Quality</div>
 
     <div class="notice-box">
       ℹ️ This tool works best with <strong>image-heavy PDFs</strong>. Text-only PDFs may see limited compression.
@@ -196,20 +196,20 @@
       <label class="quality-card" id="card-low">
         <input type="radio" name="quality" value="low">
         <div class="quality-card-icon">📉</div>
-        <div class="quality-card-title">강력 압축</div>
-        <div class="quality-card-desc">용량 최소화<br>화질 다소 저하</div>
+        <div class="quality-card-title">Max Compress</div>
+        <div class="quality-card-desc">Smallest size<br>Lower quality</div>
       </label>
       <label class="quality-card selected" id="card-medium">
         <input type="radio" name="quality" value="medium" checked>
         <div class="quality-card-icon">⚖️</div>
-        <div class="quality-card-title">균형 (권장)</div>
-        <div class="quality-card-desc">용량과 화질<br>균형 유지</div>
+        <div class="quality-card-title">Balanced (Recommended)</div>
+        <div class="quality-card-desc">Balanced size<br>& quality</div>
       </label>
       <label class="quality-card" id="card-high">
         <input type="radio" name="quality" value="high">
         <div class="quality-card-icon">🔍</div>
-        <div class="quality-card-title">고화질 압축</div>
-        <div class="quality-card-desc">화질 우선<br>압축률 낮음</div>
+        <div class="quality-card-title">High Quality</div>
+        <div class="quality-card-desc">Best quality<br>Less compression</div>
       </label>
     </div>
 
@@ -236,17 +236,17 @@
     </div>
     <div class="size-compare" id="sizeCompare" style="display:none">
       <div class="size-item">
-        <div class="size-label">원본</div>
+        <div class="size-label">Original</div>
         <div class="size-value" id="originalSize">—</div>
       </div>
       <div class="size-arrow">→</div>
       <div class="size-item">
-        <div class="size-label">압축 후</div>
+        <div class="size-label">Compressed</div>
         <div class="size-value" id="compressedSize">—</div>
       </div>
       <div class="size-arrow">✦</div>
       <div class="size-item">
-        <div class="size-label">감소율</div>
+        <div class="size-label">Reduction</div>
         <div class="size-ratio" id="sizeRatio">—</div>
       </div>
     </div>
@@ -260,7 +260,7 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn" style="margin-top:16px;">⬇️ 압축된 PDF 다운로드</button>
+<button class="btn-download" id="downloadBtn" style="margin-top:16px;">⬇️ Download Compressed PDF</button>
   </div>
 
   <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
@@ -423,9 +423,9 @@
         newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
       }
 
-      updateProgressUI(95, 'PDF 생성 중...');
+      updateProgressUI(95, 'Generating PDF...');
       resultBytes = await newPdf.save();
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
 
       // 용량 비교 표시
@@ -451,7 +451,7 @@
 
     } catch(err) {
       console.error(err);
-      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      showError('Processing failed: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
     btn.disabled = false; btn.textContent = '🗜️ Compress PDF';

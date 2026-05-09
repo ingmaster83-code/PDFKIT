@@ -27,9 +27,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Word/Excel → PDF 변환 | WooaPDF",
+    "name": "Word/Excel to PDF Converter",
     "url": "https://pdfkit.wooahouse.com/en/office-to-pdf.html",
-    "description": "Word, Excel 파일을 PDF로 무료 변환",
+    "description": "Convert Word (.docx) and Excel (.xlsx) files to PDF for free. No signup required. Files processed in your browser.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -193,7 +193,7 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>Word/Excel → PDF 변환</span>
+    <span>Word/Excel → PDF</span>
   </div>
 
   <div class="tool-header">
@@ -241,21 +241,21 @@
     <div id="previewContent"></div>
   </div>
 
-  <button class="btn-convert" id="printBtn" style="display:none">🖨️ PDF로 저장 (인쇄)</button>
+  <button class="btn-convert" id="printBtn" style="display:none">🖨️ Save as PDF (Print)</button>
 
   <div class="note-box" id="printNote" style="display:none">
-    <strong>안내:</strong> 인쇄 화면에서 <strong>'대상: PDF로 저장'</strong>을 선택하세요. (Chrome: "Save as PDF", Edge: "Microsoft Print to PDF")
+    <strong>Note:</strong> In the print dialog, select <strong>"Save as PDF"</strong> as the destination.
   </div>
 
   <div id="errorMsg" class="alert alert-error" style="display:none"></div>
 
   <div class="note-box" style="margin-top:24px;">
-    <strong>Note:</strong> PowerPoint(PPTX)는 현재 지원되지 않습니다.
+    <strong>Note:</strong> PowerPoint (PPTX) is not currently supported.
   </div>
 
   <div class="cross-link-banner">
     <span>Want to convert PDF back to Word?</span>
-    <a href="pdf-to-word.html">🔤 PDF → Word 변환 →</a>
+    <a href="pdf-to-word.html">🔤 PDF → Word →</a>
   </div>
 
   <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
@@ -362,7 +362,7 @@
       document.getElementById('previewPanel').scrollIntoView({ behavior: 'smooth' });
     } catch(err) {
       console.error(err);
-      showError('Word 파일을 읽을 수 없습니다: ' + err.message);
+      showError('Cannot read Word file: ' + err.message);
     }
   }
 
@@ -392,7 +392,7 @@
       document.getElementById('previewPanel').scrollIntoView({ behavior: 'smooth' });
     } catch(err) {
       console.error(err);
-      showError('Excel 파일을 읽을 수 없습니다: ' + err.message);
+      showError('Cannot read Excel file: ' + err.message);
     }
   }
 

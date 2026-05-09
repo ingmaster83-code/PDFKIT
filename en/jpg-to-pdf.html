@@ -160,7 +160,7 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>이미지 → PDF 변환</span>
+    <span>Image → PDF</span>
   </div>
 
   <div class="tool-header">
@@ -188,10 +188,10 @@
 
   <!-- Options -->
   <div id="optionsPanel" class="options-panel" style="display:none">
-    <div class="options-title">PDF 옵션</div>
+    <div class="options-title">PDF Options</div>
 
     <div class="option-row">
-      <span class="option-label">pages 크기</span>
+      <span class="option-label">Page Size</span>
       <div class="option-control">
         <select id="pageSizeSelect">
           <option value="auto">Fit to image size (recommended)</option>
@@ -212,7 +212,7 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">여백</span>
+      <span class="option-label">Margin</span>
       <div class="option-control">
         <select id="marginSelect">
           <option value="0">No margin</option>
@@ -222,7 +222,7 @@
       </div>
     </div>
 
-    <button class="btn-convert" id="convertBtn">📄 PDF로 변환</button>
+    <button class="btn-convert" id="convertBtn">📄 Convert to PDF</button>
   </div>
 
   <!-- Progress -->
@@ -327,7 +327,7 @@
 
   function addFiles(files) {
     const imageFiles = files.filter(f => f.type.startsWith('image/'));
-    if (imageFiles.length === 0) { showError('이미지 파일(JPG, PNG)만 업로드할 수 있습니다.'); return; }
+    if (imageFiles.length === 0) { showError('Only image files (JPG, PNG) are supported.'); return; }
     hideError();
 
     imageFiles.forEach(file => {
@@ -500,16 +500,16 @@
         page.drawImage(image, { x: drawX, y: drawY, width: drawW, height: drawH });
       }
 
-      updateProgressUI(95, 'PDF 생성 중...');
+      updateProgressUI(95, 'Generating PDF...');
       pdfBytes = await pdfDoc.save();
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
 
       document.getElementById('progressWrap').style.display = 'none';
       showResult();
 
     } catch (err) {
       console.error(err);
-      showError('변환 중 오류가 발생했습니다: ' + err.message);
+      showError('Conversion failed: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
 

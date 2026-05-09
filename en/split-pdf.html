@@ -143,7 +143,7 @@
   <div class="tool-header">
     <span class="tool-header-icon">✂️</span>
     <h1>Split PDF – Free Online</h1>
-    <p>PDF 파일을 pages별로 나누거나 원하는 범위로 분할합니다.</p>
+    <p>Splits a PDF into individual pages or custom page ranges.</p>
   </div>
 
   <!-- Drop Zone -->
@@ -163,10 +163,10 @@
 
   <!-- Options -->
   <div id="optionsPanel" class="options-panel" style="display:none">
-    <div class="options-title">분할 방식</div>
+    <div class="options-title">Split Method</div>
 
     <div class="option-row">
-      <span class="option-label">분할 방식</span>
+      <span class="option-label">Split Method</span>
       <div class="option-control">
         <div class="radio-group" style="flex-direction:column; gap:10px;">
           <label class="radio-item">
@@ -186,28 +186,28 @@
     </div>
 
     <div id="rangeInputRow" class="option-row" style="display:none">
-      <span class="option-label">범위 입력</span>
+      <span class="option-label">Enter Range</span>
       <div class="option-control">
         <input type="text" id="rangeInput" placeholder="예: 1-3, 4-7, 8-10">
-        <div style="font-size:0.78rem; color:#6B7280; margin-top:6px;">쉼표로 구분하면 각 범위별로 별도 PDF가 생성됩니다</div>
+        <div style="font-size:0.78rem; color:#6B7280; margin-top:6px;">Comma-separated ranges create separate PDFs each</div>
       </div>
     </div>
 
     <div id="extractInputRow" class="option-row" style="display:none">
-      <span class="option-label">pages 선택</span>
+      <span class="option-label">Page Selection</span>
       <div class="option-control">
         <input type="text" id="extractInput" placeholder="예: 1,3,5-8">
-        <div style="font-size:0.78rem; color:#6B7280; margin-top:6px;">선택한 pages만 하나의 PDF로 추출됩니다</div>
+        <div style="font-size:0.78rem; color:#6B7280; margin-top:6px;">Only selected pages will be extracted as one PDF</div>
       </div>
     </div>
 
-    <button class="btn-convert" id="splitBtn">✂️ 분할하기</button>
+    <button class="btn-convert" id="splitBtn">✂️ Split PDF</button>
   </div>
 
   <!-- Progress -->
   <div class="progress-wrap" id="progressWrap">
     <div class="progress-label">
-      <span id="progressText">분할 중...</span>
+      <span id="progressText">Splitting...</span>
       <span id="progressPct">0%</span>
     </div>
     <div class="progress-bar">
@@ -237,7 +237,7 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ ZIP으로 다운로드</button>
+<button class="btn-download" id="downloadBtn">⬇️ Download ZIP</button>
     <div id="singleDownload" style="margin-top:12px; display:none">
       <button class="btn-download" id="singleDownloadBtn" style="background:#3B82F6;">⬇️ Download PDF</button>
     </div>
@@ -411,16 +411,16 @@
           splitResults.push({ bytes, filename: `${baseName}_${range.replace('-', '_')}.pdf` });
         }
 
-        if (splitResults.length === 0) { showError('유효한 pages 범위가 없습니다.'); resetBtn(btn); return; }
+        if (splitResults.length === 0) { showError('No valid page ranges found.'); resetBtn(btn); return; }
 
       } else if (mode === 'extract') {
         const extractStr = document.getElementById('extractInput').value.trim();
-        if (!extractStr) { showError('추출할 pages를 입력해 주세요. 예: 1,3,5-8'); btn.disabled = false; btn.textContent = '✂️ Split PDF'; return; }
+        if (!extractStr) { showError('Enter pages to extract. e.g. 1,3,5-8'); btn.disabled = false; btn.textContent = '✂️ Split PDF'; return; }
 
         const pages = parsePageList(extractStr, totalPages);
-        if (pages.length === 0) { showError('유효한 Page Numbers가 없습니다.'); resetBtn(btn); return; }
+        if (pages.length === 0) { showError('No valid page numbers.'); resetBtn(btn); return; }
 
-        updateProgressUI(50, 'pages 추출 중...');
+        updateProgressUI(50, 'Extracting pages...');
         const newPdf = await PDFDocument.create();
         const copied = await newPdf.copyPages(srcPdf, pages.map(p => p - 1));
         copied.forEach(p => newPdf.addPage(p));
@@ -428,13 +428,13 @@
         splitResults.push({ bytes, filename: `${baseName}_extracted.pdf` });
       }
 
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
       showResult(mode);
 
     } catch (err) {
       console.error(err);
-      showError('분할 중 오류가 발생했습니다: ' + err.message);
+      showError('Split failed: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
 
@@ -449,12 +449,12 @@
       document.getElementById('downloadBtn').style.display = 'none';
       document.getElementById('singleDownload').style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `1개의 PDF 파일이 생성되었습니다`;
+        `1 PDF file generated`;
     } else {
       document.getElementById('downloadBtn').style.display = 'inline-flex';
       document.getElementById('singleDownload').style.display = 'none';
       document.getElementById('resultSubtitle').textContent =
-        `${splitResults.length}개의 PDF 파일로 분할되었습니다`;
+        `Split into ${splitResults.length} PDF files`;
     }
 
     panel.scrollIntoView({ behavior: 'smooth' });

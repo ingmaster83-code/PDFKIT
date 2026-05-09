@@ -53,7 +53,7 @@
       opacity: 0.6;
     }
     .page-thumb.selected::after {
-      content: '🗑️ 삭제';
+      content: '🗑️ Delete';
       position: absolute;
       top: 50%;
       left: 50%;
@@ -119,7 +119,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF pages 삭제",
+  "name": "PDF Page Deleter",
   "url": "https://pdfkit.wooahouse.com/en/delete-pages.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
@@ -221,20 +221,20 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>pages 삭제</span>
+    <span>Delete Pages</span>
   </div>
 
   <div class="tool-header">
     <span class="tool-header-icon">🗑️</span>
     <h1>Delete PDF Pages – Free Online</h1>
-    <p>삭제할 pages를 클릭해서 선택한 후 "삭제하기" 버튼을 누르세요.</p>
+    <p>Click pages to select them, then press the "Delete" button.</p>
   </div>
 
   <!-- Drop Zone -->
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>pages를 선택해서 삭제할 PDF를 업로드하세요</p>
+    <p>Upload a PDF to select and delete pages</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -242,17 +242,17 @@
   <!-- Loading -->
   <div id="loadingMsg" style="display:none; text-align:center; padding:40px; color:#6B7280;">
     <div style="font-size:2rem; margin-bottom:12px;">⏳</div>
-    <div>pages 미리보기를 생성하고 있습니다...</div>
+    <div>Generating page previews...</div>
   </div>
 
   <!-- Page Preview -->
   <div id="previewPanel" style="display:none">
     <div class="file-list-panel">
       <div class="file-list-title" id="fileTitle"></div>
-      <div style="font-size:0.85rem; color:#6B7280; margin-top:4px;">삭제할 pages를 클릭해서 선택하세요 (다시 클릭하면 취소)</div>
+      <div style="font-size:0.85rem; color:#6B7280; margin-top:4px;">Click to select pages to delete (click again to deselect)</div>
 
       <div class="selection-bar" id="selectionBar">
-        <span class="selection-info" id="selectionInfo">선택된 pages 없음</span>
+        <span class="selection-info" id="selectionInfo">No pages selected</span>
         <div style="display:flex; gap:8px;">
           <button class="btn-select-all" onclick="selectAll()">Select All</button>
           <button class="btn-select-all" onclick="clearSelection()">Deselect All</button>
@@ -262,7 +262,7 @@
       <div class="page-grid" id="pageGrid"></div>
     </div>
 
-    <button class="btn-convert" id="deleteBtn" disabled>🗑️ 선택한 pages 삭제</button>
+    <button class="btn-convert" id="deleteBtn" disabled>🗑️ Delete Selected Pages</button>
   </div>
 
   <!-- Error -->
@@ -284,7 +284,7 @@
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
-        <div class="result-title">완료!</div>
+        <div class="result-title">Done!</div>
         <div class="result-subtitle" id="resultSubtitle"></div>
       </div>
     </div>
@@ -305,16 +305,16 @@
     <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
     <div style="border:1px solid #E5E7EB;border-radius:12px;overflow:hidden">
       <details style="border-bottom:1px solid #E5E7EB;padding:16px">
-        <summary style="font-weight:700;cursor:pointer;color:#111827">Custom Range only 골라서 삭제할 수 있나요?</summary>
-        <p style="margin-top:10px;color:#6B7280;line-height:1.6">네, 가능합니다. Page Numbers를 쉼표로 구분하거나 범위(예: 1-3)로 입력해 원하는 pages만 선택적으로 삭제할 수 있습니다.</p>
+        <summary style="font-weight:700;cursor:pointer;color:#111827">Can I delete multiple pages at once?</summary>
+        <p style="margin-top:10px;color:#6B7280;line-height:1.6">Yes. Select all the pages you want to delete and they will all be removed at once.</p>
       </details>
       <details style="border-bottom:1px solid #E5E7EB;padding:16px">
-        <summary style="font-weight:700;cursor:pointer;color:#111827">삭제한 pages는 복구할 수 있나요?</summary>
-        <p style="margin-top:10px;color:#6B7280;line-height:1.6">아니요, 다운로드한 파일에서는 복구가 불가능합니다. 원본 파일을 미리 백업해두거나, 삭제 전 Page Numbers를 꼭 확인하세요.</p>
+        <summary style="font-weight:700;cursor:pointer;color:#111827">Will the remaining pages be renumbered?</summary>
+        <p style="margin-top:10px;color:#6B7280;line-height:1.6">Yes. The remaining pages will be in order after deletion.</p>
       </details>
       <details style="padding:16px">
-        <summary style="font-weight:700;cursor:pointer;color:#111827">파일이 서버에 저장되나요?</summary>
-        <p style="margin-top:10px;color:#6B7280;line-height:1.6">아니요, 모든 처리는 브라우저에서만 이루어집니다. 업로드한 파일은 서버에 전송되거나 저장되지 않아 완전히 안전합니다.</p>
+        <summary style="font-weight:700;cursor:pointer;color:#111827">Can I preview pages before deleting?</summary>
+        <p style="margin-top:10px;color:#6B7280;line-height:1.6">Yes. Page thumbnails are shown so you can select the exact pages to delete.</p>
       </details>
     </div>
   </section>
@@ -418,7 +418,7 @@
     } catch (err) {
       console.error(err);
       document.getElementById('loadingMsg').style.display = 'none';
-      showError('PDF를 불러오는 중 오류가 발생했습니다. 파일이 손상되었거나 암호로 보호되어 있을 수 있습니다.');
+      showError('Failed to load PDF. The file may be corrupted or password-protected.');
     }
   }
 
@@ -451,16 +451,16 @@
     const btn = document.getElementById('deleteBtn');
 
     if (count === 0) {
-      info.textContent = '선택된 pages 없음';
+      info.textContent = 'No pages selected';
       btn.disabled = true;
-      btn.textContent = '🗑️ 선택한 pages 삭제';
+      btn.textContent = '🗑️ Delete Selected Pages';
     } else if (count >= totalPages) {
-      info.textContent = `${count}개 선택됨 (전체 선택 — 최소 1pages는 남겨야 합니다)`;
+      info.textContent = `${count} selected (all pages — at least 1 page must remain)`;
       btn.disabled = true;
     } else {
-      info.textContent = `${count}개 pages 선택됨 → ${totalPages - count}개 남음`;
+      info.textContent = `${count} pages selected → ${totalPages - count} remaining`;
       btn.disabled = false;
-      btn.textContent = `🗑️ ${count}개 pages 삭제`;
+      btn.textContent = `🗑️ Delete ${count} Pages`;
     }
   }
 
@@ -481,7 +481,7 @@
       const arrayBuffer = await selectedFile.arrayBuffer();
       const pdf = await PDFDocument.load(arrayBuffer);
 
-      updateProgressUI(30, 'pages 제거 중...');
+      updateProgressUI(30, 'Removing pages...');
 
       // 남길 pages 인덱스 (0-based)
       const keepIndices = [];
@@ -493,26 +493,26 @@
       const copiedPages = await newPdf.copyPages(pdf, keepIndices);
       copiedPages.forEach(p => newPdf.addPage(p));
 
-      updateProgressUI(80, 'PDF 저장 중...');
+      updateProgressUI(80, 'Saving PDF...');
       resultBytes = await newPdf.save();
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
 
       document.getElementById('progressWrap').style.display = 'none';
 
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${selectedPages.size}개 pages가 삭제되어 ${keepIndices.length}개 pages만 남았습니다`;
+        `${selectedPages.size} pages deleted, ${keepIndices.length} pages remaining`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch (err) {
       console.error(err);
-      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      showError('Processing failed: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
 
     btn.disabled = false;
-    btn.textContent = `🗑️ ${selectedPages.size}개 pages 삭제`;
+    btn.textContent = `🗑️ Delete ${selectedPages.size} Pages`;
   });
 
   document.getElementById('downloadBtn').addEventListener('click', () => {

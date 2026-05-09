@@ -35,7 +35,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF Page Numbers 추가",
+  "name": "PDF Page Numbering Tool",
   "url": "https://pdfkit.wooahouse.com/en/page-number-pdf.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
@@ -137,13 +137,13 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>Page Numbers 추가</span>
+    <span>Add Page Numbers</span>
   </div>
 
   <div class="tool-header">
     <span class="tool-header-icon">🔢</span>
     <h1>Add Page Numbers to PDF – Free Online</h1>
-    <p>PDF의 각 pages에 번호를 자동으로 삽입합니다.</p>
+    <p>Automatically inserts page numbers into each PDF page.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
@@ -160,10 +160,10 @@
   </div>
 
   <div id="optionsPanel" class="options-panel" style="display:none">
-    <div class="options-title">Page Numbers 설정</div>
+    <div class="options-title">Page Number Settings</div>
 
     <div class="option-row">
-      <span class="option-label">위치</span>
+      <span class="option-label">Position</span>
       <div class="option-control">
         <select id="pgPosition">
           <option value="bottom-center">Bottom Center</option>
@@ -177,7 +177,7 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">표시 형식</span>
+      <span class="option-label">Format</span>
       <div class="option-control">
         <div class="radio-group" style="flex-direction:column; gap:10px;">
           <label class="radio-item"><input type="radio" name="pgFormat" value="simple" checked> Numbers only &nbsp;<span style="color:#9CA3AF; font-size:0.85rem;">e.g. 1 &nbsp; 2 &nbsp; 3</span></label>
@@ -188,15 +188,15 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">시작 번호</span>
+      <span class="option-label">Start Number</span>
       <div class="option-control" style="display:flex; align-items:center; gap:10px;">
         <input type="number" id="pgStart" value="1" min="1" max="9999" style="width:100px;">
-        <span style="font-size:0.85rem; color:#6B7280;">번부터 시작</span>
+        <span style="font-size:0.85rem; color:#6B7280;">starting from</span>
       </div>
     </div>
 
     <div class="option-row">
-      <span class="option-label">글자 크기</span>
+      <span class="option-label">Font Size</span>
       <div class="option-control">
         <select id="pgFontSize">
           <option value="8">8pt (Small)</option>
@@ -208,7 +208,7 @@
     </div>
 
     <div class="option-row">
-      <span class="option-label">여백</span>
+      <span class="option-label">Margin</span>
       <div class="option-control">
         <select id="pgMargin">
           <option value="20">20px (Narrow)</option>
@@ -218,7 +218,7 @@
       </div>
     </div>
 
-    <button class="btn-convert" id="applyBtn">🔢 Page Numbers 추가</button>
+    <button class="btn-convert" id="applyBtn">🔢 Add Page Numbers</button>
   </div>
 
   <div id="errorMsg" class="alert alert-error" style="display:none"></div>
@@ -235,7 +235,7 @@
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
-        <div class="result-title">Page Numbers 추가 완료!</div>
+        <div class="result-title">Page Numbers Added!</div>
         <div class="result-subtitle" id="resultSubtitle"></div>
       </div>
     </div>
@@ -373,7 +373,7 @@
       const pages = pdfDoc.getPages();
       const totalPgs = pages.length;
 
-      updateProgressUI(30, 'Page Numbers 삽입 중...');
+      updateProgressUI(30, 'Inserting page numbers...');
 
       pages.forEach((page, idx) => {
         const { width, height } = page.getSize();
@@ -397,20 +397,20 @@
         page.drawText(text, { x, y, size: fontSize, font, color: rgb(0.1, 0.1, 0.1) });
       });
 
-      updateProgressUI(85, 'PDF 저장 중...');
+      updateProgressUI(85, 'Saving PDF...');
       resultBytes = await pdfDoc.save();
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
 
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${totalPgs}개 pages에 번호가 추가되었습니다 (${startNum}번부터 시작)`;
+        `Page numbers added to ${totalPgs} pages (starting from ${startNum})`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {
       console.error(err);
-      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      showError('Processing failed: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
     resetBtn(btn);
@@ -432,7 +432,7 @@
     document.getElementById('progressText').textContent = text;
     document.getElementById('progressPct').textContent = pct + '%';
   }
-  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔢 Page Numbers 추가'; }
+  function resetBtn(btn) { btn.disabled = false; btn.textContent = '🔢 Add Page Numbers'; }
   function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
   function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
   function formatSize(b) {

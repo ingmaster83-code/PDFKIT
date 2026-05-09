@@ -482,7 +482,7 @@
 
     } catch (err) {
       console.error(err);
-      showError('변환 중 오류가 발생했습니다. PDF 파일이 손상되었거나 암호로 보호되어 있을 수 있습니다.');
+      showError('Conversion failed. The PDF may be corrupted or password-protected.');
     }
 
     resetBtn(btn);
@@ -562,7 +562,7 @@
       const blob = await zip.generateAsync({ type: 'blob' });
       saveAs(blob, `${selectedFile.name.replace('.pdf', '')}_images.zip`);
     } catch (err) {
-      showError('ZIP 생성 중 오류가 발생했습니다.');
+      showError('Failed to create ZIP file.');
     }
 
     btn.textContent = '⬇️ Download All (ZIP)';
@@ -572,12 +572,12 @@
   function showProgress() {
     document.getElementById('progressWrap').style.display = 'block';
     document.getElementById('resultPanel').style.display = 'none';
-    updateProgressUI(0, '준비 중...');
+    updateProgressUI(0, 'Preparing...');
   }
 
   function updateProgress(done, total, current) {
     const pct = total === 0 ? 100 : Math.round((done / total) * 100);
-    const text = total === 0 ? '완료' : `${done}/${total} pages 변환 중 (pages ${current})`;
+    const text = total === 0 ? 'Done' : `Converting page ${current} (${done}/${total})`;
     updateProgressUI(pct, text);
   }
 

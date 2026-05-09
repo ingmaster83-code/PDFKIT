@@ -27,9 +27,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "PDF 서명 추가 | WooaPDF",
+    "name": "PDF Signature Tool",
     "url": "https://pdfkit.wooahouse.com/en/pdf-sign.html",
-    "description": "PDF에 전자서명을 무료로 추가",
+    "description": "Draw or type your signature and insert it into a PDF for free. No signup required. Files processed entirely in your browser.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -39,7 +39,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF 서명 추가",
+  "name": "PDF Signature Tool",
   "url": "https://pdfkit.wooahouse.com/en/pdf-sign.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
@@ -212,20 +212,20 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>PDF 서명 추가</span>
+    <span>Sign PDF</span>
   </div>
 
   <div class="tool-header">
     <span class="tool-header-icon">✍️</span>
     <h1>Sign PDF – Free Online Signature Tool</h1>
-    <p>캔버스에 서명을 그린 뒤 PDF 문서에 삽입합니다.</p>
+    <p>Draw a signature on the canvas then insert it into your PDF.</p>
   </div>
 
   <!-- Step 1: Upload PDF -->
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>서명을 추가할 PDF를 업로드하세요</p>
+    <p>Upload a PDF to add your signature</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -237,38 +237,38 @@
 
   <!-- Step 2: Draw Signature -->
   <div id="signPanel" class="step-panel" style="display:none">
-    <div class="step-title"><span class="step-number">1</span> 서명 그리기</div>
+    <div class="step-title"><span class="step-number">1</span> Draw Signature</div>
     <div class="sign-canvas-wrap">
       <canvas id="signCanvas" height="150"></canvas>
     </div>
     <div class="sign-controls">
-      <label>펜 굵기</label>
+      <label>Pen Width</label>
       <select id="penWidth">
-        <option value="2">가는 (2px)</option>
-        <option value="3" selected>보통 (3px)</option>
-        <option value="5">굵은 (5px)</option>
+        <option value="2">Thin (2px)</option>
+        <option value="3" selected>Normal (3px)</option>
+        <option value="5">Thick (5px)</option>
       </select>
-      <label>색상</label>
+      <label>Color</label>
       <input type="color" id="penColor" value="#000000">
-      <button class="btn-clear" id="clearSignBtn">지우기</button>
+      <button class="btn-clear" id="clearSignBtn">Clear</button>
     </div>
   </div>
 
   <!-- Step 3: Place Signature -->
   <div id="placePanel" class="step-panel" style="display:none">
-    <div class="step-title"><span class="step-number">2</span> 서명 위치 선택</div>
+    <div class="step-title"><span class="step-number">2</span> Place Signature</div>
     <div class="page-select-row">
-      <label>pages 선택:</label>
+      <label>Page:</label>
       <select id="pageSelect"></select>
     </div>
     <div class="pdf-preview-wrap" id="previewWrap">
       <canvas id="pdfPreviewCanvas"></canvas>
-      <div class="sign-marker" id="signMarker"><img id="signPreviewImg" src="" alt="서명"></div>
+      <div class="sign-marker" id="signMarker"><img id="signPreviewImg" src="" alt="Signature"></div>
     </div>
-    <p class="position-hint">PDF 미리보기를 클릭하여 서명 위치를 지정하세요.</p>
+    <p class="position-hint">Click on the PDF preview to place your signature.</p>
   </div>
 
-  <button class="btn-convert" id="applyBtn" style="display:none">✍️ 서명 삽입 및 다운로드</button>
+  <button class="btn-convert" id="applyBtn" style="display:none">✍️ Insert Signature & Download</button>
 
   <div id="errorMsg" class="alert alert-error" style="display:none"></div>
 
@@ -284,7 +284,7 @@
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
-        <div class="result-title">서명 삽입 완료!</div>
+        <div class="result-title">Signature Added!</div>
         <div class="result-subtitle" id="resultSubtitle"></div>
       </div>
     </div>
@@ -298,7 +298,7 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ 서명된 PDF 다운로드</button>
+<button class="btn-download" id="downloadBtn">⬇️ Download Signed PDF</button>
   </div>
 
   <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
@@ -451,7 +451,7 @@
       pdfDoc = await pdfjsLib.getDocument({ data: pdfBytes.slice(0) }).promise;
       totalPages = pdfDoc.numPages;
     } catch(e) {
-      showError('PDF를 읽을 수 없습니다.'); return;
+      showError('Cannot read PDF.'); return;
     }
 
     document.getElementById('fileInfo').innerHTML = `
@@ -512,7 +512,7 @@
 
   // Click on preview to place signature
   document.getElementById('previewWrap').addEventListener('click', (e) => {
-    if (!hasSignature) { showError('먼저 서명을 그려주세요.'); return; }
+    if (!hasSignature) { showError('Please draw your signature first.'); return; }
     hideError();
     const wrap = document.getElementById('previewWrap');
     const rect = wrap.getBoundingClientRect();
@@ -535,7 +535,7 @@
 
   document.getElementById('applyBtn').addEventListener('click', async () => {
     if (!selectedFile) return;
-    if (!hasSignature) { showError('먼저 서명을 그려주세요.'); return; }
+    if (!hasSignature) { showError('Please draw your signature first.'); return; }
 
     const btn = document.getElementById('applyBtn');
     btn.disabled = true; btn.textContent = '⏳ Processing...';
@@ -551,12 +551,12 @@
       const signBase64 = signDataUrl.split(',')[1];
       const signImgBytes = Uint8Array.from(atob(signBase64), c => c.charCodeAt(0));
 
-      updateProgressUI(40, 'PDF 로드 중...');
+      updateProgressUI(40, 'Loading PDF...');
       const { PDFDocument } = PDFLib;
       const pdfDocLib = await PDFDocument.load(pdfBytes);
       const signImage = await pdfDocLib.embedPng(signImgBytes);
 
-      updateProgressUI(60, '서명 삽입 중...');
+      updateProgressUI(60, 'Inserting signature...');
       const pages = pdfDocLib.getPages();
       const targetPage = pages[currentPage - 1];
       const { width, height } = targetPage.getSize();
@@ -573,21 +573,21 @@
         height: signH,
       });
 
-      updateProgressUI(85, 'PDF 저장 중...');
+      updateProgressUI(85, 'Saving PDF...');
       resultBytes = await pdfDocLib.save();
 
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
 
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent =
-        `${currentPage}pages에 서명이 삽입되었습니다`;
+        `Signature inserted on page ${currentPage}`;
       panel.scrollIntoView({ behavior: 'smooth' });
 
     } catch(err) {
       console.error(err);
-      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      showError('Processing failed: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
     resetBtn(btn);

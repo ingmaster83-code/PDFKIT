@@ -35,7 +35,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "PDF 잠금 해제",
+  "name": "PDF Unlock Tool",
   "url": "https://pdfkit.wooahouse.com/en/unlock-pdf.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
@@ -160,19 +160,19 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>PDF 잠금 해제</span>
+    <span>Unlock PDF</span>
   </div>
 
   <div class="tool-header">
     <span class="tool-header-icon">🔓</span>
     <h1>Unlock PDF – Remove Password Free Online</h1>
-    <p>비밀번호로 보호된 PDF의 잠금을 해제합니다.</p>
+    <p>Removes password protection from a PDF file.</p>
   </div>
 
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">📂</span>
     <h3>Drop your PDF file here</h3>
-    <p>잠금을 해제할 PDF 파일을 업로드하세요</p>
+    <p>Upload the password-protected PDF to unlock</p>
     <label for="fileInput" class="btn-select">Select PDF File</label>
     <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
   </div>
@@ -184,19 +184,19 @@
   </div>
 
   <div id="optionsPanel" class="options-panel" style="display:none">
-    <div class="options-title">잠금 해제 설정</div>
+    <div class="options-title">Unlock Settings</div>
 
     <div class="info-box">
-      🔐 PDF 잠금 해제 안내:
+      🔐 PDF Unlock Guide:
       <ul>
-        <li>비밀번호를 알고 있다면 아래에 입력하세요</li>
-        <li>비밀번호가 없어도 일부 PDF는 자동으로 해제됩니다</li>
-        <li>강력한 암호화 PDF(AES-256)는 올바른 비밀번호가 필요합니다</li>
+        <li>If you know the password, enter it below</li>
+        <li>Some PDFs can be unlocked automatically without a password</li>
+        <li>Strongly encrypted PDFs (AES-256) require the correct password</li>
       </ul>
     </div>
 
     <div class="option-row">
-      <span class="option-label">비밀번호</span>
+      <span class="option-label">Password</span>
       <div class="option-control">
         <div class="pwd-input-wrap">
           <input type="password" id="pdfPassword" placeholder="Password (leave blank if none)">
@@ -222,8 +222,8 @@
     <div class="result-header">
       <span class="result-icon">🔓</span>
       <div>
-        <div class="result-title">잠금 해제 완료!</div>
-        <div class="result-subtitle" id="resultSubtitle">비밀번호 보호가 제거된 PDF가 생성되었습니다</div>
+        <div class="result-title">Unlocked!</div>
+        <div class="result-subtitle" id="resultSubtitle">Password protection has been removed.</div>
       </div>
     </div>
     
@@ -236,7 +236,7 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ 잠금 해제된 PDF 다운로드</button>
+<button class="btn-download" id="downloadBtn">⬇️ Download Unlocked PDF</button>
   </div>
 
   <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
@@ -321,12 +321,12 @@
       const buf = await file.arrayBuffer();
       try {
         const doc = await PDFDocument.load(buf);
-        statusHtml = `<span class="status-badge status-unlocked">🔓 잠금 없음 (비밀번호 불필요)</span>`;
+        statusHtml = `<span class="status-badge status-unlocked">🔓 No lock (no password needed)</span>`;
       } catch(e) {
-        statusHtml = `<span class="status-badge status-locked">🔒 잠금된 PDF (비밀번호 필요할 수 있음)</span>`;
+        statusHtml = `<span class="status-badge status-locked">🔒 Locked PDF (password may be required)</span>`;
       }
     } catch(e) {
-      statusHtml = `<span class="status-badge status-unknown">❓ 상태 확인 불가</span>`;
+      statusHtml = `<span class="status-badge status-unknown">❓ Status unknown</span>`;
     }
 
     document.getElementById('fileInfo').innerHTML = `
@@ -365,7 +365,7 @@
     document.getElementById('resultPanel').style.display = 'none';
 
     try {
-      updateProgressUI(30, 'PDF 불러오는 중...');
+      updateProgressUI(30, 'Loading PDF...');
       const { PDFDocument } = PDFLib;
       const arrayBuffer = await selectedFile.arrayBuffer();
 
@@ -392,9 +392,9 @@
         }
       }
 
-      updateProgressUI(75, '잠금 해제 후 저장 중...');
-      resultBytes = await pdfDoc.save(); // 비밀번호 없이 저장 = 잠금 해제
-      updateProgressUI(100, '완료!');
+      updateProgressUI(75, 'Saving unlocked PDF...');
+      resultBytes = await pdfDoc.save(); // Save without password = unlocked
+      updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
 
       const panel = document.getElementById('resultPanel');
@@ -403,7 +403,7 @@
 
     } catch(err) {
       console.error(err);
-      showError(err.message || '처리 중 오류가 발생했습니다.');
+      showError(err.message || 'Processing failed.');
       document.getElementById('progressWrap').style.display = 'none';
     }
     btn.disabled = false; btn.textContent = '🔓 Unlock PDF';

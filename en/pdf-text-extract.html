@@ -27,9 +27,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "PDF 텍스트 추출 | WooaPDF",
+    "name": "PDF Text Extractor",
     "url": "https://pdfkit.wooahouse.com/en/pdf-text-extract.html",
-    "description": "PDF에서 텍스트를 무료 추출",
+    "description": "Extract text from PDF files for free, even from non-copyable PDFs. Copy or download extracted text. No signup. 100% browser-based.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -188,7 +188,7 @@
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
-    <span>PDF 텍스트 추출</span>
+    <span>Extract PDF Text</span>
   </div>
 
   <div class="tool-header">
@@ -222,15 +222,15 @@
 
   <div id="resultArea" style="display:none">
     <div class="text-tabs">
-      <button class="text-tab-btn active" id="tabAll">전체</button>
+      <button class="text-tab-btn active" id="tabAll">All</button>
       <button class="text-tab-btn" id="tabPages">pages별</button>
     </div>
     <div class="page-tabs" id="pageTabsWrap" style="display:none"></div>
     <div class="text-output" id="textOutput"></div>
 
     <div class="action-buttons">
-      <button class="btn-action btn-copy" id="copyBtn">📋 전체 복사</button>
-      <button class="btn-action btn-txt" id="downloadBtn">⬇️ TXT 다운로드</button>
+      <button class="btn-action btn-copy" id="copyBtn">📋 Copy All</button>
+      <button class="btn-action btn-txt" id="downloadBtn">⬇️ Download TXT</button>
     </div>
   </div>
 
@@ -241,7 +241,7 @@
 
   <div class="cross-link-banner">
     <span>Want to edit the extracted text in Word?</span>
-    <a href="pdf-to-word.html">🔤 PDF → Word 변환 →</a>
+    <a href="pdf-to-word.html">🔤 PDF → Word →</a>
   </div>
 
   <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
@@ -339,7 +339,7 @@
       const numPages = pdf.numPages;
 
       for (let i = 1; i <= numPages; i++) {
-        updateProgressUI(Math.round((i / numPages) * 95), `pages ${i}/${numPages} 추출 중...`);
+        updateProgressUI(Math.round((i / numPages) * 95), `Extracting page ${i}/${numPages}...`);
         const page = await pdf.getPage(i);
         const textContent = await page.getTextContent();
 
@@ -359,7 +359,7 @@
 
       allText = pageTexts.map((t, i) => `=== pages ${i + 1} ===\n${t}`).join('\n\n');
 
-      updateProgressUI(100, '완료!');
+      updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
 
       if (!allText.replace(/=== pages \d+ ===/g, '').trim()) {
@@ -384,7 +384,7 @@
 
     } catch(err) {
       console.error(err);
-      showError('PDF를 읽을 수 없습니다: ' + err.message);
+      showError('Cannot read PDF: ' + err.message);
       document.getElementById('progressWrap').style.display = 'none';
     }
   }
