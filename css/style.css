@@ -908,14 +908,24 @@ footer {
   border-radius: 6px;
   margin-bottom: 8px;
 }
+/* 모바일 상단 광고 (데스크톱에서는 숨김) */
+.mobile-top-ad {
+  display: none;
+  padding: 8px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
 @media (max-width: 1024px) {
   .page-with-sidebar {
     grid-template-columns: 1fr;
     max-width: 820px;
   }
   .tool-sidebar {
-    position: static;
-    width: 100%;
-    order: 3;
+    display: none; /* 모바일에서 사이드바 숨김 → 상단 광고로 대체 */
+  }
+  .mobile-top-ad {
+    display: block; /* 모바일에서 상단 광고 표시 */
   }
 }
