@@ -91,6 +91,7 @@
   </div>
 </div>
 
+<div class="page-with-sidebar">
 <main class="tool-page">
 <div style="text-align:center;margin:8px auto 20px;max-width:728px;padding:0 8px">
 <ins class="adsbygoogle"
@@ -214,7 +215,10 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ 전체 다운로드 (ZIP)</button>
+<div class="download-share-group">
+  <button class="btn-download" id="downloadBtn">⬇️ 전체 다운로드 (ZIP)</button>
+  <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
+</div>
     <div class="preview-grid" id="previewGrid"></div>
   </div>
 
@@ -245,6 +249,21 @@
   </section>
 
 </main>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <div class="ad-card-label">광고</div>
+    <div class="ad-card-placeholder">📢<br>광고가 표시됩니다</div>
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:250px"
+         data-ad-client="ca-pub-6464921081676309"
+         data-ad-slot="1419180025"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</aside>
+</div>
 
 <div class="features" style="margin-top:60px">
   <div class="features-inner">
@@ -310,6 +329,15 @@
 
   let selectedFile = null;
   let convertedImages = [];
+
+  // 공유 버튼: Web Share API + 파일 공유 지원 시에만 표시
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.jpg', { type: 'image/jpeg' });
+    if (navigator.canShare({ files: [testFile] })) {
+      shareBtn.style.display = 'inline-flex';
+    }
+  }
 
   // 페이지 범위 라디오 변경
   document.querySelectorAll('input[name="pageRange"]').forEach(radio => {
@@ -533,6 +561,33 @@
 
     btn.textContent = '⬇️ 전체 다운로드 (ZIP)';
     btn.disabled = false;
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (convertedImages.length === 0) return;
+    const btn = document.getElementById('shareBtn');
+    btn.disabled = true;
+    btn.textContent = '📦 공유 준비 중...';
+    try {
+      let file;
+      if (convertedImages.length === 1) {
+        const res = await fetch(convertedImages[0].dataUrl);
+        const blob = await res.blob();
+        file = new File([blob], convertedImages[0].filename, { type: 'image/jpeg' });
+      } else {
+        const zip = new JSZip();
+        for (const img of convertedImages) {
+          const base64 = img.dataUrl.split(',')[1];
+          zip.file(img.filename, base64, { base64: true });
+        }
+        const blob = await zip.generateAsync({ type: 'blob' });
+        const zipName = selectedFile.name.replace('.pdf', '') + '_images.zip';
+        file = new File([blob], zipName, { type: 'application/zip' });
+      }
+      await navigator.share({ files: [file], title: file.name + ' — WooaPDF', text: 'WooaPDF를 통해 변환한 파일입니다.\nhttps://pdfkit.wooahouse.com/pdf-to-jpg.html' });
+    } catch (e) { if (e.name !== 'AbortError') alert('공유에 실패했습니다. 다운로드 후 직접 공유해주세요.'); }
+    btn.disabled = false;
+    btn.textContent = '📤 공유하기';
   });
 
   function showProgress() {

@@ -137,6 +137,7 @@
   </div>
 </div>
 
+<div class="page-with-sidebar">
 <main class="tool-page">
 <div style="text-align:center;margin:8px auto 20px;max-width:728px;padding:0 8px">
 <ins class="adsbygoogle"
@@ -210,7 +211,10 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+<div class="download-share-group">
+  <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+  <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
+</div>
   </div>
 
   <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
@@ -232,6 +236,21 @@
   </section>
 
 </main>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <div class="ad-card-label">광고</div>
+    <div class="ad-card-placeholder">📢<br>광고가 표시됩니다</div>
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:250px"
+         data-ad-client="ca-pub-6464921081676309"
+         data-ad-slot="1419180025"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</aside>
+</div>
 
 <!-- Coupang Partners -->
 <div style="text-align:center;margin:32px auto 0;max-width:320px;padding:0 8px">
@@ -264,6 +283,15 @@
   let resultBytes = null;
   let pageOrder = []; // Array of original page indices (0-based)
   let dragSrcIdx = null;
+
+  // 공유 버튼: Web Share API + 파일 공유 지원 시에만 표시
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    if (navigator.canShare({ files: [testFile] })) {
+      shareBtn.style.display = 'inline-flex';
+    }
+  }
 
   const dropZone = document.getElementById('dropZone');
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
@@ -479,6 +507,16 @@
     a.download = selectedFile.name.replace('.pdf', '_reordered.pdf');
     a.click();
     URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (!resultBytes) return;
+    const filename = selectedFile ? selectedFile.name.replace('.pdf', '_reordered.pdf') : 'reordered.pdf';
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const file = new File([blob], filename, { type: 'application/pdf' });
+    try {
+      await navigator.share({ files: [file], title: filename + ' — WooaPDF', text: 'WooaPDF를 통해 변환한 파일입니다.\nhttps://pdfkit.wooahouse.com/pdf-reorder.html' });
+    } catch (e) { if (e.name !== 'AbortError') alert('공유에 실패했습니다. 다운로드 후 직접 공유해주세요.'); }
   });
 
   function updateProgressUI(pct, text) {
