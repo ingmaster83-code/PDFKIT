@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 이미지 추출 무료 — PDF 속 사진·그림 꺼내기 | WooaPDF</title>
+  <meta name="description" content="PDF 파일에 포함된 이미지(사진·그림·로고)를 무료로 추출합니다. 브라우저에서 바로 처리, 서버 전송 없음. JPG·PNG로 저장 가능.">
+  <meta name="keywords" content="PDF이미지추출,PDF사진추출,PDF그림추출,PDF이미지저장,PDF에서이미지,PDF image extract,PDF 이미지 꺼내기">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/pdf-image-extract.html">
+  <meta property="og:title" content="PDF 이미지 추출 무료 — PDF 속 사진·그림 꺼내기 | WooaPDF">
+  <meta property="og:description" content="PDF에 포함된 이미지를 무료로 추출. 브라우저에서만 처리, 서버 전송 없음.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/pdf-image-extract.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="css/style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF 이미지 추출기",
+    "url": "https://pdfkit.wooahouse.com/pdf-image-extract.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "ko",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"PDF에서 어떤 이미지를 추출할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"PDF에 삽입된 사진, 그림, 로고 등 이미지 객체를 추출합니다. 텍스트로 이루어진 내용은 추출되지 않습니다."}},
+      {"@type":"Question","name":"추출한 이미지가 서버에 저장되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 모든 처리는 브라우저 내에서만 이루어지며 서버로 파일이 전송되지 않습니다."}},
+      {"@type":"Question","name":"이미지가 추출되지 않으면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"PDF에 이미지가 포함되지 않았거나, 벡터(SVG) 형식의 그래픽은 추출되지 않을 수 있습니다."}}
+    ]
+  }
+  </script>
+  <style>
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .image-item {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .image-item img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      background: #fff;
+      padding: 4px;
+    }
+    .image-item-info {
+      padding: 6px 8px;
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+    .image-item-actions {
+      padding: 0 8px 8px;
+    }
+    .btn-dl-img {
+      display: block;
+      width: 100%;
+      background: #FF4444;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 0;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-dl-img:hover { background: #e03333; }
+    .no-image-msg {
+      text-align: center;
+      padding: 40px 20px;
+      color: #9ca3af;
+      font-size: 0.95rem;
+    }
+    .no-image-msg .emoji { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<div class="our-sites-bar">
+  <span class="our-sites-label">WooaHouse Services</span>
+  <div class="our-sites-links">
+    <a href="https://wooahouse.com/" target="_blank" rel="noopener">🔗 WooaHouse</a>
+    <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 WooaPDF</a>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ WooaImage</a>
+    <a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 WooaColor</a>
+    <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ WooaText</a>
+    <a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 WooaQR</a>
+    <a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 WooaCalc</a>
+    <a href="https://chromekit.wooahouse.com/" target="_blank" rel="noopener">🧩 WooaChrome</a>
+    <a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 WooaFont</a>
+    <a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 WooaMac</a>
+    <a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ WooaPC</a>
+    <a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 WooaVS</a>
+  </div>
+</div>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF 이미지 추출</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🖼️</span>
+    <h1>PDF 이미지 추출 무료 온라인 — PDF 속 사진·그림 꺼내기</h1>
+    <p>PDF 파일에 포함된 이미지(사진, 그림, 로고 등)를 추출합니다. 파일은 브라우저에서만 처리되어 서버에 저장되지 않습니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>또는 버튼을 클릭해서 파일을 선택하세요</p>
+    <label for="fileInput" class="btn-select">PDF 파일 선택</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileList"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">추출 옵션</div>
+    <div class="option-row">
+      <span class="option-label">저장 형식</span>
+      <div class="option-control">
+        <select id="formatSelect">
+          <option value="image/png">PNG (원본 품질)</option>
+          <option value="image/jpeg">JPG (파일 크기 작음)</option>
+        </select>
+      </div>
+    </div>
+    <div class="option-row">
+      <span class="option-label">최소 크기 필터</span>
+      <div class="option-control">
+        <select id="minSizeSelect">
+          <option value="0">전체 (아이콘 포함)</option>
+          <option value="50" selected>50px 이상</option>
+          <option value="100">100px 이상</option>
+          <option value="200">200px 이상</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-convert" id="extractBtn">🖼️ 이미지 추출 시작</button>
+  </div>
+
+  <div id="processingAd" style="display:none;text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
+    <p style="font-size:0.85rem;color:#6b7280;margin-bottom:8px;">⏳ 페이지 분석 중입니다. 잠시만 기다려 주세요...</p>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6464921081676309"
+         data-ad-slot="1419180025"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">분석 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">추출 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6464921081676309"
+           data-ad-slot="1419180025"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadAllBtn" style="display:none">⬇️ 전체 다운로드 (ZIP)</button>
+    </div>
+    <div class="image-grid" id="imageGrid"></div>
+  </div>
+
+  <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+    <span style="font-size:0.95rem;color:#444;">추출한 이미지를 변환하거나 편집하고 싶으신가요?</span>
+    <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener" style="background:#4F6EF7;color:#fff;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;white-space:nowrap;">🖼️ WooaImage 이미지 도구 →</a>
+  </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. PDF에서 어떤 이미지를 추출할 수 있나요?</h3>
+        <p style="color:#555;margin:0;">PDF에 삽입된 사진, 그림, 로고 등 이미지 객체를 추출합니다. 텍스트로 이루어진 내용은 추출되지 않습니다.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 추출한 이미지가 서버에 저장되나요?</h3>
+        <p style="color:#555;margin:0;">아니요. 모든 처리는 브라우저 내에서만 이루어지며 서버로 파일이 전송되지 않습니다.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 이미지가 추출되지 않으면 어떻게 하나요?</h3>
+        <p style="color:#555;margin:0;">PDF에 이미지가 포함되지 않았거나, 벡터(SVG) 형식의 그래픽은 추출되지 않을 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:250px"
+         data-ad-client="ca-pub-6464921081676309"
+         data-ad-slot="1419180025"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="ad-card" style="margin-top:16px;overflow:hidden;">
+    <script src="https://ads-partners.coupang.com/g.js"></script>
+    <script>
+      new PartnersCoupang.G({"id":974224,"trackingCode":"AF5600192","subId":null,"template":"carousel","width":"300","height":"250"});
+    </script>
+  </div>
+</aside>
+</div>
+
+<div class="features" style="margin-top:60px">
+  <div class="features-inner">
+    <div>
+      <div class="feature-icon">🔒</div>
+      <div class="feature-title">개인정보 보호</div>
+      <div class="feature-desc">파일이 서버로 전송되지 않습니다</div>
+    </div>
+    <div>
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">빠른 처리</div>
+      <div class="feature-desc">로컬 처리로 속도 빠름</div>
+    </div>
+    <div>
+      <div class="feature-icon">🆓</div>
+      <div class="feature-title">완전 무료</div>
+      <div class="feature-desc">회원가입 없이 무료 사용</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>📄 WooaPDF</h4>
+        <p style="color:#9CA3AF;font-size:.84rem;line-height:1.6">17가지 무료 온라인 PDF 도구 모음</p>
+      </div>
+      <div class="footer-col">
+        <h4>변환 도구</h4>
+        <a href="pdf-to-jpg.html">PDF → JPG</a>
+        <a href="jpg-to-pdf.html">이미지 → PDF</a>
+        <a href="pdf-to-word.html">PDF → Word</a>
+        <a href="pdf-image-extract.html">PDF 이미지 추출</a>
+      </div>
+      <div class="footer-col">
+        <h4>WooaHouse Services</h4>
+        <a href="https://imagekit.wooahouse.com/" target="_blank">🖼️ WooaImage</a>
+        <a href="https://textkit.wooahouse.com/" target="_blank">✏️ WooaText</a>
+        <a href="https://calckit.wooahouse.com/" target="_blank">🧮 WooaCalc</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 WooaPDF. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let extractedImages = [];
+
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  dropZone.addEventListener('click', e => {
+    if (e.target.tagName === 'LABEL' || e.target === fileInput) return;
+    fileInput.click();
+  });
+  fileInput.addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+    fileInput.value = '';
+  });
+
+  function loadFile(file) {
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      showError('PDF 파일만 업로드할 수 있습니다.');
+      return;
+    }
+    hideError();
+    selectedFile = file;
+    extractedImages = [];
+
+    document.getElementById('fileList').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)}</div>
+        </div>
+        <button class="file-item-remove" id="clearBtn">✕</button>
+      </div>`;
+    document.getElementById('clearBtn').addEventListener('click', clearFile);
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  document.getElementById('extractBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const btn = document.getElementById('extractBtn');
+    btn.disabled = true;
+    btn.textContent = '추출 중...';
+    extractedImages = [];
+    hideError();
+
+    const progressWrap = document.getElementById('progressWrap');
+    const progressFill = document.getElementById('progressFill');
+    const progressPct = document.getElementById('progressPct');
+    const progressText = document.getElementById('progressText');
+    progressWrap.style.display = 'block';
+    progressFill.style.width = '0%';
+
+    // 처리 중 광고 표시 (최소 5초, 최초 1회만 push)
+    const processingAd = document.getElementById('processingAd');
+    processingAd.style.display = 'block';
+    if (!processingAd.dataset.adLoaded) {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      processingAd.dataset.adLoaded = '1';
+    }
+    const adStartTime = Date.now();
+
+    const format = document.getElementById('formatSelect').value;
+    const ext = format === 'image/jpeg' ? 'jpg' : 'png';
+    const minSize = parseInt(document.getElementById('minSizeSelect').value);
+
+    try {
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const totalPages = pdf.numPages;
+      let imageIndex = 0;
+
+      for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+        progressText.textContent = `${pageNum}/${totalPages} 페이지 분석 중...`;
+        progressFill.style.width = Math.round((pageNum / totalPages) * 90) + '%';
+        progressPct.textContent = Math.round((pageNum / totalPages) * 90) + '%';
+
+        const page = await pdf.getPage(pageNum);
+        const pageImages = [];
+
+        // 방법 1: getOperatorList + objs.get (원본 이미지 데이터 직접 추출)
+        try {
+          const ops = await page.getOperatorList();
+          const imageObjIds = new Set();
+          for (let i = 0; i < ops.fnArray.length; i++) {
+            const fn = ops.fnArray[i];
+            // paintImageXObject(85), paintImageXObjectRepeat(86), paintInlineImageXObject(84)
+            if (fn === pdfjsLib.OPS.paintImageXObject || fn === pdfjsLib.OPS.paintImageXObjectRepeat) {
+              imageObjIds.add(ops.argsArray[i][0]);
+            }
+          }
+
+          for (const objId of imageObjIds) {
+            try {
+              const imgObj = await new Promise((resolve, reject) => {
+                const tid = setTimeout(() => reject(new Error('timeout')), 4000);
+                page.objs.get(objId, obj => { clearTimeout(tid); resolve(obj); });
+              });
+              if (!imgObj || !imgObj.data || !imgObj.width || !imgObj.height) continue;
+
+              const { width, height, data } = imgObj;
+              if (width < minSize || height < minSize) continue;
+
+              const tmp = document.createElement('canvas');
+              tmp.width = width;
+              tmp.height = height;
+              const tmpCtx = tmp.getContext('2d');
+
+              // data 포맷 처리: RGBA(4채널) 또는 RGB(3채널)
+              let rgbaData;
+              if (data.length === width * height * 4) {
+                rgbaData = new Uint8ClampedArray(data.buffer || data);
+              } else if (data.length === width * height * 3) {
+                rgbaData = new Uint8ClampedArray(width * height * 4);
+                for (let k = 0; k < width * height; k++) {
+                  rgbaData[k*4]   = data[k*3];
+                  rgbaData[k*4+1] = data[k*3+1];
+                  rgbaData[k*4+2] = data[k*3+2];
+                  rgbaData[k*4+3] = 255;
+                }
+              } else {
+                continue;
+              }
+
+              tmpCtx.putImageData(new ImageData(rgbaData, width, height), 0, 0);
+              pageImages.push({ canvas: tmp, width, height });
+            } catch(e) { /* 개별 이미지 실패 시 건너뜀 */ }
+          }
+        } catch(e) { /* getOperatorList 실패 시 방법2로 폴백 */ }
+
+        // 방법 2: drawImage 인터셉트 (방법1에서 못 잡은 경우 보완)
+        if (pageImages.length === 0) {
+          const viewport = page.getViewport({ scale: 1.5 });
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          const ctx = canvas.getContext('2d');
+          const origDrawImage = ctx.drawImage.bind(ctx);
+
+          ctx.drawImage = function(src, ...args) {
+            try {
+              const w = src.width || src.naturalWidth || 0;
+              const h = src.height || src.naturalHeight || 0;
+              if (w >= minSize && h >= minSize) {
+                const tmp = document.createElement('canvas');
+                tmp.width = w;
+                tmp.height = h;
+                tmp.getContext('2d').drawImage(src, 0, 0, w, h);
+                pageImages.push({ canvas: tmp, width: w, height: h });
+              }
+            } catch(e) {}
+            origDrawImage.apply(ctx, [src, ...args]);
+          };
+
+          await page.render({ canvasContext: ctx, viewport }).promise;
+        }
+
+        // 캡처된 이미지를 Blob으로 변환
+        for (const item of pageImages) {
+          const blob = await new Promise(r => item.canvas.toBlob(r, format, 0.92));
+          if (!blob) continue;
+          imageIndex++;
+          const url = URL.createObjectURL(blob);
+          extractedImages.push({
+            blob, url,
+            name: `image_p${pageNum}_${imageIndex}.${ext}`,
+            width: item.width,
+            height: item.height,
+            size: blob.size
+          });
+        }
+      }
+
+      progressFill.style.width = '100%';
+      progressPct.textContent = '100%';
+
+      // 결과 렌더링
+      const grid = document.getElementById('imageGrid');
+      if (extractedImages.length === 0) {
+        grid.innerHTML = `<div class="no-image-msg" style="grid-column:1/-1"><span class="emoji">🔍</span>추출 가능한 이미지가 없습니다.<br><small>이 PDF에는 이미지 객체가 포함되어 있지 않거나, 벡터 그래픽만 있을 수 있습니다.</small></div>`;
+        document.getElementById('downloadAllBtn').style.display = 'none';
+      } else {
+        grid.innerHTML = extractedImages.map((img, i) => `
+          <div class="image-item">
+            <img src="${img.url}" alt="추출 이미지 ${i+1}" loading="lazy">
+            <div class="image-item-info">${img.width}×${img.height} · ${formatSize(img.size)}</div>
+            <div class="image-item-actions">
+              <a href="${img.url}" download="${img.name}" class="btn-dl-img">⬇️ 저장</a>
+            </div>
+          </div>`).join('');
+        document.getElementById('downloadAllBtn').style.display = extractedImages.length > 1 ? 'inline-flex' : 'none';
+      }
+
+      document.getElementById('resultSubtitle').textContent = `${extractedImages.length}개 이미지 추출됨`;
+      document.getElementById('resultPanel').style.display = 'block';
+
+      const elapsed = Date.now() - adStartTime;
+      const remaining = Math.max(0, 5000 - elapsed);
+      setTimeout(() => {
+        progressWrap.style.display = 'none';
+        processingAd.style.display = 'none';
+      }, remaining);
+
+    } catch (err) {
+      showError('추출 중 오류가 발생했습니다: ' + err.message);
+      const elapsed = Date.now() - adStartTime;
+      setTimeout(() => { processingAd.style.display = 'none'; }, Math.max(0, 5000 - elapsed));
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '🖼️ 이미지 추출 시작';
+    }
+  });
+
+  document.getElementById('downloadAllBtn').addEventListener('click', async () => {
+    if (!extractedImages.length) return;
+    const btn = document.getElementById('downloadAllBtn');
+    btn.disabled = true;
+    btn.textContent = 'ZIP 생성 중...';
+    const zip = new JSZip();
+    extractedImages.forEach(img => zip.file(img.name, img.blob));
+    const content = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(content);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile.name.replace('.pdf', '') + '_images.zip';
+    a.click();
+    URL.revokeObjectURL(url);
+    btn.disabled = false;
+    btn.textContent = '⬇️ 전체 다운로드 (ZIP)';
+  });
+
+  function clearFile() {
+    selectedFile = null;
+    extractedImages = [];
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    hideError();
+  }
+
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+    return (b / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="js/pwa-install.js"></script>
+</body>
+</html>
