@@ -10,6 +10,8 @@
   gtag('config', 'G-9ZGENFSXWC');
 </script>
   <meta charset="UTF-8">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rotate PDF Free Online – Rotate PDF Pages | WooaPDF</title>
   <meta name="description" content="Rotate PDF pages 90°, 180°, or 270° for free. Rotate all pages or individual pages. No signup. Files stay in your browser.">
@@ -23,6 +25,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pdfkit.wooahouse.com/en/rotate-pdf.html">
   <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#FF4444">
@@ -122,21 +125,15 @@
     <a href="https://wooaaudio.wooahouse.com/" target="_blank" rel="noopener">🎵 WooaAudio</a>
     <a href="https://wooaviewer.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaViewer</a>
     <a href="https://wooadev.wooahouse.com/" target="_blank" rel="noopener">🛠️ WooaDev</a>
+    <a href="https://ocrkit.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaOCR</a>
   </div>
 </div>
 
 <div class="mobile-top-ad">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6464921081676309"
-     data-ad-slot="7080296704"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<div class="page-with-sidebar">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="page-with-sidebar">
 <main class="tool-page">
-
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
@@ -254,7 +251,10 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ Download PDF</button>
+<div class="download-share-group">
+  <button class="btn-download" id="downloadBtn">⬇️ Download PDF</button>
+  <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
+</div>
   </div>
 
   <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
@@ -276,9 +276,9 @@
   </section>
 
 </main>
+
 <aside class="tool-sidebar">
-  <div class="ad-card">
-    <ins class="adsbygoogle"
+  <div class="ad-card">    <ins class="adsbygoogle"
          style="display:block;width:100%;min-height:250px"
          data-ad-client="ca-pub-6464921081676309"
          data-ad-slot="1419180025"
@@ -286,18 +286,12 @@
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  <div class="ad-card" style="margin-top:16px;overflow:hidden;">    
+  </div>
 </aside>
 </div>
 
-<div style="text-align:center;margin:32px auto 0;max-width:728px;padding:0 8px">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6464921081676309"
-     data-ad-slot="7080296704"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 
 <footer>
   <div class="footer-inner">
@@ -317,6 +311,15 @@
   let selectedFile = null;
   let totalPages = 0;
   let rotatedBytes = null;
+
+  // 공유 버튼: Web Share API + 파일 공유 지원 시에만 표시
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    if (navigator.canShare({ files: [testFile] })) {
+      shareBtn.style.display = 'inline-flex';
+    }
+  }
 
   // 라디오 버튼 시각적 선택 효과
   document.querySelectorAll('input[name="rotation"]').forEach(radio => {
@@ -472,6 +475,16 @@
     a.download = selectedFile.name.replace('.pdf', '_rotated.pdf');
     a.click();
     URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (!rotatedBytes) return;
+    const filename = selectedFile ? selectedFile.name.replace('.pdf', '_rotated.pdf') : 'rotated.pdf';
+    const blob = new Blob([rotatedBytes], { type: 'application/pdf' });
+    const file = new File([blob], filename, { type: 'application/pdf' });
+    try {
+      await navigator.share({ files: [file], title: filename + ' — WooaPDF', text: 'WooaPDF를 통해 변환한 파일입니다.\nhttps://pdfkit.wooahouse.com/rotate-pdf.html' });
+    } catch (e) { if (e.name !== 'AbortError') alert('공유에 실패했습니다. 다운로드 후 직접 공유해주세요.'); }
   });
 
   function parsePageList(input, total) {

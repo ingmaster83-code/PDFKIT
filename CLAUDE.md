@@ -49,6 +49,15 @@ PDFKIT/
 - 다운로드 버튼은 반드시 `id="downloadBtn"` 사용 (PWA 배너 트리거)
 - 파일은 서버에 저장되지 않는다는 문구 유지 (신뢰도)
 
+## 영문화 규칙 ⚠️ 필수
+- **새 도구 페이지 생성 시 영문 페이지도 반드시 함께 생성할 것**
+- 영문 페이지 생성 방법:
+  1. `build_en.py`의 `PAGE_META` 딕셔너리에 새 페이지 번역 항목 추가
+  2. `python build_en.py` 실행 → `en/` 폴더에 자동 생성
+- PAGE_META 항목 필수 필드: `title`, `desc`, `kw`, `og_title`, `og_desc`, `app_name`, `faq`(3개), `h1`, `tool_desc`, `breadcrumb`, `cross_banner_text`, `cross_banner_link_text`, `cross_banner_href`
+- 영문 페이지는 `en/[파일명].html`로 생성됨 (예: `en/compress-pdf.html`)
+- CSS/JS/manifest 경로는 build_en.py가 `../`로 자동 변환함
+
 ## SEO 방향
 - "무료" 키워드 강조 (타이틀, 설명, 카드 뱃지)
 - 각 툴카드에 녹색 "무료" 뱃지 (.free-badge) 적용 중

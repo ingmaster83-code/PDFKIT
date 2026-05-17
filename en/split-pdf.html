@@ -10,6 +10,8 @@
   gtag('config', 'G-9ZGENFSXWC');
 </script>
   <meta charset="UTF-8">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Split PDF Free Online – Split PDF by Page | WooaPDF</title>
   <meta name="description" content="Split a PDF into individual pages or custom page ranges for free. No signup required. Files processed entirely in your browser.">
@@ -23,6 +25,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pdfkit.wooahouse.com/en/split-pdf.html">
   <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#FF4444">
@@ -122,21 +125,15 @@
     <a href="https://wooaaudio.wooahouse.com/" target="_blank" rel="noopener">🎵 WooaAudio</a>
     <a href="https://wooaviewer.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaViewer</a>
     <a href="https://wooadev.wooahouse.com/" target="_blank" rel="noopener">🛠️ WooaDev</a>
+    <a href="https://ocrkit.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaOCR</a>
   </div>
 </div>
 
 <div class="mobile-top-ad">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6464921081676309"
-     data-ad-slot="7080296704"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<div class="page-with-sidebar">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="page-with-sidebar">
 <main class="tool-page">
-
   <div class="breadcrumb">
     <a href="index.html">🏠 Home</a>
     <span>›</span>
@@ -240,7 +237,10 @@
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<button class="btn-download" id="downloadBtn">⬇️ Download ZIP</button>
+<div class="download-share-group">
+  <button class="btn-download" id="downloadBtn">⬇️ Download ZIP</button>
+  <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
+</div>
     <div id="singleDownload" style="margin-top:12px; display:none">
       <button class="btn-download" id="singleDownloadBtn" style="background:#3B82F6;">⬇️ Download PDF</button>
     </div>
@@ -265,9 +265,9 @@
   </section>
 
 </main>
+
 <aside class="tool-sidebar">
-  <div class="ad-card">
-    <ins class="adsbygoogle"
+  <div class="ad-card">    <ins class="adsbygoogle"
          style="display:block;width:100%;min-height:250px"
          data-ad-client="ca-pub-6464921081676309"
          data-ad-slot="1419180025"
@@ -275,18 +275,12 @@
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  <div class="ad-card" style="margin-top:16px;overflow:hidden;">    
+  </div>
 </aside>
 </div>
 
-<div style="text-align:center;margin:32px auto 0;max-width:728px;padding:0 8px">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6464921081676309"
-     data-ad-slot="7080296704"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 
 <footer>
   <div class="footer-inner">
@@ -308,6 +302,15 @@
   let selectedFile = null;
   let totalPages = 0;
   let splitResults = []; // [{bytes, filename}]
+
+  // 공유 버튼: Web Share API + 파일 공유 지원 시에만 표시
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.zip', { type: 'application/zip' });
+    if (navigator.canShare({ files: [testFile] })) {
+      shareBtn.style.display = 'inline-flex';
+    }
+  }
 
   const dropZone = document.getElementById('dropZone');
 
@@ -488,6 +491,23 @@
 
     btn.textContent = '⬇️ Download ZIP';
     btn.disabled = false;
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (splitResults.length === 0) return;
+    const btn = document.getElementById('shareBtn');
+    btn.disabled = true;
+    btn.textContent = '📦 공유 준비 중...';
+    const zip = new JSZip();
+    splitResults.forEach(r => zip.file(r.filename, r.bytes));
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const zipName = selectedFile.name.replace('.pdf', '') + '_split.zip';
+    const file = new File([blob], zipName, { type: 'application/zip' });
+    try {
+      await navigator.share({ files: [file], title: zipName + ' — WooaPDF', text: 'WooaPDF를 통해 변환한 파일입니다.\nhttps://pdfkit.wooahouse.com/split-pdf.html' });
+    } catch (e) { if (e.name !== 'AbortError') alert('공유에 실패했습니다. 다운로드 후 직접 공유해주세요.'); }
+    btn.disabled = false;
+    btn.textContent = '📤 공유하기';
   });
 
   document.getElementById('singleDownloadBtn').addEventListener('click', () => {
