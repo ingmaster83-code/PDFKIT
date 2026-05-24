@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 홀짝 페이지 분리 무료 — 홀수/짝수 페이지 추출 온라인 | WooaPDF</title>
+  <meta name="description" content="PDF에서 홀수 페이지 또는 짝수 페이지만 추출! 양면 인쇄 스캔 정리에 최적. 완전 무료 온라인 PDF 홀짝 분리 도구.">
+  <meta name="keywords" content="PDF홀수페이지,PDF짝수페이지,PDF홀짝분리,PDF페이지추출,홀수페이지PDF,짝수페이지PDF,양면인쇄PDF,PDF분리무료">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/pdf-odd-even.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-odd-even.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-odd-even.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-odd-even.html">
+  <meta property="og:title" content="PDF 홀짝 페이지 분리 무료 | WooaPDF">
+  <meta property="og:description" content="PDF 홀수/짝수 페이지만 분리 추출! 양면 인쇄 정리에 완벽. 완전 무료.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/pdf-odd-even.html">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 홀짝 페이지 분리",
+  "url": "https://pdfkit.wooahouse.com/pdf-odd-even.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {"@type": "Offer","price": "0","priceCurrency": "KRW"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"홀짝 페이지 분리는 어디에 유용한가요?","acceptedAnswer":{"@type":"Answer","text":"양면 인쇄기가 없을 때 홀수/짝수 페이지를 나누어 인쇄하거나, 스캐너로 양면을 따로 스캔한 파일을 정리할 때 유용합니다."}},
+    {"@type":"Question","name":"원본 PDF는 보존되나요?","acceptedAnswer":{"@type":"Answer","text":"네, 원본 파일은 그대로 유지되며 새로운 PDF 파일이 생성되어 다운로드됩니다."}},
+    {"@type":"Question","name":"홀수·짝수 두 파일을 동시에 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"'홀수 + 짝수 모두' 옵션 선택 시 두 파일을 순서대로 다운로드할 수 있습니다."}}
+  ]
+}
+</script>
+  <style>
+    .mode-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 600px) { .mode-cards { grid-template-columns: 1fr; } }
+    .mode-card { border: 2px solid #E5E7EB; border-radius: 10px; padding: 16px 12px; cursor: pointer; text-align: center; transition: border-color 0.15s, background 0.15s; }
+    .mode-card:hover { border-color: #FF4444; }
+    .mode-card.selected { border-color: #FF4444; background: #FFF0F0; }
+    .mode-card input { display: none; }
+    .mode-icon { font-size: 2rem; margin-bottom: 8px; }
+    .mode-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+    .mode-desc { font-size: 0.75rem; color: #6B7280; }
+    .page-info { background: #F9FAFB; border-radius: 8px; padding: 12px 16px; font-size: 0.85rem; color: #374151; margin-top: 12px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="jpg-to-pdf.html">이미지→PDF</a>
+      <a href="merge-pdf.html">PDF 병합</a>
+      <a href="split-pdf.html">PDF 분할</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+  </div>
+</header>
+
+<div class="our-sites-bar"><span class="our-sites-label">WooaHouse Services</span><div class="our-sites-links"><a href="https://wooahouse.com/" target="_blank" rel="noopener">🔗 WooaHouse</a><a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener" class="active">📄 WooaPDF</a><a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ WooaImage</a><a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 WooaColor</a><a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ WooaText</a><a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 WooaQR</a><a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 WooaCalc</a><a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 WooaFont</a><a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 WooaMac</a><a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ WooaPC</a><a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 WooaVS</a><a href="https://wooaaudio.wooahouse.com/" target="_blank" rel="noopener">🎵 WooaAudio</a><a href="https://wooaviewer.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaViewer</a><a href="https://wooadev.wooahouse.com/" target="_blank" rel="noopener">🛠️ WooaDev</a><a href="https://wooaocr.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaOCR</a><a href="https://wooasheet.wooahouse.com/" target="_blank" rel="noopener">📊 WooaSheet</a><a href="https://wooaseo.wooahouse.com/" target="_blank" rel="noopener">🔎 WooaSEO</a></div></div>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="page-with-sidebar">
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF 홀짝 페이지 분리</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">📑</span>
+    <h1>PDF 홀짝 페이지 분리 — 홀수/짝수 페이지 추출</h1>
+    <p>PDF에서 홀수 또는 짝수 페이지만 분리해 새 파일로 저장합니다. 양면 인쇄에 최적!</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>홀수/짝수 페이지를 분리할 PDF 파일을 업로드하세요</p>
+    <label for="fileInput" class="btn-select">PDF 파일 선택</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+    <div class="page-info" id="pageInfo"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">추출 방식 선택</div>
+    <div class="mode-cards">
+      <label class="mode-card selected" id="card-odd">
+        <input type="radio" name="mode" value="odd" checked>
+        <div class="mode-icon">①③⑤</div>
+        <div class="mode-title">홀수 페이지만</div>
+        <div class="mode-desc">1, 3, 5, 7... 페이지만<br>새 PDF로 저장</div>
+      </label>
+      <label class="mode-card" id="card-even">
+        <input type="radio" name="mode" value="even">
+        <div class="mode-icon">②④⑥</div>
+        <div class="mode-title">짝수 페이지만</div>
+        <div class="mode-desc">2, 4, 6, 8... 페이지만<br>새 PDF로 저장</div>
+      </label>
+      <label class="mode-card" id="card-both">
+        <input type="radio" name="mode" value="both">
+        <div class="mode-icon">①②③</div>
+        <div class="mode-title">홀수 + 짝수 모두</div>
+        <div class="mode-desc">홀수·짝수 각각 분리해<br>두 파일로 저장</div>
+      </label>
+    </div>
+    <button class="btn-convert" id="extractBtn" style="margin-top:16px;">📑 페이지 분리 시작</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap" style="display:none">
+    <div class="progress-label">
+      <span id="progressText">처리 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel" style="display:none">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">분리 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="1419180025" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="download-share-group" id="downloadGroup"></div>
+  </div>
+
+  <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+    <span style="font-size:0.95rem;color:#444;">PDF를 특정 페이지 범위로 나누고 싶으신가요?</span>
+    <a href="split-pdf.html" style="background:#4F6EF7;color:#fff;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;white-space:nowrap;">✂️ PDF 분할 도구 →</a>
+  </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 홀짝 페이지 분리는 어디에 유용한가요?</h3>
+        <p style="color:#555;margin:0;">양면 인쇄기가 없을 때 홀수/짝수 페이지를 나누어 인쇄하거나, 스캐너로 양면을 따로 스캔한 파일을 정리할 때 유용합니다.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 원본 PDF는 보존되나요?</h3>
+        <p style="color:#555;margin:0;">네, 원본 파일은 그대로 유지되며 새로운 PDF 파일이 생성되어 다운로드됩니다.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 홀수·짝수 두 파일을 동시에 받을 수 있나요?</h3>
+        <p style="color:#555;margin:0;">'홀수 + 짝수 모두' 옵션 선택 시 두 파일을 순서대로 다운로드할 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:250px"
+         data-ad-client="ca-pub-6464921081676309"
+         data-ad-slot="1419180025"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="ad-card" style="margin-top:16px;overflow:hidden;">
+    <script src="https://ads-partners.coupang.com/g.js"></script>
+    <script>
+      new PartnersCoupang.G({"id":974224,"trackingCode":"AF5600192","subId":null,"template":"carousel","width":"300","height":"250"});
+    </script>
+  </div>
+</aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2026 WooaPDF. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+    <p class="coupang-notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="js/pwa-install.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let totalPages = 0;
+
+  // Mode card selection
+  document.querySelectorAll('input[name="mode"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+      radio.closest('.mode-card').classList.add('selected');
+    });
+  });
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0]; if (f) loadFile(f);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError(); selectedFile = file;
+    document.getElementById('resultPanel').style.display = 'none';
+    try {
+      const buf = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+      totalPages = pdf.numPages;
+      const oddCount = Math.ceil(totalPages / 2);
+      const evenCount = Math.floor(totalPages / 2);
+      document.getElementById('pageInfo').innerHTML =
+        `📄 총 <strong>${totalPages}</strong>페이지 · 홀수 <strong>${oddCount}</strong>페이지 · 짝수 <strong>${evenCount}</strong>페이지`;
+      document.getElementById('fileInfo').innerHTML = `
+        <div class="file-item">
+          <span class="file-item-icon">📄</span>
+          <div class="file-item-info">
+            <div class="file-item-name">${file.name}</div>
+            <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+          </div>
+          <button class="file-item-remove" onclick="clearFile()">✕</button>
+        </div>`;
+      document.getElementById('fileInfoPanel').style.display = 'block';
+      document.getElementById('optionsPanel').style.display = 'block';
+    } catch(e) { showError('PDF를 읽을 수 없습니다: ' + e.message); }
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  async function extractPages(pdfDoc, pages) {
+    const { PDFDocument } = PDFLib;
+    const newDoc = await PDFDocument.create();
+    const srcDoc = await PDFDocument.load(await selectedFile.arrayBuffer());
+    const copied = await newDoc.copyPages(srcDoc, pages);
+    copied.forEach(p => newDoc.addPage(p));
+    return await newDoc.save();
+  }
+
+  document.getElementById('extractBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const mode = document.querySelector('input[name="mode"]:checked').value;
+    const btn = document.getElementById('extractBtn');
+    btn.disabled = true; btn.textContent = '⏳ 처리 중...';
+    hideError();
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const oddPages = [], evenPages = [];
+      for (let i = 1; i <= totalPages; i++) {
+        if (i % 2 === 1) oddPages.push(i - 1);
+        else evenPages.push(i - 1);
+      }
+
+      const baseName = selectedFile.name.replace(/\.pdf$/i, '');
+      const results = [];
+
+      if (mode === 'odd' || mode === 'both') {
+        setProgress(30, '홀수 페이지 추출 중...');
+        const bytes = await extractPages(null, oddPages);
+        results.push({ bytes, name: baseName + '_홀수.pdf', label: `홀수 (${oddPages.length}페이지)` });
+      }
+      if (mode === 'even' || mode === 'both') {
+        setProgress(70, '짝수 페이지 추출 중...');
+        if (evenPages.length === 0) { showError('PDF의 총 페이지가 1페이지라 짝수 페이지가 없습니다.'); }
+        else {
+          const bytes = await extractPages(null, evenPages);
+          results.push({ bytes, name: baseName + '_짝수.pdf', label: `짝수 (${evenPages.length}페이지)` });
+        }
+      }
+
+      setProgress(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      if (results.length > 0) {
+        document.getElementById('resultSubtitle').textContent = `${results.map(r => r.label).join(', ')} 페이지 분리 완료`;
+        const dg = document.getElementById('downloadGroup');
+        dg.innerHTML = '';
+        results.forEach((r, idx) => {
+          const btn2 = document.createElement('button');
+          btn2.className = 'btn-download';
+          btn2.id = idx === 0 ? 'downloadBtn' : 'downloadBtn2';
+          btn2.textContent = `⬇️ ${r.label} 다운로드`;
+          btn2.style.marginTop = '12px';
+          btn2.addEventListener('click', () => {
+            const blob = new Blob([r.bytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = r.name; a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+          });
+          dg.appendChild(btn2);
+        });
+        document.getElementById('resultPanel').style.display = 'block';
+      }
+    } catch(e) { showError('처리 중 오류: ' + e.message); document.getElementById('progressWrap').style.display = 'none'; }
+    btn.disabled = false; btn.textContent = '📑 페이지 분리 시작';
+  });
+
+  function setProgress(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = Math.round(pct) + '%';
+  }
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+    return (bytes/1024/1024).toFixed(2) + ' MB';
+  }
+  function showError(msg) { const e = document.getElementById('errorMsg'); e.textContent = msg; e.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+</script>
+</body>
+</html>

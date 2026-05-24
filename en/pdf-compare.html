@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Comparison Tool Free Online – Compare Two PDF Files | WooaPDF</title>
+  <meta name="description" content="Compare two PDF files and highlight added or deleted text. Side-by-side diff view with color coding. Free, browser-based, no upload.">
+  <meta name="keywords" content="PDF compare, compare PDF files, PDF diff, PDF text comparison, compare two PDFs online free, PDF difference checker">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/en/pdf-compare.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-compare.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-compare.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-compare.html">
+  <meta property="og:title" content="PDF Comparison Tool – Free Online | WooaPDF">
+  <meta property="og:description" content="Compare two PDFs and see added/deleted text highlighted in color. Free, no signup, no upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/en/pdf-compare.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Comparison Tool",
+  "url": "https://pdfkit.wooahouse.com/en/pdf-compare.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does the PDF comparison work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Text is extracted from each PDF, then compared line by line. Added text is highlighted in green, deleted text in red."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I compare scanned image PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Scanned PDFs without a text layer cannot be compared. This tool works best with text-based PDFs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my files uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All processing happens locally in your browser. Nothing is sent to any server."
+      }
+    }
+  ]
+}
+</script>
+  <style>
+    .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .upload-grid { grid-template-columns: 1fr; } }
+    .upload-box { border: 2px dashed #E5E7EB; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: #FAFAFA; }
+    .upload-box:hover, .upload-box.drag-over { border-color: #FF4444; background: #FFF5F5; }
+    .upload-box.has-file { border-color: #22C55E; background: #F0FDF4; }
+    .upload-box-label { font-size: 0.85rem; font-weight: 700; color: #374151; margin-bottom: 8px; }
+    .upload-box-icon { font-size: 2rem; margin-bottom: 8px; }
+    .upload-box-filename { font-size: 0.75rem; color: #22C55E; font-weight: 600; margin-top: 6px; word-break: break-all; }
+    .compare-btn-wrap { text-align: center; margin: 20px 0; }
+    .diff-legend { display: flex; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+    .diff-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+    .diff-view { background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; overflow: hidden; }
+    .diff-header { display: grid; grid-template-columns: 1fr 1fr; background: #F3F4F6; border-bottom: 1px solid #E5E7EB; }
+    .diff-header-cell { padding: 10px 14px; font-size: 0.82rem; font-weight: 700; color: #6B7280; }
+    .diff-header-cell:first-child { border-right: 1px solid #E5E7EB; }
+    .diff-body { display: grid; grid-template-columns: 1fr 1fr; max-height: 600px; overflow-y: auto; }
+    .diff-col { padding: 10px 14px; font-size: 0.8rem; line-height: 1.7; font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-word; }
+    .diff-col:first-child { border-right: 1px solid #E5E7EB; }
+    .diff-add { background: #DCFCE7; color: #166534; }
+    .diff-del { background: #FEE2E2; color: #991B1B; }
+    .diff-change { background: #FEF9C3; color: #713F12; }
+    .diff-same { color: #374151; }
+    .diff-line { display: block; padding: 1px 4px; border-radius: 2px; margin: 1px 0; }
+    .stats-bar { display: flex; gap: 16px; padding: 12px 16px; background: #F9FAFB; border-top: 1px solid #E5E7EB; flex-wrap: wrap; }
+    .stat-item { font-size: 0.8rem; }
+    .stat-add { color: #16A34A; font-weight: 700; }
+    .stat-del { color: #DC2626; font-weight: 700; }
+    .stat-same { color: #6B7280; }
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+    .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+    .lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+    .lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→Image</a>
+      <a href="jpg-to-pdf.html">Image→PDF</a>
+      <a href="merge-pdf.html">Merge PDF</a>
+      <a href="split-pdf.html">Split PDF</a>
+      <a href="compress-pdf.html">Compress PDF</a>
+      <a href="index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../pdf-compare.html">KO</a>
+        <span>|</span>
+        <a href="pdf-compare.html" class="active">EN</a>
+      </div>
+      <a href="../about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<div class="our-sites-bar"><span class="our-sites-label">WooaHouse Services</span><div class="our-sites-links"><a href="https://wooahouse.com/" target="_blank" rel="noopener">🔗 WooaHouse</a><a href="https://pdfkit.wooahouse.com/en/" target="_blank" rel="noopener" class="active">📄 WooaPDF</a><a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ WooaImage</a><a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 WooaColor</a><a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ WooaText</a><a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 WooaQR</a><a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 WooaCalc</a><a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 WooaFont</a><a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 WooaMac</a><a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ WooaPC</a><a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 WooaVS</a><a href="https://wooaaudio.wooahouse.com/" target="_blank" rel="noopener">🎵 WooaAudio</a><a href="https://wooaviewer.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaViewer</a><a href="https://wooadev.wooahouse.com/" target="_blank" rel="noopener">🛠️ WooaDev</a><a href="https://wooaocr.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaOCR</a><a href="https://wooasheet.wooahouse.com/" target="_blank" rel="noopener">📊 WooaSheet</a><a href="https://wooaseo.wooahouse.com/" target="_blank" rel="noopener">🔎 WooaSEO</a></div></div>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="page-with-sidebar">
+<main class="tool-page">
+
+  <div class="breadcrumb">
+    <a href="index.html">🏠 Home</a>
+    <span>›</span>
+    <span>PDF 비교기</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🔍</span>
+    <h1>PDF Comparison Tool – Compare Two PDFs Side by Side</h1>
+    <p>두 PDF 파일의 텍스트 내용을 비교해 추가·삭제된 부분을 색상으로 표시합니다.</p>
+  </div>
+
+  <div class="upload-grid">
+    <div>
+      <div class="upload-box-label">📄 원본 PDF (A)</div>
+      <div class="upload-box" id="dropA">
+        <div class="upload-box-icon">📂</div>
+        <div>PDF 파일을 끌어다 놓거나</div>
+        <label for="fileA" class="btn-select" style="margin-top:8px;display:inline-block;">Select File</label>
+        <input type="file" id="fileA" accept=".pdf,application/pdf" style="display:none">
+        <div class="upload-box-filename" id="nameA"></div>
+      </div>
+    </div>
+    <div>
+      <div class="upload-box-label">📄 비교 PDF (B)</div>
+      <div class="upload-box" id="dropB">
+        <div class="upload-box-icon">📂</div>
+        <div>PDF 파일을 끌어다 놓거나</div>
+        <label for="fileB" class="btn-select" style="margin-top:8px;display:inline-block;">Select File</label>
+        <input type="file" id="fileB" accept=".pdf,application/pdf" style="display:none">
+        <div class="upload-box-filename" id="nameB"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="compare-btn-wrap">
+    <button class="btn-convert" id="compareBtn" disabled>🔍 비교 시작</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap" style="display:none">
+    <div class="progress-label">
+      <span id="progressText">PDF 텍스트 추출 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div id="resultSection" style="display:none">
+    <div class="diff-legend">
+      <div class="diff-legend-item"><div class="legend-dot" style="background:#DCFCE7;border:1px solid #22C55E"></div><span>추가된 내용 (B에만 있음)</span></div>
+      <div class="diff-legend-item"><div class="legend-dot" style="background:#FEE2E2;border:1px solid #DC2626"></div><span>삭제된 내용 (A에만 있음)</span></div>
+      <div class="diff-legend-item"><div class="legend-dot" style="background:#F3F4F6;border:1px solid #D1D5DB"></div><span>동일한 내용</span></div>
+    </div>
+
+    <div class="diff-view">
+      <div class="diff-header">
+        <div class="diff-header-cell">📄 원본 (A)</div>
+        <div class="diff-header-cell">📄 비교 (B)</div>
+      </div>
+      <div class="diff-body">
+        <div class="diff-col" id="diffLeft"></div>
+        <div class="diff-col" id="diffRight"></div>
+      </div>
+      <div class="stats-bar">
+        <div class="stat-item">총 줄: <strong id="statTotal">0</strong></div>
+        <div class="stat-item stat-add">+ 추가: <strong id="statAdd">0</strong></div>
+        <div class="stat-item stat-del">– 삭제: <strong id="statDel">0</strong></div>
+        <div class="stat-item stat-same">= 동일: <strong id="statSame">0</strong></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="1419180025" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+    <span style="font-size:0.95rem;color:#444;">Want to compare images with a before/after slider?</span>
+    <a href="https://imagekit.wooahouse.com/image-compare.html" target="_blank" rel="noopener" style="background:#4F6EF7;color:#fff;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;white-space:nowrap;">🖼️ WooaImage Image Compare →</a>
+  </div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. How does the PDF comparison work?</h3>
+        <p style="color:#555;margin:0;">Text is extracted from each PDF, then compared line by line. Added text is highlighted in green, deleted text in red.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Can I compare scanned image PDFs?</h3>
+        <p style="color:#555;margin:0;">Scanned PDFs without a text layer cannot be compared. This tool works best with text-based PDFs.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Are my files uploaded to a server?</h3>
+        <p style="color:#555;margin:0;">No. All processing happens locally in your browser. Nothing is sent to any server.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:250px"
+         data-ad-client="ca-pub-6464921081676309"
+         data-ad-slot="1419180025"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="ad-card" style="margin-top:16px;overflow:hidden;">    
+  </div>
+</aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2026 WooaPDF. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../about.html">About</a>
+      </div>
+    </div>
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../js/pwa-install.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let fileA = null, fileB = null;
+
+  function setupDrop(dropId, inputId, fileVar, nameId) {
+    const drop = document.getElementById(dropId);
+    const input = document.getElementById(inputId);
+    drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('drag-over'); });
+    drop.addEventListener('dragleave', () => drop.classList.remove('drag-over'));
+    drop.addEventListener('drop', e => {
+      e.preventDefault(); drop.classList.remove('drag-over');
+      const f = e.dataTransfer.files[0];
+      if (f) setFile(f, dropId, nameId, fileVar === 'A');
+    });
+    drop.addEventListener('click', e => {
+      if (e.target.tagName === 'LABEL' || e.target.tagName === 'INPUT') return;
+      input.click();
+    });
+    input.addEventListener('change', e => {
+      if (e.target.files[0]) setFile(e.target.files[0], dropId, nameId, fileVar === 'A');
+    });
+  }
+
+  function setFile(file, dropId, nameId, isA) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('Only PDF files are supported.'); return;
+    }
+    hideError();
+    if (isA) fileA = file; else fileB = file;
+    document.getElementById(dropId).classList.add('has-file');
+    document.getElementById(nameId).textContent = '✓ ' + file.name;
+    updateBtn();
+  }
+
+  setupDrop('dropA', 'fileA', 'A', 'nameA');
+  setupDrop('dropB', 'fileB', 'B', 'nameB');
+
+  function updateBtn() {
+    document.getElementById('compareBtn').disabled = !(fileA && fileB);
+  }
+
+  async function extractText(file, onProgress) {
+    const buf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+    let lines = [];
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      const pageLines = [];
+      let lastY = null;
+      let currentLine = '';
+      for (const item of content.items) {
+        if (lastY !== null && Math.abs(item.transform[5] - lastY) > 2) {
+          if (currentLine.trim()) pageLines.push(currentLine.trim());
+          currentLine = item.str;
+        } else {
+          currentLine += item.str;
+        }
+        lastY = item.transform[5];
+      }
+      if (currentLine.trim()) pageLines.push(currentLine.trim());
+      lines = lines.concat(pageLines);
+      onProgress(i / pdf.numPages);
+    }
+    return lines;
+  }
+
+  // LCS-based diff
+  function diffLines(linesA, linesB) {
+    const m = linesA.length, n = linesB.length;
+    // Build LCS table
+    const dp = Array.from({length: m + 1}, () => new Int32Array(n + 1));
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        dp[i][j] = linesA[i-1] === linesB[j-1] ? dp[i-1][j-1] + 1 : Math.max(dp[i-1][j], dp[i][j-1]);
+      }
+    }
+    // Backtrack
+    const resultA = [], resultB = [];
+    let i = m, j = n;
+    while (i > 0 || j > 0) {
+      if (i > 0 && j > 0 && linesA[i-1] === linesB[j-1]) {
+        resultA.unshift({type:'same', text:linesA[i-1]});
+        resultB.unshift({type:'same', text:linesB[j-1]});
+        i--; j--;
+      } else if (j > 0 && (i === 0 || dp[i][j-1] >= dp[i-1][j])) {
+        resultA.unshift({type:'empty', text:''});
+        resultB.unshift({type:'add', text:linesB[j-1]});
+        j--;
+      } else {
+        resultA.unshift({type:'del', text:linesA[i-1]});
+        resultB.unshift({type:'empty', text:''});
+        i--;
+      }
+    }
+    return {left: resultA, right: resultB};
+  }
+
+  function renderDiff(diffA, diffB) {
+    const leftEl = document.getElementById('diffLeft');
+    const rightEl = document.getElementById('diffRight');
+    let addCount = 0, delCount = 0, sameCount = 0;
+
+    leftEl.innerHTML = diffA.map(d => {
+      if (d.type === 'del') { delCount++; return `<span class="diff-line diff-del">– ${escHtml(d.text)}</span>`; }
+      if (d.type === 'empty') return `<span class="diff-line" style="opacity:0">·</span>`;
+      sameCount++;
+      return `<span class="diff-line diff-same">&nbsp; ${escHtml(d.text)}</span>`;
+    }).join('');
+
+    rightEl.innerHTML = diffB.map(d => {
+      if (d.type === 'add') { addCount++; return `<span class="diff-line diff-add">+ ${escHtml(d.text)}</span>`; }
+      if (d.type === 'empty') return `<span class="diff-line" style="opacity:0">·</span>`;
+      return `<span class="diff-line diff-same">&nbsp; ${escHtml(d.text)}</span>`;
+    }).join('');
+
+    document.getElementById('statTotal').textContent = addCount + delCount + sameCount;
+    document.getElementById('statAdd').textContent = addCount;
+    document.getElementById('statDel').textContent = delCount;
+    document.getElementById('statSame').textContent = sameCount;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  document.getElementById('compareBtn').addEventListener('click', async () => {
+    hideError();
+    const btn = document.getElementById('compareBtn');
+    btn.disabled = true; btn.textContent = '⏳ 비교 중...';
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultSection').style.display = 'none';
+
+    try {
+      setProgress(10, 'PDF A 텍스트 추출 중...');
+      const linesA = await extractText(fileA, p => setProgress(10 + p * 35, 'PDF A 추출 중...'));
+      setProgress(50, 'PDF B 텍스트 추출 중...');
+      const linesB = await extractText(fileB, p => setProgress(50 + p * 35, 'PDF B 추출 중...'));
+      setProgress(90, '차이점 분석 중...');
+
+      // Limit to prevent browser freeze
+      const maxLines = 2000;
+      const la = linesA.slice(0, maxLines);
+      const lb = linesB.slice(0, maxLines);
+      const {left, right} = diffLines(la, lb);
+
+      renderDiff(left, right);
+      setProgress(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+      document.getElementById('resultSection').style.display = 'block';
+    } catch(e) {
+      showError('PDF 처리 중 오류가 발생했습니다: ' + e.message);
+    }
+    btn.disabled = false; btn.textContent = '🔍 비교 시작';
+    updateBtn();
+  });
+
+  function setProgress(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = Math.round(pct) + '%';
+  }
+
+  function showError(msg) { const e = document.getElementById('errorMsg'); e.textContent = msg; e.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+</script>
+</body>
+</html>
