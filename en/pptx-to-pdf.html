@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPTX to PDF Converter Free Online – Convert PowerPoint to PDF | WooaPDF</title>
+  <meta name="description" content="Convert PowerPoint PPTX files to PDF for free. Renders slides in your browser and exports as a multi-page PDF. No upload, no signup.">
+  <meta name="keywords" content="PPTX to PDF, PowerPoint to PDF, convert PPTX to PDF free, PPT to PDF online, presentation to PDF, browser PPTX converter">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/en/pptx-to-pdf.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pptx-to-pdf.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pptx-to-pdf.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pptx-to-pdf.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pptx-to-pdf.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pptx-to-pdf.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pptx-to-pdf.html">
+  <meta property="og:title" content="PPTX to PDF Converter – Free Online | WooaPDF">
+  <meta property="og:description" content="Convert PowerPoint presentations to PDF instantly. All slides rendered in your browser. Free, no signup, no upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/en/pptx-to-pdf.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+  <meta property="og:site_name" content="WooaPDF">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PPT PDF 변환 무료 무설치 — 파워포인트를 PDF로 | WooaPDF">
+  <meta name="twitter:description" content="파워포인트(.pptx) 파일을 PDF로 무료 변환. 슬라이드 레이아웃·이미지·텍스트 그대로 PDF로 저장. 설치 없이 브라우저에서 바로 사용합니다.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PPTX to PDF Converter",
+    "url": "https://pdfkit.wooahouse.com/en/pptx-to-pdf.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What PowerPoint file formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool supports .pptx files (PowerPoint 2007 and later). Legacy .ppt files are not supported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the layout and images be preserved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Slide backgrounds, images, and text are all rendered. Complex animations or embedded videos are not shown since this is a static export."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my files uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All processing happens locally in your browser. Your files are never sent to any server."
+      }
+    }
+  ]
+}
+</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* 슬라이드 미리보기 그리드 */
+    .slide-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .slide-preview-item {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      position: relative;
+    }
+    .slide-preview-item canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .slide-preview-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+    .convert-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 14px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+    }
+    .convert-options label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .convert-options select {
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      background: white;
+    }
+    .quality-notice {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+    /* 오프스크린 렌더링 영역 */
+    #renderStage {
+      position: fixed;
+      top: -9999px;
+      left: -9999px;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+    .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+    .lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+    .lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→Image</a>
+      <a href="jpg-to-pdf.html">Image→PDF</a>
+      <a href="merge-pdf.html">Merge PDF</a>
+      <a href="split-pdf.html">Split PDF</a>
+      <a href="compress-pdf.html">Compress PDF</a>
+      <a href="index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../pptx-to-pdf.html">KO</a>
+        <span>|</span>
+        <a href="pptx-to-pdf.html" class="active">EN</a>
+      </div>
+      <a href="../about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<script src="../js/wooa-sites-bar.js"></script>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 Home</a>
+    <span>›</span>
+    <span>PPT → PDF 변환</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">📊</span>
+    <h1>PPTX to PDF Converter – Free Online</h1>
+    <p>파워포인트(.pptx) 파일을 PDF로 변환합니다. 슬라이드 내 이미지·텍스트·배경이 PDF에 그대로 반영됩니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📊</span>
+    <h3>PPTX Drop your file here</h3>
+    <p>.pptx 형식을 지원합니다</p>
+    <label for="fileInput" class="btn-select">PPTX Select File</label>
+    <input type="file" id="fileInput" accept=".pptx" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title" id="fileInfoTitle">Selected Files</div>
+  </div>
+
+  <div id="optionsPanel" style="display:none">
+    <div class="convert-options">
+      <label>
+        🖼️ Image Quality
+        <select id="qualitySelect">
+          <option value="0.95">고화질 (느림)</option>
+          <option value="0.80" selected>표준 (권장)</option>
+          <option value="0.60">저용량 (빠름)</option>
+        </select>
+      </label>
+      <span class="quality-notice">슬라이드 수가 많으면 변환에 시간이 걸릴 수 있습니다</span>
+    </div>
+    <button class="btn-convert" id="convertBtn">📄 Convert to PDF</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap" style="display:none">
+    <div class="progress-label">
+      <span id="progressText">변환 준비 중...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- 슬라이드 미리보기 -->
+  <div id="previewSection" style="display:none">
+    <div style="font-size:0.85rem;font-weight:700;color:var(--text-mid);margin-bottom:8px;">슬라이드 미리보기</div>
+    <div class="slide-preview-grid" id="previewGrid"></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel" style="display:none">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">Done!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin:16px auto;max-width:728px;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="1419180025" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadBtn">⬇️ Download PDF</button>
+    </div>
+  </div>
+
+  <!-- 오프스크린 렌더링 스테이지 -->
+  <div id="renderStage"></div>
+
+  <div class="wooa-orig-anchor"></div>
+
+  <div class="tips-panel">
+    <h3>💡 Tips</h3>
+    <ul>
+      <li>슬라이드에 포함된 <strong>이미지·텍스트·배경색</strong>이 PDF에 그대로 반영됩니다.</li>
+      <li>파일 크기를 줄이려면 <strong>저용량 품질</strong>을, 선명한 출력이 필요하면 <strong>고화질</strong>을 선택하세요.</li>
+      <li>변환된 PDF의 용량을 더 줄이고 싶다면 <a href="compress-pdf.html" style="color:var(--primary)">PDF 압축 도구</a>를 함께 사용하세요.</li>
+    </ul>
+  </div>
+
+  <section class="faq-section">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
+    <details>
+      <summary>변환 시 슬라이드 디자인이 유지되나요?</summary>
+      <p>텍스트·이미지·배경색 등 주요 요소는 대부분 유지됩니다. 단, 복잡한 애니메이션이나 특수 폰트(시스템 미설치)는 일부 다르게 표시될 수 있습니다.</p>
+    </details>
+    <details>
+      <summary>변환 가능한 슬라이드 수 제한이 있나요?</summary>
+      <p>슬라이드 수 제한은 없습니다. 다만 슬라이드가 많을수록 변환 시간이 길어질 수 있으니 고화질보다는 표준 품질을 권장합니다.</p>
+    </details>
+    <details>
+      <summary>파일이 인터넷에 업로드되나요?</summary>
+      <p>아니요. 모든 변환은 브라우저 안에서만 처리되며 파일은 서버로 전송되지 않습니다. 완전히 안전합니다.</p>
+    </details>
+  </section>
+
+</main>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:250px"
+         data-ad-client="ca-pub-6464921081676309"
+         data-ad-slot="1419180025"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="ad-card" style="margin-top:16px;overflow:hidden;">    
+  </div>
+</aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2024 WooaPDF. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../about.html">About</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 라이브러리 -->
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+<script>
+// ── 상수 ──────────────────────────────────────────────────────────────────────
+const RENDER_W = 960;        // 렌더링 너비(px)
+const EMU_PER_PX = 914400 / 96; // 1px = 9525 EMU (96dpi 기준)
+
+// ── DOM ───────────────────────────────────────────────────────────────────────
+const dropZone      = document.getElementById('dropZone');
+const fileInput     = document.getElementById('fileInput');
+const fileInfoPanel = document.getElementById('fileInfoPanel');
+const fileInfoTitle = document.getElementById('fileInfoTitle');
+const optionsPanel  = document.getElementById('optionsPanel');
+const convertBtn    = document.getElementById('convertBtn');
+const errorMsg      = document.getElementById('errorMsg');
+const progressWrap  = document.getElementById('progressWrap');
+const progressText  = document.getElementById('progressText');
+const progressPct   = document.getElementById('progressPct');
+const progressFill  = document.getElementById('progressFill');
+const previewSection= document.getElementById('previewSection');
+const previewGrid   = document.getElementById('previewGrid');
+const resultPanel   = document.getElementById('resultPanel');
+const resultSubtitle= document.getElementById('resultSubtitle');
+const downloadBtn   = document.getElementById('downloadBtn');
+const renderStage   = document.getElementById('renderStage');
+const qualitySelect = document.getElementById('qualitySelect');
+
+let selectedFile = null;
+let pdfBlob = null;
+
+// ── 드래그&드롭 ──────────────────────────────────────────────────────────────
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+convertBtn.addEventListener('click', startConvert);
+downloadBtn.addEventListener('click', () => {
+  if (!pdfBlob) return;
+  const name = (selectedFile.name.replace(/\.pptx$/i, '') || 'presentation') + '.pdf';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(pdfBlob);
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+});
+
+// ── 파일 로드 ────────────────────────────────────────────────────────────────
+function showError(msg) { errorMsg.textContent = msg; errorMsg.style.display = 'block'; }
+function hideError()    { errorMsg.style.display = 'none'; }
+
+async function loadFile(file) {
+  if (!file.name.toLowerCase().endsWith('.pptx')) {
+    showError('.pptx 파일만 지원합니다.'); return;
+  }
+  hideError();
+  selectedFile = file;
+  resultPanel.style.display = 'none';
+  previewSection.style.display = 'none';
+  previewGrid.innerHTML = '';
+  pdfBlob = null;
+
+  fileInfoTitle.textContent = `📊 ${file.name}  ·  ${(file.size / 1024).toFixed(1)} KB`;
+  fileInfoPanel.style.display = 'block';
+  optionsPanel.style.display = 'block';
+  dropZone.style.display = 'none';
+}
+
+// ── 진행 표시 ────────────────────────────────────────────────────────────────
+function setProgress(pct, text) {
+  progressWrap.style.display = 'block';
+  progressText.textContent = text;
+  progressPct.textContent = pct + '%';
+  progressFill.style.width = pct + '%';
+}
+
+// ── 변환 메인 ────────────────────────────────────────────────────────────────
+async function startConvert() {
+  if (!selectedFile) return;
+  hideError();
+  convertBtn.disabled = true;
+  resultPanel.style.display = 'none';
+  previewSection.style.display = 'none';
+  previewGrid.innerHTML = '';
+  pdfBlob = null;
+
+  try {
+    setProgress(5, 'PPTX 파일 읽는 중...');
+    const zip = await JSZip.loadAsync(selectedFile);
+
+    // 슬라이드 크기 파싱
+    const { sldW, sldH } = await parsePresentation(zip);
+    const scale   = RENDER_W / sldW;
+    const renderH = Math.round(sldH * scale);
+
+    // 슬라이드 파일 목록 (정렬)
+    const slideEntries = Object.keys(zip.files)
+      .filter(k => /^ppt\/slides\/slide\d+\.xml$/.test(k))
+      .sort((a, b) => parseInt(a.match(/\d+/)) - parseInt(b.match(/\d+/)));
+
+    if (!slideEntries.length) { showError('슬라이드를 찾을 수 없습니다.'); return; }
+
+    // 미디어 전체 로드 (path → dataURL)
+    const mediaMap = {};
+    for (const [path, entry] of Object.entries(zip.files)) {
+      if (/^ppt\/media\//.test(path) && /\.(png|jpg|jpeg|gif|webp|bmp)$/i.test(path)) {
+        try {
+          const b64  = await entry.async('base64');
+          const ext  = path.split('.').pop().toLowerCase();
+          const mime = (ext === 'jpg' || ext === 'jpeg') ? 'image/jpeg' : `image/${ext}`;
+          mediaMap[path] = `data:${mime};base64,${b64}`;
+        } catch(_) {}
+      }
+    }
+
+    // jsPDF 초기화
+    const orient = RENDER_W >= renderH ? 'landscape' : 'portrait';
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: orient, unit: 'px', format: [RENDER_W, renderH], hotfixes: ['px_scaling'] });
+
+    const quality = parseFloat(qualitySelect.value);
+    const canvases = [];
+
+    for (let i = 0; i < slideEntries.length; i++) {
+      const pct = Math.round(5 + (i / slideEntries.length) * 85);
+      setProgress(pct, `슬라이드 ${i + 1} / ${slideEntries.length} 렌더링 중...`);
+
+      const slideNum = parseInt(slideEntries[i].match(/\d+/)[0]);
+      const xml      = await zip.files[slideEntries[i]].async('text');
+      const relsXml  = await loadRels(zip, slideNum);
+
+      // rels에서 rId → mediaPath 맵 생성
+      const rIdMap   = buildRIdMap(relsXml, mediaMap);
+
+      // 슬라이드 HTML 엘리먼트 생성
+      const el = buildSlideEl(xml, scale, RENDER_W, renderH, rIdMap);
+      renderStage.appendChild(el);
+
+      // html2canvas 캡처
+      const canvas = await html2canvas(el, {
+        width: RENDER_W,
+        height: renderH,
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        logging: false,
+      });
+      renderStage.removeChild(el);
+      canvases.push(canvas);
+
+      // jsPDF에 추가
+      if (i > 0) pdf.addPage([RENDER_W, renderH], orient);
+      pdf.addImage(canvas.toDataURL('image/jpeg', quality), 'JPEG', 0, 0, RENDER_W, renderH);
+    }
+
+    setProgress(95, 'PDF 생성 중...');
+    const pdfOutput = pdf.output('blob');
+    pdfBlob = pdfOutput;
+
+    // 미리보기 표시
+    previewSection.style.display = 'block';
+    canvases.forEach((c, i) => {
+      const item = document.createElement('div');
+      item.className = 'slide-preview-item';
+      const badge = document.createElement('div');
+      badge.className = 'slide-preview-badge';
+      badge.textContent = i + 1;
+      const thumb = document.createElement('canvas');
+      thumb.width  = c.width;
+      thumb.height = c.height;
+      thumb.getContext('2d').drawImage(c, 0, 0);
+      item.appendChild(thumb);
+      item.appendChild(badge);
+      previewGrid.appendChild(item);
+    });
+
+    setProgress(100, '완료!');
+    resultSubtitle.textContent = `${slideEntries.length}장의 슬라이드 → ${(pdfBlob.size / 1024).toFixed(1)} KB PDF`;
+    resultPanel.style.display = 'block';
+    progressWrap.style.display = 'none';
+
+  } catch (e) {
+    showError('변환 오류: ' + e.message);
+    progressWrap.style.display = 'none';
+  } finally {
+    convertBtn.disabled = false;
+  }
+}
+
+// ── presentation.xml 파싱 ─────────────────────────────────────────────────────
+async function parsePresentation(zip) {
+  const f = zip.file('ppt/presentation.xml');
+  if (!f) return { sldW: 9144000, sldH: 6858000 };
+  const xml = await f.async('text');
+  const doc  = new DOMParser().parseFromString(xml, 'text/xml');
+  const sz   = doc.querySelector('sldSz');
+  return sz
+    ? { sldW: parseInt(sz.getAttribute('cx')), sldH: parseInt(sz.getAttribute('cy')) }
+    : { sldW: 9144000, sldH: 6858000 };
+}
+
+// ── .rels 파일 로드 ──────────────────────────────────────────────────────────
+async function loadRels(zip, slideNum) {
+  const f = zip.file(`ppt/slides/_rels/slide${slideNum}.xml.rels`);
+  return f ? await f.async('text') : null;
+}
+
+// ── rId → dataURL 매핑 ───────────────────────────────────────────────────────
+function buildRIdMap(relsXml, mediaMap) {
+  const map = {};
+  if (!relsXml) return map;
+  const doc  = new DOMParser().parseFromString(relsXml, 'text/xml');
+  doc.querySelectorAll('Relationship').forEach(rel => {
+    const type   = rel.getAttribute('Type') || '';
+    const target = rel.getAttribute('Target') || '';
+    const rId    = rel.getAttribute('Id');
+    if (!type.includes('/image')) return;
+    // target은 ../media/image1.png 형태
+    const absPath = target.startsWith('../')
+      ? 'ppt/' + target.slice(3)
+      : 'ppt/slides/' + target;
+    if (mediaMap[absPath]) map[rId] = mediaMap[absPath];
+  });
+  return map;
+}
+
+// ── 슬라이드 엘리먼트 생성 ───────────────────────────────────────────────────
+function buildSlideEl(xml, scale, W, H, rIdMap) {
+  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+
+  const el = document.createElement('div');
+  el.style.cssText = `position:absolute;width:${W}px;height:${H}px;overflow:hidden;background:#fff;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;`;
+
+  // ── 배경 ──
+  const bgPr = doc.querySelector('bg bgPr');
+  if (bgPr) {
+    const color = getSolidColor(bgPr);
+    if (color) el.style.background = color;
+
+    // 배경 이미지
+    const blip = bgPr.querySelector('blip');
+    if (blip) {
+      const rId = blip.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships', 'embed')
+                || blip.getAttribute('r:embed');
+      if (rId && rIdMap[rId]) {
+        el.style.backgroundImage  = `url('${rIdMap[rId]}')`;
+        el.style.backgroundSize   = 'cover';
+        el.style.backgroundRepeat = 'no-repeat';
+      }
+    }
+
+    // 그라디언트 (단순 처리)
+    const gradFill = bgPr.querySelector('gradFill');
+    if (gradFill) {
+      const stops = gradFill.querySelectorAll('gs');
+      if (stops.length >= 2) {
+        const c1 = getSolidColor(stops[0]) || '#fff';
+        const c2 = getSolidColor(stops[stops.length - 1]) || '#f0f0f0';
+        el.style.background = `linear-gradient(to bottom, ${c1}, ${c2})`;
+      }
+    }
+  }
+
+  // ── spTree 순회 ──
+  const spTree = doc.querySelector('spTree');
+  if (spTree) {
+    for (const child of spTree.children) {
+      const tag = child.localName;
+      if (tag === 'sp')   { const c = buildShape(child, scale, rIdMap); if (c) el.appendChild(c); }
+      else if (tag === 'pic')  { const c = buildPic(child, scale, rIdMap);   if (c) el.appendChild(c); }
+      else if (tag === 'grpSp'){ buildGrpSp(child, scale, rIdMap, el); }
+    }
+  }
+  return el;
+}
+
+// ── 그룹 도형 재귀 처리 ──────────────────────────────────────────────────────
+function buildGrpSp(grpEl, scale, rIdMap, parent) {
+  for (const child of grpEl.children) {
+    const tag = child.localName;
+    if (tag === 'sp')    { const c = buildShape(child, scale, rIdMap); if (c) parent.appendChild(c); }
+    else if (tag === 'pic')   { const c = buildPic(child, scale, rIdMap);   if (c) parent.appendChild(c); }
+    else if (tag === 'grpSp') { buildGrpSp(child, scale, rIdMap, parent); }
+  }
+}
+
+// ── 텍스트/도형 ──────────────────────────────────────────────────────────────
+function buildShape(sp, scale, rIdMap) {
+  const pos = getXfrm(sp, scale);
+  if (!pos) return null;
+
+  const div = document.createElement('div');
+  div.style.cssText = `position:absolute;left:${pos.x}px;top:${pos.y}px;width:${pos.w}px;height:${pos.h}px;overflow:hidden;box-sizing:border-box;`;
+
+  // 도형 채우기
+  const spPr = sp.querySelector('spPr');
+  if (spPr) {
+    const fill = getShapeFill(spPr, rIdMap);
+    if (fill) Object.assign(div.style, fill);
+  }
+
+  // 텍스트 바디
+  const txBody = sp.querySelector('txBody');
+  if (txBody) {
+    const bodyPr = txBody.querySelector('bodyPr');
+    const pad    = getBodyPadding(bodyPr, scale);
+    div.style.padding = pad;
+
+    // 세로 정렬
+    const anchor = bodyPr ? bodyPr.getAttribute('anchor') : null;
+    if (anchor === 'ctr' || anchor === 'b') {
+      div.style.display        = 'flex';
+      div.style.flexDirection  = 'column';
+      div.style.justifyContent = anchor === 'ctr' ? 'center' : 'flex-end';
+    }
+
+    const paras = txBody.querySelectorAll(':scope > p, :scope > a\\:p');
+    paras.forEach(para => {
+      const pEl = buildParagraph(para, scale);
+      div.appendChild(pEl);
+    });
+  }
+  return div;
+}
+
+// ── 이미지 도형 ──────────────────────────────────────────────────────────────
+function buildPic(pic, scale, rIdMap) {
+  const pos = getXfrm(pic, scale);
+  if (!pos) return null;
+
+  const blip = pic.querySelector('blip');
+  if (!blip) return null;
+  const rId = blip.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships', 'embed')
+            || blip.getAttribute('r:embed');
+  if (!rId || !rIdMap[rId]) return null;
+
+  const div = document.createElement('div');
+  div.style.cssText = `position:absolute;left:${pos.x}px;top:${pos.y}px;width:${pos.w}px;height:${pos.h}px;overflow:hidden;`;
+
+  const img = document.createElement('img');
+  img.src              = rIdMap[rId];
+  img.style.width      = '100%';
+  img.style.height     = '100%';
+  img.style.objectFit  = 'fill';
+  img.crossOrigin      = 'anonymous';
+  div.appendChild(img);
+  return div;
+}
+
+// ── 단락 렌더링 ──────────────────────────────────────────────────────────────
+function buildParagraph(para, scale) {
+  const pEl = document.createElement('p');
+  pEl.style.cssText = 'margin:0;padding:0;line-height:1.25;';
+
+  const pPr  = para.querySelector(':scope > pPr, :scope > a\\:pPr');
+  const algn = pPr ? pPr.getAttribute('algn') : null;
+  if (algn === 'ctr')  pEl.style.textAlign = 'center';
+  if (algn === 'r')    pEl.style.textAlign = 'right';
+  if (algn === 'just') pEl.style.textAlign = 'justify';
+
+  // 줄간격
+  const lnSpc = pPr ? pPr.querySelector('lnSpc spcPct') : null;
+  if (lnSpc) {
+    const val = parseInt(lnSpc.getAttribute('val'));
+    if (!isNaN(val)) pEl.style.lineHeight = (val / 100000).toFixed(2);
+  }
+
+  // 단락 기본 run 스타일
+  const defRPr = pPr ? pPr.querySelector('defRPr, a\\:defRPr') : null;
+
+  const runs = Array.from(para.children).filter(c =>
+    c.localName === 'r' || c.localName === 'a:r'
+  );
+
+  if (!runs.length) {
+    pEl.innerHTML = ' '; // 빈 단락 높이 유지
+  }
+
+  runs.forEach(run => {
+    const rPr   = run.querySelector(':scope > rPr, :scope > a\\:rPr') || defRPr;
+    const tNode = run.querySelector(':scope > t, :scope > a\\:t');
+    if (!tNode) return;
+
+    const span = document.createElement('span');
+    span.style.whiteSpace = 'pre-wrap';
+    applyRunStyle(span, rPr, scale);
+    span.textContent = tNode.textContent;
+    pEl.appendChild(span);
+  });
+
+  return pEl;
+}
+
+// ── Run 스타일 적용 ───────────────────────────────────────────────────────────
+function applyRunStyle(el, rPr, scale) {
+  if (!rPr) { el.style.fontSize = `${14 * scale * 1.33}px`; return; }
+
+  const sz = rPr.getAttribute('sz');
+  const szPts = sz ? parseInt(sz) / 100 : 18;           // sz는 1/100pt 단위
+  el.style.fontSize = `${szPts * scale * 1.33}px`;      // pt → px 근사
+
+  if (rPr.getAttribute('b')  === '1') el.style.fontWeight    = 'bold';
+  if (rPr.getAttribute('i')  === '1') el.style.fontStyle     = 'italic';
+  if (rPr.getAttribute('u') && rPr.getAttribute('u') !== 'none') el.style.textDecoration = 'underline';
+  if (rPr.getAttribute('strike') === 'sngStrike') el.style.textDecoration = 'line-through';
+
+  const solidFill = rPr.querySelector('solidFill, a\\:solidFill');
+  if (solidFill) {
+    const color = getSolidColor(solidFill);
+    if (color) el.style.color = color;
+  } else {
+    el.style.color = '#000000';
+  }
+}
+
+// ── xfrm 위치/크기 ───────────────────────────────────────────────────────────
+function getXfrm(el, scale) {
+  const xfrm = el.querySelector('xfrm, a\\:xfrm');
+  if (!xfrm) return null;
+  const off = xfrm.querySelector('off, a\\:off');
+  const ext = xfrm.querySelector('ext, a\\:ext');
+  if (!off || !ext) return null;
+  return {
+    x: parseInt(off.getAttribute('x')  || 0) * scale,
+    y: parseInt(off.getAttribute('y')  || 0) * scale,
+    w: parseInt(ext.getAttribute('cx') || 0) * scale,
+    h: parseInt(ext.getAttribute('cy') || 0) * scale,
+  };
+}
+
+// ── 도형 채우기 스타일 ────────────────────────────────────────────────────────
+function getShapeFill(spPr, rIdMap) {
+  const noFill = spPr.querySelector('noFill, a\\:noFill');
+  if (noFill) return { background: 'transparent' };
+
+  const solidFill = spPr.querySelector('solidFill, a\\:solidFill');
+  if (solidFill) {
+    const c = getSolidColor(solidFill);
+    if (c) return { background: c };
+  }
+
+  const gradFill = spPr.querySelector('gradFill, a\\:gradFill');
+  if (gradFill) {
+    const stops = gradFill.querySelectorAll('gs, a\\:gs');
+    if (stops.length >= 2) {
+      const c1 = getSolidColor(stops[0]) || '#fff';
+      const c2 = getSolidColor(stops[stops.length - 1]) || '#eee';
+      return { background: `linear-gradient(to bottom, ${c1}, ${c2})` };
+    }
+  }
+
+  const blipFill = spPr.querySelector('blipFill, a\\:blipFill');
+  if (blipFill) {
+    const blip = blipFill.querySelector('blip, a\\:blip');
+    if (blip) {
+      const rId = blip.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships', 'embed')
+                || blip.getAttribute('r:embed');
+      if (rId && rIdMap[rId]) {
+        return { backgroundImage: `url('${rIdMap[rId]}')`, backgroundSize: 'cover' };
+      }
+    }
+  }
+  return null;
+}
+
+// ── solidFill에서 색상 추출 ──────────────────────────────────────────────────
+function getSolidColor(el) {
+  // srgbClr
+  const srgb = el.querySelector('srgbClr, a\\:srgbClr');
+  if (srgb) {
+    let val = srgb.getAttribute('val');
+    if (val) {
+      // lumMod / lumOff 처리 (밝기 조절)
+      const lumMod = srgb.querySelector('lumMod, a\\:lumMod');
+      const lumOff = srgb.querySelector('lumOff, a\\:lumOff');
+      if (lumMod || lumOff) {
+        val = adjustLum(val, lumMod, lumOff);
+      }
+      return '#' + val;
+    }
+  }
+  // sysClr
+  const sys = el.querySelector('sysClr, a\\:sysClr');
+  if (sys) {
+    const last = sys.getAttribute('lastClr');
+    if (last) return '#' + last;
+  }
+  return null;
+}
+
+function adjustLum(hexColor, lumMod, lumOff) {
+  // 간단한 밝기 조절: 정확하지 않지만 대부분의 케이스에 근사
+  try {
+    const r = parseInt(hexColor.slice(0, 2), 16);
+    const g = parseInt(hexColor.slice(2, 4), 16);
+    const b = parseInt(hexColor.slice(4, 6), 16);
+    const mod = lumMod ? parseInt(lumMod.getAttribute('val')) / 100000 : 1;
+    const off = lumOff ? parseInt(lumOff.getAttribute('val')) / 100000 : 0;
+    const clamp = v => Math.max(0, Math.min(255, Math.round(v * mod + off * 255)));
+    return [clamp(r), clamp(g), clamp(b)].map(v => v.toString(16).padStart(2, '0')).join('');
+  } catch (_) {
+    return hexColor;
+  }
+}
+
+// ── 텍스트 바디 패딩 ─────────────────────────────────────────────────────────
+function getBodyPadding(bodyPr, scale) {
+  if (!bodyPr) return `${Math.round(45720 * scale)}px ${Math.round(91440 * scale)}px`;
+  const t = parseInt(bodyPr.getAttribute('tIns') ?? 45720);
+  const r = parseInt(bodyPr.getAttribute('rIns') ?? 91440);
+  const b = parseInt(bodyPr.getAttribute('bIns') ?? 45720);
+  const l = parseInt(bodyPr.getAttribute('lIns') ?? 91440);
+  const s = scale;
+  return `${Math.round(t*s)}px ${Math.round(r*s)}px ${Math.round(b*s)}px ${Math.round(l*s)}px`;
+}
+</script>
+
+<script src="../js/wooahouse-originals-tool.js"></script>
+<script src="../js/pwa-install.js"></script>
+</body>
+</html>
