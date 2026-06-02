@@ -276,7 +276,7 @@
 <script>
 // ── 상수 ──────────────────────────────────────────────────────────────────────
 const RENDER_W = 960;        // 렌더링 너비(px)
-const EMU_PER_PX = 914400 / 96; // 1px = 9525 EMU (96dpi 기준)
+const PT_TO_PX = 96 / 72;   // 1pt = 1.333px (96dpi 기준)
 
 // ── DOM ───────────────────────────────────────────────────────────────────────
 const dropZone      = document.getElementById('dropZone');
@@ -363,6 +363,9 @@ async function startConvert() {
     setProgress(5, 'PPTX 파일 읽는 중...');
     const zip = await JSZip.loadAsync(selectedFile);
 
+    // 테마 색상 로드
+    const themeColors = await loadThemeColors(zip);
+
     // 슬라이드 크기 파싱
     const { sldW, sldH } = await parsePresentation(zip);
     const scale   = RENDER_W / sldW;
@@ -408,7 +411,7 @@ async function startConvert() {
       const rIdMap   = buildRIdMap(relsXml, mediaMap);
 
       // 슬라이드 HTML 엘리먼트 생성
-      const el = buildSlideEl(xml, scale, RENDER_W, renderH, rIdMap);
+      const el = buildSlideEl(xml, scale, RENDER_W, renderH, rIdMap, themeColors);
       renderStage.appendChild(el);
 
       // html2canvas 캡처
@@ -501,7 +504,7 @@ function buildRIdMap(relsXml, mediaMap) {
 }
 
 // ── 슬라이드 엘리먼트 생성 ───────────────────────────────────────────────────
-function buildSlideEl(xml, scale, W, H, rIdMap) {
+function buildSlideEl(xml, scale, W, H, rIdMap, themeColors) {
   const doc = new DOMParser().parseFromString(xml, 'text/xml');
 
   const el = document.createElement('div');
@@ -510,7 +513,7 @@ function buildSlideEl(xml, scale, W, H, rIdMap) {
   // ── 배경 ──
   const bgPr = doc.querySelector('bg bgPr');
   if (bgPr) {
-    const color = getSolidColor(bgPr);
+    const color = getSolidColor(bgPr, themeColors);
     if (color) el.style.background = color;
 
     // 배경 이미지
@@ -530,8 +533,8 @@ function buildSlideEl(xml, scale, W, H, rIdMap) {
     if (gradFill) {
       const stops = gradFill.querySelectorAll('gs');
       if (stops.length >= 2) {
-        const c1 = getSolidColor(stops[0]) || '#fff';
-        const c2 = getSolidColor(stops[stops.length - 1]) || '#f0f0f0';
+        const c1 = getSolidColor(stops[0], themeColors) || '#fff';
+        const c2 = getSolidColor(stops[stops.length - 1], themeColors) || '#f0f0f0';
         el.style.background = `linear-gradient(to bottom, ${c1}, ${c2})`;
       }
     }
@@ -542,26 +545,26 @@ function buildSlideEl(xml, scale, W, H, rIdMap) {
   if (spTree) {
     for (const child of spTree.children) {
       const tag = child.localName;
-      if (tag === 'sp')   { const c = buildShape(child, scale, rIdMap); if (c) el.appendChild(c); }
-      else if (tag === 'pic')  { const c = buildPic(child, scale, rIdMap);   if (c) el.appendChild(c); }
-      else if (tag === 'grpSp'){ buildGrpSp(child, scale, rIdMap, el); }
+      if (tag === 'sp')    { const c = buildShape(child, scale, rIdMap, themeColors); if (c) el.appendChild(c); }
+      else if (tag === 'pic')   { const c = buildPic(child, scale, rIdMap);   if (c) el.appendChild(c); }
+      else if (tag === 'grpSp') { buildGrpSp(child, scale, rIdMap, themeColors, el); }
     }
   }
   return el;
 }
 
 // ── 그룹 도형 재귀 처리 ──────────────────────────────────────────────────────
-function buildGrpSp(grpEl, scale, rIdMap, parent) {
+function buildGrpSp(grpEl, scale, rIdMap, themeColors, parent) {
   for (const child of grpEl.children) {
     const tag = child.localName;
-    if (tag === 'sp')    { const c = buildShape(child, scale, rIdMap); if (c) parent.appendChild(c); }
+    if (tag === 'sp')    { const c = buildShape(child, scale, rIdMap, themeColors); if (c) parent.appendChild(c); }
     else if (tag === 'pic')   { const c = buildPic(child, scale, rIdMap);   if (c) parent.appendChild(c); }
-    else if (tag === 'grpSp') { buildGrpSp(child, scale, rIdMap, parent); }
+    else if (tag === 'grpSp') { buildGrpSp(child, scale, rIdMap, themeColors, parent); }
   }
 }
 
 // ── 텍스트/도형 ──────────────────────────────────────────────────────────────
-function buildShape(sp, scale, rIdMap) {
+function buildShape(sp, scale, rIdMap, themeColors) {
   const pos = getXfrm(sp, scale);
   if (!pos) return null;
 
@@ -571,7 +574,7 @@ function buildShape(sp, scale, rIdMap) {
   // 도형 채우기
   const spPr = sp.querySelector('spPr');
   if (spPr) {
-    const fill = getShapeFill(spPr, rIdMap);
+    const fill = getShapeFill(spPr, rIdMap, themeColors);
     if (fill) Object.assign(div.style, fill);
   }
 
@@ -592,7 +595,7 @@ function buildShape(sp, scale, rIdMap) {
 
     const paras = txBody.querySelectorAll(':scope > p, :scope > a\\:p');
     paras.forEach(para => {
-      const pEl = buildParagraph(para, scale);
+      const pEl = buildParagraph(para, scale, themeColors);
       div.appendChild(pEl);
     });
   }
@@ -624,7 +627,7 @@ function buildPic(pic, scale, rIdMap) {
 }
 
 // ── 단락 렌더링 ──────────────────────────────────────────────────────────────
-function buildParagraph(para, scale) {
+function buildParagraph(para, scale, themeColors) {
   const pEl = document.createElement('p');
   pEl.style.cssText = 'margin:0;padding:0;line-height:1.25;';
 
@@ -659,7 +662,7 @@ function buildParagraph(para, scale) {
 
     const span = document.createElement('span');
     span.style.whiteSpace = 'pre-wrap';
-    applyRunStyle(span, rPr, scale);
+    applyRunStyle(span, rPr, scale, themeColors);
     span.textContent = tNode.textContent;
     pEl.appendChild(span);
   });
@@ -668,12 +671,13 @@ function buildParagraph(para, scale) {
 }
 
 // ── Run 스타일 적용 ───────────────────────────────────────────────────────────
-function applyRunStyle(el, rPr, scale) {
-  if (!rPr) { el.style.fontSize = `${14 * scale * 1.33}px`; return; }
+function applyRunStyle(el, rPr, scale, themeColors) {
+  const sz = rPr ? rPr.getAttribute('sz') : null;
+  const szPts = sz ? parseInt(sz) / 100 : 18;  // sz는 1/100pt 단위
+  // ※ pt → px 변환: 96dpi 기준 1pt = 96/72px. scale(EMU→px)은 적용하지 않음
+  el.style.fontSize = `${szPts * PT_TO_PX}px`;
 
-  const sz = rPr.getAttribute('sz');
-  const szPts = sz ? parseInt(sz) / 100 : 18;           // sz는 1/100pt 단위
-  el.style.fontSize = `${szPts * scale * 1.33}px`;      // pt → px 근사
+  if (!rPr) { el.style.color = '#000000'; return; }
 
   if (rPr.getAttribute('b')  === '1') el.style.fontWeight    = 'bold';
   if (rPr.getAttribute('i')  === '1') el.style.fontStyle     = 'italic';
@@ -682,11 +686,10 @@ function applyRunStyle(el, rPr, scale) {
 
   const solidFill = rPr.querySelector('solidFill, a\\:solidFill');
   if (solidFill) {
-    const color = getSolidColor(solidFill);
-    if (color) el.style.color = color;
-  } else {
-    el.style.color = '#000000';
+    const color = getSolidColor(solidFill, themeColors);
+    if (color) { el.style.color = color; return; }
   }
+  el.style.color = '#000000';
 }
 
 // ── xfrm 위치/크기 ───────────────────────────────────────────────────────────
@@ -705,13 +708,13 @@ function getXfrm(el, scale) {
 }
 
 // ── 도형 채우기 스타일 ────────────────────────────────────────────────────────
-function getShapeFill(spPr, rIdMap) {
+function getShapeFill(spPr, rIdMap, themeColors) {
   const noFill = spPr.querySelector('noFill, a\\:noFill');
   if (noFill) return { background: 'transparent' };
 
   const solidFill = spPr.querySelector('solidFill, a\\:solidFill');
   if (solidFill) {
-    const c = getSolidColor(solidFill);
+    const c = getSolidColor(solidFill, themeColors);
     if (c) return { background: c };
   }
 
@@ -719,8 +722,8 @@ function getShapeFill(spPr, rIdMap) {
   if (gradFill) {
     const stops = gradFill.querySelectorAll('gs, a\\:gs');
     if (stops.length >= 2) {
-      const c1 = getSolidColor(stops[0]) || '#fff';
-      const c2 = getSolidColor(stops[stops.length - 1]) || '#eee';
+      const c1 = getSolidColor(stops[0], themeColors) || '#fff';
+      const c2 = getSolidColor(stops[stops.length - 1], themeColors) || '#eee';
       return { background: `linear-gradient(to bottom, ${c1}, ${c2})` };
     }
   }
@@ -740,18 +743,15 @@ function getShapeFill(spPr, rIdMap) {
 }
 
 // ── solidFill에서 색상 추출 ──────────────────────────────────────────────────
-function getSolidColor(el) {
+function getSolidColor(el, themeColors) {
   // srgbClr
   const srgb = el.querySelector('srgbClr, a\\:srgbClr');
   if (srgb) {
     let val = srgb.getAttribute('val');
     if (val) {
-      // lumMod / lumOff 처리 (밝기 조절)
       const lumMod = srgb.querySelector('lumMod, a\\:lumMod');
       const lumOff = srgb.querySelector('lumOff, a\\:lumOff');
-      if (lumMod || lumOff) {
-        val = adjustLum(val, lumMod, lumOff);
-      }
+      if (lumMod || lumOff) val = adjustLum(val, lumMod, lumOff);
       return '#' + val;
     }
   }
@@ -761,7 +761,64 @@ function getSolidColor(el) {
     const last = sys.getAttribute('lastClr');
     if (last) return '#' + last;
   }
+  // schemeClr (테마 색상) ← 신규 추가
+  const scheme = el.querySelector('schemeClr, a\\:schemeClr');
+  if (scheme && themeColors) {
+    const name = scheme.getAttribute('val');
+    let hex = themeColors[name];
+    if (hex) {
+      const lumMod = scheme.querySelector('lumMod, a\\:lumMod');
+      const lumOff = scheme.querySelector('lumOff, a\\:lumOff');
+      if (lumMod || lumOff) hex = adjustLum(hex, lumMod, lumOff);
+      return '#' + hex;
+    }
+  }
   return null;
+}
+
+// ── 테마 색상 로드 (ppt/theme/theme1.xml) ────────────────────────────────────
+async function loadThemeColors(zip) {
+  // 기본 Office 테마 색상 (폴백)
+  const defaults = {
+    dk1: '000000', dk2: '44546A', lt1: 'FFFFFF', lt2: 'E7E6E6',
+    acc1: '4472C4', acc2: 'ED7D31', acc3: 'A5A5A5', acc4: 'FFC000',
+    acc5: '5B9BD5', acc6: '70AD47',
+    // hlink(하이퍼링크), folHlink(방문 하이퍼링크)
+    hlink: '0563C1', folHlink: '954F72',
+  };
+  try {
+    // 테마 파일 찾기 (theme1.xml 또는 첫 번째 theme 파일)
+    const themeKeys = Object.keys(zip.files).filter(k => /ppt\/theme\/theme\d+\.xml/.test(k));
+    if (!themeKeys.length) return defaults;
+    const themeXml = await zip.file(themeKeys[0]).async('text');
+    const doc = new DOMParser().parseFromString(themeXml, 'text/xml');
+    const colors = { ...defaults };
+
+    // clrScheme 아래의 색상 요소 파싱
+    const clrScheme = doc.querySelector('clrScheme');
+    if (!clrScheme) return colors;
+
+    const colorMap = {
+      dk1: 'dk1', dk2: 'dk2', lt1: 'lt1', lt2: 'lt2',
+      accent1: 'acc1', accent2: 'acc2', accent3: 'acc3',
+      accent4: 'acc4', accent5: 'acc5', accent6: 'acc6',
+      hlink: 'hlink', folHlink: 'folHlink',
+    };
+
+    for (const child of clrScheme.children) {
+      const localName = child.localName;
+      const key = colorMap[localName];
+      if (!key) continue;
+      // srgbClr 또는 sysClr
+      const srgb = child.querySelector('srgbClr');
+      if (srgb) { colors[key] = srgb.getAttribute('val') || colors[key]; continue; }
+      const sys = child.querySelector('sysClr');
+      if (sys) { colors[key] = sys.getAttribute('lastClr') || colors[key]; }
+    }
+    return colors;
+  } catch (_) {
+    return defaults;
+  }
 }
 
 function adjustLum(hexColor, lumMod, lumOff) {
