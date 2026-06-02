@@ -124,12 +124,11 @@
       font-size: 0.78rem;
       color: var(--text-light);
     }
-    /* 오프스크린 렌더링 영역 */
+    /* 오프스크린 렌더링 영역 — visibility:hidden 금지 (html2canvas가 빈 캔버스 반환함) */
     #renderStage {
       position: fixed;
       top: -9999px;
       left: -9999px;
-      visibility: hidden;
       pointer-events: none;
     }
   </style>
@@ -414,6 +413,9 @@ async function startConvert() {
       const el = buildSlideEl(xml, scale, RENDER_W, renderH, rIdMap, themeColors);
       renderStage.appendChild(el);
 
+      // 이미지 완전 로드 대기 (data URI라도 비동기 로딩 가능)
+      await waitForImages(el);
+
       // html2canvas 캡처
       const canvas = await html2canvas(el, {
         width: RENDER_W,
@@ -464,6 +466,15 @@ async function startConvert() {
   } finally {
     convertBtn.disabled = false;
   }
+}
+
+// ── 이미지 로딩 완료 대기 ────────────────────────────────────────────────────
+function waitForImages(el) {
+  const imgs = [...el.querySelectorAll('img')];
+  if (!imgs.length) return Promise.resolve();
+  return Promise.all(imgs.map(img =>
+    img.complete ? Promise.resolve() : new Promise(res => { img.onload = res; img.onerror = res; })
+  ));
 }
 
 // ── presentation.xml 파싱 ─────────────────────────────────────────────────────
