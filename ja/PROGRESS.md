@@ -54,12 +54,12 @@
 - [x] `ja/pdf-image-extract.html`
 - [x] `ja/pptx-to-pdf.html`
 
-## Batch 5: 高度な編集ツール
-- [ ] `ja/pdf-password.html`
-- [ ] `ja/pdf-sign.html`
-- [ ] `ja/pdf-reorder.html`
-- [ ] `ja/pdf-metadata.html`
-- [ ] `ja/pdf-header-footer.html`
+## Batch 5: 高度な編集ツール ✅
+- [x] `ja/pdf-password.html`
+- [x] `ja/pdf-sign.html`
+- [x] `ja/pdf-reorder.html`
+- [x] `ja/pdf-metadata.html`
+- [x] `ja/pdf-header-footer.html`
 
 ## Batch 6: その他ツール
 - [ ] `ja/pdf-resize.html`
