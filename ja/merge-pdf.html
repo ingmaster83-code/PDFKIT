@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF結合 無料オンライン – 複数PDFを1つにまとめる | WooaPDF</title>
+  <meta name="description" content="複数のPDFファイルを無料で1つに結合。ドラッグ＆ドロップで順序を並び替え、クリック1回で結合。登録不要、ファイルはブラウザ外に出ません。">
+  <meta name="keywords" content="PDF結合 無料, PDF合体 オンライン, PDFまとめる, PDF結合ツール, 複数PDF 1つに, PDF merge 無料">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/ja/merge-pdf.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/merge-pdf.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/merge-pdf.html">
+  <link rel="alternate" hreflang="ja" href="https://pdfkit.wooahouse.com/ja/merge-pdf.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/merge-pdf.html">
+  <meta property="og:title" content="PDF結合 無料 – 複数PDFを1つにまとめるオンラインツール | WooaPDF">
+  <meta property="og:description" content="複数のPDFを1つに結合。ドラッグ＆ドロップで順序を変更し、クリック1回で合体。無料、登録不要。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/ja/merge-pdf.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+  <meta property="og:site_name" content="WooaPDF">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF結合 無料オンライン – 複数PDFを1つにまとめる | WooaPDF">
+  <meta name="twitter:description" content="複数のPDFファイルを無料で1つに結合。ドラッグ＆ドロップで順序変更、クリック1回で合体。登録不要。">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF結合ツール",
+  "url": "https://pdfkit.wooahouse.com/ja/merge-pdf.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ja",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "結合できるPDFファイル数に上限はありますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "上限はありません。何ファイルでも結合できます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "結合前にファイルの順序を変更できますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "はい。ドラッグ＆ドロップでお好みの順序に並び替えてから結合できます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "パスワード付きPDFは結合できますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "まずPDFロック解除ツールでパスワードを削除してから結合してください。" }
+    }
+  ]
+}
+</script>
+  <style>
+    .pdf-preview-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; background: #F9FAFB;
+      border-radius: 8px; margin-bottom: 8px;
+      cursor: grab; border: 1px solid #E5E7EB;
+      transition: background 0.15s;
+    }
+    .pdf-preview-item:hover { background: #F3F4F6; }
+    .pdf-preview-item:active { cursor: grabbing; }
+    .drag-handle { color: #CBD5E0; font-size: 1.4rem; flex-shrink: 0; }
+    .page-count-badge {
+      background: #EEF2FF; color: #4F46E5;
+      font-size: 0.72rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px;
+      flex-shrink: 0;
+    }
+    .dragging { opacity: 0.35; }
+    .drag-over-item { border-top: 2px solid #FF4444; }
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+    .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+    .lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+    .lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→画像</a>
+      <a href="jpg-to-pdf.html">画像→PDF</a>
+      <a href="merge-pdf.html">PDF結合</a>
+      <a href="split-pdf.html">PDF分割</a>
+      <a href="compress-pdf.html">PDF圧縮</a>
+      <a href="index.html">すべてのツール ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../merge-pdf.html">KO</a>
+        <span>|</span>
+        <a href="../en/merge-pdf.html">EN</a>
+        <span>|</span>
+        <a href="merge-pdf.html" class="active">JA</a>
+      </div>
+      <a href="about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<script src="../js/wooa-sites-bar.js"></script>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 ホーム</a>
+    <span>›</span>
+    <span>PDF結合</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🔗</span>
+    <h1>PDF結合 – 無料オンライン</h1>
+    <p>複数のPDFファイルを1つに結合します。ドラッグで順序を変更できます。</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>ここにPDFファイルをドロップ</h3>
+    <p>複数ファイル対応</p>
+    <label for="fileInput" class="btn-select">PDFファイルを選択</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" multiple style="display:none">
+  </div>
+
+  <div id="fileListPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">
+      PDFファイル一覧 <span style="font-weight:400;font-size:0.8rem;">(ドラッグで並び替え)</span>
+    </div>
+    <div id="pdfList"></div>
+    <button style="margin-top:12px; background:none; border:1px dashed #CBD5E0; border-radius:8px; padding:8px 16px; cursor:pointer; font-size:0.85rem; color:#6B7280; width:100%;"
+      onclick="document.getElementById('fileInput').click()">+ PDFを追加</button>
+  </div>
+
+  <div id="mergeSection" style="display:none">
+    <button class="btn-convert" id="mergeBtn">🔗 PDFを結合する</button>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">結合中...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">結合完了！</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="1419180025" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadBtn">⬇️ 結合済みPDFをダウンロード</button>
+    </div>
+  </div>
+
+  <div class="related-tools">
+    <h2>関連ツール</h2>
+    <div class="related-grid">
+      <a href="split-pdf.html" class="related-card"><span class="related-icon">✂️</span><span>PDF分割</span></a>
+      <a href="rotate-pdf.html" class="related-card"><span class="related-icon">🔄</span><span>PDF回転</span></a>
+      <a href="delete-pages.html" class="related-card"><span class="related-icon">🗑️</span><span>ページ削除</span></a>
+      <a href="watermark-pdf.html" class="related-card"><span class="related-icon">💧</span><span>透かし追加</span></a>
+    </div>
+  </div>
+
+  <div class="wooa-orig-anchor"></div>
+
+  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 結合できるPDFファイル数に上限はありますか？</h3>
+        <p style="color:#555;margin:0;">上限はありません。何ファイルでも結合できます。</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. 結合前にファイルの順序を変更できますか？</h3>
+        <p style="color:#555;margin:0;">はい。ドラッグ＆ドロップでお好みの順序に並び替えてから結合できます。</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. ファイルはインターネット上にアップロードされますか？</h3>
+        <p style="color:#555;margin:0;">いいえ。すべての処理はブラウザ内のみで行われ、ファイルはサーバーに送信されません。完全に安全です。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="tool-sidebar"></aside>
+</div>
+
+<footer class="footer"></footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+<script>
+  let fileItems = [];
+  let mergedBytes = null;
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    addFiles([...e.dataTransfer.files]);
+  });
+
+  document.getElementById('fileInput').addEventListener('change', e => {
+    addFiles([...e.target.files]);
+    e.target.value = '';
+  });
+
+  async function addFiles(files) {
+    const pdfFiles = files.filter(f => f.type === 'application/pdf' || f.name.endsWith('.pdf'));
+    if (pdfFiles.length === 0) { showError('PDFファイルのみ対応しています。'); return; }
+    hideError();
+
+    for (const file of pdfFiles) {
+      let pageCount = '?';
+      try {
+        const { PDFDocument } = PDFLib;
+        const buf = await file.arrayBuffer();
+        const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+        pageCount = doc.getPageCount();
+      } catch (e) { pageCount = '?'; }
+      fileItems.push({ file, pageCount });
+    }
+
+    renderList();
+    document.getElementById('fileListPanel').style.display = 'block';
+    document.getElementById('mergeSection').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+    mergedBytes = null;
+  }
+
+  function renderList() {
+    const list = document.getElementById('pdfList');
+    list.innerHTML = '';
+    fileItems.forEach((item, index) => {
+      const el = document.createElement('div');
+      el.className = 'pdf-preview-item';
+      el.draggable = true;
+      el.dataset.index = index;
+      el.innerHTML = `
+        <span class="drag-handle">⋮⋮</span>
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${item.file.name}</div>
+          <div class="file-item-size">${formatSize(item.file.size)}</div>
+        </div>
+        <span class="page-count-badge">${item.pageCount}ページ</span>
+        <button class="file-item-remove" onclick="removeFile(${index})">✕</button>
+      `;
+      el.addEventListener('dragstart', dragStart);
+      el.addEventListener('dragover', dragOver);
+      el.addEventListener('drop', dropOnItem);
+      el.addEventListener('dragend', dragEnd);
+      list.appendChild(el);
+    });
+  }
+
+  function removeFile(index) {
+    fileItems.splice(index, 1);
+    if (fileItems.length === 0) {
+      document.getElementById('fileListPanel').style.display = 'none';
+      document.getElementById('mergeSection').style.display = 'none';
+    }
+    renderList();
+  }
+
+  let dragSrcIndex = null;
+  function dragStart(e) { dragSrcIndex = parseInt(e.currentTarget.dataset.index); e.currentTarget.classList.add('dragging'); }
+  function dragOver(e) {
+    e.preventDefault();
+    document.querySelectorAll('.pdf-preview-item').forEach(el => el.classList.remove('drag-over-item'));
+    e.currentTarget.classList.add('drag-over-item');
+  }
+  function dropOnItem(e) {
+    e.preventDefault();
+    const targetIndex = parseInt(e.currentTarget.dataset.index);
+    if (dragSrcIndex !== null && dragSrcIndex !== targetIndex) {
+      const moved = fileItems.splice(dragSrcIndex, 1)[0];
+      fileItems.splice(targetIndex, 0, moved);
+      renderList();
+    }
+  }
+  function dragEnd(e) {
+    e.currentTarget.classList.remove('dragging');
+    document.querySelectorAll('.pdf-preview-item').forEach(el => el.classList.remove('drag-over-item'));
+    dragSrcIndex = null;
+  }
+
+  document.getElementById('mergeBtn').addEventListener('click', async () => {
+    if (fileItems.length < 2) { showError('結合するにはPDFファイルが2つ以上必要です。'); return; }
+    const btn = document.getElementById('mergeBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 結合中...';
+    hideError();
+    mergedBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const mergedPdf = await PDFDocument.create();
+      let totalPages = 0;
+
+      for (let i = 0; i < fileItems.length; i++) {
+        updateProgressUI(Math.round((i / fileItems.length) * 90), `処理中 ${i + 1}/${fileItems.length}: ${fileItems[i].file.name}`);
+        const arrayBuffer = await fileItems[i].file.arrayBuffer();
+        const pdf = await PDFDocument.load(arrayBuffer);
+        const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        pages.forEach(page => mergedPdf.addPage(page));
+        totalPages += pages.length;
+      }
+
+      updateProgressUI(95, 'PDF生成中...');
+      mergedBytes = await mergedPdf.save();
+      updateProgressUI(100, '完了！');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      document.getElementById('resultSubtitle').textContent = `${fileItems.length}ファイル、合計${totalPages}ページを1つのPDFに結合しました`;
+      panel.scrollIntoView({ behavior: 'smooth' });
+    } catch (err) {
+      showError('結合に失敗しました。パスワード付きPDFが含まれている可能性があります。');
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+
+    btn.disabled = false;
+    btn.textContent = '🔗 PDFを結合する';
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!mergedBytes) return;
+    const blob = new Blob([mergedBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'merged.pdf';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="../js/wooahouse-originals-tool-en.js"></script>
+<script src="../js/pwa-install.js"></script>
+<script src="../js/wooa-sidebar-ja.js"></script>
+<script src="../js/wooa-footer-ja.js"></script>
+</body>
+</html>
