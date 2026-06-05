@@ -28,10 +28,10 @@
 - [ ] `PDFKIT/js/wooa-sidebar-ja.js` (deploy_shared_js.py で配布 — 最後にまとめて)
 - [ ] `PDFKIT/js/wooa-footer-ja.js` (同上)
 
-## Batch 1: 共通ページ
+## Batch 1: 共通ページ ✅
 - [x] `ja/index.html`
-- [ ] `ja/about.html`
-- [ ] `ja/privacy.html`
+- [x] `ja/about.html`
+- [x] `ja/privacy.html`
 
 ## Batch 2: 基本編集ツール ✅
 - [x] `ja/merge-pdf.html`
@@ -61,17 +61,17 @@
 - [x] `ja/pdf-metadata.html`
 - [x] `ja/pdf-header-footer.html`
 
-## Batch 6: その他ツール
-- [ ] `ja/pdf-resize.html`
-- [ ] `ja/pdf-viewer.html`
-- [ ] `ja/pdf-compare.html`
-- [ ] `ja/pdf-odd-even.html`
-- [ ] `ja/pdf-to-csv.html`
+## Batch 6: その他ツール ✅
+- [x] `ja/pdf-resize.html`
+- [x] `ja/pdf-viewer.html`
+- [x] `ja/pdf-compare.html`
+- [x] `ja/pdf-odd-even.html`
+- [x] `ja/pdf-to-csv.html`
 
-## Batch 7: eBook・特殊
-- [ ] `ja/pdf-to-epub.html`
-- [ ] `ja/epub-to-pdf.html`
-- [ ] `ja/heic-to-pdf.html`
+## Batch 7: eBook・特殊 ✅
+- [x] `ja/pdf-to-epub.html`
+- [x] `ja/epub-to-pdf.html`
+- [x] `ja/heic-to-pdf.html`
 
 ## 最終作業 (全ページ完了後)
 - [ ] `deploy_shared_js.py` 実行 → 各サイトの js/ に wooa-sidebar-ja.js・wooa-footer-ja.js を配布
