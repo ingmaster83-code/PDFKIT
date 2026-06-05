@@ -208,7 +208,7 @@ async function loadThemeColors(zip){const defaults={dk1:'000000',dk2:'44546A',lt
 function adjustLum(hexColor,lumMod,lumOff){try{const r=parseInt(hexColor.slice(0,2),16);const g=parseInt(hexColor.slice(2,4),16);const b=parseInt(hexColor.slice(4,6),16);const mod=lumMod?parseInt(lumMod.getAttribute('val'))/100000:1;const off=lumOff?parseInt(lumOff.getAttribute('val'))/100000:0;const clamp=v=>Math.max(0,Math.min(255,Math.round(v*mod+off*255)));return[clamp(r),clamp(g),clamp(b)].map(v=>v.toString(16).padStart(2,'0')).join('');}catch(_){return hexColor;}}
 function getBodyPadding(bodyPr,scale){if(!bodyPr)return`${Math.round(45720*scale)}px ${Math.round(91440*scale)}px`;const t=parseInt(bodyPr.getAttribute('tIns')??45720);const r=parseInt(bodyPr.getAttribute('rIns')??91440);const b=parseInt(bodyPr.getAttribute('bIns')??45720);const l=parseInt(bodyPr.getAttribute('lIns')??91440);const s=scale;return`${Math.round(t*s)}px ${Math.round(r*s)}px ${Math.round(b*s)}px ${Math.round(l*s)}px`;}
 </script>
-<script src="../js/wooahouse-originals-tool-en.js"></script>
+<script src="../js/wooahouse-originals-tool-ja.js"></script>
 <script src="../js/pwa-install.js"></script>
 <script src="../js/wooa-sidebar-ja.js"></script>
 <script src="../js/wooa-footer-ja.js"></script>
