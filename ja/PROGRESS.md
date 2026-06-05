@@ -40,12 +40,12 @@
 - [x] `ja/delete-pages.html`
 - [x] `ja/compress-pdf.html`
 
-## Batch 3: 変換ツール A
-- [ ] `ja/pdf-to-jpg.html`
-- [ ] `ja/jpg-to-pdf.html`
-- [ ] `ja/watermark-pdf.html`
-- [ ] `ja/page-number-pdf.html`
-- [ ] `ja/unlock-pdf.html`
+## Batch 3: 変換ツール A ✅
+- [x] `ja/pdf-to-jpg.html`
+- [x] `ja/jpg-to-pdf.html`
+- [x] `ja/watermark-pdf.html`
+- [x] `ja/page-number-pdf.html`
+- [x] `ja/unlock-pdf.html`
 
 ## Batch 4: 変換ツール B
 - [ ] `ja/pdf-to-word.html`
