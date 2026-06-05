@@ -73,13 +73,14 @@
 - [x] `ja/epub-to-pdf.html`
 - [x] `ja/heic-to-pdf.html`
 
-## 最終作業 (全ページ完了後)
-- [ ] `deploy_shared_js.py` 実行 → 各サイトの js/ に wooa-sidebar-ja.js・wooa-footer-ja.js を配布
-- [ ] `PDFKIT/sitemap.xml` に /ja/ URL追加
-- [ ] KO・ENページ全体に `hreflang="ja"` タグ追加
-- [ ] `wooa-sites-bar.js` に `/ja/` パス検知追加
+## 最終作業 ✅
+- [x] `js/wooa-sidebar-ja.js` / `js/wooa-footer-ja.js` を PDFKIT/js/ に配備
+- [x] `deploy_shared_js.py` に JA ファイル追加（将来の一括配布用）
+- [x] `PDFKIT/sitemap.xml` に /ja/ URL 31件追加
+- [x] KO・ENページ全体 (31ページ×2) に `hreflang="ja"` タグ追加
+- [x] `wooa-sites-bar.js` に `/ja/` パス検知追加（日本語ラベル対応）
 - [ ] `PDFKIT/CLAUDE.md` ファイル構造更新
-- [ ] git commit & push (ユーザー確認後)
+- [ ] git push (ユーザー確認後)
 
 ---
 
