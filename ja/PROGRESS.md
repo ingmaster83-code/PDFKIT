@@ -47,12 +47,12 @@
 - [x] `ja/page-number-pdf.html`
 - [x] `ja/unlock-pdf.html`
 
-## Batch 4: 変換ツール B
-- [ ] `ja/pdf-to-word.html`
-- [ ] `ja/office-to-pdf.html`
-- [ ] `ja/pdf-text-extract.html`
-- [ ] `ja/pdf-image-extract.html`
-- [ ] `ja/pptx-to-pdf.html`
+## Batch 4: 変換ツール B ✅
+- [x] `ja/pdf-to-word.html`
+- [x] `ja/office-to-pdf.html`
+- [x] `ja/pdf-text-extract.html`
+- [x] `ja/pdf-image-extract.html`
+- [x] `ja/pptx-to-pdf.html`
 
 ## Batch 5: 高度な編集ツール
 - [ ] `ja/pdf-password.html`
