@@ -209,6 +209,7 @@ function adjustLum(hexColor,lumMod,lumOff){try{const r=parseInt(hexColor.slice(0
 function getBodyPadding(bodyPr,scale){if(!bodyPr)return`${Math.round(45720*scale)}px ${Math.round(91440*scale)}px`;const t=parseInt(bodyPr.getAttribute('tIns')??45720);const r=parseInt(bodyPr.getAttribute('rIns')??91440);const b=parseInt(bodyPr.getAttribute('bIns')??45720);const l=parseInt(bodyPr.getAttribute('lIns')??91440);const s=scale;return`${Math.round(t*s)}px ${Math.round(r*s)}px ${Math.round(b*s)}px ${Math.round(l*s)}px`;}
 </script>
 <script src="../js/wooahouse-originals-tool-ja.js"></script>
+<script>window.PWA_CONFIG={appName:"WooaPDF",themeColor:"#FF4444",icon:"📱",convertIds:['convertBtn','compressBtn','mergeBtn','splitBtn','deleteBtn','applyBtn','rotateBtn','unlockBtn','processBtn','cropBtn','generateBtn','resizeBtn','startBtn','generateAllBtn','printBtn']};</script>
 <script src="../js/pwa-install.js"></script>
 <script src="../js/wooa-sidebar-ja.js"></script>
 <script src="../js/wooa-footer-ja.js"></script>
