@@ -201,6 +201,14 @@
   </div>
 
   <div class="result-panel" id="resultPanel" style="display:none">
+    <div style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6464921081676309"
+           data-ad-slot="9432796175"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
@@ -387,6 +395,16 @@
       document.getElementById('progressWrap').style.display = 'none';
       document.getElementById('resultSubtitle').textContent = `${pdf.numPages}pages · ${totalRows}행 추출 완료`;
       document.getElementById('resultPanel').style.display = 'block';
+      // Download button countdown (dot animation)
+      const dlBtn = document.getElementById('downloadBtn');
+      if (dlBtn) {
+        dlBtn.disabled = true;
+        const origText = dlBtn.textContent;
+        const dots = ['⏳ Preparing download', '⏳ Preparing download.', '⏳ Preparing download..', '⏳ Preparing download...'];
+        let dotIdx = 0;
+        const dotTimer = setInterval(() => { dotIdx = (dotIdx + 1) % dots.length; dlBtn.textContent = dots[dotIdx]; }, 400);
+        setTimeout(() => { clearInterval(dotTimer); dlBtn.disabled = false; dlBtn.textContent = origText; }, 6000);
+      }
     } catch(e) { showError('변환 중 오류: ' + e.message); document.getElementById('progressWrap').style.display = 'none'; }
     btn.disabled = false; btn.textContent = '📊 CSV 변환 시작';
   });
