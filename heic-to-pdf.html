@@ -154,6 +154,14 @@
   </div>
 
   <div class="result-panel" id="resultPanel">
+    <div style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6464921081676309"
+           data-ad-slot="9432796175"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
@@ -357,6 +365,16 @@
       progressFill.style.width = '100%'; progressPct.textContent = '100%'; progressText.textContent = '완료!';
       document.getElementById('resultSubtitle').textContent = `${selectedFiles.length}페이지 PDF (${formatSize(pdfBlob.size)})`;
       document.getElementById('resultPanel').style.display = 'block';
+      // 다운로드 버튼 대기 (점 애니메이션)
+      const dlBtn = document.getElementById('downloadBtn');
+      if (dlBtn) {
+        dlBtn.disabled = true;
+        const origText = dlBtn.textContent;
+        const dots = ['⏳ 다운로드 준비중', '⏳ 다운로드 준비중.', '⏳ 다운로드 준비중..', '⏳ 다운로드 준비중...'];
+        let dotIdx = 0;
+        const dotTimer = setInterval(() => { dotIdx = (dotIdx + 1) % dots.length; dlBtn.textContent = dots[dotIdx]; }, 400);
+        setTimeout(() => { clearInterval(dotTimer); dlBtn.disabled = false; dlBtn.textContent = origText; }, 6000);
+      }
 
     } catch (e) {
       showError('변환 중 오류가 발생했습니다: ' + (e.message || e));
