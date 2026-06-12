@@ -255,14 +255,7 @@
   </div>
 
   <div class="result-panel" id="resultPanel" style="display:none">
-    <div style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-6464921081676309"
-           data-ad-slot="9432796175"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
+        <div id="resultAdWrap" style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px"></div>
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
@@ -515,7 +508,8 @@ async function startConvert() {
     setProgress(100, '완료!');
     resultSubtitle.textContent = `${slideEntries.length}장의 슬라이드 → ${(pdfBlob.size / 1024).toFixed(1)} KB PDF`;
     resultPanel.style.display = 'block';
-      // Download button countdown (dot animation)
+          (function(){var w=document.getElementById('resultAdWrap');if(w&&!w.dataset.a){w.dataset.a='1';w.innerHTML='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>';try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}})();
+    // Download button countdown (dot animation)
       const dlBtn = document.getElementById('downloadBtn');
       if (dlBtn) {
         dlBtn.disabled = true;

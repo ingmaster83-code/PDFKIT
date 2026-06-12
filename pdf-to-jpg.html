@@ -190,6 +190,7 @@
 
   <!-- Result -->
   <div class="result-panel" id="resultPanel">
+        <div id="resultAdWrap" style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px"></div>
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
@@ -197,18 +198,10 @@
         <div class="result-subtitle" id="resultSubtitle"></div>
       </div>
     </div>
-    
+
 <div class="download-share-group">
-  <button class="btn-download" id="downloadBtn">⬇️ 전체 다운로드 (ZIP)</button>
+  <button class="btn-download" id="downloadBtn" disabled>⏳ 다운로드 준비중</button>
   <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
-</div>
-<div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6464921081676309"
-     data-ad-slot="1419180025"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
 </div>
     <div class="preview-grid" id="previewGrid"></div>
   </div>
@@ -481,6 +474,21 @@
     });
 
     resultPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // 다운로드 버튼 6초 대기 (점 애니메이션)
+    const dlBtn = document.getElementById('downloadBtn');
+    dlBtn.disabled = true;
+    const dots = ['⏳ 다운로드 준비중', '⏳ 다운로드 준비중.', '⏳ 다운로드 준비중..', '⏳ 다운로드 준비중...'];
+    let dotIdx = 0;
+    const dotTimer = setInterval(() => {
+      dotIdx = (dotIdx + 1) % dots.length;
+      dlBtn.textContent = dots[dotIdx];
+    }, 400);
+    setTimeout(() => {
+      clearInterval(dotTimer);
+      dlBtn.disabled = false;
+      dlBtn.textContent = '⬇️ 전체 다운로드 (ZIP)';
+    }, 6000);
   }
 
   // ZIP 다운로드

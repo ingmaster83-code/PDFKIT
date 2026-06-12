@@ -197,6 +197,7 @@
 
   <!-- Result -->
   <div class="result-panel" id="resultPanel">
+        <div id="resultAdWrap" style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px"></div>
     <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
@@ -486,6 +487,17 @@
     document.getElementById('resultSubtitle').textContent =
       `${fileItems.length}개의 이미지가 PDF로 변환되었습니다`;
     panel.scrollIntoView({ behavior: 'smooth' });
+        (function(){var w=document.getElementById('resultAdWrap');if(w&&!w.dataset.a){w.dataset.a='1';w.innerHTML='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>';try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}})();
+    // 다운로드 버튼 대기 (점 애니메이션)
+    const dlBtn = document.getElementById('downloadBtn');
+    if (dlBtn) {
+      dlBtn.disabled = true;
+      const origText = dlBtn.textContent;
+      const dots = ['⏳ 다운로드 준비중', '⏳ 다운로드 준비중.', '⏳ 다운로드 준비중..', '⏳ 다운로드 준비중...'];
+      let dotIdx = 0;
+      const dotTimer = setInterval(() => { dotIdx = (dotIdx + 1) % dots.length; dlBtn.textContent = dots[dotIdx]; }, 400);
+      setTimeout(() => { clearInterval(dotTimer); dlBtn.disabled = false; dlBtn.textContent = origText; }, 6000);
+    }
   }
 
   document.getElementById('downloadBtn').addEventListener('click', () => {
