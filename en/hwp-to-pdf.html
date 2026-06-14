@@ -239,40 +239,38 @@
 
   <div class="alert alert-error" id="errorMsg" style="display:none"></div>
 
-  <div id="resultPanel" style="display:none">
+  <div id="resultPanel" class="result-panel">
     <div id="resultAdWrap" style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px"></div>
-    <div class="result-panel">
-      <div class="result-header">
-        <span class="result-icon">✅</span>
-        <div>
-          <div class="result-title">Conversion complete!</div>
-          <div class="result-subtitle" id="resultSubtitle"></div>
-        </div>
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">Conversion complete!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
       </div>
+    </div>
 
-      <div id="previewWrap" class="preview-wrap">
-        <div class="preview-header">
-          <span>📄</span> PDF Preview
-        </div>
-        <iframe id="pdfFrame" title="PDF Preview"></iframe>
-        <div class="no-preview-msg" id="noPreviewMsg" style="display:none">
-          Inline PDF preview is not supported in this browser. Use the download button below.
-        </div>
+    <div id="previewWrap" class="preview-wrap">
+      <div class="preview-header">
+        <span>📄</span> PDF Preview
       </div>
+      <iframe id="pdfFrame" title="PDF Preview"></iframe>
+      <div class="no-preview-msg" id="noPreviewMsg" style="display:none">
+        Inline PDF preview is not supported in this browser. Use the download button below.
+      </div>
+    </div>
 
-      <div class="result-actions">
-        <button class="btn-download" id="downloadBtn">⬇️ Download PDF</button>
-        <button class="btn-convert-another" id="convertAnotherBtn">🔄 Convert Another File</button>
-      </div>
+    <div class="result-actions">
+      <button class="btn-download" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn-convert-another" id="convertAnotherBtn">🔄 Convert Another File</button>
+    </div>
 
-      <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-6464921081676309"
-             data-ad-slot="1419180025"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
+    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6464921081676309"
+           data-ad-slot="1419180025"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
     </div>
   </div>
 
@@ -300,6 +298,10 @@
     <details><summary>Are my files uploaded to a server?</summary><p>No. All processing happens entirely in your browser. Your files are never sent to any server, making it completely private and secure.</p></details>
   </div>
 
+  <p style="text-align:center;font-size:0.73rem;color:#9CA3AF;margin-top:12px">
+    Powered by <a href="https://github.com/sanguneo/rhwptopdf" target="_blank" rel="noopener" style="color:#9CA3AF;text-decoration:underline">rhwptopdf</a> (MIT) · rhwp (Apache 2.0)
+  </p>
+
 </main>
 
 <aside class="tool-sidebar"></aside>
@@ -311,8 +313,7 @@
 (function() {
   'use strict';
 
-  const LIB_URL  = 'https://github.com/sanguneo/rhwptopdf/releases/latest/download/rhwptopdf.umd.js';
-  const WASM_URL = 'https://github.com/sanguneo/rhwptopdf/releases/latest/download/rhwptopdf.umd_bg.wasm';
+  const LIB_URL  = '../js/rhwptopdf.umd.js';
   const FONT_FALLBACK_URL = 'https://cdn.jsdelivr.net/gh/google/fonts/ofl/nanummyeongjo/NanumMyeongjo-Regular.ttf';
 
   let selectedFile = null;
@@ -411,7 +412,12 @@
       setStep(4, 'done', 'Done ✓');
       setProgress(100, 'Complete!');
 
-      showResult();
+      try {
+        showResult();
+      } catch (displayErr) {
+        console.error('showResult error:', displayErr);
+        showError('Error displaying result: ' + (displayErr.message || displayErr));
+      }
     } catch (err) {
       console.error(err);
       resetStepsOnError();
@@ -422,10 +428,6 @@
 
   async function ensureLib() {
     if (libLoaded) return;
-
-    const globalsBefore = new Set(Object.keys(window));
-
-    // <script> tag approach — follows GitHub redirects without CORS restrictions unlike fetch()
     await new Promise((resolve, reject) => {
       const s = document.createElement('script');
       s.src = LIB_URL;
@@ -433,33 +435,15 @@
       s.onerror = () => reject(new Error('Failed to load library script. Check your network.'));
       document.head.appendChild(s);
     });
-
-    const isLib = v => v != null && (typeof v === 'object' || typeof v === 'function');
-    const knownCandidates = ['RhwpToPdf', 'rhwptopdf', 'wasm_bindgen', 'rhwpToPdf', 'rhwp_to_pdf'];
-    for (const name of knownCandidates) {
-      if (isLib(window[name])) { libObj = window[name]; break; }
-    }
-    if (!libObj) {
-      for (const key of Object.keys(window)) {
-        if (!globalsBefore.has(key) && isLib(window[key])) { libObj = window[key]; break; }
-      }
-    }
-    if (!libObj) {
-      const newKeys = Object.keys(window).filter(k => !globalsBefore.has(k));
-      throw new Error(`Library global not found. (New globals: ${newKeys.join(', ') || 'none'}) — Check F12 console.`);
-    }
-
+    libObj = window.RhwpToPdf;
+    if (typeof libObj !== 'function') throw new Error('RhwpToPdf library not found.');
     libLoaded = true;
   }
 
   async function ensureWasm() {
     if (wasmReady) return;
-    let initFn = libObj.default || libObj.init || libObj.initWasm;
-    if (typeof initFn !== 'function' && typeof libObj === 'function') initFn = libObj;
-    if (typeof initFn !== 'function') {
-      throw new Error(`Init function not found. (Available keys: ${Object.keys(libObj).join(', ')})`);
-    }
-    await initFn(WASM_URL);
+    // No arg → auto-detects WASM URL from script src
+    await libObj();
     wasmReady = true;
   }
 
@@ -492,39 +476,13 @@
   }
 
   async function doConvert(hwpBuffer, fontBuffer) {
-    const lib = libObj;
     const hwpBytes = new Uint8Array(hwpBuffer);
-
     if (fontBuffer) {
-      const fontBytes = new Uint8Array(fontBuffer);
-      for (const fn of ['set_font', 'setFont', 'add_font', 'addFont', 'registerFont', 'loadFont']) {
-        if (typeof lib[fn] === 'function') { try { lib[fn](fontBytes); } catch(e) {} break; }
-      }
+      try { libObj.registerPdfFont(new Uint8Array(fontBuffer)); } catch(e) {}
     }
-
-    const convertFnNames = ['convert', 'hwp_to_pdf', 'hwpToPdf', 'to_pdf', 'toPdf', 'render', 'process'];
-    for (const fn of convertFnNames) {
-      if (typeof lib[fn] === 'function') {
-        const result = await Promise.resolve(lib[fn](hwpBytes));
-        if (result instanceof Uint8Array && result.length > 4) return result;
-        if (result && result.buffer) {
-          const u8 = new Uint8Array(result.buffer || result);
-          if (u8.length > 4) return u8;
-        }
-      }
-    }
-
-    const skip = new Set(['default','init','initWasm','initSync','set_font','setFont','add_font','addFont','registerFont','loadFont']);
-    for (const fn of Object.keys(lib)) {
-      if (!skip.has(fn) && typeof lib[fn] === 'function') {
-        try {
-          const result = await Promise.resolve(lib[fn](hwpBytes));
-          if (result instanceof Uint8Array && result.length > 4) return result;
-        } catch(e) {}
-      }
-    }
-
-    throw new Error('Conversion function not found. Please check the library version.');
+    const result = libObj.hwpToPdf(hwpBytes);
+    if (result instanceof Uint8Array && result.length > 4) return result;
+    throw new Error('Conversion result is empty. Please check the file format.');
   }
 
   function showResult() {
