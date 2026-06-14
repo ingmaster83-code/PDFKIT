@@ -239,40 +239,38 @@
 
   <div class="alert alert-error" id="errorMsg" style="display:none"></div>
 
-  <div id="resultPanel" style="display:none">
+  <div id="resultPanel" class="result-panel">
     <div id="resultAdWrap" style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px"></div>
-    <div class="result-panel">
-      <div class="result-header">
-        <span class="result-icon">✅</span>
-        <div>
-          <div class="result-title">변환 완료!</div>
-          <div class="result-subtitle" id="resultSubtitle"></div>
-        </div>
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">변환 완료!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
       </div>
+    </div>
 
-      <div id="previewWrap" class="preview-wrap">
-        <div class="preview-header">
-          <span>📄</span> PDF 미리보기
-        </div>
-        <iframe id="pdfFrame" title="PDF 미리보기"></iframe>
-        <div class="no-preview-msg" id="noPreviewMsg" style="display:none">
-          이 브라우저에서는 미리보기가 지원되지 않습니다. 아래 버튼으로 다운로드하세요.
-        </div>
+    <div id="previewWrap" class="preview-wrap">
+      <div class="preview-header">
+        <span>📄</span> PDF 미리보기
       </div>
+      <iframe id="pdfFrame" title="PDF 미리보기"></iframe>
+      <div class="no-preview-msg" id="noPreviewMsg" style="display:none">
+        이 브라우저에서는 미리보기가 지원되지 않습니다. 아래 버튼으로 다운로드하세요.
+      </div>
+    </div>
 
-      <div class="result-actions">
-        <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
-        <button class="btn-convert-another" id="convertAnotherBtn">🔄 다른 파일 변환</button>
-      </div>
+    <div class="result-actions">
+      <button class="btn-download" id="downloadBtn">⬇️ PDF 다운로드</button>
+      <button class="btn-convert-another" id="convertAnotherBtn">🔄 다른 파일 변환</button>
+    </div>
 
-      <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-6464921081676309"
-             data-ad-slot="1419180025"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
+    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6464921081676309"
+           data-ad-slot="1419180025"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
     </div>
   </div>
 
