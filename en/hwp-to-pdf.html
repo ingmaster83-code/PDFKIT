@@ -425,19 +425,14 @@
 
     const globalsBefore = new Set(Object.keys(window));
 
-    const resp = await fetch(LIB_URL);
-    if (!resp.ok) throw new Error(`Library download failed (HTTP ${resp.status})`);
-    const text = await resp.text();
-    const blobUrl = URL.createObjectURL(new Blob([text], { type: 'text/javascript' }));
-
+    // <script> tag approach — follows GitHub redirects without CORS restrictions unlike fetch()
     await new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = blobUrl;
+      s.src = LIB_URL;
       s.onload = resolve;
-      s.onerror = () => reject(new Error('Failed to execute the library script.'));
+      s.onerror = () => reject(new Error('Failed to load library script. Check your network.'));
       document.head.appendChild(s);
     });
-    URL.revokeObjectURL(blobUrl);
 
     const knownCandidates = ['rhwptopdf', 'wasm_bindgen', 'rhwpToPdf', 'rhwp_to_pdf', 'RhwpToPdf'];
     for (const name of knownCandidates) {

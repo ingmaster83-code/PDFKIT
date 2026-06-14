@@ -431,23 +431,17 @@
   async function ensureLib() {
     if (libLoaded) return;
 
-    // 로드 전 전역 변수 목록 스냅샷
+    // 로드 전 전역 변수 스냅샷
     const globalsBefore = new Set(Object.keys(window));
 
-    // fetch + Blob URL로 로드 → GitHub 리다이렉트 MIME 타입 문제 방지
-    const resp = await fetch(LIB_URL);
-    if (!resp.ok) throw new Error(`라이브러리 다운로드 실패 (HTTP ${resp.status})`);
-    const text = await resp.text();
-    const blobUrl = URL.createObjectURL(new Blob([text], { type: 'text/javascript' }));
-
+    // <script> 태그 방식 — fetch() 와 달리 CORS 없이 GitHub 리다이렉트를 따라감
     await new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = blobUrl;
+      s.src = LIB_URL;
       s.onload = resolve;
-      s.onerror = () => reject(new Error('라이브러리 실행에 실패했습니다.'));
+      s.onerror = () => reject(new Error('라이브러리 스크립트를 불러올 수 없습니다. 네트워크를 확인해 주세요.'));
       document.head.appendChild(s);
     });
-    URL.revokeObjectURL(blobUrl);
 
     // 로드 후 새로 생긴 전역 변수 중 라이브러리 객체를 자동 감지
     const knownCandidates = ['rhwptopdf', 'wasm_bindgen', 'rhwpToPdf', 'rhwp_to_pdf', 'RhwpToPdf'];
