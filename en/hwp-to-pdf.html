@@ -319,6 +319,7 @@
   let resultBytes = null;
   let libLoaded = false;
   let wasmReady = false;
+  let libObj = null;
 
   const dropZone        = document.getElementById('dropZone');
   const fileInput       = document.getElementById('fileInput');
@@ -421,22 +422,48 @@
 
   async function ensureLib() {
     if (libLoaded) return;
+
+    const globalsBefore = new Set(Object.keys(window));
+
+    const resp = await fetch(LIB_URL);
+    if (!resp.ok) throw new Error(`Library download failed (HTTP ${resp.status})`);
+    const text = await resp.text();
+    const blobUrl = URL.createObjectURL(new Blob([text], { type: 'text/javascript' }));
+
     await new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = LIB_URL;
+      s.src = blobUrl;
       s.onload = resolve;
-      s.onerror = () => reject(new Error('Failed to load the library script. Please check your network connection.'));
+      s.onerror = () => reject(new Error('Failed to execute the library script.'));
       document.head.appendChild(s);
     });
+    URL.revokeObjectURL(blobUrl);
+
+    const knownCandidates = ['rhwptopdf', 'wasm_bindgen', 'rhwpToPdf', 'rhwp_to_pdf', 'RhwpToPdf'];
+    for (const name of knownCandidates) {
+      if (window[name] && typeof window[name] === 'object') { libObj = window[name]; break; }
+    }
+    if (!libObj) {
+      for (const key of Object.keys(window)) {
+        if (!globalsBefore.has(key) && window[key] && typeof window[key] === 'object') {
+          libObj = window[key]; break;
+        }
+      }
+    }
+    if (!libObj) {
+      const newKeys = Object.keys(window).filter(k => !globalsBefore.has(k));
+      throw new Error(`Library global not found. (New globals: ${newKeys.join(', ') || 'none'}) — Check F12 console.`);
+    }
+
     libLoaded = true;
   }
 
   async function ensureWasm() {
     if (wasmReady) return;
-    const lib = window.rhwptopdf;
-    if (!lib) throw new Error('rhwptopdf library not found.');
-    const initFn = lib.default || lib.init || lib.initWasm;
-    if (typeof initFn !== 'function') throw new Error('Library initialization function not found.');
+    const initFn = libObj.default || libObj.init || libObj.initWasm;
+    if (typeof initFn !== 'function') {
+      throw new Error(`Init function not found. (Available keys: ${Object.keys(libObj).join(', ')})`);
+    }
     await initFn(WASM_URL);
     wasmReady = true;
   }
@@ -470,7 +497,7 @@
   }
 
   async function doConvert(hwpBuffer, fontBuffer) {
-    const lib = window.rhwptopdf;
+    const lib = libObj;
     const hwpBytes = new Uint8Array(hwpBuffer);
 
     if (fontBuffer) {

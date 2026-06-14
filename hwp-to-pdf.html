@@ -319,6 +319,7 @@
   let resultBytes = null;
   let libLoaded = false;
   let wasmReady = false;
+  let libObj = null; // 실제 라이브러리 객체 (전역 이름 무관)
 
   /* ── DOM refs ── */
   const dropZone        = document.getElementById('dropZone');
@@ -429,22 +430,51 @@
   /* ── Library loading ── */
   async function ensureLib() {
     if (libLoaded) return;
+
+    // 로드 전 전역 변수 목록 스냅샷
+    const globalsBefore = new Set(Object.keys(window));
+
+    // fetch + Blob URL로 로드 → GitHub 리다이렉트 MIME 타입 문제 방지
+    const resp = await fetch(LIB_URL);
+    if (!resp.ok) throw new Error(`라이브러리 다운로드 실패 (HTTP ${resp.status})`);
+    const text = await resp.text();
+    const blobUrl = URL.createObjectURL(new Blob([text], { type: 'text/javascript' }));
+
     await new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = LIB_URL;
+      s.src = blobUrl;
       s.onload = resolve;
-      s.onerror = () => reject(new Error('라이브러리 스크립트를 불러올 수 없습니다. 네트워크를 확인해 주세요.'));
+      s.onerror = () => reject(new Error('라이브러리 실행에 실패했습니다.'));
       document.head.appendChild(s);
     });
+    URL.revokeObjectURL(blobUrl);
+
+    // 로드 후 새로 생긴 전역 변수 중 라이브러리 객체를 자동 감지
+    const knownCandidates = ['rhwptopdf', 'wasm_bindgen', 'rhwpToPdf', 'rhwp_to_pdf', 'RhwpToPdf'];
+    for (const name of knownCandidates) {
+      if (window[name] && typeof window[name] === 'object') { libObj = window[name]; break; }
+    }
+    if (!libObj) {
+      for (const key of Object.keys(window)) {
+        if (!globalsBefore.has(key) && window[key] && typeof window[key] === 'object') {
+          libObj = window[key]; break;
+        }
+      }
+    }
+    if (!libObj) {
+      const newKeys = Object.keys(window).filter(k => !globalsBefore.has(k));
+      throw new Error(`라이브러리 전역 변수를 찾을 수 없습니다. (새 전역: ${newKeys.join(', ') || '없음'}) — F12 콘솔을 확인해 주세요.`);
+    }
+
     libLoaded = true;
   }
 
   async function ensureWasm() {
     if (wasmReady) return;
-    const lib = window.rhwptopdf;
-    if (!lib) throw new Error('rhwptopdf 라이브러리를 찾을 수 없습니다.');
-    const initFn = lib.default || lib.init || lib.initWasm;
-    if (typeof initFn !== 'function') throw new Error('라이브러리 초기화 함수를 찾을 수 없습니다.');
+    const initFn = libObj.default || libObj.init || libObj.initWasm;
+    if (typeof initFn !== 'function') {
+      throw new Error(`초기화 함수를 찾을 수 없습니다. (사용 가능한 키: ${Object.keys(libObj).join(', ')})`);
+    }
     await initFn(WASM_URL);
     wasmReady = true;
   }
@@ -486,7 +516,7 @@
 
   /* ── HWP → PDF conversion ── */
   async function doConvert(hwpBuffer, fontBuffer) {
-    const lib = window.rhwptopdf;
+    const lib = libObj;
     const hwpBytes = new Uint8Array(hwpBuffer);
 
     // Try to register font if library supports it
