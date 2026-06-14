@@ -434,15 +434,14 @@
       document.head.appendChild(s);
     });
 
-    const knownCandidates = ['rhwptopdf', 'wasm_bindgen', 'rhwpToPdf', 'rhwp_to_pdf', 'RhwpToPdf'];
+    const isLib = v => v != null && (typeof v === 'object' || typeof v === 'function');
+    const knownCandidates = ['RhwpToPdf', 'rhwptopdf', 'wasm_bindgen', 'rhwpToPdf', 'rhwp_to_pdf'];
     for (const name of knownCandidates) {
-      if (window[name] && typeof window[name] === 'object') { libObj = window[name]; break; }
+      if (isLib(window[name])) { libObj = window[name]; break; }
     }
     if (!libObj) {
       for (const key of Object.keys(window)) {
-        if (!globalsBefore.has(key) && window[key] && typeof window[key] === 'object') {
-          libObj = window[key]; break;
-        }
+        if (!globalsBefore.has(key) && isLib(window[key])) { libObj = window[key]; break; }
       }
     }
     if (!libObj) {
@@ -455,7 +454,8 @@
 
   async function ensureWasm() {
     if (wasmReady) return;
-    const initFn = libObj.default || libObj.init || libObj.initWasm;
+    let initFn = libObj.default || libObj.init || libObj.initWasm;
+    if (typeof initFn !== 'function' && typeof libObj === 'function') initFn = libObj;
     if (typeof initFn !== 'function') {
       throw new Error(`Init function not found. (Available keys: ${Object.keys(libObj).join(', ')})`);
     }
