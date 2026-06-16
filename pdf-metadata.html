@@ -174,9 +174,7 @@
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
   </div>
 
-  <div class="result-panel" id="resultPanel">
-        <div id="resultAdWrap" style="text-align:center;margin:0 auto 16px;max-width:728px;padding:0 8px"></div>
-    <div class="result-header">
+  <div class="result-panel" id="resultPanel">    <div class="result-header">
       <span class="result-icon">✅</span>
       <div>
         <div class="result-title">메타데이터 저장 완료!</div>
@@ -330,9 +328,7 @@
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
       document.getElementById('resultSubtitle').textContent = '메타데이터가 성공적으로 업데이트되었습니다.';
-      panel.scrollIntoView({ behavior: 'smooth' });
-        (function(){var w=document.getElementById('resultAdWrap');if(w&&!w.dataset.a){w.dataset.a='1';w.innerHTML='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>';try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}})();
-    // 다운로드 버튼 대기 (점 애니메이션)
+      panel.scrollIntoView({ behavior: 'smooth' });    // 다운로드 버튼 대기 (점 애니메이션)
     const dlBtn = document.getElementById('downloadBtn');
     if (dlBtn) {
       dlBtn.disabled = true;
