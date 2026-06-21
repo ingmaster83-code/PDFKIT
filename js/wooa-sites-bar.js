@@ -19,6 +19,7 @@
     { icon: '📊', name: 'WooaSheet', host: 'wooasheet.wooahouse.com', url: 'https://wooasheet.wooahouse.com/' },
     { icon: '🔎', name: 'WooaSEO',   host: 'wooaseo.wooahouse.com',   url: 'https://wooaseo.wooahouse.com/' },
     { icon: '📝', name: 'WooaGosa',  host: 'wooagosa.wooahouse.com',  url: 'https://wooagosa.wooahouse.com/' },
+    { icon: '📋', name: 'WooaForm',  host: 'wooaform.wooahouse.com',  url: 'https://wooaform.wooahouse.com/' },
   ];
 
   // ── 검색 모달 ────────────────────────────────────────────────────────────────
