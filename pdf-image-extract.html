@@ -241,14 +241,7 @@
     <div class="download-share-group">
       <button class="btn-download" id="downloadAllBtn" style="display:none">⬇️ 전체 다운로드 (ZIP)</button>
     </div>
-    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-6464921081676309"
-           data-ad-slot="9432796175"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
     <div class="image-grid" id="imageGrid"></div>
   </div>
 
@@ -501,6 +494,20 @@
 
       document.getElementById('resultSubtitle').textContent = `${extractedImages.length}개 이미지 추출됨`;
       document.getElementById('resultPanel').style.display = 'block';
+      // result 패널 광고 동적 로드
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
 
       const elapsed = Date.now() - adStartTime;
       const remaining = Math.max(0, 5000 - elapsed);

@@ -129,9 +129,7 @@
     <div class="download-share-group">
       <button class="btn-download" id="downloadBtn">⬇️ 署名済みPDFをダウンロード</button>
     </div>
-    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
   </div>
   <div class="related-tools">
     <h2>関連ツール</h2>
@@ -224,6 +222,20 @@
       const panel=document.getElementById('resultPanel');panel.style.display='block';
       document.getElementById('resultSubtitle').textContent=`${currentPage}ページ目に署名を挿入しました`;
       panel.scrollIntoView({behavior:'smooth'});
+      // result 패널 광고 동적 로드
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
     }catch(err){showError('処理に失敗しました: '+err.message);document.getElementById('progressWrap').style.display='none';}
     resetBtn(btn);
   });

@@ -127,9 +127,7 @@
     <div class="download-share-group">
       <button class="btn-download" id="downloadAllBtn" style="display:none">⬇️ すべてダウンロード (ZIP)</button>
     </div>
-    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
     <div class="image-grid" id="imageGrid"></div>
   </div>
   <div class="related-tools">
@@ -210,6 +208,20 @@
       if(extractedImages.length===0){grid.innerHTML=`<div class="no-image-msg" style="grid-column:1/-1"><span class="emoji">🔍</span>抽出可能な画像がありません。<br><small>このPDFには画像オブジェクトが含まれていないか、ベクターグラフィックスのみの可能性があります。</small></div>`;document.getElementById('downloadAllBtn').style.display='none';}
       else{grid.innerHTML=extractedImages.map((img,i)=>`<div class="image-item"><img src="${img.url}" alt="抽出画像${i+1}" loading="lazy"><div class="image-item-info">${img.width}×${img.height} · ${formatSize(img.size)}</div><div class="image-item-actions"><a href="${img.url}" download="${img.name}" class="btn-dl-img">⬇️ 保存</a></div></div>`).join('');document.getElementById('downloadAllBtn').style.display=extractedImages.length>1?'inline-flex':'none';}
       document.getElementById('resultSubtitle').textContent=`${extractedImages.length}個の画像を抽出しました`;document.getElementById('resultPanel').style.display='block';
+      // result 패널 광고 동적 로드
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
       const elapsed=Date.now()-adStartTime;setTimeout(()=>{progressWrap.style.display='none';processingAd.style.display='none';},Math.max(0,5000-elapsed));
     }catch(err){showError('抽出中にエラーが発生しました: '+err.message);const elapsed=Date.now()-adStartTime;setTimeout(()=>{processingAd.style.display='none';},Math.max(0,5000-elapsed));}
     btn.disabled=false;btn.textContent='🖼️ 画像を抽出する';

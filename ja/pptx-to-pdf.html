@@ -117,9 +117,7 @@
     <div class="download-share-group">
       <button class="btn-download" id="downloadBtn">⬇️ PDFをダウンロード</button>
     </div>
-    <div style="text-align:center;margin:16px auto;max-width:728px;">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
   </div>
   <div id="renderStage"></div>
   <div class="related-tools">
@@ -189,7 +187,21 @@ async function startConvert(){
     for(let i=0;i<slideEntries.length;i++){const pct=Math.round(5+(i/slideEntries.length)*85);setProgress(pct,`スライド${i+1}/${slideEntries.length}をレンダリング中...`);const slideNum=parseInt(slideEntries[i].match(/\d+/)[0]);const xml=await zip.files[slideEntries[i]].async('text');const relsXml=await loadRels(zip,slideNum);const rIdMap=buildRIdMap(relsXml,mediaMap);const el=buildSlideEl(xml,scale,RENDER_W,renderH,rIdMap,themeColors);renderStage.appendChild(el);await waitForImages(el);const canvas=await html2canvas(el,{width:RENDER_W,height:renderH,scale:1,useCORS:true,allowTaint:true,backgroundColor:'#ffffff',logging:false});renderStage.removeChild(el);canvases.push(canvas);if(i>0)pdf.addPage([RENDER_W,renderH],orient);pdf.addImage(canvas.toDataURL('image/jpeg',quality),'JPEG',0,0,RENDER_W,renderH);}
     setProgress(95,'PDFを生成中...');const pdfOutput=pdf.output('blob');pdfBlob=pdfOutput;
     previewSection.style.display='block';canvases.forEach((c,i)=>{const item=document.createElement('div');item.className='slide-preview-item';const badge=document.createElement('div');badge.className='slide-preview-badge';badge.textContent=i+1;const thumb=document.createElement('canvas');thumb.width=c.width;thumb.height=c.height;thumb.getContext('2d').drawImage(c,0,0);item.appendChild(thumb);item.appendChild(badge);previewGrid.appendChild(item);});
-    setProgress(100,'完了！');resultSubtitle.textContent=`${slideEntries.length}枚のスライド → ${(pdfBlob.size/1024).toFixed(1)} KB PDF`;resultPanel.style.display='block';progressWrap.style.display='none';
+    setProgress(100,'完了！');resultSubtitle.textContent=`${slideEntries.length}枚のスライド → ${(pdfBlob.size/1024).toFixed(1)} KB PDF`;resultPanel.style.display='block';
+      // result 패널 광고 동적 로드
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }progressWrap.style.display='none';
   }catch(e){showError('変換エラー: '+e.message);progressWrap.style.display='none';}
   convertBtn.disabled=false;
 }

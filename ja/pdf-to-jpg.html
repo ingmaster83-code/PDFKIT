@@ -136,9 +136,7 @@
     <div class="download-share-group">
       <button class="btn-download" id="downloadBtn">⬇️ すべてダウンロード (ZIP)</button>
     </div>
-    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
     <div class="preview-grid" id="previewGrid"></div>
   </div>
   <div class="related-tools">
@@ -232,7 +230,21 @@
     resetBtn(btn);
   });
   function parsePageRange(input,total){const pages=new Set();input.split(',').map(s=>s.trim()).forEach(part=>{if(part.includes('-')){const[s,e]=part.split('-').map(Number);if(!isNaN(s)&&!isNaN(e)){for(let p=Math.max(1,s);p<=Math.min(total,e);p++)pages.add(p);}}else{const n=Number(part);if(!isNaN(n)&&n>=1&&n<=total)pages.add(n);}});return[...pages].sort((a,b)=>a-b);}
-  function showResult(format){document.getElementById('progressWrap').style.display='none';const panel=document.getElementById('resultPanel');panel.style.display='block';document.getElementById('resultSubtitle').textContent=`${convertedImages.length}ページを${format.toUpperCase()}に変換しました`;const grid=document.getElementById('previewGrid');grid.innerHTML='';convertedImages.forEach(img=>{const item=document.createElement('div');item.className='preview-item';item.innerHTML=`<img src="${img.dataUrl}" alt="${img.pageNum}ページ"><div class="preview-label">${img.pageNum}ページ</div>`;item.style.cursor='pointer';item.title='クリックで個別ダウンロード';item.addEventListener('click',()=>{const a=document.createElement('a');a.href=img.dataUrl;a.download=img.filename;a.click();});grid.appendChild(item);});panel.scrollIntoView({behavior:'smooth',block:'start'});}
+  function showResult(format){document.getElementById('progressWrap').style.display='none';const panel=document.getElementById('resultPanel');panel.style.display='block';document.getElementById('resultSubtitle').textContent=`${convertedImages.length}ページを${format.toUpperCase()}に変換しました`;const grid=document.getElementById('previewGrid');grid.innerHTML='';convertedImages.forEach(img=>{const item=document.createElement('div');item.className='preview-item';item.innerHTML=`<img src="${img.dataUrl}" alt="${img.pageNum}ページ"><div class="preview-label">${img.pageNum}ページ</div>`;item.style.cursor='pointer';item.title='クリックで個別ダウンロード';item.addEventListener('click',()=>{const a=document.createElement('a');a.href=img.dataUrl;a.download=img.filename;a.click();});grid.appendChild(item);});panel.scrollIntoView({behavior:'smooth',block:'start'});
+      // result 패널 광고 동적 로드
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }}
   document.getElementById('downloadBtn').addEventListener('click',async()=>{
     if(!convertedImages.length)return;
     if(convertedImages.length===1){const a=document.createElement('a');a.href=convertedImages[0].dataUrl;a.download=convertedImages[0].filename;a.click();return;}

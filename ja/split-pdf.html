@@ -131,9 +131,7 @@
     <div class="download-share-group">
       <button class="btn-download" id="downloadBtn">⬇️ ZIPダウンロード</button>
     </div>
-    <div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
     <div id="singleDownload" style="margin-top:12px;display:none">
       <button class="btn-download" id="singleDownloadBtn" style="background:#3B82F6;">⬇️ PDFをダウンロード</button>
     </div>
@@ -204,7 +202,21 @@
     }catch(err){showError('分割に失敗しました: '+err.message);document.getElementById('progressWrap').style.display='none';}
     resetBtn(btn);
   });
-  function showResult(){const panel=document.getElementById('resultPanel');panel.style.display='block';if(splitResults.length===1){document.getElementById('downloadBtn').style.display='none';document.getElementById('singleDownload').style.display='block';document.getElementById('resultSubtitle').textContent='1つのPDFファイルを生成しました';}else{document.getElementById('downloadBtn').style.display='inline-flex';document.getElementById('singleDownload').style.display='none';document.getElementById('resultSubtitle').textContent=`${splitResults.length}つのPDFファイルに分割しました`;}panel.scrollIntoView({behavior:'smooth'});}
+  function showResult(){const panel=document.getElementById('resultPanel');panel.style.display='block';if(splitResults.length===1){document.getElementById('downloadBtn').style.display='none';document.getElementById('singleDownload').style.display='block';document.getElementById('resultSubtitle').textContent='1つのPDFファイルを生成しました';}else{document.getElementById('downloadBtn').style.display='inline-flex';document.getElementById('singleDownload').style.display='none';document.getElementById('resultSubtitle').textContent=`${splitResults.length}つのPDFファイルに分割しました`;}panel.scrollIntoView({behavior:'smooth'});
+      // result 패널 광고 동적 로드
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }}
   document.getElementById('downloadBtn').addEventListener('click',async()=>{if(!splitResults.length)return;const btn=document.getElementById('downloadBtn');btn.textContent='📦 ZIP作成中...';btn.disabled=true;const zip=new JSZip();splitResults.forEach(r=>zip.file(r.filename,r.bytes));const blob=await zip.generateAsync({type:'blob'});saveAs(blob,`${selectedFile.name.replace('.pdf','')}_split.zip`);btn.textContent='⬇️ ZIPダウンロード';btn.disabled=false;});
   document.getElementById('singleDownloadBtn').addEventListener('click',()=>{if(!splitResults.length)return;const blob=new Blob([splitResults[0].bytes],{type:'application/pdf'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=splitResults[0].filename;a.click();URL.revokeObjectURL(url);});
   function parseRange(s,total){if(s.includes('-')){const[a,b]=s.split('-').map(Number);const r=[];for(let i=Math.max(1,a);i<=Math.min(total,b);i++)r.push(i);return r;}const n=parseInt(s);return(!isNaN(n)&&n>=1&&n<=total)?[n]:[];}

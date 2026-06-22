@@ -249,14 +249,7 @@
   <button class="btn-download" id="downloadBtn" style="margin-top:16px;">⬇️ Download Compressed PDF</button>
   <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
 </div>
-<div style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6464921081676309"
-     data-ad-slot="9432796175"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-</div>
+<div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
   </div>
 
     <div class="related-tools">
@@ -442,7 +435,21 @@
         compSize < origSize
           ? `${formatSize(origSize)} → ${formatSize(compSize)} (${ratio}% smaller)`
           : 'Text-based PDFs may show limited compression.';
-      panel.scrollIntoView({ behavior: 'smooth' });    // Download button countdown (dot animation)
+      panel.scrollIntoView({ behavior: 'smooth' });
+      // result 패널 광고 동적 로드
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }    // Download button countdown (dot animation)
       const dlBtn = document.getElementById('downloadBtn');
       if (dlBtn) {
         dlBtn.disabled = true;
