@@ -16,16 +16,16 @@
   <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
   <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF to EPUB Converter Free Online No Install — Convert PDF to eBook | WooaPDF</title>
-  <meta name="description" content="Convert PDF files to EPUB ebook format for free. Extracts text and creates a standard EPUB file. 100% browser-based, no server upload, no installation required.">
+  <title>PDF to EPUB Free — Convert PDF Text to eBook Format Online | WooaPDF</title>
+  <meta name="description" content="Extract text from a PDF and convert it to EPUB ebook format for free. Download a standard EPUB file ready for any eReader. No sign-up, no server upload.">
   <meta name="keywords" content="PDF to EPUB, convert PDF to EPUB, PDF ebook converter, free PDF EPUB, online PDF to ebook, PDF to EPUB free">
   <link rel="canonical" href="https://pdfkit.wooahouse.com/en/pdf-to-epub.html">
   <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-to-epub.html">
   <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-to-epub.html">
   <link rel="alternate" hreflang="ja" href="https://pdfkit.wooahouse.com/ja/pdf-to-epub.html">
   <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-to-epub.html">
-  <meta property="og:title" content="PDF to EPUB Converter Free Online — Convert PDF to eBook | WooaPDF">
-  <meta property="og:description" content="Convert PDF files to EPUB ebook format for free. 100% browser-based, no server upload.">
+  <meta property="og:title" content="PDF to EPUB Free — Convert PDF Text to eBook Format Online | WooaPDF">
+  <meta property="og:description" content="Extract text from a PDF and convert it to EPUB ebook format for free. Download a standard EPUB file ready for any eReader. No sign-up, no server upload.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pdfkit.wooahouse.com/en/pdf-to-epub.html">
   <meta property="og:locale" content="en_US">
@@ -280,7 +280,7 @@
       const chapterFiles = chapters.map((ch, idx) => ({
         id: `chapter${idx + 1}`,
         filename: `chapter${idx + 1}.xhtml`,
-        content: `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>Page ${ch.num}</title><style>body{font-family:serif;font-size:1em;line-height:1.7;margin:1em 2em;}p{margin:0 0 0.8em;text-indent:1em;}</style></head><body><h2>Page ${ch.num}</h2>${ch.text.split(/\n+/).map(p => p.trim() ? `<p>${escapeXml(p)}</p>` : '').join('')}</body></html>`
+        content: `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>PDF to EPUB Free — Convert PDF Text to eBook Format Online | WooaPDF</title><style>body{font-family:serif;font-size:1em;line-height:1.7;margin:1em 2em;}p{margin:0 0 0.8em;text-indent:1em;}</style></head><body><h2>Page ${ch.num}</h2>${ch.text.split(/\n+/).map(p => p.trim() ? `<p>${escapeXml(p)}</p>` : '').join('')}</body></html>`
       }));
       const opf = `<?xml version="1.0" encoding="UTF-8"?><package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uid" version="2.0"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf"><dc:identifier id="uid">${uid}</dc:identifier><dc:title>${escapeXml(title)}</dc:title><dc:creator opf:role="aut">${escapeXml(author)}</dc:creator><dc:language>en</dc:language><dc:date>${now}</dc:date></metadata><manifest><item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>${chapterFiles.map(c=>`<item id="${c.id}" href="${c.filename}" media-type="application/xhtml+xml"/>`).join('')}</manifest><spine toc="ncx">${chapterFiles.map(c=>`<itemref idref="${c.id}"/>`).join('')}</spine></package>`;
       const ncx = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd"><ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1"><head><meta name="dtb:uid" content="${uid}"/></head><docTitle><text>${escapeXml(title)}</text></docTitle><navMap>${chapterFiles.map((c,i)=>`<navPoint id="nav${i+1}" playOrder="${i+1}"><navLabel><text>Page ${chapters[i].num}</text></navLabel><content src="${c.filename}"/></navPoint>`).join('')}</navMap></ncx>`;
