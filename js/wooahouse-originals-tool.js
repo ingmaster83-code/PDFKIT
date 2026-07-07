@@ -18,6 +18,14 @@
     { host: 'wooasheet.wooahouse.com',    color: '#22C55E', icon: '📊', name: 'WooaSheet',  title: '온라인 스프레드시트 도구',         url: 'https://wooasheet.wooahouse.com' },
     { host: 'wooaseo.wooahouse.com',      color: '#F59E0B', icon: '🔎', name: 'WooaSEO',    title: 'SEO 분석 도구',                    url: 'https://wooaseo.wooahouse.com' },
     { host: 'wooagosa.wooahouse.com',     color: '#6366F1', icon: '📝', name: 'WooaGosa',   title: '자격증·면허 무료 모의고사',        url: 'https://wooagosa.wooahouse.com' },
+    { host: 'wooayak.wooahouse.com',      color: '#06B6D4', icon: '💊', name: 'WooaYak',    title: '의약품 정보 무료 검색',            url: 'https://wooayak.wooahouse.com' },
+    { host: 'wooacamp.wooahouse.com',     color: '#84CC16', icon: '⛺', name: 'WooaCamp',   title: '전국 캠핑장 정보 검색',            url: 'https://wooacamp.wooahouse.com' },
+    { host: 'wooalib.wooahouse.com',      color: '#7C3AED', icon: '📚', name: 'WooaLib',    title: '전국 도서관 정보 검색',            url: 'https://wooalib.wooahouse.com' },
+    { host: 'wooasijang.wooahouse.com',   color: '#F43F5E', icon: '🏪', name: 'WooaSijang', title: '전국 5일장 전통시장 정보',         url: 'https://wooasijang.wooahouse.com' },
+    { host: 'hosppass.wooahouse.com',     color: '#DC2626', icon: '🏥', name: 'HospPass',   title: '병원·약국·응급실 찾기',            url: 'https://hosppass.wooahouse.com' },
+    { host: 'wooaaptpass.wooahouse.com',  color: '#0891B2', icon: '🏢', name: 'AptPass',    title: '아파트 청약 일정·경쟁률',          url: 'https://wooaaptpass.wooahouse.com' },
+    { host: 'wooabojopass.wooahouse.com', color: '#CA8A04', icon: '💰', name: 'BojoPass',   title: '정부지원금·보조금 총정리',         url: 'https://wooabojopass.wooahouse.com' },
+    { host: 'wooagosapass.wooahouse.com', color: '#4F46E5', icon: '🗓️', name: 'GosaPass',   title: '국가자격증 시험일정 총정리',       url: 'https://wooagosapass.wooahouse.com' },
   ];
 
   function bgLuminance() {
