@@ -91,6 +91,12 @@
        이 pages에서만 min-width:0으로 강제로 줄어들 수 있게 한다. */
     main.tool-page { min-width: 0; }
     #editorWrap { display: none; gap: 14px; align-items: flex-start; width: 100%; max-width: 100%; min-width: 0; }
+    /* This page needs more room for the actual PDF canvas than other tool pages,
+       so widen .page-with-sidebar here so the right ad sidebar doesn't squeeze the
+       canvas too much (local to this page only, no effect on shared layout). */
+    @media (min-width: 1025px) {
+      .page-with-sidebar { max-width: 1500px; }
+    }
 
     .pe-toolbar {
       display: flex; flex-direction: column; gap: 6px;

@@ -70,6 +70,12 @@
        이 페이지에서만 min-width:0으로 강제로 줄어들 수 있게 한다. */
     main.tool-page { min-width: 0; }
     #editorWrap { display: none; gap: 14px; align-items: flex-start; width: 100%; max-width: 100%; min-width: 0; }
+    /* 이 페이지는 실제 PDF 캔버스 표시 공간이 많이 필요하므로, 다른 툴 페이지보다
+       .page-with-sidebar 컨테이너를 넓게 써서 우측 광고 사이드바가 캔버스를 과도하게
+       압박하지 않도록 한다(다른 페이지의 공용 레이아웃에는 영향 없음, 이 페이지 로컬 스타일). */
+    @media (min-width: 1025px) {
+      .page-with-sidebar { max-width: 1500px; }
+    }
 
     .pe-toolbar {
       display: flex; flex-direction: column; gap: 6px;
