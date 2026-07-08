@@ -48,8 +48,13 @@ const Toolbar = (() => {
    */
   function attachOverlay(overlayEl, pageIndex, onCreated) {
     overlayEl.addEventListener('pointerdown', (e) => {
-      if (e.target !== overlayEl) return; // 기존 요소 위 클릭은 여기서 처리 안 함
-      if (currentTool === 'select') { ElementFactory.deselectAll(); return; }
+      if (currentTool === 'select') {
+        if (e.target !== overlayEl) return; // 기존 요소 위 클릭은 여기서 처리 안 함(요소 자체가 이동/선택 처리)
+        ElementFactory.deselectAll();
+        return;
+      }
+      // 그리기 도구가 선택된 상태에서는 이미 그려진 요소 위를 클릭하더라도
+      // (elementFactory.js의 가드 덕분에 그쪽에서 이동을 시작하지 않으므로) 항상 새 요소를 그린다.
 
       // CSS zoom은 오버레이 하위 요소 전체의 px 좌표계를 함께 축소하므로,
       // 화면(screen) 픽셀 delta를 zoom 배율로 나눠 로컬(zoom 적용 전) px로 변환해야

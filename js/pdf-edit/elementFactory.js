@@ -165,11 +165,20 @@ const ElementFactory = (() => {
         return `<svg width="100%" height="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
           <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${sw}"/></svg>`;
       }
+      // 화살촉은 SVG <marker orient="auto">를 쓰지 않고 각도를 직접 계산해서 그린다.
+      // marker+orient=auto는 CSS zoom으로 축소된 상태에서 화살촉이 일그러지는
+      // 문제가 있어(줌 배율이 작을수록 심해짐), export 쪽(exportManager.js)과 동일하게
+      // 순수 삼각함수로 두 개의 짧은 선을 그려 항상 정삼각형 모양을 유지한다.
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      const headLen = Math.max(10, sw * 4);
+      const spread = Math.PI / 7;
+      const hx1 = x2 - headLen * Math.cos(angle - spread), hy1 = y2 - headLen * Math.sin(angle - spread);
+      const hx2 = x2 - headLen * Math.cos(angle + spread), hy2 = y2 - headLen * Math.sin(angle + spread);
       return `<svg width="100%" height="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
-        <defs><marker id="arrowhead-${data.id}" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
-          <polygon points="0 0, 10 4, 0 8" fill="${stroke}"/></marker></defs>
-        <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${sw}"
-          marker-end="url(#arrowhead-${data.id})"/></svg>`;
+        <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${sw}"/>
+        <line x1="${x2}" y1="${y2}" x2="${hx1}" y2="${hy1}" stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round"/>
+        <line x1="${x2}" y1="${y2}" x2="${hx2}" y2="${hy2}" stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round"/>
+      </svg>`;
     }
     return '';
   }
@@ -186,6 +195,10 @@ const ElementFactory = (() => {
   // ── 상호작용: 선택 / 이동 / 리사이즈 / 삭제 / 텍스트 편집 ──
   function attachInteractions(el, overlayEl, pageIndex, data) {
     el.addEventListener('pointerdown', (e) => {
+      // 다른 도구(사각형/화살표 등)가 선택된 상태에서 기존 요소 위를 클릭하면
+      // 여기서 이동을 시작하지 않고 그대로 overlay 쪽 "새 요소 그리기"로 넘긴다.
+      // (그렇지 않으면 이미 그려둔 요소 위에서는 새 도형을 그릴 수 없게 된다.)
+      if (typeof Toolbar !== 'undefined' && Toolbar.getTool() !== 'select') return;
       if (e.target.classList.contains('pe-resize-handle')) return;
       if (e.target.classList.contains('pe-delete-btn')) return;
       if (data.type === 'text' && e.target.classList.contains('pe-text-content') && el.classList.contains('selected')) {
