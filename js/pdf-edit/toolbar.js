@@ -91,12 +91,35 @@ const Toolbar = (() => {
 
       // 드래그로 그리는 도구들 (rect/circle/line/arrow/whiteout/highlight/link)
       let curX = startX, curY = startY;
-      const ghost = document.createElement('div');
-      ghost.className = 'pe-drag-ghost';
+      const isLineTool = currentTool === 'line' || currentTool === 'arrow';
+      // 선/화살표는 박스 모양 미리보기 대신, 실제 드래그 경로를 그대로 보여주는
+      // SVG 선 미리보기를 사용한다 (그렇지 않으면 "선을 그려도 네모만 보인다"는 혼란이 생김).
+      let ghost, ghostLine;
+      if (isLineTool) {
+        const svgNs = 'http://www.w3.org/2000/svg';
+        ghost = document.createElementNS(svgNs, 'svg');
+        ghost.setAttribute('class', 'pe-drag-ghost pe-drag-ghost-line');
+        ghost.style.position = 'absolute'; ghost.style.left = '0'; ghost.style.top = '0';
+        ghost.style.width = '100%'; ghost.style.height = '100%'; ghost.style.pointerEvents = 'none';
+        ghost.style.border = 'none'; ghost.style.background = 'none';
+        ghostLine = document.createElementNS(svgNs, 'line');
+        ghostLine.setAttribute('stroke', defaultStyle.shapeColor);
+        ghostLine.setAttribute('stroke-width', String(defaultStyle.strokeWidth));
+        ghostLine.setAttribute('stroke-linecap', 'round');
+        ghost.appendChild(ghostLine);
+      } else {
+        ghost = document.createElement('div');
+        ghost.className = 'pe-drag-ghost';
+      }
       overlayEl.appendChild(ghost);
       updateGhost();
 
       function updateGhost() {
+        if (isLineTool) {
+          ghostLine.setAttribute('x1', startX); ghostLine.setAttribute('y1', startY);
+          ghostLine.setAttribute('x2', curX); ghostLine.setAttribute('y2', curY);
+          return;
+        }
         const x = Math.min(startX, curX), y = Math.min(startY, curY);
         const w = Math.abs(curX - startX), h = Math.abs(curY - startY);
         ghost.style.left = x + 'px'; ghost.style.top = y + 'px';
