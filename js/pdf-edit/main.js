@@ -24,6 +24,11 @@
   const redoBtn = document.getElementById('redoBtn');
   const downloadBtn = document.getElementById('downloadBtn');
   const errorMsg = document.getElementById('errorMsg');
+  const resetSignBtn = document.getElementById('resetSignBtn');
+  const formFieldsPanel = document.getElementById('formFieldsPanel');
+  const formFieldsList = document.getElementById('formFieldsList');
+
+  if (resetSignBtn) resetSignBtn.addEventListener('click', () => Toolbar.resetSignature());
 
   // ── 파일 업로드 ─────────────────────────
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
@@ -56,6 +61,11 @@
     PdfEditState.init(numPages);
     dropZone.style.display = 'none';
     editorWrap.style.display = 'flex';
+
+    if (typeof FormFields !== 'undefined') {
+      await FormFields.detect(originalArrayBuffer.slice(0));
+      FormFields.renderPanel(formFieldsPanel, formFieldsList);
+    }
 
     PdfRenderer.mount(pagesContainer, numPages, (pageIndex, wrap, overlay) => {
       // 이미 저장돼 있던 요소가 있으면(다른 페이지 편집 후 되돌아온 경우) 다시 그려준다
@@ -100,12 +110,18 @@
       byId('pf-color').addEventListener('input', e => ElementFactory.updateStyle(data, { color: e.target.value }));
       byId('pf-font').addEventListener('change', e => ElementFactory.updateStyle(data, { fontFamily: e.target.value }));
       byId('pf-bold').addEventListener('change', e => ElementFactory.updateStyle(data, { bold: e.target.checked }));
-    } else if (data.type !== 'image' && data.type !== 'whiteout') {
+    } else if (data.type === 'rect' || data.type === 'circle' || data.type === 'line' || data.type === 'arrow' || data.type === 'freehand') {
       propPanel.innerHTML = `
         <label>선 색상 <input type="color" id="pf-color" value="${data.color}"></label>
         <label>선 굵기 <input type="range" id="pf-width" min="1" max="20" value="${data.strokeWidth}"></label>`;
       byId('pf-color').addEventListener('input', e => ElementFactory.updateStyle(data, { color: e.target.value }));
       byId('pf-width').addEventListener('input', e => ElementFactory.updateStyle(data, { strokeWidth: +e.target.value }));
+    } else if (data.type === 'highlight') {
+      propPanel.innerHTML = `<label>하이라이트 색상 <input type="color" id="pf-color" value="${data.color}"></label>`;
+      byId('pf-color').addEventListener('input', e => ElementFactory.updateStyle(data, { color: e.target.value }));
+    } else if (data.type === 'link') {
+      propPanel.innerHTML = `<label>연결 URL <input type="url" id="pf-url" value="${data.url || ''}"></label>`;
+      byId('pf-url').addEventListener('change', e => { data.url = e.target.value; PdfEditState.commit(); });
     } else {
       propPanel.innerHTML = `<p class="pe-prop-hint">선택한 요소를 드래그해 이동하거나 모서리를 잡아 크기를 조절하세요.</p>`;
     }

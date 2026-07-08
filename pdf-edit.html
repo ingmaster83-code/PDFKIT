@@ -115,6 +115,11 @@
     .pe-whiteout-fill { width: 100%; height: 100%; background: #fff; }
     .pe-element.pe-type-whiteout:not(.selected) { border: 1px dashed transparent; }
     .pe-element.pe-type-whiteout.selected { border: 1px dashed #999; }
+    .pe-highlight-fill { width: 100%; height: 100%; mix-blend-mode: multiply; }
+    .pe-link-marker {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: rgba(59,130,246,.12); border: 1.5px dashed #3B82F6; font-size: 1.1rem;
+    }
     .pe-element img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
 
     .pe-resize-handle {
@@ -167,6 +172,51 @@
       font-size: 0.78rem; color: var(--text-light); line-height: 1.6;
     }
     .pe-related-note a { color: var(--primary); text-decoration: underline; }
+
+    /* ===== 모달 (스탬프/서명/링크) ===== */
+    .pe-modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 9999;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .pe-modal-box {
+      background: white; border-radius: var(--radius); padding: 22px; width: 100%; max-width: 420px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.3);
+    }
+    .pe-modal-box h3 { font-size: 1.05rem; margin-bottom: 14px; }
+    .pe-stamp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .pe-stamp-option {
+      padding: 18px 8px; border-radius: var(--radius-sm); border: 2px solid;
+      background: white; font-weight: 800; cursor: pointer; font-size: 0.9rem;
+      transition: transform 0.12s;
+    }
+    .pe-stamp-option:hover { transform: translateY(-2px); }
+    .pe-sign-canvas-wrap {
+      border: 2px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: white;
+    }
+    #peSignCanvas { width: 100%; display: block; cursor: crosshair; touch-action: none; }
+    .pe-sign-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 12px 0; font-size: 0.82rem; }
+    .pe-sign-controls select, .pe-sign-controls input[type="color"] {
+      padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit;
+    }
+    .pe-sign-controls button { padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; background: #F9FAFB; cursor: pointer; }
+    .pe-sign-upload-label { cursor: pointer; color: var(--primary); text-decoration: underline; }
+    .pe-link-input {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-family: inherit; font-size: 0.9rem; margin-bottom: 16px;
+    }
+    .pe-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .pe-modal-cancel, .pe-modal-confirm {
+      padding: 9px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      cursor: pointer; font-family: inherit; font-size: 0.88rem;
+    }
+    .pe-modal-confirm { background: var(--primary); color: white; border-color: var(--primary); font-weight: 600; }
+
+    /* ===== 폼 필드 패널 ===== */
+    .pe-form-field-row { margin-bottom: 10px; }
+    .pe-form-field-row label { display: block; font-size: 0.78rem; color: var(--text-light); margin-bottom: 4px; }
+    .pe-form-field-row input[type="text"] {
+      width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit;
+    }
 
     @media (max-width: 900px) {
       #editorWrap { flex-direction: column; }
@@ -242,6 +292,12 @@
       <button class="pe-tool-btn" data-tool="arrow" title="화살표">↗️</button>
       <div class="pe-toolbar-divider"></div>
       <button class="pe-tool-btn" data-tool="whiteout" title="화이트아웃 (가리기)">⬜</button>
+      <button class="pe-tool-btn" data-tool="highlight" title="하이라이트 (형광펜)">🖍️</button>
+      <div class="pe-toolbar-divider"></div>
+      <button class="pe-tool-btn" data-tool="freehand" title="자유 드로잉">✏️</button>
+      <button class="pe-tool-btn" data-tool="stamp" title="도장/스탬프">🔖</button>
+      <button class="pe-tool-btn" data-tool="signature" title="서명 추가">✍️</button>
+      <button class="pe-tool-btn" data-tool="link" title="링크 삽입">🔗</button>
     </div>
 
     <!-- 중앙 PDF 뷰어 + 편집 오버레이 -->
@@ -257,6 +313,15 @@
         </div>
       </div>
       <div class="pe-panel-box" id="propPanel"></div>
+      <div class="pe-panel-box" id="formFieldsPanel" style="display:none;">
+        <h4>PDF 폼 필드</h4>
+        <div id="formFieldsList"></div>
+      </div>
+      <div class="pe-panel-box">
+        <h4>서명</h4>
+        <p class="pe-related-note" style="margin-bottom:8px;">한 번 그린 서명은 계속 재사용됩니다.</p>
+        <button id="resetSignBtn" style="width:100%;padding:8px;border-radius:var(--radius-sm);border:1px solid var(--border);background:#F9FAFB;cursor:pointer;font-size:0.85rem;">✍️ 서명 다시 그리기</button>
+      </div>
       <div class="pe-panel-box">
         <h4>다른 기능이 필요하다면</h4>
         <p class="pe-related-note">
@@ -305,6 +370,8 @@
 <script src="js/pdf-edit/state.js"></script>
 <script src="js/pdf-edit/pdfRenderer.js"></script>
 <script src="js/pdf-edit/elementFactory.js"></script>
+<script src="js/pdf-edit/modals.js"></script>
+<script src="js/pdf-edit/formFields.js"></script>
 <script src="js/pdf-edit/toolbar.js"></script>
 <script src="js/pdf-edit/exportManager.js"></script>
 <script src="js/pdf-edit/main.js"></script>

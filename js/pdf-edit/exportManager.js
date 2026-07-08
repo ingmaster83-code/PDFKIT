@@ -54,6 +54,8 @@ const ExportManager = (() => {
       if (onProgress) onProgress(Math.round(((i + 1) / statePages.length) * 80) + 10);
     }
 
+    if (typeof FormFields !== 'undefined') FormFields.applyToDoc(pdfDoc);
+
     return pdfDoc.save();
   }
 
@@ -81,6 +83,28 @@ const ExportManager = (() => {
 
     if (el.type === 'whiteout') {
       page.drawRectangle({ x, y, width: w, height: h, color: rgb(1, 1, 1) });
+      return;
+    }
+
+    if (el.type === 'highlight') {
+      page.drawRectangle({ x, y, width: w, height: h, color: hexToRgb01(el.color), opacity: 0.45 });
+      return;
+    }
+
+    if (el.type === 'freehand') {
+      const pts = el.points || [];
+      const thickness = (el.strokeWidth || 3) / scale;
+      const color = hexToRgb01(el.color);
+      // DOM 좌표(왼쪽 위 원점, 아래로 증가) → PDF 좌표(왼쪽 아래 원점, 위로 증가) 변환
+      const toPdf = (p) => ({ x: x + p.x / scale, y: y + h - p.y / scale });
+      for (let i = 0; i < pts.length - 1; i++) {
+        page.drawLine({ start: toPdf(pts[i]), end: toPdf(pts[i + 1]), thickness, color });
+      }
+      return;
+    }
+
+    if (el.type === 'link') {
+      addLinkAnnotation(pdfDoc, page, x, y, w, h, el.url);
       return;
     }
 
@@ -113,12 +137,36 @@ const ExportManager = (() => {
       return;
     }
 
-    if (el.type === 'image') {
+    if (el.type === 'image' || el.type === 'signature' || el.type === 'stamp') {
       const base64 = el.src.split(',')[1];
       const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
-      const image = el.mime === 'image/png' ? await pdfDoc.embedPng(bytes) : await pdfDoc.embedJpg(bytes);
+      const isPng = el.mime === 'image/png' || el.src.startsWith('data:image/svg+xml') || el.src.startsWith('data:image/png');
+      const image = isPng ? await pdfDoc.embedPng(bytes) : await pdfDoc.embedJpg(bytes);
       page.drawImage(image, { x, y, width: w, height: h });
       return;
+    }
+  }
+
+  /**
+   * pdf-lib에는 "링크 주석 추가"용 고수준 API가 없어, 저수준 PDF 객체(Annotation dict)를
+   * 직접 만들어 페이지의 /Annots 배열에 등록한다. URI 액션(외부 링크)만 지원한다.
+   */
+  function addLinkAnnotation(pdfDoc, page, x, y, w, h, url) {
+    if (!url) return;
+    const { context } = pdfDoc;
+    const linkAnnot = context.obj({
+      Type: 'Annot',
+      Subtype: 'Link',
+      Rect: [x, y, x + w, y + h],
+      Border: [0, 0, 0],
+      A: { Type: 'Action', S: 'URI', URI: PDFLib.PDFString.of(url) },
+    });
+    const linkRef = context.register(linkAnnot);
+    const existingAnnots = page.node.Annots();
+    if (existingAnnots) {
+      existingAnnots.push(linkRef);
+    } else {
+      page.node.set(PDFLib.PDFName.of('Annots'), context.obj([linkRef]));
     }
   }
 

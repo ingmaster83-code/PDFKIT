@@ -16,6 +16,9 @@ const Toolbar = (() => {
     fontSize: 20, color: '#111111', bold: false, fontFamily: 'Helvetica',
     strokeWidth: 3, shapeColor: '#EF4444',
   };
+  let lastSignature = null; // { src, w, h } — 한 번 그린 서명은 계속 재사용(다시 그리기 전까지)
+
+  function resetSignature() { lastSignature = null; }
 
   function getTool() { return currentTool; }
   function getDefaultStyle() { return defaultStyle; }
@@ -53,8 +56,29 @@ const Toolbar = (() => {
         pickImageAt(overlayEl, pageIndex, startX, startY, onCreated);
         return;
       }
+      if (currentTool === 'stamp') {
+        PdfEditModals.openStampPicker((dataUri, w, h) => {
+          placeRasterAt(overlayEl, pageIndex, 'stamp', dataUri, startX, startY, w, h, onCreated);
+        });
+        return;
+      }
+      if (currentTool === 'signature') {
+        if (lastSignature) {
+          placeRasterAt(overlayEl, pageIndex, 'signature', lastSignature.src, startX, startY, lastSignature.w, lastSignature.h, onCreated);
+        } else {
+          PdfEditModals.openSignaturePad((dataUri, w, h) => {
+            lastSignature = { src: dataUri, w, h };
+            placeRasterAt(overlayEl, pageIndex, 'signature', dataUri, startX, startY, w, h, onCreated);
+          });
+        }
+        return;
+      }
+      if (currentTool === 'freehand') {
+        startFreehand(e, overlayEl, pageIndex, rect, startX, startY, onCreated);
+        return;
+      }
 
-      // 드래그로 그리는 도구들 (rect/circle/line/arrow/whiteout)
+      // 드래그로 그리는 도구들 (rect/circle/line/arrow/whiteout/highlight/link)
       let curX = startX, curY = startY;
       const ghost = document.createElement('div');
       ghost.className = 'pe-drag-ghost';
@@ -79,6 +103,16 @@ const Toolbar = (() => {
         const x = Math.min(startX, curX), y = Math.min(startY, curY);
         const w = Math.max(Math.abs(curX - startX), 20);
         const h = Math.max(Math.abs(curY - startY), 20);
+        if (currentTool === 'link') {
+          PdfEditModals.openLinkPrompt((url) => {
+            const data = { type: 'link', x, y, w, h, url };
+            PdfEditState.addElement(pageIndex, data);
+            PdfEditState.commit();
+            const el = ElementFactory.render(overlayEl, pageIndex, data);
+            onCreated && onCreated(data, el);
+          });
+          return;
+        }
         createShapeAt(overlayEl, pageIndex, currentTool, x, y, w, h, onCreated);
       }
       document.addEventListener('pointermove', onMove);
@@ -149,16 +183,76 @@ const Toolbar = (() => {
   }
 
   function createShapeAt(overlayEl, pageIndex, type, x, y, w, h, onCreated) {
-    const data = {
-      type, x, y, w, h,
-      color: type === 'whiteout' ? '#FFFFFF' : defaultStyle.shapeColor,
-      strokeWidth: defaultStyle.strokeWidth,
-    };
+    let color = defaultStyle.shapeColor;
+    if (type === 'whiteout') color = '#FFFFFF';
+    else if (type === 'highlight') color = '#FFEB3B';
+    const data = { type, x, y, w, h, color, strokeWidth: defaultStyle.strokeWidth };
     PdfEditState.addElement(pageIndex, data);
     PdfEditState.commit();
     const el = ElementFactory.render(overlayEl, pageIndex, data);
     onCreated && onCreated(data, el);
   }
 
-  return { getTool, setTool, getDefaultStyle, attachOverlay };
+  /** 도장/서명처럼 이미 만들어진 래스터 이미지를 클릭 지점에 바로 배치 */
+  function placeRasterAt(overlayEl, pageIndex, type, src, x, y, w, h, onCreated) {
+    const mime = /^data:([^;]+);/.exec(src)?.[1] || 'image/png';
+    const data = { type, x: x - w / 2, y: y - h / 2, w, h, src, mime };
+    PdfEditState.addElement(pageIndex, data);
+    PdfEditState.commit();
+    const el = ElementFactory.render(overlayEl, pageIndex, data);
+    onCreated && onCreated(data, el);
+  }
+
+  /** 자유 드로잉: pointerdown~pointerup 동안의 궤적을 모아 하나의 path 요소로 저장 */
+  function startFreehand(e, overlayEl, pageIndex, rect, startX, startY, onCreated) {
+    const points = [{ x: startX, y: startY }];
+    const svgNs = 'http://www.w3.org/2000/svg';
+    const ghostSvg = document.createElementNS(svgNs, 'svg');
+    ghostSvg.setAttribute('class', 'pe-drag-ghost');
+    ghostSvg.style.position = 'absolute'; ghostSvg.style.left = '0'; ghostSvg.style.top = '0';
+    ghostSvg.style.width = '100%'; ghostSvg.style.height = '100%'; ghostSvg.style.pointerEvents = 'none';
+    ghostSvg.style.border = 'none'; ghostSvg.style.background = 'none';
+    const path = document.createElementNS(svgNs, 'path');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', defaultStyle.shapeColor);
+    path.setAttribute('stroke-width', String(defaultStyle.strokeWidth));
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('stroke-linejoin', 'round');
+    ghostSvg.appendChild(path);
+    overlayEl.appendChild(ghostSvg);
+
+    function updatePath() {
+      path.setAttribute('d', 'M ' + points.map(p => `${p.x} ${p.y}`).join(' L '));
+    }
+    function onMove(ev) {
+      points.push({ x: ev.clientX - rect.left, y: ev.clientY - rect.top });
+      updatePath();
+    }
+    function onUp() {
+      document.removeEventListener('pointermove', onMove);
+      document.removeEventListener('pointerup', onUp);
+      ghostSvg.remove();
+      if (points.length < 2) return;
+
+      const minX = Math.min(...points.map(p => p.x));
+      const minY = Math.min(...points.map(p => p.y));
+      const maxX = Math.max(...points.map(p => p.x));
+      const maxY = Math.max(...points.map(p => p.y));
+      const w = Math.max(maxX - minX, 2), h = Math.max(maxY - minY, 2);
+      const localPoints = points.map(p => ({ x: p.x - minX, y: p.y - minY }));
+
+      const data = {
+        type: 'freehand', x: minX, y: minY, w, h,
+        points: localPoints, color: defaultStyle.shapeColor, strokeWidth: defaultStyle.strokeWidth,
+      };
+      PdfEditState.addElement(pageIndex, data);
+      PdfEditState.commit();
+      const el = ElementFactory.render(overlayEl, pageIndex, data);
+      onCreated && onCreated(data, el);
+    }
+    document.addEventListener('pointermove', onMove);
+    document.addEventListener('pointerup', onUp);
+  }
+
+  return { getTool, setTool, getDefaultStyle, attachOverlay, resetSignature };
 })();

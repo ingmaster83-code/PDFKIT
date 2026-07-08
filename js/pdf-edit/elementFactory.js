@@ -9,6 +9,8 @@
  * PdfEditState.commit()으로 히스토리에 기록한다(드래그 중간중간은 기록 안 함).
  */
 
+const SHAPE_TYPES = ['rect', 'circle', 'line', 'arrow'];
+
 const ElementFactory = (() => {
   let selectedEl = null;       // 현재 선택된 DOM 엘리먼트
   let onSelectionChange = null; // (element data | null) => void
@@ -34,8 +36,9 @@ const ElementFactory = (() => {
     const inner = buildInner(data);
     el.appendChild(inner);
 
-    // 화이트아웃/도형은 리사이즈 핸들 4개
-    if (data.type !== 'text' || true) {
+    // 자유 드로잉(freehand)은 선 굵기·좌표가 뒤틀리는 걸 막기 위해
+    // 리사이즈 핸들 없이 이동만 가능하게 한다. 나머지는 4방향 핸들 제공.
+    if (data.type !== 'freehand') {
       ['nw', 'ne', 'sw', 'se'].forEach(pos => {
         const h = document.createElement('div');
         h.className = 'pe-resize-handle pe-handle-' + pos;
@@ -75,7 +78,7 @@ const ElementFactory = (() => {
       div.textContent = data.text || '';
       return div;
     }
-    if (data.type === 'image') {
+    if (data.type === 'image' || data.type === 'signature' || data.type === 'stamp') {
       const img = document.createElement('img');
       img.src = data.src;
       img.draggable = false;
@@ -86,11 +89,45 @@ const ElementFactory = (() => {
       div.className = 'pe-whiteout-fill';
       return div;
     }
+    if (data.type === 'highlight') {
+      const div = document.createElement('div');
+      div.className = 'pe-highlight-fill';
+      div.style.background = hexToRgba(data.color || '#FFEB3B', 0.45);
+      return div;
+    }
+    if (data.type === 'link') {
+      const div = document.createElement('div');
+      div.className = 'pe-link-marker';
+      div.innerHTML = '🔗';
+      div.title = data.url || '';
+      return div;
+    }
+    if (data.type === 'freehand') {
+      const svgWrap = document.createElement('div');
+      svgWrap.className = 'pe-shape-svg-wrap';
+      svgWrap.innerHTML = buildFreehandSvg(data);
+      return svgWrap;
+    }
     // 도형: rect / circle / line / arrow → SVG로 그린다 (박스 크기에 맞춰 자동 재계산)
     const svgWrap = document.createElement('div');
     svgWrap.className = 'pe-shape-svg-wrap';
     svgWrap.innerHTML = buildShapeSvg(data);
     return svgWrap;
+  }
+
+  function hexToRgba(hex, alpha) {
+    const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return `rgba(${parseInt(m[1], 16)},${parseInt(m[2], 16)},${parseInt(m[3], 16)},${alpha})`;
+  }
+
+  function buildFreehandSvg(data) {
+    const pts = data.points || [];
+    if (pts.length < 2) return '';
+    const d = 'M ' + pts.map(p => `${p.x} ${p.y}`).join(' L ');
+    return `<svg width="100%" height="100%" viewBox="0 0 ${data.w} ${data.h}" preserveAspectRatio="none">
+      <path d="${d}" fill="none" stroke="${data.color || '#EF4444'}" stroke-width="${data.strokeWidth || 3}"
+        stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   }
 
   function buildShapeSvg(data) {
@@ -214,7 +251,7 @@ const ElementFactory = (() => {
       if (pos.includes('n')) { h = Math.max(MIN, orig.h - dy); y = orig.y + orig.h - h; }
       data.x = x; data.y = y; data.w = w; data.h = h;
       positionEl(el, data);
-      if (data.type !== 'text' && data.type !== 'image' && data.type !== 'whiteout') {
+      if (SHAPE_TYPES.includes(data.type)) {
         const svgWrap = el.querySelector('.pe-shape-svg-wrap');
         if (svgWrap) svgWrap.innerHTML = buildShapeSvg(data);
       }
@@ -240,7 +277,10 @@ const ElementFactory = (() => {
       content.style.color = data.color;
       content.style.fontWeight = data.bold ? '700' : '400';
       content.style.fontFamily = fontFamilyCss(data.fontFamily);
-    } else if (data.type !== 'image' && data.type !== 'whiteout') {
+    } else if (data.type === 'highlight') {
+      const fill = el.querySelector('.pe-highlight-fill');
+      if (fill) fill.style.background = hexToRgba(data.color || '#FFEB3B', 0.45);
+    } else if (SHAPE_TYPES.includes(data.type)) {
       const svgWrap = el.querySelector('.pe-shape-svg-wrap');
       if (svgWrap) svgWrap.innerHTML = buildShapeSvg(data);
     }
