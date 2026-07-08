@@ -20,6 +20,13 @@ const Toolbar = (() => {
 
   function resetSignature() { lastSignature = null; }
 
+  /** elementFactory.js의 동일 함수와 같은 이유로 zoom 배율을 되돌려준다 */
+  function getZoom(overlayEl) {
+    const wrap = overlayEl.closest('.pe-page-wrap');
+    const z = wrap ? parseFloat(wrap.style.zoom) : 1;
+    return z > 0 ? z : 1;
+  }
+
   function getTool() { return currentTool; }
   function getDefaultStyle() { return defaultStyle; }
 
@@ -44,9 +51,13 @@ const Toolbar = (() => {
       if (e.target !== overlayEl) return; // 기존 요소 위 클릭은 여기서 처리 안 함
       if (currentTool === 'select') { ElementFactory.deselectAll(); return; }
 
+      // CSS zoom은 오버레이 하위 요소 전체의 px 좌표계를 함께 축소하므로,
+      // 화면(screen) 픽셀 delta를 zoom 배율로 나눠 로컬(zoom 적용 전) px로 변환해야
+      // ghost/실제 요소가 클릭 지점과 어긋나지 않는다.
       const rect = overlayEl.getBoundingClientRect();
-      const startX = e.clientX - rect.left;
-      const startY = e.clientY - rect.top;
+      const zoom = getZoom(overlayEl);
+      const startX = (e.clientX - rect.left) / zoom;
+      const startY = (e.clientY - rect.top) / zoom;
 
       if (currentTool === 'text') {
         createTextAt(overlayEl, pageIndex, startX, startY, onCreated);
@@ -92,8 +103,8 @@ const Toolbar = (() => {
         ghost.style.width = w + 'px'; ghost.style.height = h + 'px';
       }
       function onMove(ev) {
-        curX = ev.clientX - rect.left;
-        curY = ev.clientY - rect.top;
+        curX = (ev.clientX - rect.left) / zoom;
+        curY = (ev.clientY - rect.top) / zoom;
         updateGhost();
       }
       function onUp() {
@@ -205,6 +216,7 @@ const Toolbar = (() => {
 
   /** 자유 드로잉: pointerdown~pointerup 동안의 궤적을 모아 하나의 path 요소로 저장 */
   function startFreehand(e, overlayEl, pageIndex, rect, startX, startY, onCreated) {
+    const zoom = getZoom(overlayEl);
     const points = [{ x: startX, y: startY }];
     const svgNs = 'http://www.w3.org/2000/svg';
     const ghostSvg = document.createElementNS(svgNs, 'svg');
@@ -225,7 +237,7 @@ const Toolbar = (() => {
       path.setAttribute('d', 'M ' + points.map(p => `${p.x} ${p.y}`).join(' L '));
     }
     function onMove(ev) {
-      points.push({ x: ev.clientX - rect.left, y: ev.clientY - rect.top });
+      points.push({ x: (ev.clientX - rect.left) / zoom, y: (ev.clientY - rect.top) / zoom });
       updatePath();
     }
     function onUp() {

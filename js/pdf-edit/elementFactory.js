@@ -17,6 +17,18 @@ const ElementFactory = (() => {
 
   function setOnSelectionChange(cb) { onSelectionChange = cb; }
 
+  /**
+   * CSS zoom은 페이지 wrap 전체(자식 포함)의 픽셀 좌표계를 함께 축소하므로,
+   * 화면(screen) 픽셀 delta를 요소 좌표(zoom 적용 전 로컬 px)로 되돌리려면
+   * 반드시 현재 zoom 배율로 나눠야 한다. 나누지 않으면 zoom<1일 때
+   * 클릭 지점보다 원점 쪽으로 쏠려서 요소가 배치/이동/리사이즈된다.
+   */
+  function getZoom(overlayEl) {
+    const wrap = overlayEl.closest('.pe-page-wrap');
+    const z = wrap ? parseFloat(wrap.style.zoom) : 1;
+    return z > 0 ? z : 1;
+  }
+
   function deselectAll() {
     document.querySelectorAll('.pe-element.selected').forEach(el => el.classList.remove('selected'));
     selectedEl = null;
@@ -217,13 +229,15 @@ const ElementFactory = (() => {
     e.preventDefault();
     const startX = e.clientX, startY = e.clientY;
     const origX = data.x, origY = data.y;
-    const bounds = overlayEl.getBoundingClientRect();
+    const zoom = getZoom(overlayEl);
+    const boundsW = overlayEl.getBoundingClientRect().width / zoom;
+    const boundsH = overlayEl.getBoundingClientRect().height / zoom;
 
     function onMove(ev) {
-      const dx = ev.clientX - startX;
-      const dy = ev.clientY - startY;
-      data.x = clamp(origX + dx, 0, bounds.width - data.w);
-      data.y = clamp(origY + dy, 0, bounds.height - data.h);
+      const dx = (ev.clientX - startX) / zoom;
+      const dy = (ev.clientY - startY) / zoom;
+      data.x = clamp(origX + dx, 0, boundsW - data.w);
+      data.y = clamp(origY + dy, 0, boundsH - data.h);
       positionEl(el, data);
     }
     function onUp() {
@@ -239,11 +253,12 @@ const ElementFactory = (() => {
     e.preventDefault();
     const startX = e.clientX, startY = e.clientY;
     const orig = { x: data.x, y: data.y, w: data.w, h: data.h };
+    const zoom = getZoom(overlayEl);
     const MIN = 16;
 
     function onMove(ev) {
-      const dx = ev.clientX - startX;
-      const dy = ev.clientY - startY;
+      const dx = (ev.clientX - startX) / zoom;
+      const dy = (ev.clientY - startY) / zoom;
       let { x, y, w, h } = orig;
       if (pos.includes('e')) w = Math.max(MIN, orig.w + dx);
       if (pos.includes('s')) h = Math.max(MIN, orig.h + dy);
