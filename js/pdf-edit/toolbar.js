@@ -115,6 +115,8 @@ const Toolbar = (() => {
       } else {
         ghost = document.createElement('div');
         ghost.className = 'pe-drag-ghost';
+        // 원 도구는 미리보기도 사각형이 아니라 실제 타원 모양으로 보여준다.
+        if (currentTool === 'circle') ghost.style.borderRadius = '50%';
       }
       overlayEl.appendChild(ghost);
       updateGhost();
