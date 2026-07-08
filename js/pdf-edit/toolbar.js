@@ -124,7 +124,7 @@ const Toolbar = (() => {
           });
           return;
         }
-        createShapeAt(overlayEl, pageIndex, currentTool, x, y, w, h, onCreated);
+        createShapeAt(overlayEl, pageIndex, currentTool, x, y, w, h, onCreated, startX, startY, curX, curY);
       }
       document.addEventListener('pointermove', onMove);
       document.addEventListener('pointerup', onUp);
@@ -193,11 +193,19 @@ const Toolbar = (() => {
     input.click();
   }
 
-  function createShapeAt(overlayEl, pageIndex, type, x, y, w, h, onCreated) {
+  function createShapeAt(overlayEl, pageIndex, type, x, y, w, h, onCreated, startX, startY, curX, curY) {
     let color = defaultStyle.shapeColor;
     if (type === 'whiteout') color = '#FFFFFF';
     else if (type === 'highlight') color = '#FFEB3B';
     const data = { type, x, y, w, h, color, strokeWidth: defaultStyle.strokeWidth };
+    if (type === 'line' || type === 'arrow') {
+      // 실제 드래그 방향(좌→우/우→좌, 위→아래/아래→위)을 박스 안 비율로 저장해
+      // 어느 방향으로 그려도 화살표가 항상 드래그 방향대로 보이게 한다.
+      data.x1Frac = w ? (startX - x) / w : 0;
+      data.y1Frac = h ? (startY - y) / h : 0;
+      data.x2Frac = w ? (curX - x) / w : 1;
+      data.y2Frac = h ? (curY - y) / h : 1;
+    }
     PdfEditState.addElement(pageIndex, data);
     PdfEditState.commit();
     const el = ElementFactory.render(overlayEl, pageIndex, data);

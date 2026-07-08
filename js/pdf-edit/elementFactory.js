@@ -156,15 +156,19 @@ const ElementFactory = (() => {
         <ellipse cx="${w / 2}" cy="${h / 2}" rx="${Math.max(w / 2 - sw / 2, 0)}" ry="${Math.max(h / 2 - sw / 2, 0)}"
           fill="none" stroke="${stroke}" stroke-width="${sw}"/></svg>`;
     }
-    if (data.type === 'line') {
-      return `<svg width="100%" height="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
-        <line x1="0" y1="0" x2="${w}" y2="${h}" stroke="${stroke}" stroke-width="${sw}"/></svg>`;
-    }
-    if (data.type === 'arrow') {
+    if (data.type === 'line' || data.type === 'arrow') {
+      // x1Frac~y2Frac: 실제 드래그 시작→끝 방향을 박스 대비 비율(0~1)로 저장해둔 값.
+      // 예전 요소(필드 없음)는 기본값 (0,0)→(1,1)로 대각선 유지(하위 호환).
+      const x1 = (data.x1Frac ?? 0) * w, y1 = (data.y1Frac ?? 0) * h;
+      const x2 = (data.x2Frac ?? 1) * w, y2 = (data.y2Frac ?? 1) * h;
+      if (data.type === 'line') {
+        return `<svg width="100%" height="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+          <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${sw}"/></svg>`;
+      }
       return `<svg width="100%" height="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
         <defs><marker id="arrowhead-${data.id}" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
           <polygon points="0 0, 10 4, 0 8" fill="${stroke}"/></marker></defs>
-        <line x1="0" y1="0" x2="${w}" y2="${h}" stroke="${stroke}" stroke-width="${sw}"
+        <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${sw}"
           marker-end="url(#arrowhead-${data.id})"/></svg>`;
     }
     return '';

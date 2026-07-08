@@ -128,9 +128,13 @@ const ExportManager = (() => {
     }
 
     if (el.type === 'line' || el.type === 'arrow') {
-      // DOM에서 좌상단(0,0)→우하단(w,h) 대각선으로 그렸으므로 PDF 좌표로 양끝점 변환
-      const startPdf = { x, y: y + h };
-      const endPdf = { x: x + w, y };
+      // x1Frac~y2Frac: 박스 대비 실제 드래그 시작→끝 비율(DOM 기준, y는 아래로 증가).
+      // 값이 없는 예전 요소는 좌상단→우하단 대각선(기본값)으로 처리(하위 호환).
+      const x1 = (el.x1Frac ?? 0) * w, y1 = (el.y1Frac ?? 0) * h;
+      const x2 = (el.x2Frac ?? 1) * w, y2 = (el.y2Frac ?? 1) * h;
+      // DOM(위→아래 증가) → PDF(아래→위 증가) Y축 변환
+      const startPdf = { x: x + x1, y: y + h - y1 };
+      const endPdf = { x: x + x2, y: y + h - y2 };
       const thickness = (el.strokeWidth || 3) / scale;
       page.drawLine({ start: startPdf, end: endPdf, thickness, color: hexToRgb01(el.color) });
       if (el.type === 'arrow') drawArrowHead(page, startPdf, endPdf, thickness, hexToRgb01(el.color));
