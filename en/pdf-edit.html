@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Editor Free Online – Add Text, Shapes & Images Anywhere | WooaPDF</title>
+  <meta name="description" content="Freely place text, shapes, images, and whiteout boxes anywhere on your PDF. Free online PDF editor, no signup, no server upload — everything runs in your browser.">
+  <meta name="keywords" content="PDF editor, edit PDF online, add text to PDF, draw shapes on PDF, insert image PDF, whiteout PDF, free PDF editor">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/en/pdf-edit.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-edit.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-edit.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-edit.html">
+  <meta property="og:title" content="PDF Editor Free Online – Free Placement Editing | WooaPDF">
+  <meta property="og:description" content="Add text, shapes, and images anywhere on your PDF with a free canvas-based editor. No signup, no server upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/en/pdf-edit.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaPDF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Editor Free Online – Add Text, Shapes & Images Anywhere | WooaPDF">
+<meta name="twitter:description" content="Freely place text, shapes, images, and whiteout boxes anywhere on your PDF. Free online PDF editor, no signup, no server upload.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Editor",
+    "url": "https://pdfkit.wooahouse.com/en/pdf-edit.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is this different from the Watermark tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watermark automatically repeats the same text across every page. This editor lets you place text, shapes, and images one at a time, anywhere you choose, on any page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I edit the existing text in the PDF directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. You can add new text on top of the page or cover existing content with a whiteout box. Direct text editing is planned for a future update."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my file uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All processing happens entirely in your browser. Your file is never sent to any server."
+      }
+    }
+  ]
+}
+</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ===== PDF 편집기 전용 스타일 ===== */
+    /* .page-with-sidebar는 grid이고 main.tool-page는 grid item이라, 기본값(min-width:auto)
+       때문에 내부의 넓은 PDF 캔버스 콘텐츠에 맞춰 자기 자신이 늘어나 버린다.
+       이 pages에서만 min-width:0으로 강제로 줄어들 수 있게 한다. */
+    main.tool-page { min-width: 0; }
+    #editorWrap { display: none; gap: 14px; align-items: flex-start; width: 100%; max-width: 100%; min-width: 0; }
+
+    .pe-toolbar {
+      display: flex; flex-direction: column; gap: 6px;
+      background: white; border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 10px 8px; flex-shrink: 0; position: sticky; top: 74px;
+    }
+    .pe-tool-btn {
+      width: 46px; height: 46px; border-radius: var(--radius-sm);
+      border: 1px solid transparent; background: transparent; cursor: pointer;
+      font-size: 1.3rem; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .pe-tool-btn:hover { background: #F3F4F6; }
+    .pe-tool-btn.active { background: var(--primary-light, #FFE9E9); border-color: var(--primary); }
+    .pe-toolbar-divider { height: 1px; background: var(--border); margin: 4px 2px; }
+
+    .pe-canvas-area {
+      flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center;
+      gap: 16px; max-height: 78vh; overflow: auto;
+      background: #F3F4F6; border-radius: var(--radius); padding: 20px;
+    }
+    .pe-page-wrap {
+      position: relative; background: white; box-shadow: 0 2px 10px rgba(0,0,0,.12);
+      flex-shrink: 0;
+    }
+    .pe-page-canvas { position: absolute; top: 0; left: 0; }
+    .pe-page-placeholder {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%; color: var(--text-light); font-size: 0.9rem;
+      background: repeating-linear-gradient(45deg,#eee,#eee 10px,#f5f5f5 10px,#f5f5f5 20px);
+    }
+    .pe-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    .pe-element {
+      position: absolute; box-sizing: border-box; cursor: move; touch-action: none;
+    }
+    .pe-element.selected { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .pe-text-content {
+      width: 100%; height: 100%; outline: none; overflow: hidden;
+      line-height: 1.2; word-break: break-word; cursor: text;
+    }
+    .pe-shape-svg-wrap, .pe-shape-svg-wrap svg { width: 100%; height: 100%; display: block; }
+    .pe-whiteout-fill { width: 100%; height: 100%; background: #fff; }
+    .pe-element.pe-type-whiteout:not(.selected) { border: 1px dashed transparent; }
+    .pe-element.pe-type-whiteout.selected { border: 1px dashed #999; }
+    .pe-element img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+
+    .pe-resize-handle {
+      position: absolute; width: 12px; height: 12px; background: white;
+      border: 2px solid var(--primary); border-radius: 50%; display: none;
+    }
+    .pe-element.selected .pe-resize-handle { display: block; }
+    .pe-handle-nw { top: -6px; left: -6px; cursor: nwse-resize; }
+    .pe-handle-ne { top: -6px; right: -6px; cursor: nesw-resize; }
+    .pe-handle-sw { bottom: -6px; left: -6px; cursor: nesw-resize; }
+    .pe-handle-se { bottom: -6px; right: -6px; cursor: nwse-resize; }
+
+    .pe-delete-btn {
+      position: absolute; top: -14px; right: -14px; width: 24px; height: 24px;
+      border-radius: 50%; background: #EF4444; color: white; border: 2px solid white;
+      font-size: 0.7rem; display: none; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    }
+    .pe-element.selected .pe-delete-btn { display: flex; }
+
+    .pe-drag-ghost {
+      position: absolute; border: 2px dashed var(--primary); background: rgba(255,68,68,.08);
+      pointer-events: none;
+    }
+
+    .pe-side-panel {
+      width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px;
+      position: sticky; top: 74px;
+    }
+    .pe-panel-box {
+      background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px;
+    }
+    .pe-panel-box h4 { font-size: 0.85rem; margin-bottom: 10px; color: var(--text); }
+    #propPanel { display: none; }
+    #propPanel label {
+      display: flex; flex-direction: column; gap: 4px; font-size: 0.78rem;
+      color: var(--text-light); margin-bottom: 10px;
+    }
+    #propPanel .pe-bold-row { flex-direction: row; align-items: center; gap: 6px; }
+    .pe-prop-hint { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; }
+
+    .pe-history-row { display: flex; gap: 8px; }
+    .pe-history-row button {
+      flex: 1; padding: 8px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: #F9FAFB; cursor: pointer; font-size: 0.85rem;
+    }
+    .pe-history-row button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .pe-related-note {
+      font-size: 0.78rem; color: var(--text-light); line-height: 1.6;
+    }
+    .pe-related-note a { color: var(--primary); text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      #editorWrap { flex-direction: column; }
+      .pe-toolbar { flex-direction: row; overflow-x: auto; position: static; width: 100%; }
+      .pe-side-panel { width: 100%; position: static; flex-direction: row; flex-wrap: wrap; }
+      .pe-canvas-area { max-height: 60vh; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="merge-pdf.html">Merge PDF</a>
+      <a href="split-pdf.html">Split PDF</a>
+      <a href="watermark-pdf.html">Watermark</a>
+      <a href="pdf-sign.html">Sign PDF</a>
+      <a href="index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../pdf-edit.html">KO</a>
+        <span>|</span>
+        <a href="pdf-edit.html" class="active">EN</a>
+      </div>
+      <a href="../about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<script src="../js/wooa-sites-bar.js"></script>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div><div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 Home</a>
+    <span>›</span>
+    <span>PDF Editor</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🖊️</span>
+    <h1>PDF Editor – Freely Place Text, Shapes & Images</h1>
+    <p>Draw text, shapes, images, and whiteout boxes anywhere you like on your PDF. Your file is never sent to any server.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>Drop your PDF file here</h3>
+    <p>Upload the PDF you want to edit</p>
+    <label for="fileInput" class="btn-select">Select PDF File</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div id="editorWrap">
+    <!-- Left tool icon bar -->
+    <div class="pe-toolbar" id="toolButtons">
+      <button class="pe-tool-btn" data-tool="select" title="Select / Move">↖️</button>
+      <div class="pe-toolbar-divider"></div>
+      <button class="pe-tool-btn" data-tool="text" title="Add Text">🔤</button>
+      <button class="pe-tool-btn" data-tool="image" title="Add Image">🖼️</button>
+      <div class="pe-toolbar-divider"></div>
+      <button class="pe-tool-btn" data-tool="rect" title="Rectangle">▭</button>
+      <button class="pe-tool-btn" data-tool="circle" title="Circle">⬭</button>
+      <button class="pe-tool-btn" data-tool="line" title="Line">╱</button>
+      <button class="pe-tool-btn" data-tool="arrow" title="Arrow">↗️</button>
+      <div class="pe-toolbar-divider"></div>
+      <button class="pe-tool-btn" data-tool="whiteout" title="Whiteout (cover content)">⬜</button>
+    </div>
+
+    <!-- Center PDF viewer + edit overlay -->
+    <div class="pe-canvas-area" id="pagesContainer"></div>
+
+    <!-- Right property panel -->
+    <div class="pe-side-panel">
+      <div class="pe-panel-box">
+        <h4>Undo / Redo</h4>
+        <div class="pe-history-row">
+          <button id="undoBtn" disabled>↩️ Undo</button>
+          <button id="redoBtn" disabled>↪️ Redo</button>
+        </div>
+      </div>
+      <div class="pe-panel-box" id="propPanel"></div>
+      <div class="pe-panel-box">
+        <h4>Need something else?</h4>
+        <p class="pe-related-note">
+          To repeat the same content across every page, use <a href="watermark-pdf.html">Add Watermark</a>.
+          For page numbers, use <a href="page-number-pdf.html">Page Numbers</a>.
+          To merge, split, or rotate pages, use <a href="merge-pdf.html">Merge PDF</a> and other
+          dedicated tools.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-convert" id="downloadBtn" style="display:block; margin-top:20px;" onclick="return false;">⬇️ Download Edited PDF</button>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span id="progressText">Processing...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-grid">
+      <a href="watermark-pdf.html" class="related-card"><span class="related-icon">💧</span><span>Add Watermark</span></a>
+      <a href="pdf-sign.html" class="related-card"><span class="related-icon">✍️</span><span>Sign PDF</span></a>
+      <a href="merge-pdf.html" class="related-card"><span class="related-icon">🔗</span><span>Merge PDF</span></a>
+      <a href="page-number-pdf.html" class="related-card"><span class="related-icon">🔢</span><span>Page Numbers</span></a>
+    </div>
+  </div>
+  <div class="wooa-orig-anchor"></div>
+  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>Select a tool, then click or drag on the PDF to place an element.</li><li>Any element you place can be clicked again anytime to move, resize, or delete it.</li><li>To repeat the same content on every page, use the Watermark or Page Numbers tools instead.</li></ul></div>
+  <div class="faq-section"><h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2><details><summary>How is this different from the Watermark tool?</summary><p>Watermark automatically repeats the same text across every page. This editor lets you place text, shapes, and images one at a time, anywhere you choose, on any page — the two tools serve different purposes.</p></details><details><summary>Can I edit the existing text in the PDF directly?</summary><p>Not yet. You can add new text on top of the page or cover existing content with a whiteout box. Direct editing of the original text is planned for a future update.</p></details><details><summary>Is my file uploaded to a server?</summary><p>No. All processing happens entirely in your browser, and your file is never sent to any server.</p></details></div>
+
+</main>
+
+<aside class="tool-sidebar"></aside>
+</div>
+
+
+<footer class="footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="../js/pdf-edit/state.js"></script>
+<script src="../js/pdf-edit/pdfRenderer.js"></script>
+<script src="../js/pdf-edit/elementFactory.js"></script>
+<script src="../js/pdf-edit/toolbar.js"></script>
+<script src="../js/pdf-edit/exportManager.js"></script>
+<script src="../js/pdf-edit/main.js"></script>
+
+<script src="../js/wooahouse-originals-tool.js"></script>
+<script>window.PWA_CONFIG={appName:"WooaPDF",themeColor:"#FF4444",icon:"📱",convertIds:['convertBtn','compressBtn','mergeBtn','splitBtn','deleteBtn','applyBtn','rotateBtn','unlockBtn','processBtn','cropBtn','generateBtn','resizeBtn','startBtn','generateAllBtn','printBtn','downloadBtn']};</script>
+<script src="../js/pwa-install.js"></script>
+<script src="../js/wooa-sidebar.js"></script>
+<script src="../js/wooa-footer.js"></script>
+</body>
+</html>
