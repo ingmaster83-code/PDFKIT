@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://pdfkit.wooahouse.com/sitemap.xml
+
+#DaumWebMasterTool:aadfa06970610caef87a47b9d0142ad146c7f0a51e48023806387ad726cbe78c:5OHFs/qHHlfCvAas17iLzw==
