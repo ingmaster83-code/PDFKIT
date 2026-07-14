@@ -1,2 +1,5 @@
 CLAUDE.md
 ja/PROGRESS.md
+
+# 내부 빌드/수정 스크립트 - git에 올리지 않음
+*.py
