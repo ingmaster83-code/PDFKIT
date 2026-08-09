@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF to PPT Converter Free Online – Convert PDF to PowerPoint | WooaPDF</title>
+  <meta name="description" content="Convert PDF files to PowerPoint (PPTX) for free. Each page becomes a slide image. No upload, no signup, runs entirely in your browser.">
+  <meta name="keywords" content="PDF to PPT, PDF to PowerPoint, convert PDF to PPTX free, PDF to slides online, browser PDF converter">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/en/pdf-to-ppt.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-to-ppt.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-to-ppt.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-to-ppt.html">
+  <meta property="og:title" content="PDF to PPT Converter – Free Online | WooaPDF">
+  <meta property="og:description" content="Convert PDF files to PowerPoint slides instantly. Each page becomes a slide image. Free, no signup, no upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/en/pdf-to-ppt.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+  <meta property="og:site_name" content="WooaPDF">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free PDF to PPT Converter — Convert PDF to PowerPoint | WooaPDF">
+  <meta name="twitter:description" content="Convert PDF to PowerPoint for free — each page becomes a slide image. No signup, no install, runs in your browser. Files are never sent to a server.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF to PPT Converter",
+    "url": "https://pdfkit.wooahouse.com/en/pdf-to-ppt.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I edit the PDF text directly in PowerPoint?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Each PDF page is converted into a single image and placed on a slide. To edit the actual text, use the PDF to Word tool instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my files uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All processing happens locally in your browser. Your files are never sent to any server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on the number of pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no page limit. However, more pages will take longer to convert and produce a larger file."
+      }
+    }
+  ]
+}
+</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Slide Preview 그리드 */
+    .slide-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .slide-preview-item {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      position: relative;
+    }
+    .slide-preview-item canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .slide-preview-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→Image</a>
+      <a href="jpg-to-pdf.html">Image→PDF</a>
+      <a href="merge-pdf.html">Merge PDF</a>
+      <a href="split-pdf.html">Split PDF</a>
+      <a href="compress-pdf.html">Compress PDF</a>
+      <a href="index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../pdf-to-ppt.html">KO</a>
+        <span>|</span>
+        <a href="pdf-to-ppt.html" class="active">EN</a>
+      </div>
+      <a href="../about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<script src="../js/wooa-sites-bar.js"></script>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 Home</a>
+    <span>›</span>
+    <span>PDF → PPT</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">📊</span>
+    <h1>PDF to PPT Converter – Convert PDF to PowerPoint</h1>
+    <p>Upload a PDF and each page is converted into a PowerPoint (.pptx) slide image. Files are processed entirely in your browser and are never saved on a server.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>Drop your PDF file here</h3>
+    <p>or click the button to select a file</p>
+    <label for="fileInput" class="btn-select">Select PDF File</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">Selected Files</div>
+    <div id="fileList"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">Options</div>
+    <div class="option-row">
+      <span class="option-label">Image Quality</span>
+      <div class="option-control">
+        <select id="qualitySelect">
+          <option value="high">High Quality (2x)</option>
+          <option value="medium" selected>Medium (1.5x)</option>
+          <option value="low">Low (1x)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-convert" id="convertBtn">📊 Convert to PPT</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap" style="display:none">
+    <div class="progress-label">
+      <span id="progressText">Preparing to convert...</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- Slide Preview -->
+  <div id="previewSection" style="display:none">
+    <div style="font-size:0.85rem;font-weight:700;color:var(--text-mid);margin-bottom:8px;">Slide Preview</div>
+    <div class="slide-preview-grid" id="previewGrid"></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel" style="display:none">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-title">Done!</div>
+        <div class="result-subtitle" id="resultSubtitle"></div>
+      </div>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadBtn" disabled>⏳ Preparing download</button>
+    </div>
+  </div>
+
+  <div class="related-tools">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+    <a href="pptx-to-pdf.html" class="related-card"><span class="related-icon">📄</span><span>PPT → PDF</span></a>
+    <a href="pdf-to-jpg.html" class="related-card"><span class="related-icon">🖼️</span><span>PDF → JPG</span></a>
+    <a href="pdf-to-word.html" class="related-card"><span class="related-icon">🔤</span><span>PDF → Word</span></a>
+    <a href="jpg-to-pdf.html" class="related-card"><span class="related-icon">📄</span><span>Image → PDF</span></a>
+  </div>
+</div>
+<div class="wooa-orig-anchor"></div>
+
+  <div class="tips-panel">
+    <h3>💡 Tips</h3>
+    <ul>
+      <li>Each PDF page is converted into a <strong>slide with an embedded image</strong>. To edit the actual text, use the <a href="pdf-to-word.html" style="color:var(--primary)">PDF to Word converter</a> instead.</li>
+      <li>If you have many pages, choose <strong>low-size quality</strong> to reduce conversion time and file size.</li>
+      <li>The converted PPTX file opens in PowerPoint, Hancom Office, and Google Slides.</li>
+    </ul>
+  </div>
+
+  <section class="faq-section">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
+    <details>
+      <summary>Can I edit the PDF text directly in PowerPoint?</summary>
+      <p>No. Each PDF page is converted into a single image and placed on a slide. To edit the actual text, use the PDF to Word converter instead.</p>
+    </details>
+    <details>
+      <summary>Is there a limit on the number of pages?</summary>
+      <p>There is no page limit. However, more pages will take longer to convert and produce a larger file, so Medium quality is recommended over High for large documents.</p>
+    </details>
+    <details>
+      <summary>Are my files uploaded to a server?</summary>
+      <p>No. All processing happens locally in your browser and files are never sent to a server. There's no risk of personal or sensitive data leaking out, so it's safe to use even in enterprise security environments.</p>
+    </details>
+  </section>
+
+</main>
+
+<aside class="tool-sidebar"></aside>
+</div>
+
+<footer class="footer"></footer>
+
+<!-- PDF.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- JSZip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<!-- FileSaver -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  const EMU_PER_PT = 12700; // 1pt = 12700 EMU
+
+  let selectedFile = null;
+  let pptxBlob = null;
+
+  // ── 드래그&드롭 ──────────────────────────────────────────────────────────
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') loadFile(file);
+    else showError('Only PDF files are supported.');
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  function loadFile(file) {
+    selectedFile = file;
+    pptxBlob = null;
+    hideError();
+
+    document.getElementById('fileList').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)}</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>
+    `;
+
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('previewSection').style.display = 'none';
+    document.getElementById('previewGrid').innerHTML = '';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    pptxBlob = null;
+    document.getElementById('fileInput').value = '';
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('previewSection').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    hideError();
+  }
+
+  // ── 변환 ─────────────────────────────────────────────────────────────────
+  document.getElementById('convertBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const quality = document.getElementById('qualitySelect').value;
+    const scale = quality === 'high' ? 2 : quality === 'medium' ? 1.5 : 1;
+    const jpegQuality = quality === 'high' ? 0.88 : quality === 'medium' ? 0.8 : 0.65;
+
+    const btn = document.getElementById('convertBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ Processing...';
+    hideError();
+    pptxBlob = null;
+    showProgress();
+
+    try {
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const totalPages = pdf.numPages;
+
+      // 첫 pages 크기로 전체 슬라이드 크기(EMU) 고정
+      const firstPage = await pdf.getPage(1);
+      const baseViewport = firstPage.getViewport({ scale: 1 });
+      const sldW = Math.round(baseViewport.width  * EMU_PER_PT);
+      const sldH = Math.round(baseViewport.height * EMU_PER_PT);
+
+      const images = []; // { base64, ext, mime }
+      const previewCanvases = [];
+
+      for (let i = 1; i <= totalPages; i++) {
+        updateProgress(i - 1, totalPages, i);
+
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        await page.render({ canvasContext: ctx, viewport }).promise;
+
+        const dataUrl = canvas.toDataURL('image/jpeg', jpegQuality);
+        images.push({ base64: dataUrl.split(',')[1], ext: 'jpeg', mime: 'image/jpeg' });
+        previewCanvases.push(canvas);
+      }
+
+      updateProgress(totalPages, totalPages, 0);
+      setProgress(92, 'Generating PPTX file...');
+
+      const zip = buildPptxZip(images, sldW, sldH);
+      pptxBlob = await zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
+
+      // 미리보기
+      const previewGrid = document.getElementById('previewGrid');
+      previewGrid.innerHTML = '';
+      previewCanvases.forEach((c, i) => {
+        const item = document.createElement('div');
+        item.className = 'slide-preview-item';
+        const badge = document.createElement('div');
+        badge.className = 'slide-preview-badge';
+        badge.textContent = i + 1;
+        const thumb = document.createElement('canvas');
+        thumb.width = c.width; thumb.height = c.height;
+        thumb.getContext('2d').drawImage(c, 0, 0);
+        item.appendChild(thumb);
+        item.appendChild(badge);
+        previewGrid.appendChild(item);
+      });
+      document.getElementById('previewSection').style.display = 'block';
+
+      setProgress(100, 'Done!');
+      document.getElementById('resultSubtitle').textContent =
+        `${totalPages} pages → ${(pptxBlob.size / 1024).toFixed(1)} KB PPTX`;
+      document.getElementById('resultPanel').style.display = 'block';
+      document.getElementById('progressWrap').style.display = 'none';
+      document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const dlBtn = document.getElementById('downloadBtn');
+      dlBtn.disabled = true;
+      const dots = ['⏳ Preparing download', '⏳ Preparing download.', '⏳ Preparing download..', '⏳ Preparing download...'];
+      let dotIdx = 0;
+      const dotTimer = setInterval(() => { dotIdx = (dotIdx + 1) % dots.length; dlBtn.textContent = dots[dotIdx]; }, 400);
+      setTimeout(() => { clearInterval(dotTimer); dlBtn.disabled = false; dlBtn.textContent = 'Download PPT'; }, 6000);
+
+    } catch (err) {
+      console.error(err);
+      showError('Conversion failed. The PDF may be corrupted or password-protected.');
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+
+    btn.disabled = false;
+    btn.textContent = '📊 Convert to PPT';
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!pptxBlob) return;
+    const name = (selectedFile.name.replace(/\.pdf$/i, '') || 'presentation') + '.pptx';
+    saveAs(pptxBlob, name);
+  });
+
+  // ── 최소 유효 PPTX(OOXML) 생성 ──────────────────────────────────────────────
+  function buildPptxZip(images, sldW, sldH) {
+    const zip = new JSZip();
+    const n = images.length;
+
+    zip.file('[Content_Types].xml', contentTypesXml(n));
+    zip.file('_rels/.rels', rootRelsXml());
+    zip.file('docProps/core.xml', corePropsXml());
+    zip.file('docProps/app.xml', appPropsXml(n));
+    zip.file('ppt/presentation.xml', presentationXml(n, sldW, sldH));
+    zip.file('ppt/_rels/presentation.xml.rels', presentationRelsXml(n));
+    zip.file('ppt/theme/theme1.xml', themeXml());
+    zip.file('ppt/slideMasters/slideMaster1.xml', slideMasterXml());
+    zip.file('ppt/slideMasters/_rels/slideMaster1.xml.rels', slideMasterRelsXml());
+    zip.file('ppt/slideLayouts/slideLayout1.xml', slideLayoutXml());
+    zip.file('ppt/slideLayouts/_rels/slideLayout1.xml.rels', slideLayoutRelsXml());
+
+    for (let i = 0; i < n; i++) {
+      const idx = i + 1;
+      zip.file(`ppt/slides/slide${idx}.xml`, slideXml(sldW, sldH));
+      zip.file(`ppt/slides/_rels/slide${idx}.xml.rels`, slideRelsXml(idx));
+      zip.file(`ppt/media/image${idx}.jpeg`, images[i].base64, { base64: true });
+    }
+
+    return zip;
+  }
+
+  function contentTypesXml(n) {
+    let overrides = '';
+    for (let i = 1; i <= n; i++) {
+      overrides += `<Override PartName="/ppt/slides/slide${i}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>`;
+    }
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Default Extension="jpeg" ContentType="image/jpeg"/>
+<Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>
+<Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>
+<Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/>
+<Override PartName="/ppt/theme/theme1.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>
+${overrides}
+<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>
+<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>
+</Types>`;
+  }
+
+  function rootRelsXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
+<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>
+</Relationships>`;
+  }
+
+  function corePropsXml() {
+    const now = new Date().toISOString().replace(/\.\d+Z$/, 'Z');
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<dc:title>Presentation</dc:title>
+<dc:creator>WooaPDF</dc:creator>
+<cp:lastModifiedBy>WooaPDF</cp:lastModifiedBy>
+<dcterms:created xsi:type="dcterms:W3CDTF">${now}</dcterms:created>
+<dcterms:modified xsi:type="dcterms:W3CDTF">${now}</dcterms:modified>
+</cp:coreProperties>`;
+  }
+
+  function appPropsXml(n) {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+<Application>WooaPDF</Application>
+<PresentationFormat>Custom</PresentationFormat>
+<Slides>${n}</Slides>
+<Company>WooaPDF</Company>
+</Properties>`;
+  }
+
+  function presentationXml(n, sldW, sldH) {
+    let sldIds = '';
+    for (let i = 1; i <= n; i++) {
+      sldIds += `<p:sldId id="${255 + i}" r:id="rId${i + 1}"/>`;
+    }
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:presentation xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+<p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst>
+<p:sldIdLst>${sldIds}</p:sldIdLst>
+<p:sldSz cx="${sldW}" cy="${sldH}"/>
+<p:notesSz cx="6858000" cy="9144000"/>
+</p:presentation>`;
+  }
+
+  function presentationRelsXml(n) {
+    let rels = '';
+    for (let i = 1; i <= n; i++) {
+      rels += `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide${i}.xml"/>`;
+    }
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="slideMasters/slideMaster1.xml"/>
+${rels}
+</Relationships>`;
+  }
+
+  function slideMasterXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sldMaster xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+<p:cSld>
+<p:bg><p:bgRef idx="1001"><a:schemeClr val="bg1"/></p:bgRef></p:bg>
+<p:spTree>
+<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+<p:grpSpPr/>
+</p:spTree>
+</p:cSld>
+<p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>
+<p:sldLayoutIdLst><p:sldLayoutId id="2147483649" r:id="rId1"/></p:sldLayoutIdLst>
+</p:sldMaster>`;
+  }
+
+  function slideMasterRelsXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme" Target="../theme/theme1.xml"/>
+</Relationships>`;
+  }
+
+  function slideLayoutXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sldLayout xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" type="blank" preserve="1">
+<p:cSld name="Blank">
+<p:spTree>
+<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+<p:grpSpPr/>
+</p:spTree>
+</p:cSld>
+<p:clrMapOvr><a:overrideClrMapping bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/></p:clrMapOvr>
+</p:sldLayout>`;
+  }
+
+  function slideLayoutRelsXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="../slideMasters/slideMaster1.xml"/>
+</Relationships>`;
+  }
+
+  function slideXml(sldW, sldH) {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+<p:cSld>
+<p:spTree>
+<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+<p:grpSpPr/>
+<p:pic>
+<p:nvPicPr><p:cNvPr id="2" name="Picture 1"/><p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr>
+<p:blipFill><a:blip r:embed="rId1"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>
+<p:spPr>
+<a:xfrm><a:off x="0" y="0"/><a:ext cx="${sldW}" cy="${sldH}"/></a:xfrm>
+<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+</p:spPr>
+</p:pic>
+</p:spTree>
+</p:cSld>
+<p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr>
+</p:sld>`;
+  }
+
+  function slideRelsXml(idx) {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image${idx}.jpeg"/>
+</Relationships>`;
+  }
+
+  function themeXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="WooaPDF Theme">
+<a:themeElements>
+<a:clrScheme name="Office">
+<a:dk1><a:sysClr val="windowText" lastClr="000000"/></a:dk1>
+<a:lt1><a:sysClr val="window" lastClr="FFFFFF"/></a:lt1>
+<a:dk2><a:srgbClr val="44546A"/></a:dk2>
+<a:lt2><a:srgbClr val="E7E6E6"/></a:lt2>
+<a:accent1><a:srgbClr val="4472C4"/></a:accent1>
+<a:accent2><a:srgbClr val="ED7D31"/></a:accent2>
+<a:accent3><a:srgbClr val="A5A5A5"/></a:accent3>
+<a:accent4><a:srgbClr val="FFC000"/></a:accent4>
+<a:accent5><a:srgbClr val="5B9BD5"/></a:accent5>
+<a:accent6><a:srgbClr val="70AD47"/></a:accent6>
+<a:hlink><a:srgbClr val="0563C1"/></a:hlink>
+<a:folHlink><a:srgbClr val="954F72"/></a:folHlink>
+</a:clrScheme>
+<a:fontScheme name="Office">
+<a:majorFont><a:latin typeface="Calibri Light"/><a:ea typeface=""/><a:cs typeface=""/></a:majorFont>
+<a:minorFont><a:latin typeface="Calibri"/><a:ea typeface=""/><a:cs typeface=""/></a:minorFont>
+</a:fontScheme>
+<a:fmtScheme name="Office">
+<a:fillStyleLst>
+<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+</a:fillStyleLst>
+<a:lnStyleLst>
+<a:ln w="6350"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:ln>
+<a:ln w="12700"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:ln>
+<a:ln w="19050"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:ln>
+</a:lnStyleLst>
+<a:effectStyleLst>
+<a:effectStyle><a:effectLst/></a:effectStyle>
+<a:effectStyle><a:effectLst/></a:effectStyle>
+<a:effectStyle><a:effectLst/></a:effectStyle>
+</a:effectStyleLst>
+<a:bgFillStyleLst>
+<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+</a:bgFillStyleLst>
+</a:fmtScheme>
+</a:themeElements>
+</a:theme>`;
+  }
+
+  // ── 진행 표시 ────────────────────────────────────────────────────────────
+  function showProgress() {
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+    setProgress(0, 'Preparing...');
+  }
+  function updateProgress(done, total, current) {
+    const pct = total === 0 ? 100 : Math.round((done / total) * 88);
+    const text = total === 0 ? 'Done' : `Rendering page ${current} (${done}/${total})`;
+    setProgress(pct, text);
+  }
+  function setProgress(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="../js/wooahouse-originals-tool.js"></script>
+<script>window.PWA_CONFIG={appName:"WooaPDF",themeColor:"#FF4444",icon:"📱",convertIds:['convertBtn','compressBtn','mergeBtn','splitBtn','deleteBtn','applyBtn','rotateBtn','unlockBtn','processBtn','cropBtn','generateBtn','resizeBtn','startBtn','generateAllBtn','printBtn']};</script>
+<script src="../js/pwa-install.js"></script>
+<script src="../js/wooa-sidebar.js"></script>
+<script src="../js/wooa-footer.js"></script>
+</body>
+</html>
