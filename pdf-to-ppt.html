@@ -412,26 +412,27 @@
     const zip = new JSZip();
     const n = images.length;
 
-    zip.file('[Content_Types].xml', contentTypesXml(n));
-    zip.file('_rels/.rels', rootRelsXml());
-    zip.file('docProps/core.xml', corePropsXml());
-    zip.file('docProps/app.xml', appPropsXml(n));
-    zip.file('ppt/presentation.xml', presentationXml(n, sldW, sldH));
-    zip.file('ppt/_rels/presentation.xml.rels', presentationRelsXml(n));
-    zip.file('ppt/presProps.xml', presPropsXml());
-    zip.file('ppt/viewProps.xml', viewPropsXml());
-    zip.file('ppt/tableStyles.xml', tableStylesXml());
-    zip.file('ppt/theme/theme1.xml', themeXml());
-    zip.file('ppt/slideMasters/slideMaster1.xml', slideMasterXml());
-    zip.file('ppt/slideMasters/_rels/slideMaster1.xml.rels', slideMasterRelsXml());
-    zip.file('ppt/slideLayouts/slideLayout1.xml', slideLayoutXml());
-    zip.file('ppt/slideLayouts/_rels/slideLayout1.xml.rels', slideLayoutRelsXml());
+    const F = { createFolders: false };
+    zip.file('[Content_Types].xml', contentTypesXml(n), F);
+    zip.file('_rels/.rels', rootRelsXml(), F);
+    zip.file('docProps/core.xml', corePropsXml(), F);
+    zip.file('docProps/app.xml', appPropsXml(n), F);
+    zip.file('ppt/presentation.xml', presentationXml(n, sldW, sldH), F);
+    zip.file('ppt/_rels/presentation.xml.rels', presentationRelsXml(n), F);
+    zip.file('ppt/presProps.xml', presPropsXml(), F);
+    zip.file('ppt/viewProps.xml', viewPropsXml(), F);
+    zip.file('ppt/tableStyles.xml', tableStylesXml(), F);
+    zip.file('ppt/theme/theme1.xml', themeXml(), F);
+    zip.file('ppt/slideMasters/slideMaster1.xml', slideMasterXml(), F);
+    zip.file('ppt/slideMasters/_rels/slideMaster1.xml.rels', slideMasterRelsXml(), F);
+    zip.file('ppt/slideLayouts/slideLayout1.xml', slideLayoutXml(), F);
+    zip.file('ppt/slideLayouts/_rels/slideLayout1.xml.rels', slideLayoutRelsXml(), F);
 
     for (let i = 0; i < n; i++) {
       const idx = i + 1;
-      zip.file(`ppt/slides/slide${idx}.xml`, slideXml(sldW, sldH));
-      zip.file(`ppt/slides/_rels/slide${idx}.xml.rels`, slideRelsXml(idx));
-      zip.file(`ppt/media/image${idx}.jpeg`, images[i].base64, { base64: true });
+      zip.file(`ppt/slides/slide${idx}.xml`, slideXml(sldW, sldH), F);
+      zip.file(`ppt/slides/_rels/slide${idx}.xml.rels`, slideRelsXml(idx), F);
+      zip.file(`ppt/media/image${idx}.jpeg`, images[i].base64, { base64: true, createFolders: false });
     }
 
     return zip;
@@ -597,7 +598,7 @@ ${rels}
 <p:grpSpPr/>
 <p:pic>
 <p:nvPicPr><p:cNvPr id="2" name="Picture 1"/><p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr>
-<p:blipFill><a:blip r:embed="rId1"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>
+<p:blipFill><a:blip r:embed="rId2"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>
 <p:spPr>
 <a:xfrm><a:off x="0" y="0"/><a:ext cx="${sldW}" cy="${sldH}"/></a:xfrm>
 <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
@@ -612,7 +613,8 @@ ${rels}
   function slideRelsXml(idx) {
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image${idx}.jpeg"/>
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image${idx}.jpeg"/>
 </Relationships>`;
   }
 
