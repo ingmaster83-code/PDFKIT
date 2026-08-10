@@ -71,7 +71,10 @@
   "mainEntity": [
     {"@type": "Question","name": "스캔된 PDF에서도 텍스트 추출이 되나요?","acceptedAnswer": {"@type": "Answer","text": "스캔 PDF는 텍스트 레이어가 없어 직접 추출이 어렵습니다. WooaImage의 PDF OCR 도구를 이용하세요."}},
     {"@type": "Question","name": "추출된 텍스트를 어떻게 저장하나요?","acceptedAnswer": {"@type": "Answer","text": "클립보드에 복사하거나 .txt 파일로 다운로드할 수 있습니다."}},
-    {"@type": "Question","name": "한국어 텍스트도 정상 추출되나요?","acceptedAnswer": {"@type": "Answer","text": "네, PDF에 포함된 한국어를 포함한 모든 언어 텍스트를 추출할 수 있습니다."}}
+    {"@type": "Question","name": "한국어 텍스트도 정상 추출되나요?","acceptedAnswer": {"@type": "Answer","text": "네, PDF에 포함된 한국어를 포함한 모든 언어 텍스트를 추출할 수 있습니다."}},
+    {"@type": "Question","name": "표(테이블) 형식의 데이터도 정확하게 추출되나요?","acceptedAnswer": {"@type": "Answer","text": "표 안의 글자는 추출되지만 줄과 칸 구분이 원본과 다르게 나올 수 있습니다."}},
+    {"@type": "Question","name": "페이지별로 따로 텍스트를 볼 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "네. 결과 화면 상단의 페이지별 탭을 누르면 페이지 번호별로 텍스트를 나눠서 확인할 수 있습니다."}},
+    {"@type": "Question","name": "파일이 서버에 저장되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다."}}
   ]
 }
 </script>
@@ -201,6 +204,19 @@
     </div>
   </div>
 
+    <section class="tool-guide" style="margin-top:36px;">
+    <h2 class="section-title" style="font-size:1.1rem;font-weight:700;margin-bottom:14px;">📖 PDF에서 텍스트를 추출하는 방법</h2>
+    <ol style="line-height:2;color:var(--text-secondary);padding-left:20px;margin:0;">
+      <li><strong>PDF 파일 업로드</strong> — 위 영역에 파일을 끌어다 놓거나 "PDF 파일 선택" 버튼으로 텍스트를 꺼낼 PDF를 불러옵니다.</li>
+      <li><strong>자동 추출 대기</strong> — 업로드하면 즉시 페이지마다 텍스트를 읽어 들이며, 완료되면 결과가 화면에 표시됩니다.</li>
+      <li><strong>전체 보기 또는 페이지별 보기 선택</strong> — 상단 탭에서 "전체"로 한 번에 모아보거나 "페이지별"로 특정 페이지만 골라볼 수 있습니다.</li>
+      <li><strong>복사 또는 TXT 다운로드</strong> — "전체 복사" 버튼으로 클립보드에 바로 복사하거나, "TXT 다운로드"로 .txt 파일을 저장합니다.</li>
+    </ol>
+    <p style="margin-top:16px;color:var(--text-secondary);line-height:1.8;">
+      이 도구는 PDF 안에 저장된 <strong>텍스트 레이어를 직접 읽어오는 방식</strong>이라 계약서·논문·매뉴얼처럼 드래그로 글자가 선택되는 PDF에서 빠르고 정확하게 동작합니다. 반면 종이를 스캔하거나 사진으로 찍어 만든 PDF는 텍스트 레이어가 없어 추출 결과가 비어 있을 수 있으며, 이 경우 <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600;">OCR(광학 문자 인식) 도구</a>로 먼저 텍스트를 인식시켜야 합니다. 추출한 텍스트를 워드 문서 형태로 받고 싶다면 <a href="pdf-to-word.html" style="color:var(--primary);font-weight:600;">PDF → Word 변환 도구</a>를 이용하세요.
+    </p>
+  </section>
+
     <div class="related-tools">
   <h2>함께 쓰면 좋은 도구</h2>
   <div class="related-grid">
@@ -212,15 +228,13 @@
 </div>
 <div class="wooa-orig-anchor"></div>
 
-    <div class="wooa-orig-anchor"></div>
-
   <div class="cross-link-banner" style="max-width:800px;margin:2rem auto;padding:1rem 1.5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
     <span style="font-size:0.95rem;color:#444;">스캔된 PDF에서 텍스트를 추출하려면 OCR 도구를 이용하세요.</span>
     <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener" style="background:#4F6EF7;color:#fff;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;white-space:nowrap;">🖼️ WooaImage PDF OCR →</a>
   </div>
 
-  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>텍스트 레이어가 있는 PDF에서만 추출됩니다. 스캔 이미지 PDF는 OCR 도구를 사용하세요.</li><li>추출된 텍스트는 그대로 복사하거나 .txt 파일로 저장할 수 있습니다.</li><li>표 형식 데이터는 PDF → CSV 도구를 사용하면 더 정확합니다.</li></ul></div>
-<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>스캔된 PDF에서도 텍스트 추출이 되나요?</summary><p>스캔 PDF는 텍스트 레이어가 없어 직접 추출이 어렵습니다. WooaImage의 PDF OCR 도구를 이용하세요.</p></details><details><summary>추출된 텍스트를 어떻게 저장하나요?</summary><p>클립보드에 복사하거나 .txt 파일로 다운로드할 수 있습니다.</p></details><details><summary>한국어 텍스트도 정상 추출되나요?</summary><p>네, PDF에 포함된 한국어를 포함한 모든 언어 텍스트를 추출할 수 있습니다.</p></details></div>
+  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>텍스트 레이어가 있는 PDF에서만 추출됩니다. 스캔 이미지 PDF는 OCR 도구를 사용하세요.</li><li>"페이지별" 탭을 쓰면 원하는 페이지의 텍스트만 빠르게 확인할 수 있습니다.</li><li>추출한 내용을 서식 있는 문서로 받고 싶다면 PDF → Word 도구를 이용하세요.</li></ul></div>
+<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>스캔된 PDF에서도 텍스트 추출이 되나요?</summary><p>스캔 PDF는 텍스트 레이어가 없어 직접 추출이 어렵습니다. WooaImage의 PDF OCR 도구를 이용하세요.</p></details><details><summary>추출된 텍스트를 어떻게 저장하나요?</summary><p>클립보드에 복사하거나 .txt 파일로 다운로드할 수 있습니다.</p></details><details><summary>한국어 텍스트도 정상 추출되나요?</summary><p>네, PDF에 포함된 한국어를 포함한 모든 언어 텍스트를 추출할 수 있습니다.</p></details><details><summary>표(테이블) 형식의 데이터도 정확하게 추출되나요?</summary><p>표 안의 글자는 추출되지만 줄과 칸 구분이 원본과 다르게 나올 수 있습니다. 정확한 표 데이터가 필요하다면 셀 구조를 직접 확인하며 정리하는 것을 권장합니다.</p></details><details><summary>페이지별로 따로 텍스트를 볼 수 있나요?</summary><p>네. 결과 화면 상단의 "페이지별" 탭을 누르면 페이지 번호별로 텍스트를 나눠서 확인할 수 있습니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다.</p></details></div>
 
 </main>
 

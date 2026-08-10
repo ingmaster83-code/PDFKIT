@@ -71,7 +71,10 @@
   "mainEntity": [
     {"@type": "Question","name": "Word, Excel 파일 모두 변환 가능한가요?","acceptedAnswer": {"@type": "Answer","text": ".docx(Word)와 .xlsx(Excel) 형식을 PDF로 변환할 수 있습니다."}},
     {"@type": "Question","name": "변환 품질이 어떤가요?","acceptedAnswer": {"@type": "Answer","text": "브라우저 출력 기반으로 변환되어 대부분의 서식이 유지됩니다."}},
-    {"@type": "Question","name": "파일 크기 제한이 있나요?","acceptedAnswer": {"@type": "Answer","text": "브라우저 메모리 내에서 처리되므로 대용량 파일은 처리 속도가 느릴 수 있습니다."}}
+    {"@type": "Question","name": "파일 크기 제한이 있나요?","acceptedAnswer": {"@type": "Answer","text": "브라우저 메모리 내에서 처리되므로 대용량 파일은 처리 속도가 느릴 수 있습니다."}},
+    {"@type": "Question","name": "왜 다운로드 버튼이 아니라 인쇄 화면이 뜨나요?","acceptedAnswer": {"@type": "Answer","text": "브라우저의 인쇄 기능을 이용해 PDF를 생성하는 방식이기 때문입니다. 인쇄 대화상자에서 대상을 PDF로 저장으로 바꾸면 됩니다."}},
+    {"@type": "Question","name": "PowerPoint(.pptx)도 변환할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "현재는 Word(.docx)와 Excel(.xlsx)만 지원합니다."}},
+    {"@type": "Question","name": "파일이 서버에 저장되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다."}}
   ]
 }
 </script>
@@ -220,6 +223,19 @@
     <strong>참고:</strong> PowerPoint(PPTX)는 현재 지원되지 않습니다.
   </div>
 
+    <section class="tool-guide" style="margin-top:36px;">
+    <h2 class="section-title" style="font-size:1.1rem;font-weight:700;margin-bottom:14px;">📖 Word·Excel을 PDF로 변환하는 방법</h2>
+    <ol style="line-height:2;color:var(--text-secondary);padding-left:20px;margin:0;">
+      <li><strong>파일 형식 탭 선택</strong> — 위쪽에서 변환할 파일이 Word(.docx)인지 Excel(.xlsx)인지 탭을 선택합니다.</li>
+      <li><strong>파일 업로드</strong> — 드롭 영역에 파일을 끌어다 놓거나 "파일 선택"으로 불러옵니다.</li>
+      <li><strong>미리보기 확인</strong> — 업로드 즉시 문서 내용이 브라우저 화면에 렌더링되어 결과를 미리 확인할 수 있습니다.</li>
+      <li><strong>PDF로 저장</strong> — "PDF로 저장(인쇄)" 버튼을 누르면 브라우저 인쇄 대화상자가 열립니다. 대상을 "PDF로 저장"(Chrome) 또는 "Microsoft Print to PDF"(Edge)로 선택하면 PDF 파일이 생성됩니다.</li>
+    </ol>
+    <p style="margin-top:16px;color:var(--text-secondary);line-height:1.8;">
+      이 도구는 Word 문서를 HTML로 변환해 표시하고, Excel은 시트를 표 형태로 렌더링한 뒤 <strong>브라우저의 인쇄 기능을 PDF 생성에 활용</strong>하는 방식입니다. 별도 서버 변환 없이 브라우저 안에서 바로 처리되어 빠르고 안전합니다. 반대로 PDF를 다시 Word로 되돌리고 싶다면 <a href="pdf-to-word.html" style="color:var(--primary);font-weight:600;">PDF → Word 변환 도구</a>를 이용하세요. 현재 PowerPoint(.pptx)는 지원하지 않습니다.
+    </p>
+  </section>
+
     <div class="related-tools">
   <h2>함께 쓰면 좋은 도구</h2>
   <div class="related-grid">
@@ -232,7 +248,7 @@
 <div class="wooa-orig-anchor"></div>
 
   <div class="tips-panel"><h3>💡 Tips</h3><ul><li>docx 파일은 텍스트·표·이미지가 포함된 경우에도 변환됩니다.</li><li>Excel xlsx 파일은 활성 시트를 기준으로 변환됩니다.</li><li>변환 후 다운로드 전 미리보기로 레이아웃을 확인하세요.</li></ul></div>
-<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>Word, Excel 파일 모두 변환 가능한가요?</summary><p>.docx(Word)와 .xlsx(Excel) 형식을 PDF로 변환할 수 있습니다.</p></details><details><summary>변환 품질이 어떤가요?</summary><p>브라우저 출력 기반으로 변환되어 대부분의 서식이 유지됩니다.</p></details><details><summary>파일 크기 제한이 있나요?</summary><p>브라우저 메모리 내에서 처리되므로 대용량 파일은 처리 속도가 느릴 수 있습니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
+<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>Word, Excel 파일 모두 변환 가능한가요?</summary><p>.docx(Word)와 .xlsx(Excel) 형식을 PDF로 변환할 수 있습니다.</p></details><details><summary>변환 품질이 어떤가요?</summary><p>브라우저 출력 기반으로 변환되어 대부분의 서식이 유지됩니다.</p></details><details><summary>파일 크기 제한이 있나요?</summary><p>브라우저 메모리 내에서 처리되므로 대용량 파일은 처리 속도가 느릴 수 있습니다.</p></details><details><summary>왜 다운로드 버튼이 아니라 인쇄 화면이 뜨나요?</summary><p>브라우저의 인쇄 기능을 이용해 PDF를 생성하는 방식이기 때문입니다. 인쇄 대화상자에서 "대상"을 PDF로 저장으로 바꾸면 일반 다운로드처럼 PDF 파일로 저장됩니다.</p></details><details><summary>PowerPoint(.pptx)도 변환할 수 있나요?</summary><p>현재는 Word(.docx)와 Excel(.xlsx)만 지원합니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
 
 </main>
 <aside class="tool-sidebar"></aside>

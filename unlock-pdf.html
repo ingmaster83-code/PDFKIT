@@ -67,7 +67,10 @@
   "mainEntity": [
     {"@type": "Question","name": "모든 암호화된 PDF의 잠금을 해제할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "사용자 암호(열기 암호)가 없는 인쇄/편집 제한 PDF의 잠금 해제를 지원합니다."}},
     {"@type": "Question","name": "해제 후 파일이 안전한가요?","acceptedAnswer": {"@type": "Answer","text": "모든 처리는 브라우저 내에서만 이루어지므로 파일이 외부로 전송되지 않습니다."}},
-    {"@type": "Question","name": "암호가 걸린 PDF는 어떻게 하나요?","acceptedAnswer": {"@type": "Answer","text": "열기 암호가 있는 경우 먼저 암호를 입력하여 열어야 잠금 해제가 가능합니다."}}
+    {"@type": "Question","name": "암호가 걸린 PDF는 어떻게 하나요?","acceptedAnswer": {"@type": "Answer","text": "열기 암호가 있는 경우 먼저 암호를 입력하여 열어야 잠금 해제가 가능합니다."}},
+    {"@type": "Question","name": "비밀번호를 모르는 PDF도 강제로 해제할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 비밀번호를 추측하거나 크랙하는 기능이 아니며, 알고 있는 비밀번호를 입력하거나 권한 제한만 제거하는 용도입니다."}},
+    {"@type": "Question","name": "AES로 암호화된 PDF도 해제되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 구버전 RC4-128 암호화만 지원하며, AES 방식은 Adobe Acrobat Reader를 이용해야 합니다."}},
+    {"@type": "Question","name": "파일이 서버에 저장되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다."}}
   ]
 }
 </script>
@@ -199,6 +202,19 @@
 <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
   </div>
 
+    <section class="tool-guide" style="margin-top:36px;">
+    <h2 class="section-title" style="font-size:1.1rem;font-weight:700;margin-bottom:14px;">📖 PDF 잠금을 해제하는 방법</h2>
+    <ol style="line-height:2;color:var(--text-secondary);padding-left:20px;margin:0;">
+      <li><strong>PDF 파일 업로드</strong> — 위 영역에 잠긴 PDF를 끌어다 놓거나 "PDF 파일 선택"으로 불러옵니다. 업로드하면 암호화 여부가 자동으로 표시됩니다.</li>
+      <li><strong>비밀번호 입력</strong> — 비밀번호를 알고 있다면 입력하고, 인쇄·복사 제한만 걸린 파일이라면 빈칸으로 두고 시도해도 됩니다.</li>
+      <li><strong>잠금 해제 실행</strong> — "잠금 해제" 버튼을 누르면 브라우저 안에서 즉시 복호화가 진행됩니다.</li>
+      <li><strong>다운로드</strong> — 완료되면 비밀번호 없이 열리는 PDF 파일을 바로 다운로드할 수 있습니다.</li>
+    </ol>
+    <p style="margin-top:16px;color:var(--text-secondary);line-height:1.8;">
+      이 도구는 PDF의 <strong>RC4-128 방식 암호화(구버전 PDF 표준, V=1~2)</strong>를 브라우저에서 직접 복호화합니다. 열기 암호를 모르는 상태에서 임의로 비밀번호를 알아내는 기능은 아니며, 알고 있는 비밀번호를 입력하거나 암호 없이 인쇄·편집만 제한된 PDF의 권한 제약을 제거하는 용도입니다. 최신 AES 암호화(V=3 이상)로 보호된 PDF는 지원하지 않으며, 이 경우 Adobe Acrobat Reader에서 "보안 없음으로 저장" 기능을 이용해야 합니다. 반대로 PDF에 새로 암호를 걸고 싶다면 <a href="pdf-password.html" style="color:var(--primary);font-weight:600;">PDF 암호 설정 도구</a>를 이용하세요.
+    </p>
+  </section>
+
     <div class="related-tools">
   <h2>함께 쓰면 좋은 도구</h2>
   <div class="related-grid">
@@ -209,8 +225,8 @@
   </div>
 </div>
 <div class="wooa-orig-anchor"></div>
-<div class="tips-panel"><h3>💡 Tips</h3><ul><li>비밀번호를 알고 있는 경우에만 잠금 해제가 가능합니다.</li><li>해제 후에는 비밀번호 없이 자유롭게 편집·공유할 수 있습니다.</li><li>인쇄·복사 제한만 걸린 PDF도 이 도구로 권한을 제거할 수 있습니다.</li></ul></div>
-<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>모든 암호화된 PDF의 잠금을 해제할 수 있나요?</summary><p>사용자 암호(열기 암호)가 없는 인쇄/편집 제한 PDF의 잠금 해제를 지원합니다.</p></details><details><summary>해제 후 파일이 안전한가요?</summary><p>모든 처리는 브라우저 내에서만 이루어지므로 파일이 외부로 전송되지 않습니다.</p></details><details><summary>암호가 걸린 PDF는 어떻게 하나요?</summary><p>열기 암호가 있는 경우 먼저 암호를 입력하여 열어야 잠금 해제가 가능합니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
+<div class="tips-panel"><h3>💡 Tips</h3><ul><li>비밀번호를 알고 있는 경우에만 잠금 해제가 가능합니다.</li><li>해제 후에는 비밀번호 없이 자유롭게 편집·공유할 수 있습니다.</li><li>인쇄·복사 제한만 걸린 PDF는 비밀번호 없이도 해제를 시도할 수 있습니다.</li></ul></div>
+<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>모든 암호화된 PDF의 잠금을 해제할 수 있나요?</summary><p>사용자 암호(열기 암호)가 없는 인쇄/편집 제한 PDF의 잠금 해제를 지원합니다.</p></details><details><summary>해제 후 파일이 안전한가요?</summary><p>모든 처리는 브라우저 내에서만 이루어지므로 파일이 외부로 전송되지 않습니다.</p></details><details><summary>암호가 걸린 PDF는 어떻게 하나요?</summary><p>열기 암호가 있는 경우 먼저 암호를 입력하여 열어야 잠금 해제가 가능합니다.</p></details><details><summary>비밀번호를 모르는 PDF도 강제로 해제할 수 있나요?</summary><p>아니요. 이 도구는 비밀번호를 추측하거나 크랙하는 기능이 아닙니다. 알고 있는 비밀번호를 입력하거나, 암호 없이 인쇄·편집 권한만 제한된 PDF의 제약을 제거하는 용도로만 사용할 수 있습니다.</p></details><details><summary>AES로 암호화된 PDF도 해제되나요?</summary><p>아니요. 이 도구는 구버전 RC4-128 암호화 방식만 지원합니다. AES 방식(최신 Acrobat 기본값)으로 암호화된 PDF는 Adobe Acrobat Reader의 "보안 없음으로 저장" 기능을 이용해주세요.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
 
 </main>
 

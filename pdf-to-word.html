@@ -69,9 +69,12 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question","name": "변환된 Word 파일의 서식이 유지되나요?","acceptedAnswer": {"@type": "Answer","text": "텍스트 내용은 유지되지만 복잡한 레이아웃 서식은 일부 변경될 수 있습니다."}},
-    {"@type": "Question","name": "어떤 형식으로 변환되나요?","acceptedAnswer": {"@type": "Answer","text": ".doc 형식으로 변환되며 Microsoft Word, Google Docs 등에서 열 수 있습니다."}},
-    {"@type": "Question","name": "이미지가 포함된 PDF도 변환되나요?","acceptedAnswer": {"@type": "Answer","text": "텍스트는 추출되나 이미지는 포함되지 않을 수 있습니다."}}
+    {"@type": "Question","name": "변환된 Word 파일의 서식이 유지되나요?","acceptedAnswer": {"@type": "Answer","text": "텍스트 내용은 그대로 유지되지만, 복잡한 표나 다단 레이아웃 같은 서식은 일부 변경될 수 있습니다. 순수 텍스트 위주 문서일수록 결과가 원본과 가장 비슷합니다."}},
+    {"@type": "Question","name": "스캔된 이미지 PDF도 변환할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 이 도구는 PDF에 이미 저장된 텍스트 레이어를 추출하는 방식이라, 종이를 스캔하거나 사진으로 찍어 만든 PDF에는 사용할 수 없습니다. 이런 경우 OCR 도구로 먼저 텍스트를 인식시킨 뒤 이용해야 합니다."}},
+    {"@type": "Question","name": "변환 가능한 페이지 수 제한이 있나요?","acceptedAnswer": {"@type": "Answer","text": "페이지 수 제한은 없습니다. 다만 페이지가 많을수록 브라우저에서 처리하는 시간이 길어질 수 있으므로, 필요한 페이지만 범위를 지정해서 변환하는 것도 방법입니다."}},
+    {"@type": "Question","name": "어떤 프로그램에서 열 수 있나요?","acceptedAnswer": {"@type": "Answer","text": ".doc 형식으로 저장되며 Microsoft Word, 한글과컴퓨터의 워드 뷰어, Google Docs, LibreOffice 등 대부분의 문서 프로그램에서 바로 열 수 있습니다."}},
+    {"@type": "Question","name": "한글이 깨지지 않고 정상적으로 나오나요?","acceptedAnswer": {"@type": "Answer","text": "네. 맑은 고딕 글꼴 기준으로 문서가 생성되어 한글이 정상적으로 표시됩니다. 다만 PDF 자체에 특수한 임베드 폰트가 사용된 경우 일부 글자 간격이 원본과 다르게 보일 수 있습니다."}},
+    {"@type": "Question","name": "파일이 서버에 저장되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다."}}
   ]
 }
 </script>
@@ -191,19 +194,31 @@
 <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
   </div>
 
+    <section class="tool-guide" style="margin-top:36px;">
+    <h2 class="section-title" style="font-size:1.1rem;font-weight:700;margin-bottom:14px;">📖 PDF를 Word로 변환하는 방법</h2>
+    <ol style="line-height:2;color:var(--text-secondary);padding-left:20px;margin:0;">
+      <li><strong>PDF 파일 업로드</strong> — 위 영역에 파일을 끌어다 놓거나 "PDF 파일 선택" 버튼으로 변환할 PDF를 불러옵니다.</li>
+      <li><strong>변환 범위 설정</strong> — 전체 페이지를 변환할지, 특정 페이지만 변환할지 선택합니다. 예: 3~8페이지만 필요하면 "특정 페이지"에 3-8을 입력하세요.</li>
+      <li><strong>변환 후 다운로드</strong> — "Word 파일로 변환" 버튼을 누르면 브라우저 안에서 즉시 텍스트가 추출되고, .doc 파일로 바로 다운로드됩니다.</li>
+    </ol>
+    <p style="margin-top:16px;color:var(--text-secondary);line-height:1.8;">
+      이 도구는 PDF 안에 있는 <strong>텍스트 레이어를 그대로 읽어서</strong> Word 문서로 옮기는 방식입니다. 계약서·보고서·논문처럼 PDF 안에서 드래그로 텍스트 복사가 되는 파일이면 정확하게 변환됩니다. 반대로 종이 문서를 스캔하거나 사진으로 찍어 만든 PDF는 텍스트 레이어가 없어 그대로는 변환되지 않으며, 이 경우 <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600;">OCR(광학 문자 인식) 도구</a>로 먼저 텍스트를 인식시킨 뒤 이용해야 합니다. 변환 후 원문에서 빠진 부분이 없는지는 <a href="pdf-text-extract.html" style="color:var(--primary);font-weight:600;">PDF 텍스트 추출 도구</a>로 먼저 원본 텍스트를 확인해보는 것도 방법입니다.
+    </p>
+  </section>
+
     <div class="related-tools">
   <h2>함께 쓰면 좋은 도구</h2>
   <div class="related-grid">
 <a href="pdf-to-jpg.html?format=png" class="related-card"><span class="related-icon">📸</span><span>PDF → PNG</span></a>
-    <a href="pdf-to-jpg.html" class="related-card"><span class="related-icon">🖼️</span><span>PDF → JPG</span></a>
+    <a href="pdf-text-extract.html" class="related-card"><span class="related-icon">📋</span><span>PDF 텍스트 추출</span></a>
     <a href="jpg-to-pdf.html" class="related-card"><span class="related-icon">📄</span><span>이미지 → PDF</span></a>
     <a href="office-to-pdf.html" class="related-card"><span class="related-icon">📝</span><span>Word/Excel → PDF</span></a>
   </div>
 </div>
 <div class="wooa-orig-anchor"></div>
 
-  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>텍스트 레이어가 있는 PDF에서 변환 품질이 가장 좋습니다.</li><li>복잡한 레이아웃은 Word에서 추가 편집이 필요할 수 있습니다.</li><li>변환 후 Word에서 맞춤법 검사를 한 번 더 실행하세요.</li></ul></div>
-<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>변환된 Word 파일의 서식이 유지되나요?</summary><p>텍스트 내용은 유지되지만 복잡한 레이아웃 서식은 일부 변경될 수 있습니다.</p></details><details><summary>어떤 형식으로 변환되나요?</summary><p>.doc 형식으로 변환되며 Microsoft Word, Google Docs 등에서 열 수 있습니다.</p></details><details><summary>이미지가 포함된 PDF도 변환되나요?</summary><p>텍스트는 추출되나 이미지는 포함되지 않을 수 있습니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
+  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>텍스트 레이어가 있는 PDF에서 변환 품질이 가장 좋습니다. 스캔 PDF는 <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener" style="color:var(--primary);">OCR 도구</a>를 먼저 이용하세요.</li><li>복잡한 레이아웃(표, 다단 구성 등)은 Word에서 추가 편집이 필요할 수 있습니다.</li><li>변환 후 Word에서 맞춤법 검사를 한 번 더 실행하면 텍스트 추출 과정에서 생긴 오타를 잡아낼 수 있습니다.</li></ul></div>
+<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>변환된 Word 파일의 서식이 유지되나요?</summary><p>텍스트 내용은 그대로 유지되지만, 복잡한 표나 다단 레이아웃 같은 서식은 일부 변경될 수 있습니다. 순수 텍스트 위주 문서일수록 결과가 원본과 가장 비슷합니다.</p></details><details><summary>스캔된 이미지 PDF도 변환할 수 있나요?</summary><p>아니요. 이 도구는 PDF에 이미 저장된 텍스트 레이어를 추출하는 방식이라, 종이를 스캔하거나 사진으로 찍어 만든 PDF에는 사용할 수 없습니다. 이런 경우 <a href="https://imagekit.wooahouse.com/ocr-pdf.html" target="_blank" rel="noopener">OCR 도구</a>로 먼저 텍스트를 인식시킨 뒤 이용해주세요.</p></details><details><summary>변환 가능한 페이지 수 제한이 있나요?</summary><p>페이지 수 제한은 없습니다. 다만 페이지가 많을수록 브라우저에서 처리하는 시간이 길어질 수 있으므로, 필요한 페이지만 범위를 지정해서 변환하는 것도 방법입니다.</p></details><details><summary>어떤 프로그램에서 열 수 있나요?</summary><p>.doc 형식으로 저장되며 Microsoft Word, 한글과컴퓨터의 워드 뷰어, Google Docs, LibreOffice 등 대부분의 문서 프로그램에서 바로 열 수 있습니다.</p></details><details><summary>한글이 깨지지 않고 정상적으로 나오나요?</summary><p>네. 맑은 고딕 글꼴 기준으로 문서가 생성되어 한글이 정상적으로 표시됩니다. 다만 PDF 자체에 특수한 임베드 폰트가 사용된 경우 일부 글자 간격이 원본과 다르게 보일 수 있습니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
 
 </main>
 
