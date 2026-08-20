@@ -916,9 +916,9 @@ footer {
   border-radius: 6px;
   margin-bottom: 8px;
 }
-/* 모바일 상단 광고 (데스크톱에서는 숨김) */
+/* 상단 광고 (데스크톱·모바일 공통 표시) */
 .mobile-top-ad {
-  display: none;
+  display: block;
   padding: 8px 16px;
   background: #fff;
   border-bottom: 1px solid var(--border);
