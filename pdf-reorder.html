@@ -157,6 +157,15 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       animation: spin 0.8s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    .thumb-card.blank-card canvas { display:none; }
+    .thumb-blank-placeholder {
+      width: 100%; aspect-ratio: 0.77; background: repeating-linear-gradient(45deg,#F3F4F6,#F3F4F6 8px,#FAFAFA 8px,#FAFAFA 16px);
+      display:flex; align-items:center; justify-content:center; color: var(--text-light); font-size:0.78rem;
+    }
+    .thumb-blank-remove {
+      position:absolute; top:6px; right:6px; background:#EF4444; color:white; border:none; border-radius:50%;
+      width:22px; height:22px; font-size:0.7rem; cursor:pointer; line-height:1;
+    }
   </style>
 </head>
 <body>
@@ -222,6 +231,11 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     <span id="loadingText">썸네일 렌더링 중...</span>
   </div>
 
+  <div id="reorderToolbar" style="display:none; gap:8px; margin-top:16px; flex-wrap:wrap;">
+    <button id="reverseOrderBtn" class="btn-select" style="cursor:pointer;">↩️ 전체 순서 뒤집기</button>
+    <button id="addBlankBtn" class="btn-select" style="cursor:pointer;">➕ 끝에 빈 페이지 추가</button>
+  </div>
+
   <div id="thumbGrid" class="thumb-grid" style="display:none"></div>
 
   <button class="btn-convert" id="applyBtn" style="display:none">🔀 재정렬 적용 및 다운로드</button>
@@ -274,7 +288,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
   </div>
 </div>
 <div class="wooa-orig-anchor"></div>
-<div class="tips-panel"><h3>💡 Tips</h3><ul><li>썸네일을 드래그해 원하는 순서로 배치하세요.</li><li>재정렬 후 불필요한 페이지는 페이지 삭제 도구로 제거하세요.</li><li>스캔한 문서 페이지 순서가 뒤섞였을 때 특히 유용합니다.</li></ul></div>
+<div class="tips-panel"><h3>💡 Tips</h3><ul><li>썸네일을 드래그해 원하는 순서로 배치하세요.</li><li>"전체 순서 뒤집기"는 스캐너가 역순으로 스캔한 문서를 정리할 때 유용합니다.</li><li>"빈 페이지 추가"로 인쇄용 짝수 페이지 맞추기나 구분용 여백 페이지를 넣을 수 있습니다.</li></ul></div>
 <div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>페이지 순서 변경 후 미리보기가 가능한가요?</summary><p>네, 썸네일로 페이지를 확인하면서 드래그 앤 드롭으로 순서를 조정할 수 있습니다.</p></details><details><summary>페이지 삭제도 동시에 할 수 있나요?</summary><p>재정렬에 집중된 도구입니다. 페이지 삭제는 별도의 페이지 삭제 도구를 이용하세요.</p></details><details><summary>순서 변경 후 원본 PDF가 수정되나요?</summary><p>아니요, 원본은 유지되고 변경된 PDF를 새로 다운로드받습니다.</p></details><details><summary>페이지가 많은 PDF도 처리할 수 있나요?</summary><p>네, 다만 페이지 수가 많을수록 썸네일 렌더링 시간이 길어질 수 있습니다. 처리 중에는 진행률이 화면에 표시됩니다.</p></details><details><summary>모바일에서도 사용할 수 있나요?</summary><p>파일 업로드와 미리보기는 모바일에서도 가능하지만, 드래그로 순서를 바꾸는 조작은 PC 브라우저에서 더 안정적으로 동작합니다. 페이지가 많거나 정밀한 순서 조정이 필요하다면 PC 사용을 권장합니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
 
 </main>
@@ -376,13 +390,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       label.textContent = `원본 ${i + 1}p`;
       card.appendChild(label);
 
-      // Drag events
-      card.addEventListener('dragstart', onDragStart);
-      card.addEventListener('dragover', onDragOver);
-      card.addEventListener('dragenter', onDragEnter);
-      card.addEventListener('dragleave', onDragLeave);
-      card.addEventListener('drop', onDrop);
-      card.addEventListener('dragend', onDragEnd);
+      wireDragEvents(card);
 
       thumbGrid.appendChild(card);
     }
@@ -390,6 +398,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     document.getElementById('loadingPanel').style.display = 'none';
     thumbGrid.style.display = 'grid';
     document.getElementById('applyBtn').style.display = 'block';
+    document.getElementById('reorderToolbar').style.display = 'flex';
   }
 
   function clearFile() {
@@ -397,6 +406,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     document.getElementById('fileInfoPanel').style.display = 'none';
     document.getElementById('thumbGrid').style.display = 'none';
     document.getElementById('applyBtn').style.display = 'none';
+    document.getElementById('reorderToolbar').style.display = 'none';
     document.getElementById('resultPanel').style.display = 'none';
     document.getElementById('progressWrap').style.display = 'none';
     document.getElementById('loadingPanel').style.display = 'none';
@@ -469,6 +479,45 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     }
   }
 
+  function wireDragEvents(card) {
+    card.addEventListener('dragstart', onDragStart);
+    card.addEventListener('dragover', onDragOver);
+    card.addEventListener('dragenter', onDragEnter);
+    card.addEventListener('dragleave', onDragLeave);
+    card.addEventListener('drop', onDrop);
+    card.addEventListener('dragend', onDragEnd);
+  }
+
+  document.getElementById('reverseOrderBtn').addEventListener('click', () => {
+    pageOrder.reverse();
+    const grid = document.getElementById('thumbGrid');
+    const cards = Array.from(grid.children).reverse();
+    cards.forEach(c => grid.appendChild(c));
+    updateOrderLabels();
+  });
+
+  document.getElementById('addBlankBtn').addEventListener('click', () => {
+    pageOrder.push(-1);
+    const card = document.createElement('div');
+    card.className = 'thumb-card blank-card';
+    card.draggable = true;
+    card.innerHTML = `<div class="thumb-order"></div><button class="thumb-blank-remove" title="빈 페이지 삭제">✕</button><div class="thumb-blank-placeholder">➕<br>빈 페이지</div>`;
+    const label = document.createElement('div');
+    label.className = 'thumb-label';
+    label.textContent = '빈 페이지';
+    card.appendChild(label);
+    card.querySelector('.thumb-blank-remove').addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const idx = getCardIndex(card);
+      pageOrder.splice(idx, 1);
+      card.remove();
+      updateOrderLabels();
+    });
+    wireDragEvents(card);
+    document.getElementById('thumbGrid').appendChild(card);
+    updateOrderLabels();
+  });
+
   document.getElementById('applyBtn').addEventListener('click', async () => {
     if (!selectedFile || pageOrder.length === 0) return;
 
@@ -483,9 +532,14 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       const { PDFDocument } = PDFLib;
       const srcDoc = await PDFDocument.load(pdfBytes);
       const newDoc = await PDFDocument.create();
+      const firstPageSize = srcDoc.getPage(0).getSize();
 
       for (let i = 0; i < pageOrder.length; i++) {
-        updateProgressUI(20 + Math.round((i / pageOrder.length) * 65), `페이지 ${i + 1}/${pageOrder.length} 복사 중...`);
+        updateProgressUI(20 + Math.round((i / pageOrder.length) * 65), `페이지 ${i + 1}/${pageOrder.length} 처리 중...`);
+        if (pageOrder[i] === -1) {
+          newDoc.addPage([firstPageSize.width, firstPageSize.height]);
+          continue;
+        }
         const [copiedPage] = await newDoc.copyPages(srcDoc, [pageOrder[i]]);
         newDoc.addPage(copiedPage);
       }
@@ -498,7 +552,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
-      const newOrderStr = pageOrder.map(i => i + 1).join(' → ');
+      const newOrderStr = pageOrder.map(i => i === -1 ? '빈' : i + 1).join(' → ');
       document.getElementById('resultSubtitle').textContent =
         `${pageOrder.length}페이지 재정렬 완료 (${newOrderStr})`;
       panel.scrollIntoView({ behavior: 'smooth' });

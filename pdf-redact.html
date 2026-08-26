@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 개인정보 가리기 (레댁션) 무료 — 검게 칠해서 완전히 삭제 | WooaPDF</title>
+  <meta name="description" content="PDF에서 주민번호·연락처 등 민감정보를 마우스로 드래그해 검게 가립니다. 단순히 위에 덮는 게 아니라 페이지 자체를 이미지로 변환해 원본 텍스트를 완전히 제거합니다. 서버 전송 없음 — 완전 무료.">
+  <meta name="keywords" content="PDF가리기, PDF검열, PDF개인정보가리기, PDF레댁션, PDF검게칠하기, PDF마스킹, 무료PDF가리기">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/pdf-redact.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-redact.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-redact.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-redact.html">
+  <meta property="og:title" content="PDF 개인정보 가리기 (레댁션) 무료 — 검게 칠해서 완전히 삭제 | WooaPDF">
+  <meta property="og:description" content="PDF의 민감정보를 드래그해 검게 가립니다. 페이지를 이미지로 바꿔 원본 텍스트를 완전히 제거합니다. 서버 전송 없음 — 완전 무료.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/pdf-redact.html">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaPDF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF 개인정보 가리기 (레댁션) 무료 — 검게 칠해서 완전히 삭제 | WooaPDF">
+<meta name="twitter:description" content="PDF의 민감정보를 드래그해 검게 가리고, 원본 텍스트까지 완전히 제거합니다.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+<script src="js/ad-dev-placeholder.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 개인정보 가리기",
+  "url": "https://pdfkit.wooahouse.com/pdf-redact.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {"@type": "Offer","price": "0","priceCurrency": "KRW"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "검은 박스 아래 텍스트가 복사/추출될 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 박스를 그린 페이지는 통째로 이미지로 변환해서 저장하므로, 검은 박스 아래에 있던 원본 텍스트 데이터 자체가 결과 파일에 남지 않습니다. 단순히 위에 도형만 덮는 방식이 아닙니다."}},
+    {"@type": "Question","name": "박스를 그리지 않은 페이지는 어떻게 되나요?","acceptedAnswer": {"@type": "Answer","text": "가리기 표시를 하지 않은 페이지는 원본 그대로(텍스트 선택·검색 가능한 벡터 상태) 유지됩니다. 표시한 페이지만 이미지로 변환됩니다."}},
+    {"@type": "Question","name": "파일이 서버에 업로드되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 완전히 안전합니다."}}
+  ]
+}
+</script>
+  <style>
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+    .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+    .lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+    .lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+    .redact-page-nav { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom: 10px; }
+    .redact-page-nav button { border: 2px solid #E5E7EB; background: white; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-weight:600; font-size:0.85rem; }
+    .redact-page-nav button:disabled { opacity:.4; cursor:not-allowed; }
+    .redact-page-indicator { font-size: 0.9rem; font-weight: 700; color: #1A1A2E; min-width: 90px; text-align:center; }
+    .redact-preview-wrap { display:flex; justify-content:center; margin: 8px 0 16px; background:#F3F4F6; border-radius:12px; padding:16px; }
+    .redact-preview-stage { position: relative; display: inline-block; cursor: crosshair; }
+    .redact-preview-stage canvas { display: block; max-width: 100%; border: 1px solid #E5E7EB; }
+    .redact-box { position: absolute; background: #000; opacity: 0.85; }
+    .redact-box.drawing { background: rgba(0,0,0,0.5); border: 1px dashed #FF4444; }
+    .redact-toolbar { display:flex; gap:8px; justify-content:center; margin-bottom: 12px; flex-wrap:wrap; }
+    .redact-toolbar button { border: 2px solid #E5E7EB; background: white; border-radius: 8px; padding: 8px 14px; cursor: pointer; font-family: inherit; font-weight:600; font-size:0.82rem; }
+    .redact-toolbar button:hover { border-color: #FF4444; }
+    .redact-summary { text-align:center; font-size:0.82rem; color:#6B7280; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="pdf-crop.html">PDF 자르기</a>
+      <a href="pdf-redact.html">개인정보 가리기</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="pdf-redact.html" class="active">KO</a>
+        <span>|</span>
+        <a href="en/pdf-redact.html">EN</a>
+      </div>
+      <a href="about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">소개</a>
+    </div>
+  </div>
+</header>
+
+<script src="js/wooa-sites-bar.js"></script>
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>개인정보 가리기</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">⬛</span>
+    <h1>PDF 개인정보 가리기 무료 온라인 — 검게 칠해서 완전히 삭제</h1>
+    <p>가릴 부분을 마우스로 드래그하세요. 단순히 덮는 게 아니라 원본 텍스트까지 완전히 제거됩니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>가릴 부분이 있는 PDF 파일을 업로드하세요</p>
+    <label for="fileInput" class="btn-select">PDF 파일 선택</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">가릴 영역을 드래그로 표시하세요</div>
+
+    <div class="redact-page-nav">
+      <button id="prevPageBtn">◀ 이전</button>
+      <span class="redact-page-indicator" id="pageIndicator">1 / 1</span>
+      <button id="nextPageBtn">다음 ▶</button>
+    </div>
+
+    <div class="redact-preview-wrap">
+      <div class="redact-preview-stage" id="previewStage">
+        <canvas id="previewCanvas"></canvas>
+      </div>
+    </div>
+
+    <div class="redact-toolbar">
+      <button id="undoBoxBtn">↺ 마지막 박스 취소</button>
+      <button id="clearPageBtn">🗑️ 이 페이지 초기화</button>
+      <button id="clearAllBtn">🗑️ 전체 초기화</button>
+    </div>
+    <div class="redact-summary" id="redactSummary">표시된 박스: 0개</div>
+
+    <button class="btn-convert" id="applyBtn" style="margin-top:8px;">⬛ 가리기 적용 후 저장</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label"><span id="progressText">처리 중...</span><span id="progressPct">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div><div class="result-title">가리기 완료!</div><div class="result-subtitle" id="resultSubtitle"></div></div>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadBtn">⬇️ 결과 PDF 다운로드</button>
+      <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
+    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
+  </div>
+
+    <div class="related-tools">
+  <h2>함께 쓰면 좋은 도구</h2>
+  <div class="related-grid">
+    <a href="compress-pdf.html" class="related-card"><span class="related-icon">🗜️</span><span>PDF 압축</span></a>
+    <a href="pdf-crop.html" class="related-card"><span class="related-icon">✂️</span><span>PDF 자르기</span></a>
+    <a href="pdf-password.html" class="related-card"><span class="related-icon">🔐</span><span>PDF 암호 설정</span></a>
+    <a href="pdf-metadata.html" class="related-card"><span class="related-icon">📋</span><span>PDF 메타데이터</span></a>
+  </div>
+</div>
+<div class="wooa-orig-anchor"></div>
+
+  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>주민등록번호, 계좌번호, 연락처처럼 공유 전 반드시 가려야 할 정보에 사용하세요.</li><li>여러 페이지에 걸쳐 있다면 페이지를 넘겨가며 각각 표시할 수 있습니다.</li><li>박스를 표시하지 않은 페이지는 원본 그대로(텍스트 선택 가능) 유지됩니다.</li></ul></div>
+<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>검은 박스 아래 텍스트가 복사/추출될 수 있나요?</summary><p>아니요. 박스를 그린 페이지는 통째로 이미지로 변환해서 저장하므로, 검은 박스 아래에 있던 원본 텍스트 데이터 자체가 결과 파일에 남지 않습니다. 단순히 위에 도형만 덮는 방식이 아닙니다.</p></details><details><summary>박스를 그리지 않은 페이지는 어떻게 되나요?</summary><p>가리기 표시를 하지 않은 페이지는 원본 그대로(텍스트 선택·검색 가능한 벡터 상태) 유지됩니다. 표시한 페이지만 이미지로 변환됩니다.</p></details><details><summary>파일이 서버에 업로드되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 완전히 안전합니다.</p></details></div>
+
+</main>
+
+<aside class="tool-sidebar"></aside>
+</div>
+
+<footer class="footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let resultBytes = null;
+  let pdfJsDoc = null;
+  let numPages = 0;
+  let curPageIdx = 0; // 0-based
+  let boxesByPage = {}; // { pageIdx: [{x,y,w,h} normalized 0-1] }
+  let curVp = null;
+  let drawing = null; // {startX,startY,el}
+
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    if (navigator.canShare({ files: [testFile] })) shareBtn.style.display = 'inline-flex';
+  }
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+    boxesByPage = {};
+    curPageIdx = 0;
+
+    const buf = await file.arrayBuffer();
+    pdfJsDoc = await pdfjsLib.getDocument({ data: buf.slice(0) }).promise;
+    numPages = pdfJsDoc.numPages;
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${numPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    await renderCurPage();
+  }
+
+  function clearFile() {
+    selectedFile = null; pdfJsDoc = null; boxesByPage = {};
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  async function renderCurPage() {
+    const page = await pdfJsDoc.getPage(curPageIdx + 1);
+    const rawVp = page.getViewport({ scale: 1 });
+    const scale = Math.min(1.3, 560 / rawVp.width);
+    const vp = page.getViewport({ scale });
+    curVp = vp;
+    const canvas = document.getElementById('previewCanvas');
+    canvas.width = vp.width; canvas.height = vp.height;
+    await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+
+    document.getElementById('pageIndicator').textContent = `${curPageIdx + 1} / ${numPages}`;
+    document.getElementById('prevPageBtn').disabled = curPageIdx === 0;
+    document.getElementById('nextPageBtn').disabled = curPageIdx === numPages - 1;
+
+    redrawBoxes();
+    updateSummary();
+  }
+
+  function redrawBoxes() {
+    const stage = document.getElementById('previewStage');
+    stage.querySelectorAll('.redact-box:not(.drawing)').forEach(el => el.remove());
+    const canvas = document.getElementById('previewCanvas');
+    const list = boxesByPage[curPageIdx] || [];
+    list.forEach(b => {
+      const el = document.createElement('div');
+      el.className = 'redact-box';
+      el.style.left = (b.x * canvas.width) + 'px';
+      el.style.top = (b.y * canvas.height) + 'px';
+      el.style.width = (b.w * canvas.width) + 'px';
+      el.style.height = (b.h * canvas.height) + 'px';
+      stage.appendChild(el);
+    });
+  }
+
+  function updateSummary() {
+    const total = Object.values(boxesByPage).reduce((s, arr) => s + arr.length, 0);
+    const pagesWithBoxes = Object.keys(boxesByPage).filter(k => boxesByPage[k].length > 0).length;
+    document.getElementById('redactSummary').textContent = `표시된 박스: ${total}개 (${pagesWithBoxes}개 페이지)`;
+  }
+
+  document.getElementById('prevPageBtn').addEventListener('click', async () => {
+    if (curPageIdx > 0) { curPageIdx--; await renderCurPage(); }
+  });
+  document.getElementById('nextPageBtn').addEventListener('click', async () => {
+    if (curPageIdx < numPages - 1) { curPageIdx++; await renderCurPage(); }
+  });
+  document.getElementById('undoBoxBtn').addEventListener('click', () => {
+    const list = boxesByPage[curPageIdx] || [];
+    list.pop();
+    redrawBoxes(); updateSummary();
+  });
+  document.getElementById('clearPageBtn').addEventListener('click', () => {
+    boxesByPage[curPageIdx] = [];
+    redrawBoxes(); updateSummary();
+  });
+  document.getElementById('clearAllBtn').addEventListener('click', () => {
+    boxesByPage = {};
+    redrawBoxes(); updateSummary();
+  });
+
+  // 드래그로 박스 그리기
+  const stage = document.getElementById('previewStage');
+  stage.addEventListener('mousedown', e => {
+    if (!curVp) return;
+    const rect = stage.getBoundingClientRect();
+    const startX = e.clientX - rect.left, startY = e.clientY - rect.top;
+    const el = document.createElement('div');
+    el.className = 'redact-box drawing';
+    el.style.left = startX + 'px'; el.style.top = startY + 'px';
+    el.style.width = '0px'; el.style.height = '0px';
+    stage.appendChild(el);
+    drawing = { startX, startY, el };
+  });
+  stage.addEventListener('mousemove', e => {
+    if (!drawing) return;
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    const left = Math.min(x, drawing.startX), top = Math.min(y, drawing.startY);
+    const w = Math.abs(x - drawing.startX), h = Math.abs(y - drawing.startY);
+    drawing.el.style.left = left + 'px'; drawing.el.style.top = top + 'px';
+    drawing.el.style.width = w + 'px'; drawing.el.style.height = h + 'px';
+  });
+  window.addEventListener('mouseup', () => {
+    if (!drawing) return;
+    const canvas = document.getElementById('previewCanvas');
+    const w = parseFloat(drawing.el.style.width), h = parseFloat(drawing.el.style.height);
+    if (w > 6 && h > 6) {
+      const x = parseFloat(drawing.el.style.left) / canvas.width;
+      const y = parseFloat(drawing.el.style.top) / canvas.height;
+      const nw = w / canvas.width, nh = h / canvas.height;
+      if (!boxesByPage[curPageIdx]) boxesByPage[curPageIdx] = [];
+      boxesByPage[curPageIdx].push({ x, y, w: nw, h: nh });
+      updateSummary();
+    }
+    drawing.el.remove();
+    drawing = null;
+    redrawBoxes();
+  });
+
+  document.getElementById('applyBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const totalBoxes = Object.values(boxesByPage).reduce((s, arr) => s + arr.length, 0);
+    if (totalBoxes === 0) { showError('가릴 영역을 최소 1개 이상 드래그로 표시해주세요.'); return; }
+
+    const btn = document.getElementById('applyBtn');
+    btn.disabled = true; btn.textContent = '⏳ 처리 중...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const origBuf = await selectedFile.arrayBuffer();
+      const origDoc = await PDFDocument.load(origBuf, { ignoreEncryption: true });
+      const newPdf = await PDFDocument.create();
+
+      for (let i = 0; i < numPages; i++) {
+        updateProgressUI(Math.round(i / numPages * 90), `${i+1}/${numPages} 페이지 처리 중...`);
+        const boxes = boxesByPage[i] || [];
+
+        if (boxes.length === 0) {
+          // 표시 안 한 페이지는 원본 그대로 벡터 복사 (화질/텍스트 유지)
+          const [copied] = await newPdf.copyPages(origDoc, [i]);
+          newPdf.addPage(copied);
+          continue;
+        }
+
+        // 박스가 있는 페이지는 렌더링 후 검은 박스를 그려서 이미지로 눌러 저장 (원본 텍스트 완전 제거)
+        const page = await pdfJsDoc.getPage(i + 1);
+        const vp = page.getViewport({ scale: 2 });
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(vp.width); canvas.height = Math.round(vp.height);
+        const ctx = canvas.getContext('2d');
+        await page.render({ canvasContext: ctx, viewport: vp }).promise;
+
+        ctx.fillStyle = '#000000';
+        boxes.forEach(b => {
+          ctx.fillRect(b.x * canvas.width, b.y * canvas.height, b.w * canvas.width, b.h * canvas.height);
+        });
+
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.88));
+        const jpegBytes = new Uint8Array(await blob.arrayBuffer());
+        const jpgImg = await newPdf.embedJpg(jpegBytes);
+        const newPage = newPdf.addPage([vp.width, vp.height]);
+        newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+      }
+
+      updateProgressUI(95, 'PDF 생성 중...');
+      resultBytes = await newPdf.save();
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const redactedPages = Object.values(boxesByPage).filter(a => a.length > 0).length;
+      document.getElementById('resultSubtitle').textContent = `${redactedPages}개 페이지에 가리기 적용 완료 (전체 ${numPages}페이지)`;
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle'; ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
+    } catch (err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    btn.disabled = false; btn.textContent = '⬛ 가리기 적용 후 저장';
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = selectedFile.name.replace('.pdf', '_redacted.pdf'); a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (!resultBytes) return;
+    const filename = selectedFile.name.replace('.pdf', '_redacted.pdf');
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const file = new File([blob], filename, { type: 'application/pdf' });
+    try { await navigator.share({ files: [file], title: filename + ' — WooaPDF', text: 'WooaPDF를 통해 변환한 파일입니다.\nhttps://pdfkit.wooahouse.com/pdf-redact.html' }); }
+    catch (e) { if (e.name !== 'AbortError') alert('공유에 실패했습니다.'); }
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="js/wooahouse-originals-tool.js"></script>
+<script>window.PWA_CONFIG={appName:"WooaPDF",themeColor:"#FF4444",icon:"📱",convertIds:['convertBtn','compressBtn','mergeBtn','splitBtn','deleteBtn','applyBtn','rotateBtn','unlockBtn','processBtn','cropBtn','generateBtn','resizeBtn','startBtn','generateAllBtn','printBtn']};</script>
+<script src="js/pwa-install.js"></script>
+<script src="js/wooa-sidebar.js"></script>
+<script src="js/wooa-footer.js"></script>
+</body>
+</html>

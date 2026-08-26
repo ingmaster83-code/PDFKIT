@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF 좌우/상하 반전 — 미러 이미지로 변환 무료 | WooaPDF</title>
+  <meta name="description" content="PDF 페이지를 좌우 또는 상하로 거울처럼 뒤집습니다. 회전과 다른 미러 반전으로, 스캔 방향이 뒤집힌 문서를 바로잡을 때 유용합니다. 서버 전송 없음 — 완전 무료.">
+  <meta name="keywords" content="PDF반전, PDF좌우반전, PDF상하반전, PDF미러, PDF뒤집기, 무료PDF반전, 온라인PDF반전">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/pdf-flip.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-flip.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-flip.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-flip.html">
+  <meta property="og:title" content="PDF 좌우/상하 반전 — 미러 이미지로 변환 무료 | WooaPDF">
+  <meta property="og:description" content="PDF 페이지를 좌우 또는 상하로 거울처럼 뒤집습니다. 회전과 다른 미러 반전 기능. 서버 전송 없음 — 완전 무료.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/pdf-flip.html">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaPDF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF 좌우/상하 반전 — 미러 이미지로 변환 무료 | WooaPDF">
+<meta name="twitter:description" content="PDF 페이지를 좌우 또는 상하로 거울처럼 뒤집습니다.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+<script src="js/ad-dev-placeholder.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF 반전",
+  "url": "https://pdfkit.wooahouse.com/pdf-flip.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {"@type": "Offer","price": "0","priceCurrency": "KRW"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "회전이랑 뭐가 다른가요?","acceptedAnswer": {"@type": "Answer","text": "회전은 페이지를 시계 방향으로 90도씩 돌리는 것이고, 반전(미러)은 좌우 또는 상하로 거울처럼 뒤집어 글자가 좌우/상하로 반대로 보이게 만드는 것입니다."}},
+    {"@type": "Question","name": "텍스트를 편집·검색할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "반전 처리 과정에서 페이지가 이미지로 변환되므로, 결과 PDF에서는 텍스트 선택·검색이 되지 않습니다. 시각적으로만 반전됩니다."}},
+    {"@type": "Question","name": "파일이 서버에 업로드되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 완전히 안전합니다."}}
+  ]
+}
+</script>
+  <style>
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+    .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+    .lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+    .lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+    .flip-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .flip-card { border: 2px solid #E5E7EB; border-radius: 10px; padding: 20px 12px; cursor: pointer; text-align: center; transition: border-color 0.15s, background 0.15s; }
+    .flip-card:hover { border-color: #FF4444; }
+    .flip-card.selected { border-color: #FF4444; background: #FFF0F0; }
+    .flip-card input { display: none; }
+    .flip-card-icon { font-size: 2rem; margin-bottom: 8px; }
+    .flip-card-title { font-size: 0.9rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→이미지</a>
+      <a href="compress-pdf.html">PDF 압축</a>
+      <a href="rotate-pdf.html">PDF 회전</a>
+      <a href="pdf-flip.html">PDF 반전</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="pdf-flip.html" class="active">KO</a>
+        <span>|</span>
+        <a href="en/pdf-flip.html">EN</a>
+      </div>
+      <a href="about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">소개</a>
+    </div>
+  </div>
+</header>
+
+<script src="js/wooa-sites-bar.js"></script>
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="index.html">🏠 홈</a>
+    <span>›</span>
+    <span>PDF 반전</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">🪞</span>
+    <h1>PDF 좌우/상하 반전 무료 온라인 — 미러 이미지로 변환</h1>
+    <p>페이지를 거울처럼 뒤집습니다. 회전과는 다른 미러 반전 기능입니다.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>PDF 파일을 여기에 끌어다 놓으세요</h3>
+    <p>반전할 PDF 파일을 업로드하세요</p>
+    <label for="fileInput" class="btn-select">PDF 파일 선택</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">선택된 파일</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">반전 방향 선택</div>
+    <div class="flip-cards">
+      <label class="flip-card selected" id="card-h">
+        <input type="radio" name="flipDir" value="horizontal" checked>
+        <div class="flip-card-icon">↔️</div>
+        <div class="flip-card-title">좌우 반전</div>
+      </label>
+      <label class="flip-card" id="card-v">
+        <input type="radio" name="flipDir" value="vertical">
+        <div class="flip-card-icon">↕️</div>
+        <div class="flip-card-title">상하 반전</div>
+      </label>
+    </div>
+    <button class="btn-convert" id="flipBtn" style="margin-top:20px;">🪞 반전 적용</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label"><span id="progressText">처리 중...</span><span id="progressPct">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div><div class="result-title">반전 완료!</div><div class="result-subtitle" id="resultSubtitle"></div></div>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadBtn">⬇️ 반전된 PDF 다운로드</button>
+      <button class="btn-share" id="shareBtn" style="display:none;">📤 공유하기</button>
+    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
+  </div>
+
+    <div class="related-tools">
+  <h2>함께 쓰면 좋은 도구</h2>
+  <div class="related-grid">
+    <a href="rotate-pdf.html" class="related-card"><span class="related-icon">🔄</span><span>PDF 회전</span></a>
+    <a href="pdf-crop.html" class="related-card"><span class="related-icon">✂️</span><span>PDF 자르기</span></a>
+    <a href="compress-pdf.html" class="related-card"><span class="related-icon">🗜️</span><span>PDF 압축</span></a>
+    <a href="pdf-to-jpg.html" class="related-card"><span class="related-icon">🖼️</span><span>PDF → JPG</span></a>
+  </div>
+</div>
+<div class="wooa-orig-anchor"></div>
+
+  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>회전(90도씩 돌리기)과 반전(거울 뒤집기)은 다른 기능입니다 — 방향이 완전히 뒤집힌 스캔본에는 반전을 사용하세요.</li><li>모든 페이지에 동일하게 적용됩니다.</li><li>반전 후 텍스트를 다시 편집·검색해야 한다면 원본을 별도로 보관하세요.</li></ul></div>
+<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>회전이랑 뭐가 다른가요?</summary><p>회전은 페이지를 시계 방향으로 90도씩 돌리는 것이고, 반전(미러)은 좌우 또는 상하로 거울처럼 뒤집어 글자가 좌우/상하로 반대로 보이게 만드는 것입니다.</p></details><details><summary>텍스트를 편집·검색할 수 있나요?</summary><p>반전 처리 과정에서 페이지가 이미지로 변환되므로, 결과 PDF에서는 텍스트 선택·검색이 되지 않습니다. 시각적으로만 반전됩니다.</p></details><details><summary>파일이 서버에 업로드되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 완전히 안전합니다.</p></details></div>
+
+</main>
+
+<aside class="tool-sidebar"></aside>
+</div>
+
+<footer class="footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let resultBytes = null;
+
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    if (navigator.canShare({ files: [testFile] })) shareBtn.style.display = 'inline-flex';
+  }
+
+  document.querySelectorAll('input[name="flipDir"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.flip-card').forEach(c => c.classList.remove('selected'));
+      radio.closest('.flip-card').classList.add('selected');
+    });
+  });
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('PDF 파일만 업로드할 수 있습니다.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+
+    let totalPages = 0;
+    try {
+      const { PDFDocument } = PDFLib;
+      const buf = await file.arrayBuffer();
+      const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+      totalPages = doc.getPageCount();
+    } catch(e) {}
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages}페이지</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  document.getElementById('flipBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const dir = document.querySelector('input[name="flipDir"]:checked').value;
+
+    const btn = document.getElementById('flipBtn');
+    btn.disabled = true; btn.textContent = '⏳ 처리 중...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdfJs = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0) }).promise;
+      const numPages = pdfJs.numPages;
+
+      const { PDFDocument } = PDFLib;
+      const newPdf = await PDFDocument.create();
+
+      for (let i = 1; i <= numPages; i++) {
+        updateProgressUI(Math.round((i - 1) / numPages * 88), `${i}/${numPages} 페이지 처리 중...`);
+
+        const page = await pdfJs.getPage(i);
+        const vp = page.getViewport({ scale: 1.5 });
+
+        const srcCanvas = document.createElement('canvas');
+        srcCanvas.width = Math.round(vp.width);
+        srcCanvas.height = Math.round(vp.height);
+        await page.render({ canvasContext: srcCanvas.getContext('2d'), viewport: vp }).promise;
+
+        const outCanvas = document.createElement('canvas');
+        outCanvas.width = srcCanvas.width;
+        outCanvas.height = srcCanvas.height;
+        const ctx = outCanvas.getContext('2d');
+        ctx.save();
+        if (dir === 'horizontal') {
+          ctx.translate(outCanvas.width, 0);
+          ctx.scale(-1, 1);
+        } else {
+          ctx.translate(0, outCanvas.height);
+          ctx.scale(1, -1);
+        }
+        ctx.drawImage(srcCanvas, 0, 0);
+        ctx.restore();
+
+        const blob = await new Promise(resolve => outCanvas.toBlob(resolve, 'image/jpeg', 0.88));
+        const jpegBytes = new Uint8Array(await blob.arrayBuffer());
+        const jpgImg = await newPdf.embedJpg(jpegBytes);
+        const newPage = newPdf.addPage([vp.width, vp.height]);
+        newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+      }
+
+      updateProgressUI(95, 'PDF 생성 중...');
+      resultBytes = await newPdf.save();
+      updateProgressUI(100, '완료!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      document.getElementById('resultSubtitle').textContent = `${numPages}개 페이지에 ${dir === 'horizontal' ? '좌우' : '상하'} 반전 적용 완료`;
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle'; ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
+    } catch (err) {
+      console.error(err);
+      showError('처리 중 오류가 발생했습니다: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    btn.disabled = false; btn.textContent = '🪞 반전 적용';
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = selectedFile.name.replace('.pdf', '_flipped.pdf'); a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (!resultBytes) return;
+    const filename = selectedFile.name.replace('.pdf', '_flipped.pdf');
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const file = new File([blob], filename, { type: 'application/pdf' });
+    try { await navigator.share({ files: [file], title: filename + ' — WooaPDF', text: 'WooaPDF를 통해 변환한 파일입니다.\nhttps://pdfkit.wooahouse.com/pdf-flip.html' }); }
+    catch (e) { if (e.name !== 'AbortError') alert('공유에 실패했습니다.'); }
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="js/wooahouse-originals-tool.js"></script>
+<script>window.PWA_CONFIG={appName:"WooaPDF",themeColor:"#FF4444",icon:"📱",convertIds:['convertBtn','compressBtn','mergeBtn','splitBtn','deleteBtn','applyBtn','rotateBtn','unlockBtn','processBtn','cropBtn','generateBtn','resizeBtn','startBtn','generateAllBtn','printBtn','flipBtn']};</script>
+<script src="js/pwa-install.js"></script>
+<script src="js/wooa-sidebar.js"></script>
+<script src="js/wooa-footer.js"></script>
+</body>
+</html>

@@ -178,6 +178,15 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       animation: spin 0.8s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    .thumb-card.blank-card canvas { display:none; }
+    .thumb-blank-placeholder {
+      width: 100%; aspect-ratio: 0.77; background: repeating-linear-gradient(45deg,#F3F4F6,#F3F4F6 8px,#FAFAFA 8px,#FAFAFA 16px);
+      display:flex; align-items:center; justify-content:center; color: var(--text-light); font-size:0.78rem;
+    }
+    .thumb-blank-remove {
+      position:absolute; top:6px; right:6px; background:#EF4444; color:white; border:none; border-radius:50%;
+      width:22px; height:22px; font-size:0.7rem; cursor:pointer; line-height:1;
+    }
     .lang-switcher { display:flex; align-items:center; gap:4px; }
     .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
     .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
@@ -246,6 +255,11 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
   <div id="loadingPanel" class="loading-overlay" style="display:none">
     <div class="spinner"></div>
     <span id="loadingText">Rendering thumbnails...</span>
+  </div>
+
+  <div id="reorderToolbar" style="display:none; gap:8px; margin-top:16px; flex-wrap:wrap;">
+    <button id="reverseOrderBtn" class="btn-select" style="cursor:pointer;">↩️ Reverse Order</button>
+    <button id="addBlankBtn" class="btn-select" style="cursor:pointer;">➕ Add Blank Page at End</button>
   </div>
 
   <div id="thumbGrid" class="thumb-grid" style="display:none"></div>
@@ -404,13 +418,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       label.textContent = `Page ${i + 1}`;
       card.appendChild(label);
 
-      // Drag events
-      card.addEventListener('dragstart', onDragStart);
-      card.addEventListener('dragover', onDragOver);
-      card.addEventListener('dragenter', onDragEnter);
-      card.addEventListener('dragleave', onDragLeave);
-      card.addEventListener('drop', onDrop);
-      card.addEventListener('dragend', onDragEnd);
+      wireDragEvents(card);
 
       thumbGrid.appendChild(card);
     }
@@ -418,6 +426,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     document.getElementById('loadingPanel').style.display = 'none';
     thumbGrid.style.display = 'grid';
     document.getElementById('applyBtn').style.display = 'block';
+    document.getElementById('reorderToolbar').style.display = 'flex';
   }
 
   function clearFile() {
@@ -425,6 +434,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     document.getElementById('fileInfoPanel').style.display = 'none';
     document.getElementById('thumbGrid').style.display = 'none';
     document.getElementById('applyBtn').style.display = 'none';
+    document.getElementById('reorderToolbar').style.display = 'none';
     document.getElementById('resultPanel').style.display = 'none';
     document.getElementById('progressWrap').style.display = 'none';
     document.getElementById('loadingPanel').style.display = 'none';
@@ -497,6 +507,45 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     }
   }
 
+  function wireDragEvents(card) {
+    card.addEventListener('dragstart', onDragStart);
+    card.addEventListener('dragover', onDragOver);
+    card.addEventListener('dragenter', onDragEnter);
+    card.addEventListener('dragleave', onDragLeave);
+    card.addEventListener('drop', onDrop);
+    card.addEventListener('dragend', onDragEnd);
+  }
+
+  document.getElementById('reverseOrderBtn').addEventListener('click', () => {
+    pageOrder.reverse();
+    const grid = document.getElementById('thumbGrid');
+    const cards = Array.from(grid.children).reverse();
+    cards.forEach(c => grid.appendChild(c));
+    updateOrderLabels();
+  });
+
+  document.getElementById('addBlankBtn').addEventListener('click', () => {
+    pageOrder.push(-1);
+    const card = document.createElement('div');
+    card.className = 'thumb-card blank-card';
+    card.draggable = true;
+    card.innerHTML = `<div class="thumb-order"></div><button class="thumb-blank-remove" title="Remove blank page">✕</button><div class="thumb-blank-placeholder">➕<br>Blank</div>`;
+    const label = document.createElement('div');
+    label.className = 'thumb-label';
+    label.textContent = 'Blank page';
+    card.appendChild(label);
+    card.querySelector('.thumb-blank-remove').addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const idx = getCardIndex(card);
+      pageOrder.splice(idx, 1);
+      card.remove();
+      updateOrderLabels();
+    });
+    wireDragEvents(card);
+    document.getElementById('thumbGrid').appendChild(card);
+    updateOrderLabels();
+  });
+
   document.getElementById('applyBtn').addEventListener('click', async () => {
     if (!selectedFile || pageOrder.length === 0) return;
 
@@ -511,9 +560,14 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       const { PDFDocument } = PDFLib;
       const srcDoc = await PDFDocument.load(pdfBytes);
       const newDoc = await PDFDocument.create();
+      const firstPageSize = srcDoc.getPage(0).getSize();
 
       for (let i = 0; i < pageOrder.length; i++) {
-        updateProgressUI(20 + Math.round((i / pageOrder.length) * 65), `Copying page ${i + 1}/${pageOrder.length}...`);
+        updateProgressUI(20 + Math.round((i / pageOrder.length) * 65), `Processing page ${i + 1}/${pageOrder.length}...`);
+        if (pageOrder[i] === -1) {
+          newDoc.addPage([firstPageSize.width, firstPageSize.height]);
+          continue;
+        }
         const [copiedPage] = await newDoc.copyPages(srcDoc, [pageOrder[i]]);
         newDoc.addPage(copiedPage);
       }
@@ -526,7 +580,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 
       const panel = document.getElementById('resultPanel');
       panel.style.display = 'block';
-      const newOrderStr = pageOrder.map(i => i + 1).join(' → ');
+      const newOrderStr = pageOrder.map(i => i === -1 ? 'blank' : i + 1).join(' → ');
       document.getElementById('resultSubtitle').textContent =
         `${pageOrder.length} pages reordered (${newOrderStr})`;
       panel.scrollIntoView({ behavior: 'smooth' });

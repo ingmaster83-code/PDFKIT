@@ -16,9 +16,9 @@
   <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
   <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compress PDF Free — Reduce File Size for Email & Sharing | WooaPDF</title>
-  <meta name="description" content="Reduce PDF file size by up to 90%. Choose from Strong, Balanced, or High-Quality compression. Files are processed in your browser — never sent to a server. Free, no sign-up.">
-  <meta name="keywords" content="compress PDF, reduce PDF size, PDF compressor online, shrink PDF, PDF file size reducer, compress PDF free">
+  <title>Compress PDF Free — Target 100KB, 200KB, 500KB, 1MB | WooaPDF</title>
+  <meta name="description" content="Reduce PDF file size by up to 90%. Choose Strong/Balanced/High-Quality compression, or set an exact target size like 100KB/200KB/500KB/1MB for upload limits. Files never leave your browser. Free, no sign-up.">
+  <meta name="keywords" content="compress PDF, reduce PDF size, PDF compressor online, shrink PDF, PDF file size reducer, compress PDF free, compress pdf to 100kb, compress pdf to 1mb, pdf target size, pdf upload size limit">
   <link rel="canonical" href="https://pdfkit.wooahouse.com/en/compress-pdf.html">
   <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/compress-pdf.html">
   <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/compress-pdf.html">
@@ -129,6 +129,14 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
         "@type": "Answer",
         "text": "No strict limit, though very large PDFs may take longer to process."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I compress to an exact size like 100KB or 1MB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Switch to \"Target Size\" mode and pick a 100KB/200KB/500KB/1MB preset, or enter a custom KB value — the tool automatically finds the right compression level to stay under that size."
+      }
     }
   ]
 }
@@ -153,6 +161,15 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     .size-arrow { color: #9CA3AF; font-size: 1.2rem; }
     .size-ratio { font-size: 0.85rem; font-weight: 700; color: #22C55E; }
     .notice-box { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 12px 16px; font-size: 0.82rem; color: #92400E; margin-bottom: 16px; line-height: 1.6; }
+    .size-mode-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+    .size-mode-tab { flex: 1; text-align: center; padding: 10px 8px; border: 2px solid #E5E7EB; border-radius: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 600; color: #6B7280; transition: border-color .15s, background .15s, color .15s; }
+    .size-mode-tab.active { border-color: #FF4444; background: #FFF0F0; color: #FF4444; }
+    .kb-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .kb-preset-btn { border: 2px solid #E5E7EB; border-radius: 8px; padding: 8px 14px; font-size: 0.82rem; font-weight: 600; cursor: pointer; background: white; font-family: inherit; color: #1A1A2E; transition: border-color .15s, background .15s; }
+    .kb-preset-btn.selected { border-color: #FF4444; background: #FFF0F0; color: #FF4444; }
+    .kb-preset-btn .kb-preset-desc { display: block; font-size: 0.68rem; font-weight: 400; color: #9CA3AF; margin-top: 2px; }
+    .kb-custom-row { display: flex; align-items: center; gap: 8px; }
+    .kb-custom-row input { width: 100px; padding: 8px 10px; border: 2px solid #E5E7EB; border-radius: 8px; font-family: inherit; font-size: 0.88rem; }
     .lang-switcher { display:flex; align-items:center; gap:4px; }
     .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
     .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
@@ -225,6 +242,12 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       ℹ️ This tool works best with <strong>image-heavy PDFs</strong>. Text-only PDFs may see limited compression.
     </div>
 
+    <div class="size-mode-tabs">
+      <div class="size-mode-tab active" id="modeQualityTab" onclick="setSizeMode('quality')">🎚️ Compression Level</div>
+      <div class="size-mode-tab" id="modeTargetTab" onclick="setSizeMode('target')">🎯 Target Size</div>
+    </div>
+
+    <div id="qualityModeWrap">
     <div class="quality-cards">
       <label class="quality-card" id="card-low">
         <input type="radio" name="quality" value="low">
@@ -245,8 +268,23 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
         <div class="quality-card-desc">Best quality<br>Less compression</div>
       </label>
     </div>
+    </div>
 
-    <button class="btn-convert" id="compressBtn">🗜️ Compress PDF</button>
+    <div id="targetModeWrap" style="display:none">
+      <div class="kb-presets">
+        <button type="button" class="kb-preset-btn" data-kb="100" onclick="selectKbPreset(100)">100KB<span class="kb-preset-desc">e-filing</span></button>
+        <button type="button" class="kb-preset-btn" data-kb="200" onclick="selectKbPreset(200)">200KB<span class="kb-preset-desc">application</span></button>
+        <button type="button" class="kb-preset-btn" data-kb="500" onclick="selectKbPreset(500)">500KB<span class="kb-preset-desc">portal upload</span></button>
+        <button type="button" class="kb-preset-btn" data-kb="1024" onclick="selectKbPreset(1024)">1MB<span class="kb-preset-desc">email attach</span></button>
+      </div>
+      <div class="kb-custom-row">
+        <span style="font-size:0.85rem;font-weight:600;color:#6B7280;">Custom</span>
+        <input type="number" id="kbCustomInput" min="1" placeholder="e.g. 300">
+        <span style="font-size:0.85rem; color:#6B7280;">KB or less</span>
+      </div>
+    </div>
+
+    <button class="btn-convert" id="compressBtn" style="margin-top:16px;">🗜️ Compress PDF</button>
   </div>
 
   <div id="errorMsg" class="alert alert-error" style="display:none"></div>
@@ -312,9 +350,13 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
         <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Will compression reduce quality?</h3>
         <p style="color:#555;margin:0;">Text quality is maintained. Image quality may be slightly reduced depending on compression level.</p>
       </div>
-      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
         <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Is there a file size limit?</h3>
         <p style="color:#555;margin:0;">No strict limit, though very large PDFs may take longer to process.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Can I compress to an exact size like 100KB or 1MB?</h3>
+        <p style="color:#555;margin:0;">Yes. Switch to "Target Size" mode and pick a 100KB/200KB/500KB/1MB preset, or enter a custom KB value — the tool automatically finds the right compression level.</p>
       </div>
     </div>
   </section>
@@ -334,6 +376,78 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 
   let selectedFile = null;
   let resultBytes = null;
+  let sizeMode = 'quality';
+  let targetKb = 200;
+
+  function setSizeMode(mode) {
+    sizeMode = mode;
+    document.getElementById('modeQualityTab').classList.toggle('active', mode === 'quality');
+    document.getElementById('modeTargetTab').classList.toggle('active', mode === 'target');
+    document.getElementById('qualityModeWrap').style.display = mode === 'quality' ? 'block' : 'none';
+    document.getElementById('targetModeWrap').style.display = mode === 'target' ? 'block' : 'none';
+  }
+
+  function selectKbPreset(kb) {
+    targetKb = kb;
+    document.getElementById('kbCustomInput').value = '';
+    document.querySelectorAll('.kb-preset-btn').forEach(b => b.classList.toggle('selected', parseInt(b.dataset.kb) === kb));
+  }
+  selectKbPreset(200);
+  document.getElementById('kbCustomInput').addEventListener('input', function() {
+    targetKb = parseInt(this.value) || 0;
+    document.querySelectorAll('.kb-preset-btn').forEach(b => b.classList.remove('selected'));
+  });
+
+  async function compressPdfToTarget(pdfJs, numPages, targetBytes) {
+    let scale = 1.0;
+    let canvases = [];
+    for (let i = 1; i <= numPages; i++) {
+      const page = await pdfJs.getPage(i);
+      const vp = page.getViewport({ scale });
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(vp.width);
+      canvas.height = Math.round(vp.height);
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+      canvases.push({ canvas, vp });
+      updateProgressUI(Math.round(i / numPages * 30), `${i}/${numPages} pages rendering...`);
+    }
+
+    async function buildAt(jpegQ) {
+      const { PDFDocument } = PDFLib;
+      const newPdf = await PDFDocument.create();
+      for (const { canvas, vp } of canvases) {
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', jpegQ));
+        const jpegBytes = new Uint8Array(await blob.arrayBuffer());
+        const jpgImg = await newPdf.embedJpg(jpegBytes);
+        const newPage = newPdf.addPage([vp.width, vp.height]);
+        newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+      }
+      return await newPdf.save();
+    }
+
+    for (let attempt = 0; attempt < 3; attempt++) {
+      let lo = 0.05, hi = 0.92, best = null;
+      for (let i = 0; i < 6; i++) {
+        const q = (lo + hi) / 2;
+        updateProgressUI(30 + Math.round((i / 6) * 60), `Trying quality ${Math.round(q*100)}%...`);
+        const bytes = await buildAt(q);
+        if (bytes.byteLength <= targetBytes) { best = bytes; lo = q; } else { hi = q; }
+      }
+      if (best) return best;
+      scale *= 0.7;
+      canvases = [];
+      for (let i = 1; i <= numPages; i++) {
+        const page = await pdfJs.getPage(i);
+        const vp = page.getViewport({ scale });
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(vp.width);
+        canvas.height = Math.round(vp.height);
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+        canvases.push({ canvas, vp });
+      }
+    }
+    return await buildAt(0.05);
+  }
 
   // 공유 버튼: Web Share API + 파일 공유 지원 시에만 표시
   const shareBtn = document.getElementById('shareBtn');
@@ -406,6 +520,10 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 
   document.getElementById('compressBtn').addEventListener('click', async () => {
     if (!selectedFile) return;
+    if (sizeMode === 'target' && (!targetKb || targetKb < 1)) {
+      showError('Enter a target size in KB or pick a preset.');
+      return;
+    }
 
     const qualityMap = {
       low:    { scale: 0.75, jpegQ: 0.40 },
@@ -426,31 +544,35 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
       const pdfJs = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0) }).promise;
       const numPages = pdfJs.numPages;
 
-      const { PDFDocument } = PDFLib;
-      const newPdf = await PDFDocument.create();
+      if (sizeMode === 'target') {
+        resultBytes = await compressPdfToTarget(pdfJs, numPages, targetKb * 1024);
+      } else {
+        const { PDFDocument } = PDFLib;
+        const newPdf = await PDFDocument.create();
 
-      for (let i = 1; i <= numPages; i++) {
-        updateProgressUI(Math.round((i - 1) / numPages * 88), `${i}/${numPages} pages Processing...`);
+        for (let i = 1; i <= numPages; i++) {
+          updateProgressUI(Math.round((i - 1) / numPages * 88), `${i}/${numPages} pages Processing...`);
 
-        const page = await pdfJs.getPage(i);
-        const vp = page.getViewport({ scale });
+          const page = await pdfJs.getPage(i);
+          const vp = page.getViewport({ scale });
 
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.round(vp.width);
-        canvas.height = Math.round(vp.height);
-        await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.round(vp.width);
+          canvas.height = Math.round(vp.height);
+          await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
 
-        // JPEG 변환 (압축 핵심)
-        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', jpegQ));
-        const jpegBytes = new Uint8Array(await blob.arrayBuffer());
+          // JPEG 변환 (압축 핵심)
+          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', jpegQ));
+          const jpegBytes = new Uint8Array(await blob.arrayBuffer());
 
-        const jpgImg = await newPdf.embedJpg(jpegBytes);
-        const newPage = newPdf.addPage([vp.width, vp.height]);
-        newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+          const jpgImg = await newPdf.embedJpg(jpegBytes);
+          const newPage = newPdf.addPage([vp.width, vp.height]);
+          newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+        }
+        resultBytes = await newPdf.save();
       }
 
       updateProgressUI(95, 'Generating PDF...');
-      resultBytes = await newPdf.save();
       updateProgressUI(100, 'Done!');
       document.getElementById('progressWrap').style.display = 'none';
 

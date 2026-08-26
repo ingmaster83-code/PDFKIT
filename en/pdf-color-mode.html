@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Grayscale & Dark Mode Free — Save Ink, Easy Night Reading | WooaPDF</title>
+  <meta name="description" content="Convert a PDF to grayscale or dark mode (inverted colors). Grayscale saves printer ink; dark mode is easier on the eyes at night. Files never leave your browser. Free.">
+  <meta name="keywords" content="pdf grayscale, pdf dark mode, pdf black and white, invert pdf colors, free pdf grayscale converter">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/en/pdf-color-mode.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-color-mode.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-color-mode.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-color-mode.html">
+  <meta property="og:title" content="PDF Grayscale & Dark Mode Free — Save Ink, Easy Night Reading | WooaPDF">
+  <meta property="og:description" content="Convert a PDF to grayscale or dark mode. Files never leave your browser. Free.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/en/pdf-color-mode.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaPDF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Grayscale & Dark Mode Free — Save Ink, Easy Night Reading | WooaPDF">
+<meta name="twitter:description" content="Convert a PDF to grayscale or dark mode.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+<script src="../js/ad-dev-placeholder.js"></script>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Grayscale & Dark Mode",
+  "url": "https://pdfkit.wooahouse.com/en/pdf-color-mode.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "What's the difference between grayscale and dark mode?","acceptedAnswer": {"@type": "Answer","text": "Grayscale only removes color, keeping a white background with gray tones. Dark mode inverts colors so a white background becomes black and black text becomes white, reducing glare at night."}},
+    {"@type": "Question","name": "Can I still edit or search the text?","acceptedAnswer": {"@type": "Answer","text": "The page is converted to an image during the process, so text selection and search won't work in the result."}},
+    {"@type": "Question","name": "Are files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely in your browser and files are never sent to a server."}}
+  ]
+}
+</script>
+  <style>
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+    .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+    .lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+    .lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+    .mode-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .mode-card { border: 2px solid #E5E7EB; border-radius: 10px; padding: 20px 12px; cursor: pointer; text-align: center; transition: border-color 0.15s, background 0.15s; }
+    .mode-card:hover { border-color: #FF4444; }
+    .mode-card.selected { border-color: #FF4444; background: #FFF0F0; }
+    .mode-card input { display: none; }
+    .mode-card-icon { font-size: 2rem; margin-bottom: 8px; }
+    .mode-card-title { font-size: 0.9rem; font-weight: 700; margin-bottom:4px; }
+    .mode-card-desc { font-size: 0.72rem; color: #6B7280; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→Image</a>
+      <a href="compress-pdf.html">Compress PDF</a>
+      <a href="pdf-crop.html">Crop PDF</a>
+      <a href="pdf-color-mode.html">Grayscale/Dark</a>
+      <a href="../index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../pdf-color-mode.html">KO</a>
+        <span>|</span>
+        <a href="pdf-color-mode.html" class="active">EN</a>
+      </div>
+      <a href="about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<script src="../js/wooa-sites-bar.js"></script>
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span>›</span>
+    <span>Grayscale & Dark Mode</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">⬛</span>
+    <h1>PDF Grayscale & Dark Mode Free Online</h1>
+    <p>Grayscale is great for ink-saving prints; dark mode is easier on the eyes at night.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>Drop your PDF file here</h3>
+    <p>Upload the PDF file you want to convert</p>
+    <label for="fileInput" class="btn-select">Select PDF File</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">Selected File</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">Choose conversion mode</div>
+    <div class="mode-cards">
+      <label class="mode-card selected" id="card-gray">
+        <input type="radio" name="colorMode" value="grayscale" checked>
+        <div class="mode-card-icon">⬛</div>
+        <div class="mode-card-title">Grayscale</div>
+        <div class="mode-card-desc">B&W, saves ink</div>
+      </label>
+      <label class="mode-card" id="card-dark">
+        <input type="radio" name="colorMode" value="dark">
+        <div class="mode-card-icon">🌙</div>
+        <div class="mode-card-title">Dark Mode</div>
+        <div class="mode-card-desc">Inverted, night reading</div>
+      </label>
+    </div>
+    <button class="btn-convert" id="applyBtn" style="margin-top:20px;">⬛ Apply</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label"><span id="progressText">Processing...</span><span id="progressPct">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div><div class="result-title">Converted!</div><div class="result-subtitle" id="resultSubtitle"></div></div>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadBtn">⬇️ Download Converted PDF</button>
+      <button class="btn-share" id="shareBtn" style="display:none;">📤 Share</button>
+    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
+  </div>
+
+    <div class="related-tools">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+    <a href="compress-pdf.html" class="related-card"><span class="related-icon">🗜️</span><span>Compress PDF</span></a>
+    <a href="pdf-crop.html" class="related-card"><span class="related-icon">✂️</span><span>Crop PDF</span></a>
+    <a href="rotate-pdf.html" class="related-card"><span class="related-icon">🔄</span><span>Rotate PDF</span></a>
+    <a href="pdf-to-jpg.html" class="related-card"><span class="related-icon">🖼️</span><span>PDF → JPG</span></a>
+  </div>
+</div>
+<div class="wooa-orig-anchor"></div>
+
+  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>Apply grayscale before printing on a color printer to save ink.</li><li>Dark mode reduces glare when reading on screen at night.</li><li>Applies identically to every page.</li></ul></div>
+<div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>What's the difference between grayscale and dark mode?</summary><p>Grayscale only removes color, keeping a white background with gray tones. Dark mode inverts colors so a white background becomes black and black text becomes white, reducing glare at night.</p></details><details><summary>Can I still edit or search the text?</summary><p>The page is converted to an image during the process, so text selection and search won't work in the result.</p></details><details><summary>Are files uploaded to a server?</summary><p>No. All processing happens entirely in your browser and files are never sent to a server.</p></details></div>
+
+</main>
+
+<aside class="tool-sidebar"></aside>
+</div>
+
+<footer class="footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let resultBytes = null;
+
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    if (navigator.canShare({ files: [testFile] })) shareBtn.style.display = 'inline-flex';
+  }
+
+  document.querySelectorAll('input[name="colorMode"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+      radio.closest('.mode-card').classList.add('selected');
+    });
+  });
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('Only PDF files are supported.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+
+    let totalPages = 0;
+    try {
+      const { PDFDocument } = PDFLib;
+      const buf = await file.arrayBuffer();
+      const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+      totalPages = doc.getPageCount();
+    } catch(e) {}
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${totalPages} pages</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  document.getElementById('applyBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const mode = document.querySelector('input[name="colorMode"]:checked').value;
+
+    const btn = document.getElementById('applyBtn');
+    btn.disabled = true; btn.textContent = '⏳ Processing...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const pdfJs = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0) }).promise;
+      const numPages = pdfJs.numPages;
+
+      const { PDFDocument } = PDFLib;
+      const newPdf = await PDFDocument.create();
+
+      for (let i = 1; i <= numPages; i++) {
+        updateProgressUI(Math.round((i - 1) / numPages * 88), `${i}/${numPages} pages processing...`);
+
+        const page = await pdfJs.getPage(i);
+        const vp = page.getViewport({ scale: 1.5 });
+
+        const srcCanvas = document.createElement('canvas');
+        srcCanvas.width = Math.round(vp.width);
+        srcCanvas.height = Math.round(vp.height);
+        await page.render({ canvasContext: srcCanvas.getContext('2d'), viewport: vp }).promise;
+
+        // pdf.js render() doesn't respect canvas filter, so apply it in a second pass
+        const canvas = document.createElement('canvas');
+        canvas.width = srcCanvas.width;
+        canvas.height = srcCanvas.height;
+        const ctx = canvas.getContext('2d');
+        ctx.filter = mode === 'grayscale' ? 'grayscale(100%)' : 'grayscale(100%) invert(100%)';
+        ctx.drawImage(srcCanvas, 0, 0);
+        ctx.filter = 'none';
+
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.85));
+        const jpegBytes = new Uint8Array(await blob.arrayBuffer());
+        const jpgImg = await newPdf.embedJpg(jpegBytes);
+        const newPage = newPdf.addPage([vp.width, vp.height]);
+        newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+      }
+
+      updateProgressUI(95, 'Generating PDF...');
+      resultBytes = await newPdf.save();
+      updateProgressUI(100, 'Done!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      document.getElementById('resultSubtitle').textContent = `${mode === 'grayscale' ? 'Grayscale' : 'Dark mode'} applied to ${numPages} pages`;
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle'; ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
+    } catch (err) {
+      console.error(err);
+      showError('Processing failed: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    btn.disabled = false; btn.textContent = '⬛ Apply';
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = selectedFile.name.replace('.pdf', '_converted.pdf'); a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (!resultBytes) return;
+    const filename = selectedFile.name.replace('.pdf', '_converted.pdf');
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const file = new File([blob], filename, { type: 'application/pdf' });
+    try { await navigator.share({ files: [file], title: filename + ' — WooaPDF', text: 'Converted with WooaPDF\nhttps://pdfkit.wooahouse.com/en/pdf-color-mode.html' }); }
+    catch (e) { if (e.name !== 'AbortError') alert('Share failed.'); }
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="../js/wooahouse-originals-tool-en.js"></script>
+<script>window.PWA_CONFIG={appName:"WooaPDF",themeColor:"#FF4444",icon:"📱",convertIds:['convertBtn','compressBtn','mergeBtn','splitBtn','deleteBtn','applyBtn','rotateBtn','unlockBtn','processBtn','cropBtn','generateBtn','resizeBtn','startBtn','generateAllBtn','printBtn']};</script>
+<script src="../js/pwa-install.js"></script>
+<script src="../js/wooa-sidebar-en.js"></script>
+<script src="../js/wooa-footer-en.js"></script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9ZGENFSXWC');
+</script>
+  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="naver-site-verification" content="7396a327607b884b9bef1283dfd3a5c6115a2b50" />
+  <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redact PDF Free Online — Black Out Sensitive Info Permanently | WooaPDF</title>
+  <meta name="description" content="Drag to black out sensitive info in a PDF — SSNs, phone numbers, account numbers. Unlike a simple overlay, the page is flattened to an image so the original text is permanently removed. Free.">
+  <meta name="keywords" content="redact pdf, black out pdf, pdf redaction, remove sensitive info pdf, mask pdf, free pdf redact tool">
+  <link rel="canonical" href="https://pdfkit.wooahouse.com/en/pdf-redact.html">
+  <link rel="alternate" hreflang="ko" href="https://pdfkit.wooahouse.com/pdf-redact.html">
+  <link rel="alternate" hreflang="en" href="https://pdfkit.wooahouse.com/en/pdf-redact.html">
+  <link rel="alternate" hreflang="x-default" href="https://pdfkit.wooahouse.com/en/pdf-redact.html">
+  <meta property="og:title" content="Redact PDF Free Online — Black Out Sensitive Info Permanently | WooaPDF">
+  <meta property="og:description" content="Drag to black out sensitive info. The page is flattened to an image so the original text is permanently removed. Free.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdfkit.wooahouse.com/en/pdf-redact.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pdfkit.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaPDF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Redact PDF Free Online — Black Out Sensitive Info Permanently | WooaPDF">
+<meta name="twitter:description" content="Drag to black out sensitive info and permanently remove the underlying text.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+<script src="../js/ad-dev-placeholder.js"></script>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#FF4444">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WooaPDF">
+  <link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Redaction",
+  "url": "https://pdfkit.wooahouse.com/en/pdf-redact.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "Can the text under a black box still be copied or extracted?","acceptedAnswer": {"@type": "Answer","text": "No. Any page you draw a box on is flattened to a full-page image, so the original text data behind the box no longer exists in the output file. This isn't just a shape drawn on top."}},
+    {"@type": "Question","name": "What happens to pages with no boxes?","acceptedAnswer": {"@type": "Answer","text": "Pages you didn't mark stay exactly as the original — vector text that's still selectable and searchable. Only marked pages get converted to an image."}},
+    {"@type": "Question","name": "Are files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely in your browser and files are never sent to a server."}}
+  ]
+}
+</script>
+  <style>
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+    .lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+    .lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+    .lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+    .redact-page-nav { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom: 10px; }
+    .redact-page-nav button { border: 2px solid #E5E7EB; background: white; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-weight:600; font-size:0.85rem; }
+    .redact-page-nav button:disabled { opacity:.4; cursor:not-allowed; }
+    .redact-page-indicator { font-size: 0.9rem; font-weight: 700; color: #1A1A2E; min-width: 90px; text-align:center; }
+    .redact-preview-wrap { display:flex; justify-content:center; margin: 8px 0 16px; background:#F3F4F6; border-radius:12px; padding:16px; }
+    .redact-preview-stage { position: relative; display: inline-block; cursor: crosshair; }
+    .redact-preview-stage canvas { display: block; max-width: 100%; border: 1px solid #E5E7EB; }
+    .redact-box { position: absolute; background: #000; opacity: 0.85; }
+    .redact-box.drawing { background: rgba(0,0,0,0.5); border: 1px dashed #FF4444; }
+    .redact-toolbar { display:flex; gap:8px; justify-content:center; margin-bottom: 12px; flex-wrap:wrap; }
+    .redact-toolbar button { border: 2px solid #E5E7EB; background: white; border-radius: 8px; padding: 8px 14px; cursor: pointer; font-family: inherit; font-weight:600; font-size:0.82rem; }
+    .redact-toolbar button:hover { border-color: #FF4444; }
+    .redact-summary { text-align:center; font-size:0.82rem; color:#6B7280; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">WooaPDF</a>
+    <nav>
+      <a href="pdf-to-jpg.html">PDF→Image</a>
+      <a href="compress-pdf.html">Compress PDF</a>
+      <a href="pdf-crop.html">Crop PDF</a>
+      <a href="pdf-redact.html">Redact PDF</a>
+      <a href="../index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../pdf-redact.html">KO</a>
+        <span>|</span>
+        <a href="pdf-redact.html" class="active">EN</a>
+      </div>
+      <a href="about.html" style="color:rgba(255,255,255,0.85); font-size:0.85rem; text-decoration:none; margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<script src="../js/wooa-sites-bar.js"></script>
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span>›</span>
+    <span>Redact PDF</span>
+  </div>
+
+  <div class="tool-header">
+    <span class="tool-header-icon">⬛</span>
+    <h1>Redact PDF Free Online — Black Out Permanently</h1>
+    <p>Drag to mark the areas to hide. The underlying text is permanently removed, not just covered.</p>
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <span class="drop-zone-icon">📂</span>
+    <h3>Drop your PDF file here</h3>
+    <p>Upload a PDF that has content you need to hide</p>
+    <label for="fileInput" class="btn-select">Select PDF File</label>
+    <input type="file" id="fileInput" accept=".pdf,application/pdf" style="display:none">
+  </div>
+
+  <div id="fileInfoPanel" class="file-list-panel" style="display:none">
+    <div class="file-list-title">Selected File</div>
+    <div id="fileInfo"></div>
+  </div>
+
+  <div id="optionsPanel" class="options-panel" style="display:none">
+    <div class="options-title">Drag to mark areas to redact</div>
+
+    <div class="redact-page-nav">
+      <button id="prevPageBtn">◀ Prev</button>
+      <span class="redact-page-indicator" id="pageIndicator">1 / 1</span>
+      <button id="nextPageBtn">Next ▶</button>
+    </div>
+
+    <div class="redact-preview-wrap">
+      <div class="redact-preview-stage" id="previewStage">
+        <canvas id="previewCanvas"></canvas>
+      </div>
+    </div>
+
+    <div class="redact-toolbar">
+      <button id="undoBoxBtn">↺ Undo last box</button>
+      <button id="clearPageBtn">🗑️ Clear this page</button>
+      <button id="clearAllBtn">🗑️ Clear all</button>
+    </div>
+    <div class="redact-summary" id="redactSummary">Boxes marked: 0</div>
+
+    <button class="btn-convert" id="applyBtn" style="margin-top:8px;">⬛ Apply & Save</button>
+  </div>
+
+  <div id="errorMsg" class="alert alert-error" style="display:none"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label"><span id="progressText">Processing...</span><span id="progressPct">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <span class="result-icon">✅</span>
+      <div><div class="result-title">Redacted!</div><div class="result-subtitle" id="resultSubtitle"></div></div>
+    </div>
+    <div class="download-share-group">
+      <button class="btn-download" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn-share" id="shareBtn" style="display:none;">📤 Share</button>
+    </div>
+    <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
+  </div>
+
+    <div class="related-tools">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+    <a href="compress-pdf.html" class="related-card"><span class="related-icon">🗜️</span><span>Compress PDF</span></a>
+    <a href="pdf-crop.html" class="related-card"><span class="related-icon">✂️</span><span>Crop PDF</span></a>
+    <a href="pdf-password.html" class="related-card"><span class="related-icon">🔐</span><span>Set PDF Password</span></a>
+    <a href="pdf-metadata.html" class="related-card"><span class="related-icon">📋</span><span>PDF Metadata</span></a>
+  </div>
+</div>
+<div class="wooa-orig-anchor"></div>
+
+  <div class="tips-panel"><h3>💡 Tips</h3><ul><li>Use this for SSNs, account numbers, or phone numbers that must be hidden before sharing.</li><li>If sensitive content spans multiple pages, page through and mark each one.</li><li>Pages left unmarked stay in their original, text-selectable state.</li></ul></div>
+<div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Can the text under a black box still be copied or extracted?</summary><p>No. Any page you draw a box on is flattened to a full-page image, so the original text data behind the box no longer exists in the output file. This isn't just a shape drawn on top.</p></details><details><summary>What happens to pages with no boxes?</summary><p>Pages you didn't mark stay exactly as the original — vector text that's still selectable and searchable. Only marked pages get converted to an image.</p></details><details><summary>Are files uploaded to a server?</summary><p>No. All processing happens entirely in your browser and files are never sent to a server.</p></details></div>
+
+</main>
+
+<aside class="tool-sidebar"></aside>
+</div>
+
+<footer class="footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  let selectedFile = null;
+  let resultBytes = null;
+  let pdfJsDoc = null;
+  let numPages = 0;
+  let curPageIdx = 0;
+  let boxesByPage = {};
+  let curVp = null;
+  let drawing = null;
+
+  const shareBtn = document.getElementById('shareBtn');
+  if (navigator.share && navigator.canShare) {
+    const testFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    if (navigator.canShare({ files: [testFile] })) shareBtn.style.display = 'inline-flex';
+  }
+
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  document.getElementById('fileInput').addEventListener('change', e => {
+    if (e.target.files[0]) loadFile(e.target.files[0]);
+  });
+
+  async function loadFile(file) {
+    if (!file.name.endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('Only PDF files are supported.'); return;
+    }
+    hideError();
+    selectedFile = file;
+    resultBytes = null;
+    boxesByPage = {};
+    curPageIdx = 0;
+
+    const buf = await file.arrayBuffer();
+    pdfJsDoc = await pdfjsLib.getDocument({ data: buf.slice(0) }).promise;
+    numPages = pdfJsDoc.numPages;
+
+    document.getElementById('fileInfo').innerHTML = `
+      <div class="file-item">
+        <span class="file-item-icon">📄</span>
+        <div class="file-item-info">
+          <div class="file-item-name">${file.name}</div>
+          <div class="file-item-size">${formatSize(file.size)} · ${numPages} pages</div>
+        </div>
+        <button class="file-item-remove" onclick="clearFile()">✕</button>
+      </div>`;
+    document.getElementById('fileInfoPanel').style.display = 'block';
+    document.getElementById('optionsPanel').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    await renderCurPage();
+  }
+
+  function clearFile() {
+    selectedFile = null; pdfJsDoc = null; boxesByPage = {};
+    document.getElementById('fileInfoPanel').style.display = 'none';
+    document.getElementById('optionsPanel').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+    hideError();
+  }
+
+  async function renderCurPage() {
+    const page = await pdfJsDoc.getPage(curPageIdx + 1);
+    const rawVp = page.getViewport({ scale: 1 });
+    const scale = Math.min(1.3, 560 / rawVp.width);
+    const vp = page.getViewport({ scale });
+    curVp = vp;
+    const canvas = document.getElementById('previewCanvas');
+    canvas.width = vp.width; canvas.height = vp.height;
+    await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+
+    document.getElementById('pageIndicator').textContent = `${curPageIdx + 1} / ${numPages}`;
+    document.getElementById('prevPageBtn').disabled = curPageIdx === 0;
+    document.getElementById('nextPageBtn').disabled = curPageIdx === numPages - 1;
+
+    redrawBoxes();
+    updateSummary();
+  }
+
+  function redrawBoxes() {
+    const stage = document.getElementById('previewStage');
+    stage.querySelectorAll('.redact-box:not(.drawing)').forEach(el => el.remove());
+    const canvas = document.getElementById('previewCanvas');
+    const list = boxesByPage[curPageIdx] || [];
+    list.forEach(b => {
+      const el = document.createElement('div');
+      el.className = 'redact-box';
+      el.style.left = (b.x * canvas.width) + 'px';
+      el.style.top = (b.y * canvas.height) + 'px';
+      el.style.width = (b.w * canvas.width) + 'px';
+      el.style.height = (b.h * canvas.height) + 'px';
+      stage.appendChild(el);
+    });
+  }
+
+  function updateSummary() {
+    const total = Object.values(boxesByPage).reduce((s, arr) => s + arr.length, 0);
+    const pagesWithBoxes = Object.keys(boxesByPage).filter(k => boxesByPage[k].length > 0).length;
+    document.getElementById('redactSummary').textContent = `Boxes marked: ${total} (${pagesWithBoxes} pages)`;
+  }
+
+  document.getElementById('prevPageBtn').addEventListener('click', async () => {
+    if (curPageIdx > 0) { curPageIdx--; await renderCurPage(); }
+  });
+  document.getElementById('nextPageBtn').addEventListener('click', async () => {
+    if (curPageIdx < numPages - 1) { curPageIdx++; await renderCurPage(); }
+  });
+  document.getElementById('undoBoxBtn').addEventListener('click', () => {
+    const list = boxesByPage[curPageIdx] || [];
+    list.pop();
+    redrawBoxes(); updateSummary();
+  });
+  document.getElementById('clearPageBtn').addEventListener('click', () => {
+    boxesByPage[curPageIdx] = [];
+    redrawBoxes(); updateSummary();
+  });
+  document.getElementById('clearAllBtn').addEventListener('click', () => {
+    boxesByPage = {};
+    redrawBoxes(); updateSummary();
+  });
+
+  const stage = document.getElementById('previewStage');
+  stage.addEventListener('mousedown', e => {
+    if (!curVp) return;
+    const rect = stage.getBoundingClientRect();
+    const startX = e.clientX - rect.left, startY = e.clientY - rect.top;
+    const el = document.createElement('div');
+    el.className = 'redact-box drawing';
+    el.style.left = startX + 'px'; el.style.top = startY + 'px';
+    el.style.width = '0px'; el.style.height = '0px';
+    stage.appendChild(el);
+    drawing = { startX, startY, el };
+  });
+  stage.addEventListener('mousemove', e => {
+    if (!drawing) return;
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    const left = Math.min(x, drawing.startX), top = Math.min(y, drawing.startY);
+    const w = Math.abs(x - drawing.startX), h = Math.abs(y - drawing.startY);
+    drawing.el.style.left = left + 'px'; drawing.el.style.top = top + 'px';
+    drawing.el.style.width = w + 'px'; drawing.el.style.height = h + 'px';
+  });
+  window.addEventListener('mouseup', () => {
+    if (!drawing) return;
+    const canvas = document.getElementById('previewCanvas');
+    const w = parseFloat(drawing.el.style.width), h = parseFloat(drawing.el.style.height);
+    if (w > 6 && h > 6) {
+      const x = parseFloat(drawing.el.style.left) / canvas.width;
+      const y = parseFloat(drawing.el.style.top) / canvas.height;
+      const nw = w / canvas.width, nh = h / canvas.height;
+      if (!boxesByPage[curPageIdx]) boxesByPage[curPageIdx] = [];
+      boxesByPage[curPageIdx].push({ x, y, w: nw, h: nh });
+      updateSummary();
+    }
+    drawing.el.remove();
+    drawing = null;
+    redrawBoxes();
+  });
+
+  document.getElementById('applyBtn').addEventListener('click', async () => {
+    if (!selectedFile) return;
+    const totalBoxes = Object.values(boxesByPage).reduce((s, arr) => s + arr.length, 0);
+    if (totalBoxes === 0) { showError('Please drag to mark at least one area to redact.'); return; }
+
+    const btn = document.getElementById('applyBtn');
+    btn.disabled = true; btn.textContent = '⏳ Processing...';
+    hideError(); resultBytes = null;
+    document.getElementById('progressWrap').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+
+    try {
+      const { PDFDocument } = PDFLib;
+      const origBuf = await selectedFile.arrayBuffer();
+      const origDoc = await PDFDocument.load(origBuf, { ignoreEncryption: true });
+      const newPdf = await PDFDocument.create();
+
+      for (let i = 0; i < numPages; i++) {
+        updateProgressUI(Math.round(i / numPages * 90), `${i+1}/${numPages} pages processing...`);
+        const boxes = boxesByPage[i] || [];
+
+        if (boxes.length === 0) {
+          const [copied] = await newPdf.copyPages(origDoc, [i]);
+          newPdf.addPage(copied);
+          continue;
+        }
+
+        const page = await pdfJsDoc.getPage(i + 1);
+        const vp = page.getViewport({ scale: 2 });
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(vp.width); canvas.height = Math.round(vp.height);
+        const ctx = canvas.getContext('2d');
+        await page.render({ canvasContext: ctx, viewport: vp }).promise;
+
+        ctx.fillStyle = '#000000';
+        boxes.forEach(b => {
+          ctx.fillRect(b.x * canvas.width, b.y * canvas.height, b.w * canvas.width, b.h * canvas.height);
+        });
+
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.88));
+        const jpegBytes = new Uint8Array(await blob.arrayBuffer());
+        const jpgImg = await newPdf.embedJpg(jpegBytes);
+        const newPage = newPdf.addPage([vp.width, vp.height]);
+        newPage.drawImage(jpgImg, { x: 0, y: 0, width: vp.width, height: vp.height });
+      }
+
+      updateProgressUI(95, 'Generating PDF...');
+      resultBytes = await newPdf.save();
+      updateProgressUI(100, 'Done!');
+      document.getElementById('progressWrap').style.display = 'none';
+
+      const redactedPages = Object.values(boxesByPage).filter(a => a.length > 0).length;
+      document.getElementById('resultSubtitle').textContent = `Redacted ${redactedPages} of ${numPages} pages`;
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle'; ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '9432796175');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
+    } catch (err) {
+      console.error(err);
+      showError('Processing failed: ' + err.message);
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    btn.disabled = false; btn.textContent = '⬛ Apply & Save';
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!resultBytes) return;
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = selectedFile.name.replace('.pdf', '_redacted.pdf'); a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (!resultBytes) return;
+    const filename = selectedFile.name.replace('.pdf', '_redacted.pdf');
+    const blob = new Blob([resultBytes], { type: 'application/pdf' });
+    const file = new File([blob], filename, { type: 'application/pdf' });
+    try { await navigator.share({ files: [file], title: filename + ' — WooaPDF', text: 'Converted with WooaPDF\nhttps://pdfkit.wooahouse.com/en/pdf-redact.html' }); }
+    catch (e) { if (e.name !== 'AbortError') alert('Share failed.'); }
+  });
+
+  function updateProgressUI(pct, text) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+  function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorMsg').style.display = 'none'; }
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+</script>
+
+<script src="../js/wooahouse-originals-tool-en.js"></script>
+<script>window.PWA_CONFIG={appName:"WooaPDF",themeColor:"#FF4444",icon:"📱",convertIds:['convertBtn','compressBtn','mergeBtn','splitBtn','deleteBtn','applyBtn','rotateBtn','unlockBtn','processBtn','cropBtn','generateBtn','resizeBtn','startBtn','generateAllBtn','printBtn']};</script>
+<script src="../js/pwa-install.js"></script>
+<script src="../js/wooa-sidebar-en.js"></script>
+<script src="../js/wooa-footer-en.js"></script>
+</body>
+</html>
