@@ -87,45 +87,14 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF Comparison Tool",
-  "url": "https://pdfkit.wooahouse.com/en/pdf-compare.html",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How does the PDF comparison work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Text is extracted from each PDF, then compared line by line. Added text is highlighted in green, deleted text in red."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I compare scanned image PDFs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Scanned PDFs without a text layer cannot be compared. This tool works best with text-based PDFs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my files uploaded to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. All processing happens entirely in your browser. Your files are never uploaded to any server, ensuring 100% privacy and data security. Safe for sensitive documents and enterprise security environments."
-      }
-    }
+    {"@type": "Question","name": "How does the comparison work?","acceptedAnswer": {"@type": "Answer","text": "It compares the text of both documents and highlights added, removed, and changed parts in color — good for checking revisions in contracts, terms, and reports."}},
+    {"@type": "Question","name": "Can I compare scanned image PDFs?","acceptedAnswer": {"@type": "Answer","text": "Only PDFs with a text layer are compared. Run scans through OCR first, then compare."}},
+    {"@type": "Question","name": "Does it catch table or formatting changes?","acceptedAnswer": {"@type": "Answer","text": "It mainly detects differences in text content. Formatting changes such as font, color, or table borders may not be shown."}},
+    {"@type": "Question","name": "Which file should be the original?","acceptedAnswer": {"@type": "Answer","text": "Put the older version on the left and the newer version on the right so the add/remove direction reads intuitively."}},
+    {"@type": "Question","name": "Can two documents with different page counts be compared?","acceptedAnswer": {"@type": "Answer","text": "Yes. Content that exists in only one document is shown as added or removed."}},
+    {"@type": "Question","name": "Are my files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment."}}
   ]
 }
 </script>
@@ -281,23 +250,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 
     <div class="wooa-orig-anchor"></div>
 
-  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
-    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. How does the PDF comparison work?</h3>
-        <p style="color:#555;margin:0;">Text is extracted from each PDF, then compared line by line. Added text is highlighted in green, deleted text in red.</p>
-      </div>
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Can I compare scanned image PDFs?</h3>
-        <p style="color:#555;margin:0;">Scanned PDFs without a text layer cannot be compared. This tool works best with text-based PDFs.</p>
-      </div>
-      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Are my files uploaded to a server?</h3>
-        <p style="color:#555;margin:0;">No. All processing happens locally in your browser. Nothing is sent to any server.</p>
-      </div>
-    </div>
-  </section>
+  <div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>How does the comparison work?</summary><p>It compares the text of both documents and highlights added, removed, and changed parts in color — good for checking revisions in contracts, terms, and reports.</p></details><details><summary>Can I compare scanned image PDFs?</summary><p>Only PDFs with a text layer are compared. Run scans through OCR first, then compare.</p></details><details><summary>Does it catch table or formatting changes?</summary><p>It mainly detects differences in text content. Formatting changes such as font, color, or table borders may not be shown.</p></details><details><summary>Which file should be the original?</summary><p>Put the older version on the left and the newer version on the right so the add/remove direction reads intuitively.</p></details><details><summary>Can two documents with different page counts be compared?</summary><p>Yes. Content that exists in only one document is shown as added or removed.</p></details><details><summary>Are my files uploaded to a server?</summary><p>No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment.</p></details></div>
 
 </main>
 

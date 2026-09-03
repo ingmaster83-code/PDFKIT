@@ -45,24 +45,14 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF Redaction",
-  "url": "https://pdfkit.wooahouse.com/en/pdf-redact.html",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question","name": "Can the text under a black box still be copied or extracted?","acceptedAnswer": {"@type": "Answer","text": "No. Any page you draw a box on is flattened to a full-page image, so the original text data behind the box no longer exists in the output file. This isn't just a shape drawn on top."}},
-    {"@type": "Question","name": "What happens to pages with no boxes?","acceptedAnswer": {"@type": "Answer","text": "Pages you didn't mark stay exactly as the original — vector text that's still selectable and searchable. Only marked pages get converted to an image."}},
-    {"@type": "Question","name": "Are files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely in your browser and files are never sent to a server."}}
+    {"@type": "Question","name": "Can text under the black box still be copied or extracted later?","acceptedAnswer": {"@type": "Answer","text": "No. This tool doesn't just cover with a box — it rebuilds the page as an image and removes the original text itself. Copying or text extraction will not reveal the hidden content."}},
+    {"@type": "Question","name": "Is it suitable for hiding ID numbers or account numbers?","acceptedAnswer": {"@type": "Answer","text": "Yes. It is built for permanently removing sensitive information before submitting or sharing documents that contain personal data."}},
+    {"@type": "Question","name": "What happens to pages where I didn't draw a box?","acceptedAnswer": {"@type": "Answer","text": "Pages without redaction marks are also converted to images and saved. Text search and copy across the whole document will be gone."}},
+    {"@type": "Question","name": "Can I undo a redaction I made by mistake?","acceptedAnswer": {"@type": "Answer","text": "Before saving you can move or delete the boxes, but after saving it cannot be recovered. Always keep the original separately."}},
+    {"@type": "Question","name": "The file got larger after redacting.","acceptedAnswer": {"@type": "Answer","text": "Turning pages into images can increase the size. If there's a submission limit, reduce it with the compression tool."}},
+    {"@type": "Question","name": "Are my files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment."}}
   ]
 }
 </script>
@@ -199,7 +189,7 @@
 <div class="wooa-orig-anchor"></div>
 
   <div class="tips-panel"><h3>💡 Tips</h3><ul><li>Use this for SSNs, account numbers, or phone numbers that must be hidden before sharing.</li><li>If sensitive content spans multiple pages, page through and mark each one.</li><li>Pages left unmarked stay in their original, text-selectable state.</li></ul></div>
-<div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Can the text under a black box still be copied or extracted?</summary><p>No. Any page you draw a box on is flattened to a full-page image, so the original text data behind the box no longer exists in the output file. This isn't just a shape drawn on top.</p></details><details><summary>What happens to pages with no boxes?</summary><p>Pages you didn't mark stay exactly as the original — vector text that's still selectable and searchable. Only marked pages get converted to an image.</p></details><details><summary>Are files uploaded to a server?</summary><p>No. All processing happens entirely in your browser and files are never sent to a server.</p></details></div>
+<div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Can text under the black box still be copied or extracted later?</summary><p>No. This tool doesn't just cover with a box — it rebuilds the page as an image and removes the original text itself. Copying or text extraction will not reveal the hidden content.</p></details><details><summary>Is it suitable for hiding ID numbers or account numbers?</summary><p>Yes. It is built for permanently removing sensitive information before submitting or sharing documents that contain personal data.</p></details><details><summary>What happens to pages where I didn't draw a box?</summary><p>Pages without redaction marks are also converted to images and saved. Text search and copy across the whole document will be gone.</p></details><details><summary>Can I undo a redaction I made by mistake?</summary><p>Before saving you can move or delete the boxes, but after saving it cannot be recovered. Always keep the original separately.</p></details><details><summary>The file got larger after redacting.</summary><p>Turning pages into images can increase the size. If there's a submission limit, reduce it with the compression tool.</p></details><details><summary>Are my files uploaded to a server?</summary><p>No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment.</p></details></div>
 
 </main>
 

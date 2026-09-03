@@ -40,62 +40,15 @@
 <meta name="twitter:description" content="PDF 파일을 Word 문서(.doc)로 무료 변환. 텍스트 기반 PDF에서 내용을 추출해 편집 가능한 Word 파일로 저장 설치 없이 브라우저에서 무료로 사용 가능합니다.">
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "PDF to Word Converter",
-    "url": "https://pdfkit.wooahouse.com/en/pdf-to-word.html",
-    "description": "Convert PDF to editable Word document (DOCX) for free. Extract text and formatting. No signup. Browser-based PDF to Word converter.",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Web",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
-  </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF to Word Converter",
-  "url": "https://pdfkit.wooahouse.com/en/pdf-to-word.html",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Will the formatting be preserved?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Basic text and paragraph structure is preserved. Complex layouts may differ slightly."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What Word format is the output?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The output is a .docx file compatible with Microsoft Word and Google Docs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my files sent to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. All conversion runs locally in your browser."
-      }
-    }
+    {"@type": "Question","name": "Is the formatting of the converted Word file preserved?","acceptedAnswer": {"@type": "Answer","text": "Text content is kept, but complex tables and multi-column layouts may change somewhat. The more text-only the document, the closer the result to the original."}},
+    {"@type": "Question","name": "Can I convert a scanned image PDF?","acceptedAnswer": {"@type": "Answer","text": "No. This tool extracts a text layer already stored in the PDF, so it can't be used on PDFs made by scanning paper or photographing. Run OCR first in that case."}},
+    {"@type": "Question","name": "Is there a limit on the number of pages?","acceptedAnswer": {"@type": "Answer","text": "There is no page limit. But since many pages take the browser longer, converting only the range you need is an option."}},
+    {"@type": "Question","name": "Which programs can open it?","acceptedAnswer": {"@type": "Answer","text": "It is saved as .doc and opens directly in Microsoft Word, Google Docs, LibreOffice, and most word processors."}},
+    {"@type": "Question","name": "Does Korean display correctly without breaking?","acceptedAnswer": {"@type": "Answer","text": "Yes. Documents are generated with a standard Korean font so Korean displays properly. If the PDF used a special embedded font, some letter spacing may differ from the original."}},
+    {"@type": "Question","name": "Are my files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment."}}
   ]
 }
 </script>
@@ -264,23 +217,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 </div>
 <div class="wooa-orig-anchor"></div>
 
-  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
-    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Will the formatting be preserved?</h3>
-        <p style="color:#555;margin:0;">Basic text and paragraph structure is preserved. Complex layouts may differ slightly.</p>
-      </div>
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. What Word format is the output?</h3>
-        <p style="color:#555;margin:0;">The output is a .docx file compatible with Microsoft Word and Google Docs.</p>
-      </div>
-      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Are my files sent to a server?</h3>
-        <p style="color:#555;margin:0;">No. All conversion runs locally in your browser.</p>
-      </div>
-    </div>
-  </section>
+  <div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Is the formatting of the converted Word file preserved?</summary><p>Text content is kept, but complex tables and multi-column layouts may change somewhat. The more text-only the document, the closer the result to the original.</p></details><details><summary>Can I convert a scanned image PDF?</summary><p>No. This tool extracts a text layer already stored in the PDF, so it can't be used on PDFs made by scanning paper or photographing. Run OCR first in that case.</p></details><details><summary>Is there a limit on the number of pages?</summary><p>There is no page limit. But since many pages take the browser longer, converting only the range you need is an option.</p></details><details><summary>Which programs can open it?</summary><p>It is saved as .doc and opens directly in Microsoft Word, Google Docs, LibreOffice, and most word processors.</p></details><details><summary>Does Korean display correctly without breaking?</summary><p>Yes. Documents are generated with a standard Korean font so Korean displays properly. If the PDF used a special embedded font, some letter spacing may differ from the original.</p></details><details><summary>Are my files uploaded to a server?</summary><p>No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment.</p></details></div>
 
 </main>
 

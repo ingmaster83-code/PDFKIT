@@ -87,45 +87,14 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF to CSV Converter",
-  "url": "https://pdfkit.wooahouse.com/en/pdf-to-csv.html",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Which PDFs give the best results?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Text-based PDFs with clearly defined tables work best. Scanned image PDFs without a text layer are not supported."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I open the CSV in Excel?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Download the CSV file and open it in Excel. If Korean characters appear garbled, select UTF-8 BOM encoding and re-convert."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What happens with multi-page PDFs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Data from all pages is combined in order. Page separators are included to help you identify where each page starts."
-      }
-    }
+    {"@type": "Question","name": "Which PDFs convert well?","acceptedAnswer": {"@type": "Answer","text": "Text-based PDFs with data arranged in tables give the best results — bank statements, invoices, and statistical tables with clear rows and columns."}},
+    {"@type": "Question","name": "Can I turn a scanned table into CSV?","acceptedAnswer": {"@type": "Answer","text": "Scanned images have no text layer, so they don't convert. Use a PDF that has been through OCR."}},
+    {"@type": "Question","name": "Korean text is broken when I open the CSV in Excel.","acceptedAnswer": {"@type": "Answer","text": "In Excel, use 'Data > From Text/CSV' and set the encoding to UTF-8 so Korean displays correctly."}},
+    {"@type": "Question","name": "What happens to a table that spans several pages?","acceptedAnswer": {"@type": "Answer","text": "If the column structure is the same, it continues across pages. If columns differ per page, rows may misalign, so review the result."}},
+    {"@type": "Question","name": "Are merged cells and formulas preserved?","acceptedAnswer": {"@type": "Answer","text": "CSV is a plain data format, so merged cells are separated and formulas are stored as values only."}},
+    {"@type": "Question","name": "Are my files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment."}}
   ]
 }
 </script>
@@ -262,23 +231,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
 
     <div class="wooa-orig-anchor"></div>
 
-  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
-    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Which PDFs give the best results?</h3>
-        <p style="color:#555;margin:0;">Text-based PDFs with clearly defined tables work best. Scanned image PDFs without a text layer are not supported.</p>
-      </div>
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. How do I open the CSV in Excel?</h3>
-        <p style="color:#555;margin:0;">Download the CSV file and open it in Excel. If Korean characters appear garbled, select UTF-8 BOM encoding and re-convert.</p>
-      </div>
-      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. What happens with multi-page PDFs?</h3>
-        <p style="color:#555;margin:0;">Data from all pages is combined in order. Page separators are included to help you identify where each page starts.</p>
-      </div>
-    </div>
-  </section>
+  <div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Which PDFs convert well?</summary><p>Text-based PDFs with data arranged in tables give the best results — bank statements, invoices, and statistical tables with clear rows and columns.</p></details><details><summary>Can I turn a scanned table into CSV?</summary><p>Scanned images have no text layer, so they don't convert. Use a PDF that has been through OCR.</p></details><details><summary>Korean text is broken when I open the CSV in Excel.</summary><p>In Excel, use 'Data > From Text/CSV' and set the encoding to UTF-8 so Korean displays correctly.</p></details><details><summary>What happens to a table that spans several pages?</summary><p>If the column structure is the same, it continues across pages. If columns differ per page, rows may misalign, so review the result.</p></details><details><summary>Are merged cells and formulas preserved?</summary><p>CSV is a plain data format, so merged cells are separated and formulas are stored as values only.</p></details><details><summary>Are my files uploaded to a server?</summary><p>No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment.</p></details></div>
 
 </main>
 

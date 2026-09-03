@@ -45,25 +45,14 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF Crop",
-  "url": "https://pdfkit.wooahouse.com/en/pdf-crop.html",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question","name": "Does cropping reduce quality?","acceptedAnswer": {"@type": "Answer","text": "No. Pages are never redrawn — only the visible crop box is adjusted, so text and image quality stay exactly as the original."}},
-    {"@type": "Question","name": "Is the same ratio applied to every page?","acceptedAnswer": {"@type": "Answer","text": "Yes, the top/bottom/left/right margin percentages you set are applied identically to every page."}},
-    {"@type": "Question","name": "Does file size shrink too?","acceptedAnswer": {"@type": "Answer","text": "Only the visible area changes, so the size reduction is minimal. Use the PDF compressor afterward if you also need a smaller file."}},
-    {"@type": "Question","name": "Are files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely in your browser and files are never sent to a server."}}
+    {"@type": "Question","name": "Does cropping reduce quality?","acceptedAnswer": {"@type": "Answer","text": "No. Text and images stay exactly as the original — only the visible area of the page shrinks. There is no quality loss."}},
+    {"@type": "Question","name": "Is the same margin applied to every page?","acceptedAnswer": {"@type": "Answer","text": "The top/bottom/left/right margins you set are applied to all pages. For documents with varying margins, use the largest margin to be safe."}},
+    {"@type": "Question","name": "Can I remove the black border left by scanning?","acceptedAnswer": {"@type": "Answer","text": "Yes. Pull the edges inward with the sliders to cut off scan shadows or black bands."}},
+    {"@type": "Question","name": "I want to reduce margins to fit an e-reader screen.","acceptedAnswer": {"@type": "Answer","text": "Smaller margins make the body text larger on tablets and e-readers. Crop first, then use the page-size tool to match the screen ratio."}},
+    {"@type": "Question","name": "Does the file size go down too?","acceptedAnswer": {"@type": "Answer","text": "Only the visible area changes, so the size barely moves. Use the compression tool to reduce size."}},
+    {"@type": "Question","name": "Are my files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment."}}
   ]
 }
 </script>
@@ -204,7 +193,7 @@
 <div class="wooa-orig-anchor"></div>
 
   <div class="tips-panel"><h3>💡 Tips</h3><ul><li>Handy for removing dark scanner borders or excess whitespace from scanned documents.</li><li>Check the preview before applying — if margins vary a lot between pages, some content could get clipped.</li><li>Want a smaller file too? Run the PDF compressor after cropping.</li></ul></div>
-<div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Does cropping reduce quality?</summary><p>No. Pages are never redrawn — only the visible crop box is adjusted, so text and image quality stay exactly as the original.</p></details><details><summary>Is the same ratio applied to every page?</summary><p>Yes, the top/bottom/left/right margin percentages you set are applied identically to every page.</p></details><details><summary>Does file size shrink too?</summary><p>Only the visible area changes, so the size reduction is minimal. Use the PDF compressor afterward if you also need a smaller file.</p></details><details><summary>Are files uploaded to a server?</summary><p>No. All processing happens entirely in your browser and files are never sent to a server.</p></details></div>
+<div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Does cropping reduce quality?</summary><p>No. Text and images stay exactly as the original — only the visible area of the page shrinks. There is no quality loss.</p></details><details><summary>Is the same margin applied to every page?</summary><p>The top/bottom/left/right margins you set are applied to all pages. For documents with varying margins, use the largest margin to be safe.</p></details><details><summary>Can I remove the black border left by scanning?</summary><p>Yes. Pull the edges inward with the sliders to cut off scan shadows or black bands.</p></details><details><summary>I want to reduce margins to fit an e-reader screen.</summary><p>Smaller margins make the body text larger on tablets and e-readers. Crop first, then use the page-size tool to match the screen ratio.</p></details><details><summary>Does the file size go down too?</summary><p>Only the visible area changes, so the size barely moves. Use the compression tool to reduce size.</p></details><details><summary>Are my files uploaded to a server?</summary><p>No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment.</p></details></div>
 
 </main>
 

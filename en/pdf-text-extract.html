@@ -40,62 +40,15 @@
 <meta name="twitter:description" content="PDF에서 텍스트를 무료 추출. 복사 안 되는 PDF에서 글자를 추출하여 복사하거나 TXT 파일로 저장. pages별 텍스트 확인 가능 설치 없이 브라우저에서 무료로 사용 가능합니다.">
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "PDF Text Extractor",
-    "url": "https://pdfkit.wooahouse.com/en/pdf-text-extract.html",
-    "description": "Extract text from PDF files for free, even from non-copyable PDFs. Copy or download extracted text. No signup. 100% browser-based.",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Web",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
-  </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "PDF Text Extractor",
-  "url": "https://pdfkit.wooahouse.com/en/pdf-text-extract.html",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Can I extract text from scanned PDFs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Basic text extraction works for text-based PDFs. Scanned image PDFs may require OCR (coming soon)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What can I do with the extracted text?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Copy it to clipboard, download as a .txt file, or use it however you need."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are files sent to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Text extraction runs entirely in your browser."
-      }
-    }
+    {"@type": "Question","name": "Does text extraction work on scanned PDFs?","acceptedAnswer": {"@type": "Answer","text": "Scanned PDFs have no text layer, so direct extraction is difficult. Use the PDF OCR tool on WooaImage instead."}},
+    {"@type": "Question","name": "How do I save the extracted text?","acceptedAnswer": {"@type": "Answer","text": "You can copy it to the clipboard or download it as a .txt file."}},
+    {"@type": "Question","name": "Is Korean text extracted correctly?","acceptedAnswer": {"@type": "Answer","text": "Yes. All languages contained in the PDF, including Korean, can be extracted."}},
+    {"@type": "Question","name": "Is table data extracted accurately?","acceptedAnswer": {"@type": "Answer","text": "Text inside a table is extracted, but the row and column separation may differ from the original. For accurate table data, review the cell structure while cleaning it up."}},
+    {"@type": "Question","name": "Can I view text page by page?","acceptedAnswer": {"@type": "Answer","text": "Yes. Press the 'By page' tab at the top of the results to see the text separated by page number."}},
+    {"@type": "Question","name": "Are my files uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment."}}
   ]
 }
 </script>
@@ -286,23 +239,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjQ2NDkyMTA4MTY3NjMwOSIsW251bGwsbnVsbCxudWxsLCJ
     <a href="pdf-to-word.html" target="_blank" rel="noopener" style="background:#4F6EF7;color:#fff;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;white-space:nowrap;">🔤 PDF → Word →</a>
   </div>
 
-  <section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
-    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Can I extract text from scanned PDFs?</h3>
-        <p style="color:#555;margin:0;">Basic text extraction works for text-based PDFs. Scanned image PDFs may require OCR (coming soon).</p>
-      </div>
-      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. What can I do with the extracted text?</h3>
-        <p style="color:#555;margin:0;">Copy it to clipboard, download as a .txt file, or use it however you need.</p>
-      </div>
-      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
-        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Are files sent to a server?</h3>
-        <p style="color:#555;margin:0;">No. Text extraction runs entirely in your browser.</p>
-      </div>
-    </div>
-  </section>
+  <div class="faq-section"><h2>Frequently Asked Questions</h2><details><summary>Does text extraction work on scanned PDFs?</summary><p>Scanned PDFs have no text layer, so direct extraction is difficult. Use the PDF OCR tool on WooaImage instead.</p></details><details><summary>How do I save the extracted text?</summary><p>You can copy it to the clipboard or download it as a .txt file.</p></details><details><summary>Is Korean text extracted correctly?</summary><p>Yes. All languages contained in the PDF, including Korean, can be extracted.</p></details><details><summary>Is table data extracted accurately?</summary><p>Text inside a table is extracted, but the row and column separation may differ from the original. For accurate table data, review the cell structure while cleaning it up.</p></details><details><summary>Can I view text page by page?</summary><p>Yes. Press the 'By page' tab at the top of the results to see the text separated by page number.</p></details><details><summary>Are my files uploaded to a server?</summary><p>No. All processing happens entirely inside your browser and your files are never sent to a server. There is no risk of personal or sensitive data leaving your device, so it is safe to use even in a corporate environment.</p></details></div>
 
 </main>
 
