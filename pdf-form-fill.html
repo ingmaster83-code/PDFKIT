@@ -68,9 +68,12 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question","name": "모든 PDF에 이 기능을 사용할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. PDF 제작 시 입력 가능한 양식(AcroForm) 필드가 포함된 문서만 지원합니다. 필드가 없는 스캔본이나 이미지 PDF는 자유 배치 편집기를 이용해주세요."}},
-    {"@type": "Question","name": "체크박스와 드롭다운도 지원하나요?","acceptedAnswer": {"@type": "Answer","text": "네. 텍스트 필드, 체크박스, 드롭다운 선택 필드를 인식하고 채울 수 있습니다."}},
-    {"@type": "Question","name": "파일이 서버에 저장되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다."}}
+    {"@type": "Question","name": "모든 PDF에서 양식 채우기가 되나요?","acceptedAnswer": {"@type": "Answer","text": "PDF 안에 입력 가능한 양식(AcroForm) 필드가 있어야 합니다. 도구가 자동으로 필드를 감지하며, 필드가 없는 문서는 PDF 편집기로 텍스트를 얹어야 합니다."}},
+    {"@type": "Question","name": "체크박스와 드롭다운도 지원하나요?","acceptedAnswer": {"@type": "Answer","text": "네. 텍스트 입력란은 물론 체크박스, 라디오 버튼, 드롭다운 선택까지 채운 뒤 저장할 수 있습니다."}},
+    {"@type": "Question","name": "관공서·은행 신청서 PDF 작성에 쓸 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "네. 입력형 필드가 포함된 정부·금융 서식이라면 화면에서 바로 채우고 인쇄하거나 제출용으로 저장할 수 있습니다."}},
+    {"@type": "Question","name": "입력한 내용을 나중에 다시 수정할 수 있나요?","acceptedAnswer": {"@type": "Answer","text": "저장 시 필드를 편집 가능한 상태로 남길지, 내용을 확정할지 선택할 수 있습니다. 확정하면 값이 고정됩니다."}},
+    {"@type": "Question","name": "한글 입력이 깨지지 않나요?","acceptedAnswer": {"@type": "Answer","text": "대부분의 서식에서 한글이 정상 입력됩니다. 특정 임베드 폰트만 허용하는 필드에서는 글자 간격이 다르게 보일 수 있습니다."}},
+    {"@type": "Question","name": "파일이 서버에 업로드되나요?","acceptedAnswer": {"@type": "Answer","text": "아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다."}}
   ]
 }
 </script>
@@ -235,7 +238,7 @@
 </div>
 <div class="wooa-orig-anchor"></div>
 <div class="tips-panel"><h3>💡 Tips</h3><ul><li>PDF를 열어 값을 입력한 뒤 반드시 다운로드해야 저장됩니다.</li><li>제출용으로 값을 고정하고 싶다면 '수정 불가로 고정' 옵션을 사용하세요.</li><li>양식 필드가 없는 PDF는 자유 배치 편집기로 텍스트를 직접 추가할 수 있습니다.</li></ul></div>
-<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>모든 PDF에 이 기능을 사용할 수 있나요?</summary><p>아니요. PDF 제작 시 입력 가능한 양식(AcroForm) 필드가 포함된 문서만 지원합니다. 필드가 없는 스캔본이나 이미지 PDF는 자유 배치 편집기를 이용해주세요.</p></details><details><summary>체크박스와 드롭다운도 지원하나요?</summary><p>네. 텍스트 필드, 체크박스, 드롭다운 선택 필드를 인식하고 채울 수 있습니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
+<div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>모든 PDF에서 양식 채우기가 되나요?</summary><p>PDF 안에 입력 가능한 양식(AcroForm) 필드가 있어야 합니다. 도구가 자동으로 필드를 감지하며, 필드가 없는 문서는 PDF 편집기로 텍스트를 얹어야 합니다.</p></details><details><summary>체크박스와 드롭다운도 지원하나요?</summary><p>네. 텍스트 입력란은 물론 체크박스, 라디오 버튼, 드롭다운 선택까지 채운 뒤 저장할 수 있습니다.</p></details><details><summary>관공서·은행 신청서 PDF 작성에 쓸 수 있나요?</summary><p>네. 입력형 필드가 포함된 정부·금융 서식이라면 화면에서 바로 채우고 인쇄하거나 제출용으로 저장할 수 있습니다.</p></details><details><summary>입력한 내용을 나중에 다시 수정할 수 있나요?</summary><p>저장 시 필드를 편집 가능한 상태로 남길지, 내용을 확정할지 선택할 수 있습니다. 확정하면 값이 고정됩니다.</p></details><details><summary>한글 입력이 깨지지 않나요?</summary><p>대부분의 서식에서 한글이 정상 입력됩니다. 특정 임베드 폰트만 허용하는 필드에서는 글자 간격이 다르게 보일 수 있습니다.</p></details><details><summary>파일이 서버에 업로드되나요?</summary><p>아니요. 모든 처리는 브라우저 안에서만 이루어지며 파일은 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details></div>
 
 </main>
 
