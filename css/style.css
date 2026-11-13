@@ -1031,3 +1031,12 @@ footer {
 .related-card:hover{border-color:var(--primary,#0EA5E9);transform:translateY(-2px);}
 .related-icon{font-size:1.4rem;line-height:1;}
 @media(max-width:600px){.related-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* 도구 페이지 사용 방법·활용 가이드 (2026-11) */
+.tool-guide { margin-top: 24px; background: #fff; border: 1px solid var(--border, #E5E7EB); border-radius: 12px; padding: 20px 22px; line-height: 1.8; color: #374151; }
+.tool-guide h2 { font-size: 1.15rem; margin: 0 0 10px; color: #111827; }
+.tool-guide h3 { font-size: 1rem; margin: 18px 0 6px; color: #111827; }
+.tool-guide ol, .tool-guide ul { margin: 6px 0 6px 20px; padding: 0; }
+.tool-guide li { margin: 5px 0; }
+.tool-guide code { background: #F3F4F6; border-radius: 4px; padding: 1px 6px; font-size: .9em; }
+.tool-guide .updated { margin-top: 16px; font-size: .82rem; color: #6B7280; }
